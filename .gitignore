@@ -7,3 +7,5 @@ styles.css
 docs/
 project-tree.R
 /.quarto/
+
+**/*.quarto_ipynb
