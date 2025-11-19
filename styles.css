@@ -46,6 +46,14 @@ body {
   align-items: baseline;
 }
 
+/* Inline code color */
+code {
+  color: #ee8336;       /* text color */
+  background-color: #f9f2f4;  /* light background optional */
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+}
+
 /* Hero Section */
 
 .hero-section {

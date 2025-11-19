@@ -1,33 +1,5 @@
 [
   {
-    "objectID": "events/index.html",
-    "href": "events/index.html",
-    "title": "Rome R-Users Group",
-    "section": "",
-    "text": "Events are the heartbeat of our community. They bring us together to learn, collaborate, and connect. Whether it’s a workshop, a meetup, or a project showcase, each event is an opportunity to share knowledge, build skills, and grow the R programming community in Rome and beyond.\nOur in-person focused group events are designed to foster deeper conversations and hands-on collaboration in smaller, interactive settings. Unlike large meetups, these sessions create space for participants to dive into specific topics, exchange ideas, and work through challenges side by side. By bringing people together in the same room, we create a supportive environment where learning feels personal, networking happens naturally, and everyone has a chance to contribute."
-  },
-  {
-    "objectID": "events/index.html#events-at-rome-r-users-group",
-    "href": "events/index.html#events-at-rome-r-users-group",
-    "title": "Rome R-Users Group",
-    "section": "",
-    "text": "Events are the heartbeat of our community. They bring us together to learn, collaborate, and connect. Whether it’s a workshop, a meetup, or a project showcase, each event is an opportunity to share knowledge, build skills, and grow the R programming community in Rome and beyond.\nOur in-person focused group events are designed to foster deeper conversations and hands-on collaboration in smaller, interactive settings. Unlike large meetups, these sessions create space for participants to dive into specific topics, exchange ideas, and work through challenges side by side. By bringing people together in the same room, we create a supportive environment where learning feels personal, networking happens naturally, and everyone has a chance to contribute."
-  },
-  {
-    "objectID": "events/index.html#upcoming-events",
-    "href": "events/index.html#upcoming-events",
-    "title": "Rome R-Users Group",
-    "section": "Upcoming Events",
-    "text": "Upcoming Events\nNext in-person event: https://www.meetup.com/rome-r-users-group/"
-  },
-  {
-    "objectID": "events/index.html#past-events",
-    "href": "events/index.html#past-events",
-    "title": "Rome R-Users Group",
-    "section": "Past Events",
-    "text": "Past Events\n\n\n\n\n\nNovember, 2025 Rome R Users Group - Online Event\n\n\n\n\n\n\n\nOctober, 2025 Rome R Users Group - In-Person Event\n\n\n\n\n\n\n\nJune, 2025 Rome R Users Group - In-Person Event\n\n\n\n\n\n\n\nMay, 2025 Rome R Users Group - In-Person Event"
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About Us",
@@ -77,15 +49,64 @@
     "text": "What This Means for You\nThis partnership brings numerous benefits to our community. We’ll have access to valuable resources, expertise, and opportunities that will further enrich our events and activities. Together, we’ll continue to grow, learn, and share knowledge within the R programming ecosystem.\nWe’re grateful for the support of R Consortium and look forward to the exciting opportunities this collaboration will bring. Stay tuned for upcoming events and initiatives that will showcase the incredible possibilities unlocked by this partnership.\nLet’s embark on this journey together, embracing the power of R programming and data science with R Consortium by our side. Here’s to a bright future of learning, innovation, and community-building!\n#RConsortium #RProgramming #DataScience #CommunityBuilding"
   },
   {
-    "objectID": "resources/index.html",
-    "href": "resources/index.html",
+    "objectID": "content/events/index.html",
+    "href": "content/events/index.html",
+    "title": "Rome R-Users Group",
+    "section": "",
+    "text": "Events are the heartbeat of our community. They bring us together to learn, collaborate, and connect. Whether it’s a workshop, a meetup, or a project showcase, each event is an opportunity to share knowledge, build skills, and grow the R programming community in Rome and beyond.\nOur in-person focused group events are designed to foster deeper conversations and hands-on collaboration in smaller, interactive settings. Unlike large meetups, these sessions create space for participants to dive into specific topics, exchange ideas, and work through challenges side by side. By bringing people together in the same room, we create a supportive environment where learning feels personal, networking happens naturally, and everyone has a chance to contribute."
+  },
+  {
+    "objectID": "content/events/index.html#events-at-rome-r-users-group",
+    "href": "content/events/index.html#events-at-rome-r-users-group",
+    "title": "Rome R-Users Group",
+    "section": "",
+    "text": "Events are the heartbeat of our community. They bring us together to learn, collaborate, and connect. Whether it’s a workshop, a meetup, or a project showcase, each event is an opportunity to share knowledge, build skills, and grow the R programming community in Rome and beyond.\nOur in-person focused group events are designed to foster deeper conversations and hands-on collaboration in smaller, interactive settings. Unlike large meetups, these sessions create space for participants to dive into specific topics, exchange ideas, and work through challenges side by side. By bringing people together in the same room, we create a supportive environment where learning feels personal, networking happens naturally, and everyone has a chance to contribute."
+  },
+  {
+    "objectID": "content/events/index.html#upcoming-events",
+    "href": "content/events/index.html#upcoming-events",
+    "title": "Rome R-Users Group",
+    "section": "Upcoming Events",
+    "text": "Upcoming Events\nNext in-person event: https://www.meetup.com/rome-r-users-group/"
+  },
+  {
+    "objectID": "content/events/index.html#past-events",
+    "href": "content/events/index.html#past-events",
+    "title": "Rome R-Users Group",
+    "section": "Past Events",
+    "text": "Past Events\n\n\n\n\n\nNovember, 2025 Rome R Users Group - Online Event\n\n\n\n\n\n\n\nOctober, 2025 Rome R Users Group - In-Person Event\n\n\n\n\n\n\n\nJune, 2025 Rome R Users Group - In-Person Event\n\n\n\n\n\n\n\nMay, 2025 Rome R Users Group - In-Person Event"
+  },
+  {
+    "objectID": "content/rhacks/posts/112025/index.html",
+    "href": "content/rhacks/posts/112025/index.html",
+    "title": "How to Add Images to ggplot Axes Using ggtext::element_markdown()\n",
+    "section": "",
+    "text": "This tip is based on a full Kaggle notebook, where this technique is applied in a complete EDA: 🔗 https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos\n\nHave you ever needed to show logos, icons, or flags directly on the axes of your ggplot charts?\n\nYou can do this thanks to the element_markdown() function from the {ggtext} package!\nelement_markdown() is a function that tells ggplot to treat labels as HTML instead of plain text, and it must be used in the theme() section of your ggplot code.\nThe chart below shows an example where league logos appear directly on the x-axis. It displays the total number of goals scored in the major European football leagues during the 2023/2024 season:\n\n\n\nEuropean football leagues 2023/2024"
+  },
+  {
+    "objectID": "content/rhacks/posts/112025/index.html#section",
+    "href": "content/rhacks/posts/112025/index.html#section",
+    "title": "How to Add Images to ggplot Axes Using ggtext::element_markdown()\n",
+    "section": "",
+    "text": "This tip is based on a full Kaggle notebook, where this technique is applied in a complete EDA: 🔗 https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos\n\nHave you ever needed to show logos, icons, or flags directly on the axes of your ggplot charts?\n\nYou can do this thanks to the element_markdown() function from the {ggtext} package!\nelement_markdown() is a function that tells ggplot to treat labels as HTML instead of plain text, and it must be used in the theme() section of your ggplot code.\nThe chart below shows an example where league logos appear directly on the x-axis. It displays the total number of goals scored in the major European football leagues during the 2023/2024 season:\n\n\n\nEuropean football leagues 2023/2024"
+  },
+  {
+    "objectID": "content/rhacks/posts/112025/index.html#exploratory-data-analysis-workflow",
+    "href": "content/rhacks/posts/112025/index.html#exploratory-data-analysis-workflow",
+    "title": "How to Add Images to ggplot Axes Using ggtext::element_markdown()\n",
+    "section": "Exploratory Data Analysis Workflow",
+    "text": "Exploratory Data Analysis Workflow\nHere is a short, practical guide showing how to recreate this plot.\nStep 0: Start from a basic dataframe\nIn most real situations you will already have a dataframe to work with. Here is the one used in this example:\n\ndf &lt;- data.frame(\n  league = c(\"Premier League\", \"La Liga\", \n             \"Serie A\", \"Bundesliga\", \"Ligue 1\"),\n  goals  = c(1197, 977, 968, 960, 804))\n\ndf\n\n          league goals\n1 Premier League  1197\n2        La Liga   977\n3        Serie A   968\n4     Bundesliga   960\n5        Ligue 1   804\n\n\nStep 1: Choose the images you want to display (PNG recommended)\nFirst decide which images you want to show on your ggplot axis. In this example I am using online image URLs (including links from Wikimedia), but you can use any source that provides a direct image URL, such as files hosted on GitHub repos or any public static hosting service. Just make sure the image format is supported — typically PNG or JPG/JPEG.\n\n# Define image URLs as variables\npremier_url &lt;- \"https://upload.wikimedia.org/wikipedia/it/6/6d/Premier_League_Logo_2016.png\"\nlaliga_url &lt;- \"https://upload.wikimedia.org/wikipedia/it/9/9b/LFP_La_Liga.png\"\nseriea_url &lt;- \"https://www.fifplay.com/img/public/serie-a-logo.png\"\nbundes_url &lt;- \"https://www.fifplay.com/img/public/bundesliga-logo.png\"\nligue1_url &lt;- \"https://upload.wikimedia.org/wikipedia/commons/a/a0/Ligue_1_2024_Logo.png\"\n\nStep 2: Add a column with HTML  tags\nIn order to display images on the axis, each image URL must be wrapped inside an HTML  tag. This simply means that the URL cannot appear alone — it must be placed inside the structure:\n\n&lt;img src= + image_url + width='45'/&gt;\n\nPlease note that in this example I use width=‘45’ just as a reference size, but you can choose any value depending on how big you want the image to appear in your plot.\nLet’s add the column to the df:\n\ndf$logo &lt;- c(\n  paste0(\"&lt;img src='\", premier_url, \"' width='45'/&gt;\"), \n  paste0(\"&lt;img src='\", laliga_url, \"' width='45'/&gt;\"), \n  paste0(\"&lt;img src='\", seriea_url, \"' width='45'/&gt;\"), \n  paste0(\"&lt;img src='\", bundes_url, \"' width='45'/&gt;\"), \n  paste0(\"&lt;img src='\", ligue1_url, \"' width='45'/&gt;\")\n  )\n\nAt this point, the dataframe should look like this:\n\n\n\n\n\n\n\n\nleague\ngoals\nlogo\n\n\n\nPremier League\n1197\n&lt;img src='https://upload.wikimedia.org/wikipedia/it/6/6d/Premier_League_Logo_2016.png' width='45'/&gt;\n\n\nLa Liga\n977\n&lt;img src='https://upload.wikimedia.org/wikipedia/it/9/9b/LFP_La_Liga.png' width='45'/&gt;\n\n\nSerie A\n968\n&lt;img src='https://www.fifplay.com/img/public/serie-a-logo.png' width='45'/&gt;\n\n\nBundesliga\n960\n&lt;img src='https://www.fifplay.com/img/public/bundesliga-logo.png' width='45'/&gt;\n\n\nLigue 1\n804\n&lt;img src='https://upload.wikimedia.org/wikipedia/commons/a/a0/Ligue_1_2024_Logo.png' width='45'/&gt;\n\n\n\n\nStep 3: Plot your data!\nNow that the dataframe contains a column of HTML  tags, we can use it directly on the x-axis. The key part is here:\n\ntheme( axis.text.x = element_markdown() )\n\nelement_markdown() function is what allows ggplot to interpret the HTML in your axis labels. Without it, ggplot would show the literal string &lt;img src='...'&gt; as plain text. With it, the &lt;img&gt; tags are rendered as actual images.\nHere is the full plotting code:\n\nlibrary(ggplot2)\n\n\noptions(repr.plot.width = 6, \n        repr.plot.height = 7, \n        warn = -1)\n\n\nggplot(df, \n       aes(x = reorder(logo, -goals), y = goals)) + \n  geom_col(fill = \"forestgreen\", width = .8) +\n  geom_text(aes(label = goals), vjust = -0.5, size = 4.5) + \n  labs(title = \"\\nFootball stats 2023/2024\",\n       subtitle = \"Total Goals scored in each League\\n\" ) + \n  theme_minimal(14) +\n  # HTML rendering happens here!!\n  theme(axis.text.x = ggtext::element_markdown(), \n         axis.text.y = element_blank(), \n         panel.grid = element_blank(), \n         axis.title = element_blank(), \n         plot.title = element_text(face = \"bold\", \n                                   colour = \"blue\", hjust = 0.05), \n         plot.subtitle= element_text(hjust = 0.05)\n         )\n\nWith element_markdown() applied to axis.text.x, ggplot correctly displays the league logos instead of plain text labels — exactly like in the plot shown at the beginning.\nIn short\n\nPrepare your dataframe (existing or new)\nChoose your images (PNG recommended) and store their URLs\nWrap each URL inside an HTML tag with a defined width\nAdd this HTML column to your dataframe\nMap it to the ggplot axis\nEnable HTML rendering in plot theme using:\n\n\naxis.text.x = ggtext::element_markdown()\n\nThanks for reading!\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events from the Rome R Users Group, you can click here:\n👉https://www.meetup.com/rome-r-users-group/\nAnd if you are curious, the full Kaggle notebook used for this tip is available here: 🔗https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos"
+  },
+  {
+    "objectID": "content/resources/index.html",
+    "href": "content/resources/index.html",
     "title": "Rome R-Users Group",
     "section": "",
     "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
   },
   {
-    "objectID": "resources/index.html#resources",
-    "href": "resources/index.html#resources",
+    "objectID": "content/resources/index.html#resources",
+    "href": "content/resources/index.html#resources",
     "title": "Rome R-Users Group",
     "section": "",
     "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
@@ -96,6 +117,27 @@
     "title": "MIT License",
     "section": "",
     "text": "MIT License\nCopyright (c) 2025 Rome-R-Users-Group authors\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "content/news/index.html",
+    "href": "content/news/index.html",
+    "title": "R Consortium Events & Workshops",
+    "section": "",
+    "text": "Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:"
+  },
+  {
+    "objectID": "content/news/index.html#news",
+    "href": "content/news/index.html#news",
+    "title": "R Consortium Events & Workshops",
+    "section": "",
+    "text": "Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:"
+  },
+  {
+    "objectID": "content/rhacks/index.html",
+    "href": "content/rhacks/index.html",
+    "title": "R-Hacks",
+    "section": "",
+    "text": "R-Hacks Banner\nR-Hacks brings together short, practical snippets from the Rome R Users Group community. Here you’ll find clever shortcuts, useful functions, and simple workflows that make R programming easier and more enjoyable. Each post is quick to read, easy to adapt, and perfect for day-to-day projects.\nAt the same time, R-Hacks serves as a curated library of high-impact R tricks and micro-workflows. These bite-sized examples highlight efficient patterns, reproducible techniques, and modern R practices that help you write cleaner, faster, and more robust code. Ideal for users who want to level up their R skills with minimal overhead."
   },
   {
     "objectID": "about/organizers.html",
@@ -138,19 +180,5 @@
     "title": "Organizers",
     "section": "Code of Conduct",
     "text": "Code of Conduct\nWe have a code of conduct that all members and participants are expected to follow. The code of conduct is designed to ensure that our community is a safe and welcoming space for everyone. We take any violations of the code of conduct seriously and will take appropriate action to address them."
-  },
-  {
-    "objectID": "news/index.html",
-    "href": "news/index.html",
-    "title": "R Consortium Events & Workshops",
-    "section": "",
-    "text": "Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:"
-  },
-  {
-    "objectID": "news/index.html#news",
-    "href": "news/index.html#news",
-    "title": "R Consortium Events & Workshops",
-    "section": "",
-    "text": "Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:"
   }
 ]
