@@ -35,11 +35,13 @@ website:
       - text: Home
         href: index.qmd
       - text: Events
-        href: events/index.qmd
+        href: content/events/index.qmd
+      - text: R-Hacks
+        href: content/rhacks/index.qmd
       - text: Resources
-        href: resources/index.qmd
+        href: content/resources/index.qmd
       - text: News
-        href: news/index.qmd
+        href: content/news/index.qmd
       - text: About
         menu: 
           - about/organizers.qmd

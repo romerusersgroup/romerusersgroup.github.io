@@ -1,0 +1,25 @@
+---
+title: "R-Hacks"
+subtitle: "Collection of concise, ready-to-use R tips, tricks, and code snippets."
+description: "Each post focuses on a small, practical task you can apply immediately whether you're cleaning data, visualising results, or debugging code. A growing toolbox designed to make your R workflow faster, smoother, and more effective."
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: true
+page-navigation: true
+back-to-top-navigation: true
+---
+
+![R-Hacks Banner](r-hacks.png)
+
+
+R-Hacks brings together short, practical snippets from the `Rome R Users Group` community. Here you’ll find clever shortcuts, useful functions, and simple workflows that make R programming easier and more enjoyable. Each post is quick to read, easy to adapt, and perfect for day-to-day projects.
+
+At the same time, `R-Hacks` serves as a curated library of high-impact R tricks and micro-workflows. These bite-sized examples highlight efficient patterns, reproducible techniques, and modern R practices that help you write cleaner, faster, and more robust code. Ideal for users who want to level up their R skills with minimal overhead.
+
+##
