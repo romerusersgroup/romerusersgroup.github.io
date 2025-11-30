@@ -1,5 +1,14 @@
 [
   {
+    "listing": "/content/events/index.html",
+    "items": [
+      "/content/events/events/27112025_jakubnowosad.html",
+      "/content/events/events/01102025_inperson.html",
+      "/content/events/events/01062025_inperson.html",
+      "/content/events/events/01052025.html"
+    ]
+  },
+  {
     "listing": "/content/rhacks/index.html",
     "items": [
       "/content/rhacks/posts/112025/index.html"

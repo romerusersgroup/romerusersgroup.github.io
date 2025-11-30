@@ -49,32 +49,109 @@
     "text": "What This Means for You\nThis partnership brings numerous benefits to our community. We’ll have access to valuable resources, expertise, and opportunities that will further enrich our events and activities. Together, we’ll continue to grow, learn, and share knowledge within the R programming ecosystem.\nWe’re grateful for the support of R Consortium and look forward to the exciting opportunities this collaboration will bring. Stay tuned for upcoming events and initiatives that will showcase the incredible possibilities unlocked by this partnership.\nLet’s embark on this journey together, embracing the power of R programming and data science with R Consortium by our side. Here’s to a bright future of learning, innovation, and community-building!\n#RConsortium #RProgramming #DataScience #CommunityBuilding"
   },
   {
-    "objectID": "content/events/index.html",
-    "href": "content/events/index.html",
-    "title": "Rome R-Users Group",
+    "objectID": "content/events/events/27112025_jakubnowosad.html",
+    "href": "content/events/events/27112025_jakubnowosad.html",
+    "title": "R for geospatial predictive mapping",
     "section": "",
-    "text": "Events are the heartbeat of our community. They bring us together to learn, collaborate, and connect. Whether it’s a workshop, a meetup, or a project showcase, each event is an opportunity to share knowledge, build skills, and grow the R programming community in Rome and beyond.\nOur in-person focused group events are designed to foster deeper conversations and hands-on collaboration in smaller, interactive settings. Unlike large meetups, these sessions create space for participants to dive into specific topics, exchange ideas, and work through challenges side by side. By bringing people together in the same room, we create a supportive environment where learning feels personal, networking happens naturally, and everyone has a chance to contribute."
+    "text": "Registered Attendees (203)"
   },
   {
-    "objectID": "content/events/index.html#events-at-rome-r-users-group",
-    "href": "content/events/index.html#events-at-rome-r-users-group",
-    "title": "Rome R-Users Group",
+    "objectID": "content/events/events/27112025_jakubnowosad.html#overview",
+    "href": "content/events/events/27112025_jakubnowosad.html#overview",
+    "title": "R for geospatial predictive mapping",
+    "section": "Overview",
+    "text": "Overview\nOn November 27, the Rome R Users Group hosted a special workshop led by Jakub Nowosad, one of the most recognized voices in the R spatial community. More than 200 participants registered for the event, marking one of our largest and most engaging sessions to date. For those who couldn’t attend live, or who wish to revisit the material—this page includes the recording and all essential information so you can follow the workshop at your own pace.\n\nA Deep Dive into Geospatial Predictive Mapping\nThe workshop focused on practical workflows for building reliable spatial predictions in R. Dr. Nowosad guided participants from the very beginning, starting with how to structure, clean, and explore geospatial datasets, through to more advanced modeling techniques. Much of the discussion revolved around the challenges of predicting spatial patterns in real-world contexts, where data often contain gaps, biases, or irregular sampling.\nJakub demonstrated how R can be used not only to model such data but also to diagnose uncertainties, evaluate model performance spatially, and visualize results in ways that highlight both strengths and limitations. Concepts like spatial cross-validation, the Area of Applicability (AoA), and prediction-domain diagnostics were explained clearly, illustrating why traditional modeling approaches often fall short when applied to geographic problems.\nThroughout the session, participants followed concrete examples showing how various R packages, such as {sf}, {terra}, {CAST}, {mlr3}, and several visualization tools, work together within a workflow. The emphasis is on reproducibility and transparent code. The workshop is particularly valuable for practitioners working in environmental analysis, ecology, remote sensing, and related fields."
+  },
+  {
+    "objectID": "content/events/events/27112025_jakubnowosad.html#about-the-speaker",
+    "href": "content/events/events/27112025_jakubnowosad.html#about-the-speaker",
+    "title": "R for geospatial predictive mapping",
+    "section": "About the Speaker",
+    "text": "About the Speaker\nJakub Nowosad is an Associate Professor at the University of Warsaw, specializing in geospatial data analysis and R programming. He is the author of Geocomputation with R, a comprehensive resource for spatial data science in R. A Python version of the book has also been released recently. Jakub has developed several R packages for spatial data manipulation and visualization, and has contributed extensively to the R community through workshops, tutorials, and publications."
+  },
+  {
+    "objectID": "content/events/events/27112025_jakubnowosad.html#watch-the-recording",
+    "href": "content/events/events/27112025_jakubnowosad.html#watch-the-recording",
+    "title": "R for geospatial predictive mapping",
+    "section": "Watch the Recording",
+    "text": "Watch the Recording\nIf you missed the live workshop, you can watch the recording here:\n🎬 Watch the Video Now\nSimply click on the video below to catch up on the discussion:\n\nThe recording includes the full demonstration, slides, code walkthroughs, and the audience Q&A session."
+  },
+  {
+    "objectID": "content/events/events/27112025_jakubnowosad.html#materials-and-resources",
+    "href": "content/events/events/27112025_jakubnowosad.html#materials-and-resources",
+    "title": "R for geospatial predictive mapping",
+    "section": "Materials and Resources",
+    "text": "Materials and Resources\nYou can access the workshop materials, including slides and code examples, on Jakub Nowosad’s GitHub repository:\n\nWorkshop Materials\n\n\n\n\n\n\n\nTip\n\n\n\nNote: The materials include all R scripts and datasets used during the workshop, allowing you to follow along and practice the techniques demonstrated.\n\nUse the left/right arrow keys on your keyboard to navigate the presentation.\n\nTo explore the code used in the workshop, click the arrow button on the side of the slides."
+  },
+  {
+    "objectID": "content/events/events/27112025_jakubnowosad.html#learning-objectives",
+    "href": "content/events/events/27112025_jakubnowosad.html#learning-objectives",
+    "title": "R for geospatial predictive mapping",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nBy the end of this workshop, participants will be able to: - Understand the fundamentals of geospatial data in R\n- Prepare and clean geospatial datasets for analysis\n- Build predictive models using spatial data\n- Visualize geospatial data and model outputs effectively"
+  },
+  {
+    "objectID": "content/events/events/27112025_jakubnowosad.html#topics-covered",
+    "href": "content/events/events/27112025_jakubnowosad.html#topics-covered",
+    "title": "R for geospatial predictive mapping",
+    "section": "Topics Covered",
+    "text": "Topics Covered\n\nIntroduction to geospatial data in R\n\nData preparation and cleaning for spatial analysis\n\nBuilding predictive models using spatial data\n\nVisualization techniques for geospatial data\n\nCase studies and practical applications"
+  },
+  {
+    "objectID": "content/events/events/27112025_jakubnowosad.html#what-participants-learned",
+    "href": "content/events/events/27112025_jakubnowosad.html#what-participants-learned",
+    "title": "R for geospatial predictive mapping",
+    "section": "What Participants Learned",
+    "text": "What Participants Learned\nRather than treating geospatial modeling as a sequence of isolated steps, Jakub encouraged a holistic perspective. Participants saw how the process begins with understanding the structure and quality of spatial data, continues through careful model training and selection, and culminates in interpreting predictions within their geographical context.\nParticular attention was given to the pitfalls that arise when spatial structure is ignored—for example, overly optimistic accuracy metrics or unrealistic prediction maps. Jakub explained how spatially aware resampling strategies lead to more reliable evaluations and how tools like the AoA metric help determine where a model should or should not be trusted.\nVisualisation was another central theme. The workshop demonstrated how thoughtful map design can communicate both predictions and associated uncertainties, promoting transparent and responsible modeling."
+  },
+  {
+    "objectID": "content/events/events/27112025_jakubnowosad.html#who-is-this-workshop-for",
+    "href": "content/events/events/27112025_jakubnowosad.html#who-is-this-workshop-for",
+    "title": "R for geospatial predictive mapping",
+    "section": "Who Is This Workshop For?",
+    "text": "Who Is This Workshop For?\nThis workshop is ideal for data scientists, GIS professionals, and R users interested in advancing their skills in geospatial predictive mapping. A basic understanding of R programming and spatial data concepts is recommended."
+  },
+  {
+    "objectID": "content/events/events/27112025_jakubnowosad.html#what-do-you-need-to-follow-along",
+    "href": "content/events/events/27112025_jakubnowosad.html#what-do-you-need-to-follow-along",
+    "title": "R for geospatial predictive mapping",
+    "section": "What Do You Need to Follow Along?",
+    "text": "What Do You Need to Follow Along?\nParticipants interested in reproducing the code demonstrated during the workshop should ensure that, in addition to having R and RStudio installed, the following R packages are available:\n\nsf\n\nraster\n\nggplot2\n\ncaret\n\nspdep"
+  },
+  {
+    "objectID": "content/events/events/27112025_jakubnowosad.html#contact",
+    "href": "content/events/events/27112025_jakubnowosad.html#contact",
+    "title": "R for geospatial predictive mapping",
+    "section": "Contact",
+    "text": "Contact\nFor more information about the workshop, please contact us at romerusersgroup@gmail.com.\n\n“We look forward to seeing you there!”"
+  },
+  {
+    "objectID": "content/events/events/01062025_inperson.html",
+    "href": "content/events/events/01062025_inperson.html",
+    "title": "Rome in Person Meetup",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "content/events/index.html",
+    "href": "content/events/index.html",
+    "title": "Events at Rome R Users Group",
     "section": "",
     "text": "Events are the heartbeat of our community. They bring us together to learn, collaborate, and connect. Whether it’s a workshop, a meetup, or a project showcase, each event is an opportunity to share knowledge, build skills, and grow the R programming community in Rome and beyond.\nOur in-person focused group events are designed to foster deeper conversations and hands-on collaboration in smaller, interactive settings. Unlike large meetups, these sessions create space for participants to dive into specific topics, exchange ideas, and work through challenges side by side. By bringing people together in the same room, we create a supportive environment where learning feels personal, networking happens naturally, and everyone has a chance to contribute."
   },
   {
     "objectID": "content/events/index.html#upcoming-events",
     "href": "content/events/index.html#upcoming-events",
-    "title": "Rome R-Users Group",
+    "title": "Events at Rome R Users Group",
     "section": "Upcoming Events",
-    "text": "Upcoming Events\nNext in-person event: https://www.meetup.com/rome-r-users-group/"
+    "text": "Upcoming Events\n\nFor More Information about Next Events/Workshops/Tutorials Please Check: https://www.meetup.com/rome-r-users-group/"
   },
   {
     "objectID": "content/events/index.html#past-events",
     "href": "content/events/index.html#past-events",
-    "title": "Rome R-Users Group",
+    "title": "Events at Rome R Users Group",
     "section": "Past Events",
-    "text": "Past Events\n\n\n\n\n\nNovember, 2025 Rome R Users Group - Online Event\n\n\n\n\n\n\n\nOctober, 2025 Rome R Users Group - In-Person Event\n\n\n\n\n\n\n\nJune, 2025 Rome R Users Group - In-Person Event\n\n\n\n\n\n\n\nMay, 2025 Rome R Users Group - In-Person Event"
+    "text": "Past Events"
   },
   {
     "objectID": "content/rhacks/posts/112025/index.html",
@@ -138,6 +215,20 @@
     "title": "R-Hacks",
     "section": "",
     "text": "R-Hacks specialises in short, focused examples that solve a concrete problem. No long tutorials, no heavy theory—just the exact piece of code you need right now. From quick ggplot adjustments to clever data wrangling patterns, each snippet is built to be copied, adapted, and used immediately in your own analysis.\nBeyond simple tricks, the blog highlights efficient ways of thinking about data. You’ll find micro-workflows that combine tidyverse tools, reproducible visualisation techniques, and small utilities that make routine tasks easier. Every post aims to help you write cleaner, faster, and more robust R code by adopting sensible, modern practices.\nR-Hacks is powered by the Rome R Users Group community. We collect clever ideas, handy functions, and small daily discoveries shared during meetups or projects. The goal is to create a living library of high-impact examples that reflect what people actually use in their analysis—not theoretical snippets, but real solutions to real problems."
+  },
+  {
+    "objectID": "content/events/events/01052025.html",
+    "href": "content/events/events/01052025.html",
+    "title": "Rome in Person Meetup",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "content/events/events/01102025_inperson.html",
+    "href": "content/events/events/01102025_inperson.html",
+    "title": "Rome in Person Meetup",
+    "section": "",
+    "text": "Back to top"
   },
   {
     "objectID": "about/organizers.html",
