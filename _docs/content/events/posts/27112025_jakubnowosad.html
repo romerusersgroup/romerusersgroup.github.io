@@ -6,9 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Each post focuses on a small, practical task you can apply immediately—whether you’re cleaning data, visualising results, automating a workflow, or debugging a stubborn function. Think of it as a growing toolbox designed to make your R workflow faster, smoother, and more effective.">
+<meta name="author" content="Federica Gazzelloni">
+<meta name="dcterms.date" content="2025-11-27">
+<meta name="description" content="Speaker: Jakub Nowosad | An in-depth workshop on using R for geospatial predictive mapping, covering data preparation, model building, and visualization techniques.">
 
-<title>R-Hacks – Rome R-Users Group</title>
+<title>R for geospatial predictive mapping – Rome R-Users Group</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,29 +26,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../images/logos/RUsers_transparent.png" rel="icon" type="image/png">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
-<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8001c2e1f85531b6432cdb718d58219b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../images/logos/RUsers_transparent.png" rel="icon" type="image/png">
+<script src="../../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-8001c2e1f85531b6432cdb718d58219b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,35 +74,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id="></script>
 
 <script type="text/plain" cookie-consent="tracking">
@@ -132,65 +103,34 @@ cookieconsent.run({
   
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="R-Hacks – Rome R-Users Group">
-<meta property="og:description" content="Each post focuses on a small, practical task you can apply immediately—whether you’re cleaning data, visualising results, automating a workflow, or debugging a stubborn function. Think of it as a growing toolbox designed to make your R workflow faster, smoother, and more effective.">
-<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/r-hacks.png">
+<link rel="stylesheet" href="../../../styles.css">
+<meta property="og:title" content="R for geospatial predictive mapping – Rome R-Users Group">
+<meta property="og:description" content="Speaker: Jakub Nowosad | An in-depth workshop on using R for geospatial predictive mapping, covering data preparation, model building, and visualization techniques.">
+<meta property="og:image" content="https://secure.meetupstatic.com/photos/event/9/4/7/2/highres_531278002.webp?w=1080">
 <meta property="og:site_name" content="Rome R-Users Group">
 <meta property="og:locale" content="en_US">
-<meta property="og:image:height" content="236">
-<meta property="og:image:width" content="1417">
-<meta name="twitter:title" content="R-Hacks – Rome R-Users Group">
-<meta name="twitter:description" content="Each post focuses on a small, practical task you can apply immediately—whether you’re cleaning data, visualising results, automating a workflow, or debugging a stubborn function. Think of it as a growing toolbox designed to make your R workflow faster, smoother, and more effective.">
-<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/r-hacks.png">
+<meta property="og:image:alt" content="R for geospatial predictive mapping workshop with Jakub Nowosad">
+<meta name="twitter:title" content="R for geospatial predictive mapping – Rome R-Users Group">
+<meta name="twitter:description" content="Speaker: Jakub Nowosad | An in-depth workshop on using R for geospatial predictive mapping, covering data preparation, model building, and visualization techniques.">
+<meta name="twitter:image" content="https://secure.meetupstatic.com/photos/event/9/4/7/2/highres_531278002.webp?w=1080">
 <meta name="twitter:creator" content="@rladiesrome">
-<meta name="twitter:image-height" content="236">
-<meta name="twitter:image-width" content="1417">
+<meta name="twitter:image:alt" content="R for geospatial predictive mapping workshop with Jakub Nowosad">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content">
-    <img src="../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content">
+    <img src="../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Rome R-Users Group</span>
     </a>
   </div>
@@ -201,23 +141,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../content/events/index.html"> 
+    <a class="nav-link" href="../../../content/events/index.html"> 
 <span class="menu-text">Events</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../content/rhacks/index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../content/rhacks/index.html"> 
 <span class="menu-text">R-Hacks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../content/resources/index.html"> 
+    <a class="nav-link" href="../../../content/resources/index.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../content/news/index.html"> 
+    <a class="nav-link" href="../../../content/news/index.html"> 
 <span class="menu-text">News</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -226,11 +166,11 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
         <li>
-    <a class="dropdown-item" href="../../about/organizers.html">
+    <a class="dropdown-item" href="../../../about/organizers.html">
  <span class="dropdown-text">Organizers</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../about/sponsors.html">
+    <a class="dropdown-item" href="../../../about/sponsors.html">
  <span class="dropdown-text">Sponsor</span></a>
   </li>  
     </ul>
@@ -252,94 +192,166 @@ window.Quarto = {
 </div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">R-Hacks</h1>
-            <p class="subtitle lead">Collection of concise, ready-to-use R tips, tricks, and code snippets.</p>
-                  <div>
-        <div class="description">
-          Each post focuses on a small, practical task you can apply immediately—whether you’re cleaning data, visualising results, automating a workflow, or debugging a stubborn function. Think of it as a growing toolbox designed to make your R workflow faster, smoother, and more effective.
-        </div>
-      </div>
-                </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2dwbG90">ggplot <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2d0ZXh0">ggtext <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">R for geospatial predictive mapping</h1>
+<p class="subtitle lead">practical workflows for reliable spatial predictions</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">workshop</div>
+    <div class="quarto-category">geospatial</div>
+    <div class="quarto-category">predictive mapping</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Speaker: Jakub Nowosad | An in-depth workshop on using R for geospatial predictive mapping, covering data preparation, model building, and visualization techniques.
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Federica Gazzelloni </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 27, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
+</header>
 
-<p><img src="r-hacks.png" class="img-fluid"></p>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
-<p>R-Hacks specialises in short, focused examples that solve a concrete problem. No long tutorials, no heavy theory—just the exact piece of code you need right now. From quick ggplot adjustments to clever data wrangling patterns, each snippet is built to be copied, adapted, and used immediately in your own analysis.</p>
-<p>Beyond simple tricks, the blog highlights efficient ways of thinking about data. You’ll find micro-workflows that combine tidyverse tools, reproducible visualisation techniques, and small utilities that make routine tasks easier. Every post aims to help you write cleaner, faster, and more robust R code by adopting sensible, modern practices.</p>
-<p><code>R-Hacks</code> is powered by the <code>Rome R Users Group</code> community. We collect clever ideas, handy functions, and small daily discoveries shared during meetups or projects. The goal is to create a living library of high-impact examples that reflect what people actually use in their analysis—not theoretical snippets, but real solutions to real problems.</p>
+
+<p><code>Registered Attendees (203)</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://secure.meetupstatic.com/photos/event/9/4/7/2/highres_531278002.webp?w=1080" class="img-fluid figure-img"></p>
+<figcaption>Jakub Nowosad</figcaption>
+</figure>
+</div>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>On November 27, the Rome R Users Group hosted a special workshop led by <a href="https://jakubnowosad.com/">Jakub Nowosad</a>, one of the most recognized voices in the R spatial community. More than 200 participants registered for the event, marking one of our largest and most engaging sessions to date. <strong>For those who couldn’t attend live, or who wish to revisit the material—this page includes the recording and all essential information so you can follow the workshop at your own pace.</strong></p>
+<section id="a-deep-dive-into-geospatial-predictive-mapping" class="level3">
+<h3 class="anchored" data-anchor-id="a-deep-dive-into-geospatial-predictive-mapping">A Deep Dive into Geospatial Predictive Mapping</h3>
+<p>The workshop focused on practical workflows for building reliable spatial predictions in R. Dr.&nbsp;Nowosad guided participants from the very beginning, starting with how to structure, clean, and explore geospatial datasets, through to more advanced modeling techniques. Much of the discussion revolved around the challenges of predicting spatial patterns in real-world contexts, where data often contain gaps, biases, or irregular sampling.</p>
+<p>Jakub demonstrated how R can be used not only to model such data but also to diagnose uncertainties, evaluate model performance spatially, and visualize results in ways that highlight both strengths and limitations. Concepts like spatial cross-validation, the <strong>Area of Applicability (AoA)</strong>, and <strong>prediction-domain diagnostics</strong> were explained clearly, illustrating why traditional modeling approaches often fall short when applied to geographic problems.</p>
+<p>Throughout the session, participants followed concrete examples showing how various R packages, such as <code>{sf}</code>, <code>{terra}</code>, <code>{CAST}</code>, <code>{mlr3}</code>, and several visualization tools, work together within a workflow. The emphasis is on <strong>reproducibility</strong> and <strong>transparent code</strong>. The workshop is particularly valuable for practitioners working in environmental analysis, ecology, remote sensing, and related fields.</p>
 </section>
-<section id="section-1" class="level2">
-<h2 class="anchored" data-anchor-id="section-1"></h2>
-
+</section>
+<section id="about-the-speaker" class="level2">
+<h2 class="anchored" data-anchor-id="about-the-speaker">About the Speaker</h2>
+<p><a href="https://jakubnowosad.com/">Jakub Nowosad</a> is an Associate Professor at the University of Warsaw, specializing in geospatial data analysis and R programming. He is the author of <a href="https://r.geocompx.org/">Geocomputation with R</a>, a comprehensive resource for spatial data science in R. A Python version of the book has also been released recently. Jakub has developed several R packages for spatial data manipulation and visualization, and has contributed extensively to the R community through workshops, tutorials, and publications.</p>
+</section>
+<section id="watch-the-recording" class="level2">
+<h2 class="anchored" data-anchor-id="watch-the-recording">Watch the Recording</h2>
+<p>If you missed the live workshop, you can watch the recording here:</p>
+<p>🎬 <strong>Watch the Video Now</strong><br>
+Simply click on the video below to catch up on the discussion:</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/uZe7thh80MI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>The recording includes the full demonstration, slides, code walkthroughs, and the audience Q&amp;A session.</p>
+</section>
+<section id="materials-and-resources" class="level2">
+<h2 class="anchored" data-anchor-id="materials-and-resources">Materials and Resources</h2>
+<p>You can access the workshop materials, including slides and code examples, on Jakub Nowosad’s GitHub repository:</p>
+<ul>
+<li><a href="https://jakubnowosad.com/rome2025">Workshop Materials</a></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Note:</strong> The materials include all R scripts and datasets used during the workshop, allowing you to follow along and practice the techniques demonstrated.</p>
+<ul>
+<li>Use the left/right arrow keys on your keyboard to navigate the presentation.<br>
+</li>
+<li>To explore the code used in the workshop, click the arrow button on the side of the slides.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this workshop, participants will be able to: - Understand the fundamentals of geospatial data in R<br>
+- Prepare and clean geospatial datasets for analysis<br>
+- Build predictive models using spatial data<br>
+- Visualize geospatial data and model outputs effectively</p>
+</section>
+<section id="topics-covered" class="level2">
+<h2 class="anchored" data-anchor-id="topics-covered">Topics Covered</h2>
+<ul>
+<li>Introduction to geospatial data in R<br>
+</li>
+<li>Data preparation and cleaning for spatial analysis<br>
+</li>
+<li>Building predictive models using spatial data<br>
+</li>
+<li>Visualization techniques for geospatial data<br>
+</li>
+<li>Case studies and practical applications</li>
+</ul>
+</section>
+<section id="what-participants-learned" class="level2">
+<h2 class="anchored" data-anchor-id="what-participants-learned">What Participants Learned</h2>
+<p>Rather than treating geospatial modeling as a sequence of isolated steps, Jakub encouraged a holistic perspective. Participants saw how the process begins with understanding the structure and quality of spatial data, continues through careful model training and selection, and culminates in interpreting predictions within their geographical context.</p>
+<p>Particular attention was given to the pitfalls that arise when spatial structure is ignored—for example, overly optimistic accuracy metrics or unrealistic prediction maps. Jakub explained how spatially aware resampling strategies lead to more reliable evaluations and how tools like the AoA metric help determine where a model should or should not be trusted.</p>
+<p>Visualisation was another central theme. The workshop demonstrated how thoughtful map design can communicate both predictions and associated uncertainties, promoting transparent and responsible modeling.</p>
+</section>
+<section id="who-is-this-workshop-for" class="level2">
+<h2 class="anchored" data-anchor-id="who-is-this-workshop-for">Who Is This Workshop For?</h2>
+<p>This workshop is ideal for data scientists, GIS professionals, and R users interested in advancing their skills in geospatial predictive mapping. A basic understanding of R programming and spatial data concepts is recommended.</p>
+</section>
+<section id="what-do-you-need-to-follow-along" class="level2">
+<h2 class="anchored" data-anchor-id="what-do-you-need-to-follow-along">What Do You Need to Follow Along?</h2>
+<p>Participants interested in reproducing the code demonstrated during the workshop should ensure that, in addition to having R and RStudio installed, the following R packages are available:</p>
+<ul>
+<li>sf<br>
+</li>
+<li>raster<br>
+</li>
+<li>ggplot2<br>
+</li>
+<li>caret<br>
+</li>
+<li>spdep</li>
+</ul>
+</section>
+<section id="contact" class="level2">
+<h2 class="anchored" data-anchor-id="contact">Contact</h2>
+<p>For more information about the workshop, please contact us at <strong>romerusersgroup@gmail.com</strong>.</p>
+<blockquote class="blockquote">
+<p>“We look forward to seeing you there!”</p>
+</blockquote>
 
 
 </section>
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Z2d0ZXh0JTJDZ2dwbG90" data-listing-date-sort="1763506800000" data-listing-file-modified-sort="1763665129391" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="888">
-<div class="thumbnail"><a href="../../content/rhacks/posts/112025/index.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/112025/images/image-1.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/rhacks/posts/112025/index.html" class="no-external">How to Add Images to ggplot Axes Using <code>ggtext::element_markdown()</code></a>
-</h3>
-<div class="listing-subtitle">
-<a href="../../content/rhacks/posts/112025/index.html" class="no-external">A practical guide for adding logos, icons, and flags to your plots</a>
-</div>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z2d0ZXh0'); return false;">ggtext</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z2dwbG90'); return false;">ggplot</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/rhacks/posts/112025/index.html" class="no-external">
-<p>R-Hacks</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/rhacks/posts/112025/index.html" class="no-external">
-<div class="listing-date">
-Nov 19, 2025
-</div>
-<div class="listing-author">
-Lucio Colonna
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -749,11 +761,11 @@ Lucio Colonna
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright © 2025 Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://github.com/Fgazzelloni">Federica Gazzelloni</a><br>Powered by: Quarto &amp; GitHub Pages | <a href="../../LICENSE.html">MIT License</a>.</p>
+<p>Copyright © 2025 Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://github.com/Fgazzelloni">Federica Gazzelloni</a><br>Powered by: Quarto &amp; GitHub Pages | <a href="../../../LICENSE.html">MIT License</a>.</p>
 </div>   
     <div class="nav-footer-center">
 
-<div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/events/posts/27112025_jakubnowosad.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -775,7 +787,7 @@ Lucio Colonna
     </a>
   </li>  
     <li class="nav-item compact">
-    <a class="nav-link" href="../../index.xml">
+    <a class="nav-link" href="../../../index.xml">
       <i class="bi bi-rss" role="img">
 </i> 
     </a>
@@ -788,5 +800,5 @@ Lucio Colonna
 
 
 
-<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

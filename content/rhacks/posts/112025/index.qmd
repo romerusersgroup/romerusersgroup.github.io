@@ -20,13 +20,13 @@ execute:
 
 ## 
 
-*This tip is based on a full **Kaggle notebook**, where this technique is applied in a complete **EDA**: 🔗 <https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos>*
+*This tip is based on a full **Kaggle notebook**, where this technique is applied in a complete **Exploratory Data Analysis (EDA)**: 🔗 <https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos>*
 
 > **Have you ever needed to show logos, icons, or flags directly on the axes of your ggplot charts?**
 
-You can do this thanks to the `element_markdown()` function from the **{ggtext}** package!
+You can do this using the `element_markdown()` function from the **{ggtext}** package!
 
-`element_markdown()` is a function that tells `ggplot` to treat labels as HTML instead of plain text, and it must be used in the `theme()` section of your ggplot code.
+`element_markdown()` is a function that tells `ggplot` to treat labels as HTML instead of plain text. It must be used in the `theme()` section of your ggplot code.
 
 The chart below shows an example where league logos appear directly on the x-axis. It displays the total number of goals scored in the major **European football leagues during the 2023/2024 season**:
 
@@ -70,10 +70,8 @@ ligue1_url <- "https://upload.wikimedia.org/wikipedia/commons/a/a0/Ligue_1_2024_
 
 In order to display images on the axis, each image URL must be **wrapped inside an HTML <img /> tag**. This simply means that the URL cannot appear alone — it must be placed *inside* the structure:
 
-```{r}
-#| eval: false
-<img src= + image_url + width='45'/>
-```
+    `<img src= + image_url + width='45'/>`
+
 
 *Please note that in this example I use width='45' just as a reference size, but you can choose any value depending on how big you want the image to appear in your plot.*
 
@@ -119,6 +117,7 @@ Here is the full plotting code:
 
 ```{r}
 library(ggplot2)
+library(ggtext)
 ```
 
 ```{r}
@@ -155,9 +154,9 @@ ggsave("images/image-2.png",
        width = 8, height = 6, dpi = 300)
 ```
 
-With `element_markdown()` applied to `axis.text.x`, ggplot correctly displays the league logos instead of plain text labels — exactly like in the plot shown at the beginning.
+With `element_markdown()` applied to `axis.text.x`, ggplot correctly displays the league logos instead of plain text labels, as seen in the barchart above.
 
-### In short
+### To Recap
 
 1.  Prepare your dataframe (existing or new)
 2.  Choose your images (PNG recommended) and store their URLs
@@ -174,7 +173,7 @@ axis.text.x = ggtext::element_markdown()
 **Thanks for reading!**
 
 ::: callout-tip
-If you want to stay up to date with the latest events from the Rome R Users Group, you can click here:\
+If you want to stay up to date with the latest events from the **Rome R Users Group**, click here:\
 👉<https://www.meetup.com/rome-r-users-group/>
 
 And if you are curious, the full Kaggle notebook used for this tip is available here: 🔗<https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos>

@@ -1,0 +1,11 @@
+---
+title: "Rome in Person Meetup"
+subtitle: ""
+date: 2025-10-10
+#author: Federica Gazzelloni
+description: ""
+image: "https://secure.meetupstatic.com/photos/event/3/8/c/f/highres_530594543.webp?w=750"
+image-alt: ""
+categories: [in person, rome]
+---
+

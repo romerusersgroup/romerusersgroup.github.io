@@ -204,9 +204,9 @@ cookieconsent.run({
     <a href="mailto:romerusersgroup@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav><div id="quarto-announcement" data-announcement-id="a86e84f299718d574dfed5412f8c5338" class="alert alert-primary hidden">
+    </nav><div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden">
 <i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
-<p>Allert! Free tutorials available!</p>
+<p>Alert! Free tutorials available!</p>
 </div>
 <i class="bi bi-x-lg quarto-announcement-action"></i>
 </div>
@@ -223,7 +223,7 @@ cookieconsent.run({
   <li><a href="#step-1-choose-the-images-you-want-to-display-png-recommended" id="toc-step-1-choose-the-images-you-want-to-display-png-recommended" class="nav-link" data-scroll-target="#step-1-choose-the-images-you-want-to-display-png-recommended">Step 1: Choose the images you want to display (PNG recommended)</a></li>
   <li><a href="#step-2-add-a-column-with-html-tags" id="toc-step-2-add-a-column-with-html-tags" class="nav-link" data-scroll-target="#step-2-add-a-column-with-html-tags">Step 2: Add a column with HTML <img> tags</a></li>
   <li><a href="#step-3-plot-your-data" id="toc-step-3-plot-your-data" class="nav-link" data-scroll-target="#step-3-plot-your-data">Step 3: Plot your data!</a></li>
-  <li><a href="#in-short" id="toc-in-short" class="nav-link" data-scroll-target="#in-short">In short</a></li>
+  <li><a href="#to-recap" id="toc-to-recap" class="nav-link" data-scroll-target="#to-recap">To Recap</a></li>
   </ul>
 </li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/112025/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -271,12 +271,12 @@ cookieconsent.run({
 
 
 </header><section id="section" class="level2"><h2 class="anchored" data-anchor-id="section"></h2>
-<p><em>This tip is based on a full <strong>Kaggle notebook</strong>, where this technique is applied in a complete <strong>EDA</strong>: 🔗 <a href="https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos" class="uri">https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos</a></em></p>
+<p><em>This tip is based on a full <strong>Kaggle notebook</strong>, where this technique is applied in a complete <strong>Exploratory Data Analysis (EDA)</strong>: 🔗 <a href="https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos" class="uri">https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos</a></em></p>
 <blockquote class="blockquote">
 <p><strong>Have you ever needed to show logos, icons, or flags directly on the axes of your ggplot charts?</strong></p>
 </blockquote>
-<p>You can do this thanks to the <code>element_markdown()</code> function from the <strong>{ggtext}</strong> package!</p>
-<p><code>element_markdown()</code> is a function that tells <code>ggplot</code> to treat labels as HTML instead of plain text, and it must be used in the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> section of your ggplot code.</p>
+<p>You can do this using the <code><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown()</a></code> function from the <strong>{ggtext}</strong> package!</p>
+<p><code><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown()</a></code> is a function that tells <code>ggplot</code> to treat labels as HTML instead of plain text. It must be used in the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> section of your ggplot code.</p>
 <p>The chart below shows an example where league logos appear directly on the x-axis. It displays the total number of goals scored in the major <strong>European football leagues during the 2023/2024 season</strong>:</p>
 <center>
 <div class="quarto-figure quarto-figure-center">
@@ -316,9 +316,7 @@ cookieconsent.run({
 </div>
 </section><section id="step-2-add-a-column-with-html-tags" class="level3"><h3 class="anchored" data-anchor-id="step-2-add-a-column-with-html-tags">Step 2: Add a column with HTML <img> tags</h3>
 <p>In order to display images on the axis, each image URL must be <strong>wrapped inside an HTML <img> tag</strong>. This simply means that the URL cannot appear alone — it must be placed <em>inside</em> the structure:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>img src<span class="ot">=</span> <span class="sc">+</span> image_url <span class="sc">+</span> width<span class="ot">=</span><span class="st">'45'</span><span class="sc">/</span><span class="er">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<pre><code>`&lt;img src= + image_url + width='45'/&gt;`</code></pre>
 <p><em>Please note that in this example I use width=‘45’ just as a reference size, but you can choose any value depending on how big you want the image to appear in your plot.</em></p>
 <p>Let’s add the column to the df:</p>
 <div class="cell">
@@ -377,10 +375,11 @@ cookieconsent.run({
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">theme</span><span class="op">(</span> axis.text.x <span class="op">=</span> <span class="fu">element_markdown</span><span class="op">(</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><code>element_markdown()</code> function is what allows <code>ggplot</code> to interpret the HTML in your axis labels. Without it, <code>ggplot</code> would show the literal string <code>&lt;img src='...'&gt;</code> as plain text. With it, the <code>&lt;img&gt;</code> tags are rendered as actual images.</p>
+<p><code><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown()</a></code> function is what allows <code>ggplot</code> to interpret the HTML in your axis labels. Without it, <code>ggplot</code> would show the literal string <code>&lt;img src='...'&gt;</code> as plain text. With it, the <code>&lt;img&gt;</code> tags are rendered as actual images.</p>
 <p>Here is the full plotting code:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/ggtext/">ggtext</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>repr.plot.width <span class="op">=</span> <span class="fl">6</span>, </span>
@@ -405,8 +404,8 @@ cookieconsent.run({
 <span>         plot.subtitle<span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span>         <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>With <code>element_markdown()</code> applied to <code>axis.text.x</code>, ggplot correctly displays the league logos instead of plain text labels — exactly like in the plot shown at the beginning.</p>
-</section><section id="in-short" class="level3"><h3 class="anchored" data-anchor-id="in-short">In short</h3>
+<p>With <code><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown()</a></code> applied to <code>axis.text.x</code>, ggplot correctly displays the league logos instead of plain text labels, as seen in the barchart above.</p>
+</section><section id="to-recap" class="level3"><h3 class="anchored" data-anchor-id="to-recap">To Recap</h3>
 <ol type="1">
 <li>Prepare your dataframe (existing or new)</li>
 <li>Choose your images (PNG recommended) and store their URLs</li>
@@ -429,7 +428,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you want to stay up to date with the latest events from the Rome R Users Group, you can click here:<br>
+<p>If you want to stay up to date with the latest events from the <strong>Rome R Users Group</strong>, click here:<br>
 👉<a href="https://www.meetup.com/rome-r-users-group/" class="uri">https://www.meetup.com/rome-r-users-group/</a></p>
 <p>And if you are curious, the full Kaggle notebook used for this tip is available here: 🔗<a href="https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos" class="uri">https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos</a></p>
 </div>
@@ -866,6 +865,12 @@ Tip
     <li class="nav-item compact">
     <a class="nav-link" href="https://www.meetup.com/pro/r-user-groups/">
       <i class="bi bi-globe" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="../../../../index.xml">
+      <i class="bi bi-rss" role="img">
 </i> 
     </a>
   </li>  

@@ -1,7 +1,7 @@
 ---
 title: "R-Hacks"
 subtitle: "Collection of concise, ready-to-use R tips, tricks, and code snippets."
-description: "Each post focuses on a small, practical task you can apply immediately whether you're cleaning data, visualising results, or debugging code. A growing toolbox designed to make your R workflow faster, smoother, and more effective."
+description: "Each post focuses on a small, practical task you can apply immediately—whether you’re cleaning data, visualising results, automating a workflow, or debugging a stubborn function. Think of it as a growing toolbox designed to make your R workflow faster, smoother, and more effective."
 listing:
   contents: posts
   sort: "date desc"
@@ -15,11 +15,17 @@ page-navigation: true
 back-to-top-navigation: true
 ---
 
-![R-Hacks Banner](r-hacks.png)
+![](r-hacks.png)
 
+##
 
-R-Hacks brings together short, practical snippets from the `Rome R Users Group` community. Here you’ll find clever shortcuts, useful functions, and simple workflows that make R programming easier and more enjoyable. Each post is quick to read, easy to adapt, and perfect for day-to-day projects.
+R-Hacks specialises in short, focused examples that solve a concrete problem. No long tutorials, no heavy theory—just the exact piece of code you need right now.
+From quick ggplot adjustments to clever data wrangling patterns, each snippet is built to be copied, adapted, and used immediately in your own analysis.
 
-At the same time, `R-Hacks` serves as a curated library of high-impact R tricks and micro-workflows. These bite-sized examples highlight efficient patterns, reproducible techniques, and modern R practices that help you write cleaner, faster, and more robust code. Ideal for users who want to level up their R skills with minimal overhead.
+Beyond simple tricks, the blog highlights efficient ways of thinking about data.
+You’ll find micro-workflows that combine tidyverse tools, reproducible visualisation techniques, and small utilities that make routine tasks easier. Every post aims to help you write cleaner, faster, and more robust R code by adopting sensible, modern practices.
+
+`R-Hacks` is powered by the `Rome R Users Group` community.
+We collect clever ideas, handy functions, and small daily discoveries shared during meetups or projects. The goal is to create a living library of high-impact examples that reflect what people actually use in their analysis—not theoretical snippets, but real solutions to real problems.
 
 ##

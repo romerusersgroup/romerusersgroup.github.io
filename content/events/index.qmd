@@ -1,4 +1,17 @@
-## Events at Rome R Users Group
+---
+title: "Events at Rome R Users Group"
+subtitle: "Join us for engaging events focused on R programming and data science."
+description: "**Discover our upcoming and past events designed to foster learning, collaboration, and community building around R programming in Rome.**"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: grid
+  image-height: "400"
+  categories: true
+page-layout: full
+title-block-banner: false
+sidebar: true
+---
 
 
 Events are the heartbeat of our community. They bring us together to learn, collaborate, and connect. Whether it’s a workshop, a meetup, or a project showcase, each event is an opportunity to share knowledge, build skills, and grow the R programming community in Rome and beyond.
@@ -7,7 +20,7 @@ Our in-person focused group events are designed to foster deeper conversations a
 
 ## Upcoming Events
 
-Next in-person event: <https://www.meetup.com/rome-r-users-group/>
+> For More Information about Next Events/Workshops/Tutorials Please Check: <https://www.meetup.com/rome-r-users-group/>
 
 :::: {.grid}
 
@@ -16,25 +29,7 @@ Next in-person event: <https://www.meetup.com/rome-r-users-group/>
 
 ## Past Events
 
-::: {.grid}
 
-::: {.g-col-6}
-[![November, 2025 Rome R Users Group - Online Event](https://secure.meetupstatic.com/photos/event/9/4/7/2/highres_531278002.webp?w=1080)](https://www.meetup.com/rome-r-users-group/events/311982601)
-:::
-
-::: {.g-col-6}
-[![October, 2025 Rome R Users Group - In-Person Event](https://secure.meetupstatic.com/photos/event/3/8/c/f/highres_530594543.webp?w=750)](https://www.meetup.com/rome-r-users-group/events/310988656)
-:::
-
-::: {.g-col-6}
-[![June, 2025 Rome R Users Group - In-Person Event](https://secure.meetupstatic.com/photos/event/a/4/5/6/highres_528642070.webp?w=750)](https://www.meetup.com/rome-r-users-group/events/308574370)
-:::
-
-::: {.g-col-6}
-[![May, 2025 Rome R Users Group - In-Person Event](https://secure.meetupstatic.com/photos/event/8/e/c/highres_527522284.webp?w=750)](https://www.meetup.com/rome-r-users-group/events/307418000)
-:::
-
-:::
 
 
 

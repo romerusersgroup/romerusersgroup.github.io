@@ -1,0 +1,100 @@
+---
+title: "R for geospatial predictive mapping"
+subtitle: "practical workflows for reliable spatial predictions"
+date: 2025-11-27
+author: Federica Gazzelloni
+description: "Speaker: Jakub Nowosad | An in-depth workshop on using R for geospatial predictive mapping, covering data preparation, model building, and visualization techniques."
+image: "https://secure.meetupstatic.com/photos/event/9/4/7/2/highres_531278002.webp?w=1080"
+image-alt: "R for geospatial predictive mapping workshop with Jakub Nowosad"
+categories: [workshop, geospatial, predictive mapping]
+---
+
+`Registered Attendees (203)`
+
+![Jakub Nowosad](https://secure.meetupstatic.com/photos/event/9/4/7/2/highres_531278002.webp?w=1080)
+
+## Overview
+
+On November 27, the Rome R Users Group hosted a special workshop led by [Jakub Nowosad](https://jakubnowosad.com/), one of the most recognized voices in the R spatial community. More than 200 participants registered for the event, marking one of our largest and most engaging sessions to date. **For those who couldn’t attend live, or who wish to revisit the material—this page includes the recording and all essential information so you can follow the workshop at your own pace.**
+
+### A Deep Dive into Geospatial Predictive Mapping
+
+The workshop focused on practical workflows for building reliable spatial predictions in R. Dr. Nowosad guided participants from the very beginning, starting with how to structure, clean, and explore geospatial datasets, through to more advanced modeling techniques. Much of the discussion revolved around the challenges of predicting spatial patterns in real-world contexts, where data often contain gaps, biases, or irregular sampling.
+
+Jakub demonstrated how R can be used not only to model such data but also to diagnose uncertainties, evaluate model performance spatially, and visualize results in ways that highlight both strengths and limitations. Concepts like spatial cross-validation, the **Area of Applicability (AoA)**, and **prediction-domain diagnostics** were explained clearly, illustrating why traditional modeling approaches often fall short when applied to geographic problems.
+
+Throughout the session, participants followed concrete examples showing how various R packages, such as `{sf}`, `{terra}`, `{CAST}`, `{mlr3}`, and several visualization tools, work together within a workflow. The emphasis is on **reproducibility** and **transparent code**. The workshop is particularly valuable for practitioners working in environmental analysis, ecology, remote sensing, and related fields.
+
+## About the Speaker
+
+[Jakub Nowosad](https://jakubnowosad.com/) is an Associate Professor at the University of Warsaw, specializing in geospatial data analysis and R programming. He is the author of [Geocomputation with R](https://r.geocompx.org/), a comprehensive resource for spatial data science in R. A Python version of the book has also been released recently. Jakub has developed several R packages for spatial data manipulation and visualization, and has contributed extensively to the R community through workshops, tutorials, and publications.
+
+## Watch the Recording
+
+If you missed the live workshop, you can watch the recording here:
+
+🎬 **Watch the Video Now**  
+Simply click on the video below to catch up on the discussion:
+
+{{< video https://youtu.be/uZe7thh80MI >}}
+
+The recording includes the full demonstration, slides, code walkthroughs, and the audience Q&A session.
+
+## Materials and Resources
+
+You can access the workshop materials, including slides and code examples, on Jakub Nowosad’s GitHub repository:
+
+- [Workshop Materials](https://jakubnowosad.com/rome2025)
+
+:::{.callout-tip}
+**Note:** The materials include all R scripts and datasets used during the workshop, allowing you to follow along and practice the techniques demonstrated.
+
+- Use the left/right arrow keys on your keyboard to navigate the presentation.  
+- To explore the code used in the workshop, click the arrow button on the side of the slides.
+:::
+
+## Learning Objectives
+
+By the end of this workshop, participants will be able to:
+- Understand the fundamentals of geospatial data in R  
+- Prepare and clean geospatial datasets for analysis  
+- Build predictive models using spatial data  
+- Visualize geospatial data and model outputs effectively  
+
+## Topics Covered
+
+- Introduction to geospatial data in R  
+- Data preparation and cleaning for spatial analysis  
+- Building predictive models using spatial data  
+- Visualization techniques for geospatial data  
+- Case studies and practical applications  
+
+## What Participants Learned
+
+Rather than treating geospatial modeling as a sequence of isolated steps, Jakub encouraged a holistic perspective. Participants saw how the process begins with understanding the structure and quality of spatial data, continues through careful model training and selection, and culminates in interpreting predictions within their geographical context.
+
+Particular attention was given to the pitfalls that arise when spatial structure is ignored—for example, overly optimistic accuracy metrics or unrealistic prediction maps. Jakub explained how spatially aware resampling strategies lead to more reliable evaluations and how tools like the AoA metric help determine where a model should or should not be trusted.
+
+Visualisation was another central theme. The workshop demonstrated how thoughtful map design can communicate both predictions and associated uncertainties, promoting transparent and responsible modeling.
+
+## Who Is This Workshop For?
+
+This workshop is ideal for data scientists, GIS professionals, and R users interested in advancing their skills in geospatial predictive mapping. A basic understanding of R programming and spatial data concepts is recommended.
+
+## What Do You Need to Follow Along?
+
+Participants interested in reproducing the code demonstrated during the workshop should ensure that, in addition to having R and RStudio installed, the following R packages are available:
+
+- sf  
+- raster  
+- ggplot2  
+- caret  
+- spdep  
+
+## Contact
+
+For more information about the workshop, please contact us at **romerusersgroup@gmail.com**.
+
+> “We look forward to seeing you there!”
+
+

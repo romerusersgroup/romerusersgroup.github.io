@@ -2,7 +2,7 @@ website:
   announcement: 
     icon: balloon-heart
     dismissable: true
-    content: 'Allert! Free tutorials available!'
+    content: 'Alert! Free tutorials available!'
     type: primary
     position: below-navbar
   title: "Rome R-Users Group"
@@ -61,4 +61,6 @@ website:
         href: https://www.linkedin.com/company/rome-r-users-group
       - icon: globe
         href: "https://www.meetup.com/pro/r-user-groups/"
+      - icon: rss
+        href: index.xml
         
