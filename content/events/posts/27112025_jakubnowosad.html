@@ -253,14 +253,14 @@ cookieconsent.run({
 <p>On November 27, the Rome R Users Group hosted a special workshop led by <a href="https://jakubnowosad.com/">Jakub Nowosad</a>, one of the most recognized voices in the R spatial community. More than 200 participants registered for the event, marking one of our largest and most engaging sessions to date. <strong>For those who couldn’t attend live, or who wish to revisit the material—this page includes the recording and all essential information so you can follow the workshop at your own pace.</strong></p>
 <section id="a-deep-dive-into-geospatial-predictive-mapping" class="level3">
 <h3 class="anchored" data-anchor-id="a-deep-dive-into-geospatial-predictive-mapping">A Deep Dive into Geospatial Predictive Mapping</h3>
-<p>The workshop focused on practical workflows for building reliable spatial predictions in R. Dr.&nbsp;Nowosad guided participants from the very beginning, starting with how to structure, clean, and explore geospatial datasets, through to more advanced modeling techniques. Much of the discussion revolved around the challenges of predicting spatial patterns in real-world contexts, where data often contain gaps, biases, or irregular sampling.</p>
-<p>Jakub demonstrated how R can be used not only to model such data but also to diagnose uncertainties, evaluate model performance spatially, and visualize results in ways that highlight both strengths and limitations. Concepts like spatial cross-validation, the <strong>Area of Applicability (AoA)</strong>, and <strong>prediction-domain diagnostics</strong> were explained clearly, illustrating why traditional modeling approaches often fall short when applied to geographic problems.</p>
-<p>Throughout the session, participants followed concrete examples showing how various R packages, such as <code>{sf}</code>, <code>{terra}</code>, <code>{CAST}</code>, <code>{mlr3}</code>, and several visualization tools, work together within a workflow. The emphasis is on <strong>reproducibility</strong> and <strong>transparent code</strong>. The workshop is particularly valuable for practitioners working in environmental analysis, ecology, remote sensing, and related fields.</p>
+<p>The workshop focused on practical workflows for building reliable spatial predictions in R. Much of the discussion revolved around the challenges of predicting spatial patterns in real-world contexts, where data often contain gaps, biases, or irregular sampling.</p>
+<p>Jakub demonstrated how R can be used not only to model such data but also to valuate model performance spatially and visualize results in ways that highlight both strengths and limitations. Concepts like spatial cross-validation, the <strong>Area of Applicability (AoA)</strong>, and <strong>prediction-domain adaptive diagnostics</strong> were explained clearly, illustrating why traditional modeling approaches often fall short when applied to geographic problems.</p>
+<p>Throughout the session, participants followed concrete examples showing how various R packages, such as <code>{sf}</code>, <code>{terra}</code>, <code>{CAST}</code> and several visualization tools, including <code>{tmap}</code>, work together within a workflow. The emphasis is on <strong>reproducibility</strong> and <strong>transparent code</strong>. The workshop is particularly valuable for practitioners working in environmental analysis, ecology, remote sensing, and related fields.</p>
 </section>
 </section>
 <section id="about-the-speaker" class="level2">
 <h2 class="anchored" data-anchor-id="about-the-speaker">About the Speaker</h2>
-<p><a href="https://jakubnowosad.com/">Jakub Nowosad</a> is an Associate Professor at the University of Warsaw, specializing in geospatial data analysis and R programming. He is the author of <a href="https://r.geocompx.org/">Geocomputation with R</a>, a comprehensive resource for spatial data science in R. A Python version of the book has also been released recently. Jakub has developed several R packages for spatial data manipulation and visualization, and has contributed extensively to the R community through workshops, tutorials, and publications.</p>
+<p><a href="https://jakubnowosad.com/">Jakub Nowosad</a> is an Associate Professor at the Adam Mickiewicz University in Poznan and a Visiting Scientist at University of Münster, specializing in geospatial data analysis and R programming. He is the author of <a href="https://r.geocompx.org/">Geocomputation with R</a>, a comprehensive resource for spatial data science in R. A Python version of the book has also been released recently and can be found at <a href="https://py.geocompx.org/" class="uri">https://py.geocompx.org/</a>. Jakub has developed many R packages for spatial data manipulation and visualization, and has contributed extensively to the R community through workshops, tutorials, and publications.</p>
 </section>
 <section id="watch-the-recording" class="level2">
 <h2 class="anchored" data-anchor-id="watch-the-recording">Watch the Recording</h2>
@@ -268,11 +268,11 @@ cookieconsent.run({
 <p>🎬 <strong>Watch the Video Now</strong><br>
 Simply click on the video below to catch up on the discussion:</p>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/uZe7thh80MI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>The recording includes the full demonstration, slides, code walkthroughs, and the audience Q&amp;A session.</p>
+<p>The recording includes the full demonstration, slides, and the audience Q&amp;A session.</p>
 </section>
 <section id="materials-and-resources" class="level2">
 <h2 class="anchored" data-anchor-id="materials-and-resources">Materials and Resources</h2>
-<p>You can access the workshop materials, including slides and code examples, on Jakub Nowosad’s GitHub repository:</p>
+<p>You can access the workshop materials, including slides and code examples, on Jakub Nowosad’s website:</p>
 <ul>
 <li><a href="https://jakubnowosad.com/rome2025">Workshop Materials</a></li>
 </ul>
@@ -297,23 +297,15 @@ Tip
 </section>
 <section id="learning-objectives" class="level2">
 <h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
-<p>By the end of this workshop, participants will be able to: - Understand the fundamentals of geospatial data in R<br>
-- Prepare and clean geospatial datasets for analysis<br>
-- Build predictive models using spatial data<br>
-- Visualize geospatial data and model outputs effectively</p>
+<p>By the end of this workshop, participants will be able to: - Build predictive models using spatial data - Validate the results in a robust way - Visualize geospatial data and model outputs effectively</p>
 </section>
 <section id="topics-covered" class="level2">
 <h2 class="anchored" data-anchor-id="topics-covered">Topics Covered</h2>
 <ul>
-<li>Introduction to geospatial data in R<br>
-</li>
-<li>Data preparation and cleaning for spatial analysis<br>
-</li>
-<li>Building predictive models using spatial data<br>
-</li>
-<li>Visualization techniques for geospatial data<br>
-</li>
-<li>Case studies and practical applications</li>
+<li>Introduction to geocomputational methods</li>
+<li>Building predictive models using spatial data</li>
+<li>Validating the models results</li>
+<li>Visualization techniques for geospatial data</li>
 </ul>
 </section>
 <section id="what-participants-learned" class="level2">
@@ -332,13 +324,12 @@ Tip
 <ul>
 <li>sf<br>
 </li>
-<li>raster<br>
-</li>
-<li>ggplot2<br>
+<li>terra<br>
 </li>
 <li>caret<br>
 </li>
-<li>spdep</li>
+<li>CAST</li>
+<li>tmap</li>
 </ul>
 </section>
 <section id="contact" class="level2">

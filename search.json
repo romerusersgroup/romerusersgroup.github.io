@@ -165,42 +165,42 @@
     "href": "content/events/posts/27112025_jakubnowosad.html#overview",
     "title": "R for geospatial predictive mapping",
     "section": "Overview",
-    "text": "Overview\nOn November 27, the Rome R Users Group hosted a special workshop led by Jakub Nowosad, one of the most recognized voices in the R spatial community. More than 200 participants registered for the event, marking one of our largest and most engaging sessions to date. For those who couldn’t attend live, or who wish to revisit the material—this page includes the recording and all essential information so you can follow the workshop at your own pace.\n\nA Deep Dive into Geospatial Predictive Mapping\nThe workshop focused on practical workflows for building reliable spatial predictions in R. Dr. Nowosad guided participants from the very beginning, starting with how to structure, clean, and explore geospatial datasets, through to more advanced modeling techniques. Much of the discussion revolved around the challenges of predicting spatial patterns in real-world contexts, where data often contain gaps, biases, or irregular sampling.\nJakub demonstrated how R can be used not only to model such data but also to diagnose uncertainties, evaluate model performance spatially, and visualize results in ways that highlight both strengths and limitations. Concepts like spatial cross-validation, the Area of Applicability (AoA), and prediction-domain diagnostics were explained clearly, illustrating why traditional modeling approaches often fall short when applied to geographic problems.\nThroughout the session, participants followed concrete examples showing how various R packages, such as {sf}, {terra}, {CAST}, {mlr3}, and several visualization tools, work together within a workflow. The emphasis is on reproducibility and transparent code. The workshop is particularly valuable for practitioners working in environmental analysis, ecology, remote sensing, and related fields."
+    "text": "Overview\nOn November 27, the Rome R Users Group hosted a special workshop led by Jakub Nowosad, one of the most recognized voices in the R spatial community. More than 200 participants registered for the event, marking one of our largest and most engaging sessions to date. For those who couldn’t attend live, or who wish to revisit the material—this page includes the recording and all essential information so you can follow the workshop at your own pace.\n\nA Deep Dive into Geospatial Predictive Mapping\nThe workshop focused on practical workflows for building reliable spatial predictions in R. Much of the discussion revolved around the challenges of predicting spatial patterns in real-world contexts, where data often contain gaps, biases, or irregular sampling.\nJakub demonstrated how R can be used not only to model such data but also to valuate model performance spatially and visualize results in ways that highlight both strengths and limitations. Concepts like spatial cross-validation, the Area of Applicability (AoA), and prediction-domain adaptive diagnostics were explained clearly, illustrating why traditional modeling approaches often fall short when applied to geographic problems.\nThroughout the session, participants followed concrete examples showing how various R packages, such as {sf}, {terra}, {CAST} and several visualization tools, including {tmap}, work together within a workflow. The emphasis is on reproducibility and transparent code. The workshop is particularly valuable for practitioners working in environmental analysis, ecology, remote sensing, and related fields."
   },
   {
     "objectID": "content/events/posts/27112025_jakubnowosad.html#about-the-speaker",
     "href": "content/events/posts/27112025_jakubnowosad.html#about-the-speaker",
     "title": "R for geospatial predictive mapping",
     "section": "About the Speaker",
-    "text": "About the Speaker\nJakub Nowosad is an Associate Professor at the University of Warsaw, specializing in geospatial data analysis and R programming. He is the author of Geocomputation with R, a comprehensive resource for spatial data science in R. A Python version of the book has also been released recently. Jakub has developed several R packages for spatial data manipulation and visualization, and has contributed extensively to the R community through workshops, tutorials, and publications."
+    "text": "About the Speaker\nJakub Nowosad is an Associate Professor at the Adam Mickiewicz University in Poznan and a Visiting Scientist at University of Münster, specializing in geospatial data analysis and R programming. He is the author of Geocomputation with R, a comprehensive resource for spatial data science in R. A Python version of the book has also been released recently and can be found at https://py.geocompx.org/. Jakub has developed many R packages for spatial data manipulation and visualization, and has contributed extensively to the R community through workshops, tutorials, and publications."
   },
   {
     "objectID": "content/events/posts/27112025_jakubnowosad.html#watch-the-recording",
     "href": "content/events/posts/27112025_jakubnowosad.html#watch-the-recording",
     "title": "R for geospatial predictive mapping",
     "section": "Watch the Recording",
-    "text": "Watch the Recording\nIf you missed the live workshop, you can watch the recording here:\n🎬 Watch the Video Now\nSimply click on the video below to catch up on the discussion:\n\nThe recording includes the full demonstration, slides, code walkthroughs, and the audience Q&A session."
+    "text": "Watch the Recording\nIf you missed the live workshop, you can watch the recording here:\n🎬 Watch the Video Now\nSimply click on the video below to catch up on the discussion:\n\nThe recording includes the full demonstration, slides, and the audience Q&A session."
   },
   {
     "objectID": "content/events/posts/27112025_jakubnowosad.html#materials-and-resources",
     "href": "content/events/posts/27112025_jakubnowosad.html#materials-and-resources",
     "title": "R for geospatial predictive mapping",
     "section": "Materials and Resources",
-    "text": "Materials and Resources\nYou can access the workshop materials, including slides and code examples, on Jakub Nowosad’s GitHub repository:\n\nWorkshop Materials\n\n\n\n\n\n\n\nTip\n\n\n\nNote: The materials include all R scripts and datasets used during the workshop, allowing you to follow along and practice the techniques demonstrated.\n\nUse the left/right arrow keys on your keyboard to navigate the presentation.\n\nTo explore the code used in the workshop, click the arrow button on the side of the slides."
+    "text": "Materials and Resources\nYou can access the workshop materials, including slides and code examples, on Jakub Nowosad’s website:\n\nWorkshop Materials\n\n\n\n\n\n\n\nTip\n\n\n\nNote: The materials include all R scripts and datasets used during the workshop, allowing you to follow along and practice the techniques demonstrated.\n\nUse the left/right arrow keys on your keyboard to navigate the presentation.\n\nTo explore the code used in the workshop, click the arrow button on the side of the slides."
   },
   {
     "objectID": "content/events/posts/27112025_jakubnowosad.html#learning-objectives",
     "href": "content/events/posts/27112025_jakubnowosad.html#learning-objectives",
     "title": "R for geospatial predictive mapping",
     "section": "Learning Objectives",
-    "text": "Learning Objectives\nBy the end of this workshop, participants will be able to: - Understand the fundamentals of geospatial data in R\n- Prepare and clean geospatial datasets for analysis\n- Build predictive models using spatial data\n- Visualize geospatial data and model outputs effectively"
+    "text": "Learning Objectives\nBy the end of this workshop, participants will be able to: - Build predictive models using spatial data - Validate the results in a robust way - Visualize geospatial data and model outputs effectively"
   },
   {
     "objectID": "content/events/posts/27112025_jakubnowosad.html#topics-covered",
     "href": "content/events/posts/27112025_jakubnowosad.html#topics-covered",
     "title": "R for geospatial predictive mapping",
     "section": "Topics Covered",
-    "text": "Topics Covered\n\nIntroduction to geospatial data in R\n\nData preparation and cleaning for spatial analysis\n\nBuilding predictive models using spatial data\n\nVisualization techniques for geospatial data\n\nCase studies and practical applications"
+    "text": "Topics Covered\n\nIntroduction to geocomputational methods\nBuilding predictive models using spatial data\nValidating the models results\nVisualization techniques for geospatial data"
   },
   {
     "objectID": "content/events/posts/27112025_jakubnowosad.html#what-participants-learned",
@@ -221,7 +221,7 @@
     "href": "content/events/posts/27112025_jakubnowosad.html#what-do-you-need-to-follow-along",
     "title": "R for geospatial predictive mapping",
     "section": "What Do You Need to Follow Along?",
-    "text": "What Do You Need to Follow Along?\nParticipants interested in reproducing the code demonstrated during the workshop should ensure that, in addition to having R and RStudio installed, the following R packages are available:\n\nsf\n\nraster\n\nggplot2\n\ncaret\n\nspdep"
+    "text": "What Do You Need to Follow Along?\nParticipants interested in reproducing the code demonstrated during the workshop should ensure that, in addition to having R and RStudio installed, the following R packages are available:\n\nsf\n\nterra\n\ncaret\n\nCAST\ntmap"
   },
   {
     "objectID": "content/events/posts/27112025_jakubnowosad.html#contact",
