@@ -19,15 +19,15 @@ On November 27, the Rome R Users Group hosted a special workshop led by [Jakub N
 
 ### A Deep Dive into Geospatial Predictive Mapping
 
-The workshop focused on practical workflows for building reliable spatial predictions in R. Dr. Nowosad guided participants from the very beginning, starting with how to structure, clean, and explore geospatial datasets, through to more advanced modeling techniques. Much of the discussion revolved around the challenges of predicting spatial patterns in real-world contexts, where data often contain gaps, biases, or irregular sampling.
+The workshop focused on practical workflows for building reliable spatial predictions in R. Much of the discussion revolved around the challenges of predicting spatial patterns in real-world contexts, where data often contain gaps, biases, or irregular sampling.
 
-Jakub demonstrated how R can be used not only to model such data but also to diagnose uncertainties, evaluate model performance spatially, and visualize results in ways that highlight both strengths and limitations. Concepts like spatial cross-validation, the **Area of Applicability (AoA)**, and **prediction-domain diagnostics** were explained clearly, illustrating why traditional modeling approaches often fall short when applied to geographic problems.
+Jakub demonstrated how R can be used not only to model such data but also to valuate model performance spatially and visualize results in ways that highlight both strengths and limitations. Concepts like spatial cross-validation, the **Area of Applicability (AoA)**, and **prediction-domain adaptive diagnostics** were explained clearly, illustrating why traditional modeling approaches often fall short when applied to geographic problems.
 
-Throughout the session, participants followed concrete examples showing how various R packages, such as `{sf}`, `{terra}`, `{CAST}`, `{mlr3}`, and several visualization tools, work together within a workflow. The emphasis is on **reproducibility** and **transparent code**. The workshop is particularly valuable for practitioners working in environmental analysis, ecology, remote sensing, and related fields.
+Throughout the session, participants followed concrete examples showing how various R packages, such as `{sf}`, `{terra}`, `{CAST}` and several visualization tools, including `{tmap}`, work together within a workflow. The emphasis is on **reproducibility** and **transparent code**. The workshop is particularly valuable for practitioners working in environmental analysis, ecology, remote sensing, and related fields.
 
 ## About the Speaker
 
-[Jakub Nowosad](https://jakubnowosad.com/) is an Associate Professor at the University of Warsaw, specializing in geospatial data analysis and R programming. He is the author of [Geocomputation with R](https://r.geocompx.org/), a comprehensive resource for spatial data science in R. A Python version of the book has also been released recently. Jakub has developed several R packages for spatial data manipulation and visualization, and has contributed extensively to the R community through workshops, tutorials, and publications.
+[Jakub Nowosad](https://jakubnowosad.com/) is an Associate Professor at the Adam Mickiewicz University in Poznan and a Visiting Scientist at University of Münster, specializing in geospatial data analysis and R programming. He is the author of [Geocomputation with R](https://r.geocompx.org/), a comprehensive resource for spatial data science in R. A Python version of the book has also been released recently and can be found at <https://py.geocompx.org/>. Jakub has developed many R packages for spatial data manipulation and visualization, and has contributed extensively to the R community through workshops, tutorials, and publications.
 
 ## Watch the Recording
 
@@ -38,11 +38,11 @@ Simply click on the video below to catch up on the discussion:
 
 {{< video https://youtu.be/uZe7thh80MI >}}
 
-The recording includes the full demonstration, slides, code walkthroughs, and the audience Q&A session.
+The recording includes the full demonstration, slides, and the audience Q&A session.
 
 ## Materials and Resources
 
-You can access the workshop materials, including slides and code examples, on Jakub Nowosad’s GitHub repository:
+You can access the workshop materials, including slides and code examples, on Jakub Nowosad’s website:
 
 - [Workshop Materials](https://jakubnowosad.com/rome2025)
 
@@ -56,18 +56,16 @@ You can access the workshop materials, including slides and code examples, on Ja
 ## Learning Objectives
 
 By the end of this workshop, participants will be able to:
-- Understand the fundamentals of geospatial data in R  
-- Prepare and clean geospatial datasets for analysis  
-- Build predictive models using spatial data  
+- Build predictive models using spatial data 
+- Validate the results in a robust way
 - Visualize geospatial data and model outputs effectively  
 
 ## Topics Covered
 
-- Introduction to geospatial data in R  
-- Data preparation and cleaning for spatial analysis  
-- Building predictive models using spatial data  
+- Introduction to geocomputational methods
+- Building predictive models using spatial data 
+- Validating the models results
 - Visualization techniques for geospatial data  
-- Case studies and practical applications  
 
 ## What Participants Learned
 
@@ -86,10 +84,10 @@ This workshop is ideal for data scientists, GIS professionals, and R users inter
 Participants interested in reproducing the code demonstrated during the workshop should ensure that, in addition to having R and RStudio installed, the following R packages are available:
 
 - sf  
-- raster  
-- ggplot2  
+- terra  
 - caret  
-- spdep  
+- CAST
+- tmap
 
 ## Contact
 
