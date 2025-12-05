@@ -4,7 +4,7 @@
 
 The [Rome R Users Group](https://romerusersgroup.github.io/) is a community for anyone curious, passionate, or simply **R-curious**. We meet in **Rome** to learn, share ideas, build skills, and connect with people who use R for work, research, creativity, and fun. Whether starting out or already deep into statistical **modelling** and **geospatial** pipelines, there is space here to explore **new tools** and meet others who enjoy data as much as you do.
 
-![]()
+![](images/readme-banner.png)
 
 Our events range from **hands-on workshops** to invited talks with international speakers, **community-led sessions**, **project showcases**, and **informal meetups**. Every gathering is designed to be practical, welcoming, and openly accessible. <ins>*We believe in open science, reproducible workflows, and collaborative learning—and we build our activities around these values.*</ins>
 
