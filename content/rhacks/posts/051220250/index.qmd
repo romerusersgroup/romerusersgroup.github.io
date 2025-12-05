@@ -1,0 +1,176 @@
+---
+title: "R Hack – Getting started with maps in R using GeoJSON and library sf"
+subtitle: "A simple workflow to load and plot maps in R"
+description: "R-Hacks"
+author: "Lucio Colonna"
+date: "05 December 2025"
+images: "images/image-1.png"
+series: R-Hacks
+categories:
+  - GeoJSON
+  - ggplot
+  - maps
+layout: single
+toc-location: left
+toc: true
+code-overflow: wrap
+execute: 
+  warning: false
+  message: false
+---
+
+*This hack is based on my Cyclistic analysis on Kaggle (see Chapter **8.12.4**):*  
+🔗 <https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r>
+
+Working with maps in R is easier than it seems.  
+If you want to visualize points, regions, or spatial patterns, the combination of **GeoJSON files** and the **`sf`** package gives you a simple and modern workflow.
+
+In this hack, we’ll load a real city map (Chicago) directly from a URL, plot it with `geom_sf()`, and overlay simple point data.
+
+---
+
+## Step 0 – What is a GeoJSON file?
+
+A **GeoJSON** file is a **JSON text file** that stores **geographic shapes** (points, lines, polygons), together with their **attributes** (names, boundaries, codes, etc.).
+
+It is one of the most common formats for open geographic data because it is **lightweight, human-readable, and web-friendly**.
+
+You can often find GeoJSON files on:
+
+- city open data portals (City of Chicago, NYC Open Data, etc.)  
+- national and international platforms (e.g., data.gov)  
+- GitHub repositories  
+- many public mapping resources
+
+---
+
+## Step 1 – Load the required packages
+
+```{r}
+library(sf)       # for spatial data (simple features)
+library(ggplot2)  # for plotting
+```
+
+---
+
+## Step 2 – Read a GeoJSON map with `sf::st_read()`
+
+In this hack, we use a **GeoJSON of Chicago community areas**, provided by the [City of Chicago Open Data Portal](https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Neighborhoods/bbvz-uum9).
+
+*⚠️ Before using any online map or dataset, always remember to check the terms of use of the source.*
+
+You can read a GeoJSON directly from a URL, without downloading anything manually:
+
+```{r}
+map_of_chicago <- sf::st_read(
+"https://data.cityofchicago.org/resource/y6yq-dbs2.geojson",
+quiet = TRUE
+)
+
+head(map_of_chicago)
+```
+
+---
+
+What you get:
+
+- `map_of_chicago` is an sf object -essentially a data frame with a special geometry column where each row is a polygon that represents one community area
+
+---
+
+## Step 3 – Plot a basic map with `geom_sf()`
+
+Once the GeoJSON file has been loaded into an sf object, you can visualize it with `geom_sf()`.
+
+`geom_sf()` is the ggplot2 layer designed specifically for spatial data: it knows how to read the geometry column of an sf object and automatically draw points, lines, or polygons depending on what the data contains.
+In our case, it will draw the polygons of Chicago’s community areas.
+
+```{r}
+ggplot() +
+geom_sf(data = map_of_chicago, fill = "#f1f0f0", color = "grey50") +
+labs(
+title = "Chicago community areas",
+subtitle = "GeoJSON map loaded with sf::st_read()"
+) +
+theme_void()
+```
+
+---
+
+# Step 4 – Add your own data on top of the map
+
+If you have a dataset with latitude/longitude, you can overlay it on the map.
+
+For example, let’s create a small dummy dataset of bike sharing station locations:
+
+```{r}
+stations <- data.frame(
+  start_lng = c(
+    -87.6278, -87.6560, -87.6705, -87.6045, -87.5950,
+    -87.6850, -87.6515, -87.7080, -87.6405, -87.5600
+  ),
+  start_lat = c(
+    41.8925, 41.9000, 41.9120, 41.8560, 41.7920,
+    41.9220, 41.9250, 41.8810, 41.9410, 41.7600
+  )
+)
+
+stations
+
+```
+
+Now we can plot the base map plus the stations:
+
+```{r}
+ggplot() +
+geom_sf(data = map_of_chicago, fill = "#f1f0f0", color = "grey70") +
+geom_point(
+data = stations,
+aes(x = start_lng, y = start_lat),
+color = "red",
+size = 3
+) +
+labs(
+title = "Bike stations on top of a GeoJSON map of Chicago",
+subtitle = "Base map: Chicago community areas (GeoJSON + sf)"
+) +
+theme_void()
+```
+
+```{r}
+#| eval: false
+#| echo: false
+library(ggplot2)
+ggsave("images/image-1.png", 
+       bg = "white",
+       width = 6, height = 4)
+```
+
+
+---
+
+## To Recap
+
+- GeoJSON = JSON file with geometry + attributes
+
+- Load it directly from a URL with `sf::st_read()`
+
+- Plot it with `geom_sf()`
+
+- Add your own points using regular ggplot layers
+
+- This workflow is simple, beginner-friendly, and requires no GIS tools
+
+<br>
+
+**Thanks for reading!**
+
+::: callout-tip
+If you want to stay up to date with the latest events from the **Rome R Users Group**, click here:
+
+👉 <https://www.meetup.com/rome-r-users-group/>
+
+And if you are curious, the full Kaggle notebook used for this tip is available here:
+
+🔗 <https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r>
+:::
