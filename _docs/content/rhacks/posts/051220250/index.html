@@ -237,6 +237,7 @@ cookieconsent.run({
   <div class="quarto-categories">
     <div class="quarto-category">GeoJSON</div>
     <div class="quarto-category">ggplot</div>
+    <div class="quarto-category">sf</div>
     <div class="quarto-category">maps</div>
   </div>
   </div>
@@ -300,9 +301,9 @@ If you want to visualize points, regions, or spatial patterns, the combination o
 <p>You can read a GeoJSON directly from a URL, without downloading anything manually:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">map_of_chicago</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span></span>
-<span><span class="st">"https://data.cityofchicago.org/resource/y6yq-dbs2.geojson"</span>,</span>
-<span>quiet <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span><span class="op">)</span></span>
+<span>  <span class="st">"https://data.cityofchicago.org/resource/y6yq-dbs2.geojson"</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">map_of_chicago</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -339,12 +340,11 @@ Geodetic CRS:  WGS 84
 <p><code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code> is the ggplot2 layer designed specifically for spatial data: it knows how to read the geometry column of an sf object and automatically draw points, lines, or polygons depending on what the data contains. In our case, it will draw the polygons of Chicago’s community areas.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">map_of_chicago</span>, fill <span class="op">=</span> <span class="st">"#f1f0f0"</span>, color <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span> <span class="op">+</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
-<span>title <span class="op">=</span> <span class="st">"Chicago community areas"</span>,</span>
-<span>subtitle <span class="op">=</span> <span class="st">"GeoJSON map loaded with sf::st_read()"</span></span>
-<span><span class="op">)</span> <span class="op">+</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">map_of_chicago</span>, </span>
+<span>          fill <span class="op">=</span> <span class="st">"#f1f0f0"</span>, color <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Chicago community areas"</span>,</span>
+<span>       subtitle <span class="op">=</span> <span class="st">"GeoJSON map loaded with sf::st_read()"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
@@ -359,13 +359,11 @@ Geodetic CRS:  WGS 84
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  start_lng <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
 <span>    <span class="op">-</span><span class="fl">87.6278</span>, <span class="op">-</span><span class="fl">87.6560</span>, <span class="op">-</span><span class="fl">87.6705</span>, <span class="op">-</span><span class="fl">87.6045</span>, <span class="op">-</span><span class="fl">87.5950</span>,</span>
-<span>    <span class="op">-</span><span class="fl">87.6850</span>, <span class="op">-</span><span class="fl">87.6515</span>, <span class="op">-</span><span class="fl">87.7080</span>, <span class="op">-</span><span class="fl">87.6405</span>, <span class="op">-</span><span class="fl">87.5600</span></span>
-<span>  <span class="op">)</span>,</span>
+<span>    <span class="op">-</span><span class="fl">87.6850</span>, <span class="op">-</span><span class="fl">87.6515</span>, <span class="op">-</span><span class="fl">87.7080</span>, <span class="op">-</span><span class="fl">87.6405</span>, <span class="op">-</span><span class="fl">87.5600</span><span class="op">)</span>,</span>
 <span>  start_lat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
 <span>    <span class="fl">41.8925</span>, <span class="fl">41.9000</span>, <span class="fl">41.9120</span>, <span class="fl">41.8560</span>, <span class="fl">41.7920</span>,</span>
-<span>    <span class="fl">41.9220</span>, <span class="fl">41.9250</span>, <span class="fl">41.8810</span>, <span class="fl">41.9410</span>, <span class="fl">41.7600</span></span>
+<span>    <span class="fl">41.9220</span>, <span class="fl">41.9250</span>, <span class="fl">41.8810</span>, <span class="fl">41.9410</span>, <span class="fl">41.7600</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">stations</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -385,18 +383,15 @@ Geodetic CRS:  WGS 84
 <p>Now we can plot the base map plus the stations:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">map_of_chicago</span>, fill <span class="op">=</span> <span class="st">"#f1f0f0"</span>, color <span class="op">=</span> <span class="st">"grey70"</span><span class="op">)</span> <span class="op">+</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
-<span>data <span class="op">=</span> <span class="va">stations</span>,</span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">start_lng</span>, y <span class="op">=</span> <span class="va">start_lat</span><span class="op">)</span>,</span>
-<span>color <span class="op">=</span> <span class="st">"red"</span>,</span>
-<span>size <span class="op">=</span> <span class="fl">3</span></span>
-<span><span class="op">)</span> <span class="op">+</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
-<span>title <span class="op">=</span> <span class="st">"Bike stations on top of a GeoJSON map of Chicago"</span>,</span>
-<span>subtitle <span class="op">=</span> <span class="st">"Base map: Chicago community areas (GeoJSON + sf)"</span></span>
-<span><span class="op">)</span> <span class="op">+</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">map_of_chicago</span>, </span>
+<span>          fill <span class="op">=</span> <span class="st">"#f1f0f0"</span>, color <span class="op">=</span> <span class="st">"grey70"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">stations</span>,</span>
+<span>             <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">start_lng</span>, y <span class="op">=</span> <span class="va">start_lat</span><span class="op">)</span>,</span>
+<span>             color <span class="op">=</span> <span class="st">"red"</span>,</span>
+<span>             size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Bike stations on top of a GeoJSON map of Chicago"</span>,</span>
+<span>       subtitle <span class="op">=</span> <span class="st">"Base map: Chicago community areas (GeoJSON + sf)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>

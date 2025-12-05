@@ -9,6 +9,7 @@ series: R-Hacks
 categories:
   - GeoJSON
   - ggplot
+  - sf
   - maps
 layout: single
 toc-location: left
@@ -63,9 +64,9 @@ You can read a GeoJSON directly from a URL, without downloading anything manuall
 
 ```{r}
 map_of_chicago <- sf::st_read(
-"https://data.cityofchicago.org/resource/y6yq-dbs2.geojson",
-quiet = TRUE
-)
+  "https://data.cityofchicago.org/resource/y6yq-dbs2.geojson",
+  quiet = TRUE
+  )
 
 head(map_of_chicago)
 ```
@@ -87,12 +88,11 @@ In our case, it will draw the polygons of Chicago’s community areas.
 
 ```{r}
 ggplot() +
-geom_sf(data = map_of_chicago, fill = "#f1f0f0", color = "grey50") +
-labs(
-title = "Chicago community areas",
-subtitle = "GeoJSON map loaded with sf::st_read()"
-) +
-theme_void()
+  geom_sf(data = map_of_chicago, 
+          fill = "#f1f0f0", color = "grey50") +
+  labs(title = "Chicago community areas",
+       subtitle = "GeoJSON map loaded with sf::st_read()") +
+  theme_void()
 ```
 
 ---
@@ -107,34 +107,28 @@ For example, let’s create a small dummy dataset of bike sharing station locati
 stations <- data.frame(
   start_lng = c(
     -87.6278, -87.6560, -87.6705, -87.6045, -87.5950,
-    -87.6850, -87.6515, -87.7080, -87.6405, -87.5600
-  ),
+    -87.6850, -87.6515, -87.7080, -87.6405, -87.5600),
   start_lat = c(
     41.8925, 41.9000, 41.9120, 41.8560, 41.7920,
-    41.9220, 41.9250, 41.8810, 41.9410, 41.7600
+    41.9220, 41.9250, 41.8810, 41.9410, 41.7600)
   )
-)
 
 stations
-
 ```
 
 Now we can plot the base map plus the stations:
 
 ```{r}
 ggplot() +
-geom_sf(data = map_of_chicago, fill = "#f1f0f0", color = "grey70") +
-geom_point(
-data = stations,
-aes(x = start_lng, y = start_lat),
-color = "red",
-size = 3
-) +
-labs(
-title = "Bike stations on top of a GeoJSON map of Chicago",
-subtitle = "Base map: Chicago community areas (GeoJSON + sf)"
-) +
-theme_void()
+  geom_sf(data = map_of_chicago, 
+          fill = "#f1f0f0", color = "grey70") +
+  geom_point(data = stations,
+             aes(x = start_lng, y = start_lat),
+             color = "red",
+             size = 3) +
+  labs(title = "Bike stations on top of a GeoJSON map of Chicago",
+       subtitle = "Base map: Chicago community areas (GeoJSON + sf)") +
+  theme_void()
 ```
 
 ```{r}
