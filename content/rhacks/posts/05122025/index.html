@@ -5,9 +5,9 @@
 <meta name="generator" content="quarto-1.8.25">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Lucio Colonna">
-<meta name="dcterms.date" content="2025-11-19">
+<meta name="dcterms.date" content="2025-12-05">
 <meta name="description" content="R-Hacks">
-<title>How to Add Images to ggplot Axes Using ggtext::element_markdown() – Rome R-Users Group</title>
+<title>R Hack – Getting started with maps in R using GeoJSON and library sf – Rome R-Users Group</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -126,19 +126,19 @@ cookieconsent.run({
 });
 </script><style>html{ scroll-behavior: smooth; }</style>
 <link rel="stylesheet" href="../../../../styles.css">
-<meta property="og:title" content="How to Add Images to ggplot Axes Using ggtext::element_markdown() – Rome R-Users Group">
+<meta property="og:title" content="R Hack – Getting started with maps in R using GeoJSON and library sf – Rome R-Users Group">
 <meta property="og:description" content="R-Hacks">
-<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/112025/images/image-1.png">
+<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/05122025/index_files/figure-html/unnamed-chunk-3-1.png">
 <meta property="og:site_name" content="Rome R-Users Group">
 <meta property="og:locale" content="en_US">
-<meta property="og:image:height" content="866">
-<meta property="og:image:width" content="934">
-<meta name="twitter:title" content="How to Add Images to ggplot Axes Using ggtext::element_markdown() – Rome R-Users Group">
+<meta property="og:image:height" content="960">
+<meta property="og:image:width" content="1344">
+<meta name="twitter:title" content="R Hack – Getting started with maps in R using GeoJSON and library sf – Rome R-Users Group">
 <meta name="twitter:description" content="R-Hacks">
-<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/112025/images/image-1.png">
+<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/05122025/index_files/figure-html/unnamed-chunk-3-1.png">
 <meta name="twitter:creator" content="@rladiesrome">
-<meta name="twitter:image-height" content="866">
-<meta name="twitter:image-width" content="934">
+<meta name="twitter:image-height" content="960">
+<meta name="twitter:image-width" content="1344">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body class="floating nav-fixed quarto-light">
@@ -215,30 +215,30 @@ cookieconsent.run({
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
+<li><a href="#step-0-what-is-a-geojson-file" id="toc-step-0-what-is-a-geojson-file" class="nav-link active" data-scroll-target="#step-0-what-is-a-geojson-file">Step 0 – What is a GeoJSON file?</a></li>
+  <li><a href="#step-1-load-the-required-packages" id="toc-step-1-load-the-required-packages" class="nav-link" data-scroll-target="#step-1-load-the-required-packages">Step 1 – Load the required packages</a></li>
+  <li><a href="#step-2-read-a-geojson-map-with-sfst_read" id="toc-step-2-read-a-geojson-map-with-sfst_read" class="nav-link" data-scroll-target="#step-2-read-a-geojson-map-with-sfst_read">Step 2 – Read a GeoJSON map with <code>sf::st_read()</code></a></li>
+  <li><a href="#step-3-plot-a-basic-map-with-geom_sf" id="toc-step-3-plot-a-basic-map-with-geom_sf" class="nav-link" data-scroll-target="#step-3-plot-a-basic-map-with-geom_sf">Step 3 – Plot a basic map with <code>geom_sf()</code></a></li>
   <li>
-<a href="#exploratory-data-analysis-workflow" id="toc-exploratory-data-analysis-workflow" class="nav-link" data-scroll-target="#exploratory-data-analysis-workflow">Exploratory Data Analysis Workflow</a>
+<a href="#step-4-add-your-own-data-on-top-of-the-map" id="toc-step-4-add-your-own-data-on-top-of-the-map" class="nav-link" data-scroll-target="#step-4-add-your-own-data-on-top-of-the-map">Step 4 – Add your own data on top of the map</a>
   <ul class="collapse">
-<li><a href="#step-0-start-from-a-basic-dataframe" id="toc-step-0-start-from-a-basic-dataframe" class="nav-link" data-scroll-target="#step-0-start-from-a-basic-dataframe">Step 0: Start from a basic dataframe</a></li>
-  <li><a href="#step-1-choose-the-images-you-want-to-display-png-recommended" id="toc-step-1-choose-the-images-you-want-to-display-png-recommended" class="nav-link" data-scroll-target="#step-1-choose-the-images-you-want-to-display-png-recommended">Step 1: Choose the images you want to display (PNG recommended)</a></li>
-  <li><a href="#step-2-add-a-column-with-html-tags" id="toc-step-2-add-a-column-with-html-tags" class="nav-link" data-scroll-target="#step-2-add-a-column-with-html-tags">Step 2: Add a column with HTML <img> tags</a></li>
-  <li><a href="#step-3-plot-your-data" id="toc-step-3-plot-your-data" class="nav-link" data-scroll-target="#step-3-plot-your-data">Step 3: Plot your data!</a></li>
-  <li><a href="#to-recap" id="toc-to-recap" class="nav-link" data-scroll-target="#to-recap">To Recap</a></li>
+<li><a href="#to-recap" id="toc-to-recap" class="nav-link" data-scroll-target="#to-recap">To Recap</a></li>
   </ul>
 </li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/112025/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/05122025/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">How to Add Images to ggplot Axes Using <code>ggtext::element_markdown()</code>
-</h1>
-<p class="subtitle lead">A practical guide for adding logos, icons, and flags to your plots</p>
+<h1 class="title">R Hack – Getting started with maps in R using GeoJSON and library sf</h1>
+<p class="subtitle lead">A simple workflow to load and plot maps in R</p>
   <div class="quarto-categories">
-    <div class="quarto-category">ggtext</div>
+    <div class="quarto-category">GeoJSON</div>
     <div class="quarto-category">ggplot</div>
+    <div class="quarto-category">sf</div>
+    <div class="quarto-category">maps</div>
   </div>
   </div>
 
@@ -261,7 +261,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 19, 2025</p>
+      <p class="date">December 5, 2025</p>
     </div>
   </div>
   
@@ -270,153 +270,145 @@ cookieconsent.run({
   
 
 
-</header><section id="section" class="level2"><h2 class="anchored" data-anchor-id="section"></h2>
-<p><em>This tip is based on a full <strong>Kaggle notebook</strong>, where this technique is applied in a complete <strong>Exploratory Data Analysis (EDA)</strong>: 🔗 <a href="https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos" class="uri">https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos</a></em></p>
-<blockquote class="blockquote">
-<p><strong>Have you ever needed to show logos, icons, or flags directly on the axes of your ggplot charts?</strong></p>
-</blockquote>
-<p>You can do this using the <code><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown()</a></code> function from the <strong>{ggtext}</strong> package!</p>
-<p><code><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown()</a></code> is a function that tells <code>ggplot</code> to treat labels as HTML instead of plain text. It must be used in the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> section of your ggplot code.</p>
-<p>The chart below shows an example where league logos appear directly on the x-axis. It displays the total number of goals scored in the major <strong>European football leagues during the 2023/2024 season</strong>:</p>
-<center>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/image-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>European football leagues 2023/2024</figcaption></figure>
-</div>
-</center>
-</section><section id="exploratory-data-analysis-workflow" class="level2"><h2 class="anchored" data-anchor-id="exploratory-data-analysis-workflow">Exploratory Data Analysis Workflow</h2>
-<p>Here is a short, practical guide showing how to recreate this plot.</p>
-<section id="step-0-start-from-a-basic-dataframe" class="level3"><h3 class="anchored" data-anchor-id="step-0-start-from-a-basic-dataframe">Step 0: Start from a basic dataframe</h3>
-<p>In most real situations you will already have a dataframe to work with. Here is the one used in this example:</p>
+</header><p><em>This hack is based on my Cyclistic analysis on Kaggle (see Chapter <strong>8.12.4</strong>):</em><br>
+🔗 <a href="https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r" class="uri">https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r</a></p>
+<p>Working with maps in R is easier than it seems.<br>
+If you want to visualize points, regions, or spatial patterns, the combination of <strong>GeoJSON files</strong> and the <strong><code>sf</code></strong> package gives you a simple and modern workflow.</p>
+<p>In this hack, we’ll load a real city map (Chicago) directly from a URL, plot it with <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code>, and overlay simple point data.</p>
+<hr>
+<section id="step-0-what-is-a-geojson-file" class="level2"><h2 class="anchored" data-anchor-id="step-0-what-is-a-geojson-file">Step 0 – What is a GeoJSON file?</h2>
+<p>A <strong>GeoJSON</strong> file is a <strong>JSON text file</strong> that stores <strong>geographic shapes</strong> (points, lines, polygons), together with their <strong>attributes</strong> (names, boundaries, codes, etc.).</p>
+<p>It is one of the most common formats for open geographic data because it is <strong>lightweight, human-readable, and web-friendly</strong>.</p>
+<p>You can often find GeoJSON files on:</p>
+<ul>
+<li>city open data portals (City of Chicago, NYC Open Data, etc.)<br>
+</li>
+<li>national and international platforms (e.g., data.gov)<br>
+</li>
+<li>GitHub repositories<br>
+</li>
+<li>many public mapping resources</li>
+</ul>
+<hr></section><section id="step-1-load-the-required-packages" class="level2"><h2 class="anchored" data-anchor-id="step-1-load-the-required-packages">Step 1 – Load the required packages</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  league <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Premier League"</span>, <span class="st">"La Liga"</span>, </span>
-<span>             <span class="st">"Serie A"</span>, <span class="st">"Bundesliga"</span>, <span class="st">"Ligue 1"</span><span class="op">)</span>,</span>
-<span>  goals  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1197</span>, <span class="fl">977</span>, <span class="fl">968</span>, <span class="fl">960</span>, <span class="fl">804</span><span class="op">)</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>       <span class="co"># for spatial data (simple features)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>  <span class="co"># for plotting</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr></section><section id="step-2-read-a-geojson-map-with-sfst_read" class="level2"><h2 class="anchored" data-anchor-id="step-2-read-a-geojson-map-with-sfst_read">Step 2 – Read a GeoJSON map with <code>sf::st_read()</code>
+</h2>
+<p>In this hack, we use a <strong>GeoJSON of Chicago community areas</strong>, provided by the <a href="https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Neighborhoods/bbvz-uum9">City of Chicago Open Data Portal</a>.</p>
+<p><em>⚠️ Before using any online map or dataset, always remember to check the terms of use of the source.</em></p>
+<p>You can read a GeoJSON directly from a URL, without downloading anything manually:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">map_of_chicago</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span></span>
+<span>  <span class="st">"https://data.cityofchicago.org/resource/y6yq-dbs2.geojson"</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
-<span><span class="va">df</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">map_of_chicago</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          league goals
-1 Premier League  1197
-2        La Liga   977
-3        Serie A   968
-4     Bundesliga   960
-5        Ligue 1   804</code></pre>
+<pre><code>Simple feature collection with 6 features and 4 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -87.74141 ymin: 41.80189 xmax: -87.60641 ymax: 41.93272
+Geodetic CRS:  WGS 84
+           pri_neigh          sec_neigh    shape_area    shape_len
+1    Grand Boulevard        BRONZEVILLE 48492503.1554 28196.837157
+2       Printers Row       PRINTERS ROW 2162137.97139  6864.247156
+3      United Center      UNITED CENTER 32520512.7053 23101.363745
+4 Sheffield &amp; DePaul SHEFFIELD &amp; DEPAUL 10482592.2987 13227.049745
+5      Humboldt Park      HUMBOLDT PARK 125010425.593 46126.751351
+6      Garfield Park      GARFIELD PARK 89976069.5947  44460.91922
+                        geometry
+1 MULTIPOLYGON (((-87.60671 4...
+2 MULTIPOLYGON (((-87.62761 4...
+3 MULTIPOLYGON (((-87.66707 4...
+4 MULTIPOLYGON (((-87.65833 4...
+5 MULTIPOLYGON (((-87.7406 41...
+6 MULTIPOLYGON (((-87.6954 41...</code></pre>
 </div>
 </div>
-</section><section id="step-1-choose-the-images-you-want-to-display-png-recommended" class="level3"><h3 class="anchored" data-anchor-id="step-1-choose-the-images-you-want-to-display-png-recommended">Step 1: Choose the images you want to display (PNG recommended)</h3>
-<p>First decide which images you want to show on your <code>ggplot</code> axis. In this example I am using online image <strong>URLs</strong> (including links from <strong>Wikimedia</strong>), but you can use any source that provides a direct image URL, such as files hosted on <strong>GitHub repos</strong> or any public static hosting service. Just make sure the image format is supported — typically <strong>PNG</strong> or <strong>JPG/JPEG</strong>.</p>
+<hr>
+<p>What you get:</p>
+<ul>
+<li>
+<code>map_of_chicago</code> is an sf object -essentially a data frame with a special geometry column where each row is a polygon that represents one community area</li>
+</ul>
+<hr></section><section id="step-3-plot-a-basic-map-with-geom_sf" class="level2"><h2 class="anchored" data-anchor-id="step-3-plot-a-basic-map-with-geom_sf">Step 3 – Plot a basic map with <code>geom_sf()</code>
+</h2>
+<p>Once the GeoJSON file has been loaded into an sf object, you can visualize it with <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code>.</p>
+<p><code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code> is the ggplot2 layer designed specifically for spatial data: it knows how to read the geometry column of an sf object and automatically draw points, lines, or polygons depending on what the data contains. In our case, it will draw the polygons of Chicago’s community areas.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Define image URLs as variables</span></span>
-<span><span class="va">premier_url</span> <span class="op">&lt;-</span> <span class="st">"https://upload.wikimedia.org/wikipedia/it/6/6d/Premier_League_Logo_2016.png"</span></span>
-<span><span class="va">laliga_url</span> <span class="op">&lt;-</span> <span class="st">"https://upload.wikimedia.org/wikipedia/it/9/9b/LFP_La_Liga.png"</span></span>
-<span><span class="va">seriea_url</span> <span class="op">&lt;-</span> <span class="st">"https://www.fifplay.com/img/public/serie-a-logo.png"</span></span>
-<span><span class="va">bundes_url</span> <span class="op">&lt;-</span> <span class="st">"https://www.fifplay.com/img/public/bundesliga-logo.png"</span></span>
-<span><span class="va">ligue1_url</span> <span class="op">&lt;-</span> <span class="st">"https://upload.wikimedia.org/wikipedia/commons/a/a0/Ligue_1_2024_Logo.png"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">map_of_chicago</span>, </span>
+<span>          fill <span class="op">=</span> <span class="st">"#f1f0f0"</span>, color <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Chicago community areas"</span>,</span>
+<span>       subtitle <span class="op">=</span> <span class="st">"GeoJSON map loaded with sf::st_read()"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-</section><section id="step-2-add-a-column-with-html-tags" class="level3"><h3 class="anchored" data-anchor-id="step-2-add-a-column-with-html-tags">Step 2: Add a column with HTML <img> tags</h3>
-<p>In order to display images on the axis, each image URL must be <strong>wrapped inside an HTML <img> tag</strong>. This simply means that the URL cannot appear alone — it must be placed <em>inside</em> the structure:</p>
-<pre><code>`&lt;img src= + image_url + width='45'/&gt;`</code></pre>
-<p><em>Please note that in this example I use width=‘45’ just as a reference size, but you can choose any value depending on how big you want the image to appear in your plot.</em></p>
-<p>Let’s add the column to the df:</p>
+</div>
+</div>
+<hr></section><section id="step-4-add-your-own-data-on-top-of-the-map" class="level1"><h1>Step 4 – Add your own data on top of the map</h1>
+<p>If you have a dataset with latitude/longitude, you can overlay it on the map.</p>
+<p>For example, let’s create a small dummy dataset of bike sharing station locations:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span><span class="op">$</span><span class="va">logo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"&lt;img src='"</span>, <span class="va">premier_url</span>, <span class="st">"' width='45'/&gt;"</span><span class="op">)</span>, </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"&lt;img src='"</span>, <span class="va">laliga_url</span>, <span class="st">"' width='45'/&gt;"</span><span class="op">)</span>, </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"&lt;img src='"</span>, <span class="va">seriea_url</span>, <span class="st">"' width='45'/&gt;"</span><span class="op">)</span>, </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"&lt;img src='"</span>, <span class="va">bundes_url</span>, <span class="st">"' width='45'/&gt;"</span><span class="op">)</span>, </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"&lt;img src='"</span>, <span class="va">ligue1_url</span>, <span class="st">"' width='45'/&gt;"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  start_lng <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="op">-</span><span class="fl">87.6278</span>, <span class="op">-</span><span class="fl">87.6560</span>, <span class="op">-</span><span class="fl">87.6705</span>, <span class="op">-</span><span class="fl">87.6045</span>, <span class="op">-</span><span class="fl">87.5950</span>,</span>
+<span>    <span class="op">-</span><span class="fl">87.6850</span>, <span class="op">-</span><span class="fl">87.6515</span>, <span class="op">-</span><span class="fl">87.7080</span>, <span class="op">-</span><span class="fl">87.6405</span>, <span class="op">-</span><span class="fl">87.5600</span><span class="op">)</span>,</span>
+<span>  start_lat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="fl">41.8925</span>, <span class="fl">41.9000</span>, <span class="fl">41.9120</span>, <span class="fl">41.8560</span>, <span class="fl">41.7920</span>,</span>
+<span>    <span class="fl">41.9220</span>, <span class="fl">41.9250</span>, <span class="fl">41.8810</span>, <span class="fl">41.9410</span>, <span class="fl">41.7600</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">stations</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   start_lng start_lat
+1   -87.6278   41.8925
+2   -87.6560   41.9000
+3   -87.6705   41.9120
+4   -87.6045   41.8560
+5   -87.5950   41.7920
+6   -87.6850   41.9220
+7   -87.6515   41.9250
+8   -87.7080   41.8810
+9   -87.6405   41.9410
+10  -87.5600   41.7600</code></pre>
 </div>
-<p>At this point, the dataframe should look like this:</p>
+</div>
+<p>Now we can plot the base map plus the stations:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">map_of_chicago</span>, </span>
+<span>          fill <span class="op">=</span> <span class="st">"#f1f0f0"</span>, color <span class="op">=</span> <span class="st">"grey70"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">stations</span>,</span>
+<span>             <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">start_lng</span>, y <span class="op">=</span> <span class="va">start_lat</span><span class="op">)</span>,</span>
+<span>             color <span class="op">=</span> <span class="st">"red"</span>,</span>
+<span>             size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Bike stations on top of a GeoJSON map of Chicago"</span>,</span>
+<span>       subtitle <span class="op">=</span> <span class="st">"Base map: Chicago community areas (GeoJSON + sf)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<section id="to-recap" class="level2"><h2 class="anchored" data-anchor-id="to-recap">To Recap</h2>
+<ul>
+<li><p>GeoJSON = JSON file with geometry + attributes</p></li>
+<li><p>Load it directly from a URL with <code><a href="https://r-spatial.github.io/sf/reference/st_read.html">sf::st_read()</a></code></p></li>
+<li><p>Plot it with <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code></p></li>
+<li><p>Add your own points using regular ggplot layers</p></li>
+<li><p>This workflow is simple, beginner-friendly, and requires no GIS tools</p></li>
+</ul>
 <p><br></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 17%">
-<col style="width: 17%">
-<col style="width: 64%">
-</colgroup>
-<thead><tr class="header">
-<th>league</th>
-<th>goals</th>
-<th>logo</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>Premier League</td>
-<td>1197</td>
-<td><code>&lt;img src='https://upload.wikimedia.org/wikipedia/it/6/6d/Premier_League_Logo_2016.png' width='45'/&gt;</code></td>
-</tr>
-<tr class="even">
-<td>La Liga</td>
-<td>977</td>
-<td><code>&lt;img src='https://upload.wikimedia.org/wikipedia/it/9/9b/LFP_La_Liga.png' width='45'/&gt;</code></td>
-</tr>
-<tr class="odd">
-<td>Serie A</td>
-<td>968</td>
-<td><code>&lt;img src='https://www.fifplay.com/img/public/serie-a-logo.png' width='45'/&gt;</code></td>
-</tr>
-<tr class="even">
-<td>Bundesliga</td>
-<td>960</td>
-<td><code>&lt;img src='https://www.fifplay.com/img/public/bundesliga-logo.png' width='45'/&gt;</code></td>
-</tr>
-<tr class="odd">
-<td>Ligue 1</td>
-<td>804</td>
-<td><code>&lt;img src='https://upload.wikimedia.org/wikipedia/commons/a/a0/Ligue_1_2024_Logo.png' width='45'/&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<p><br></p>
-</section><section id="step-3-plot-your-data" class="level3"><h3 class="anchored" data-anchor-id="step-3-plot-your-data">Step 3: Plot your data!</h3>
-<p>Now that the dataframe contains a column of HTML <img> tags, we can use it directly on the x-axis. The key part is here:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">theme</span><span class="op">(</span> axis.text.x <span class="op">=</span> <span class="fu">element_markdown</span><span class="op">(</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p><code><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown()</a></code> function is what allows <code>ggplot</code> to interpret the HTML in your axis labels. Without it, <code>ggplot</code> would show the literal string <code>&lt;img src='...'&gt;</code> as plain text. With it, the <code>&lt;img&gt;</code> tags are rendered as actual images.</p>
-<p>Here is the full plotting code:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/ggtext/">ggtext</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>repr.plot.width <span class="op">=</span> <span class="fl">6</span>, </span>
-<span>        repr.plot.height <span class="op">=</span> <span class="fl">7</span>, </span>
-<span>        warn <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, </span>
-<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">logo</span>, <span class="op">-</span><span class="va">goals</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">goals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"forestgreen"</span>, width <span class="op">=</span> <span class="fl">.8</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">goals</span><span class="op">)</span>, vjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span>, size <span class="op">=</span> <span class="fl">4.5</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"\nFootball stats 2023/2024"</span>,</span>
-<span>       subtitle <span class="op">=</span> <span class="st">"Total Goals scored in each League\n"</span> <span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="fl">14</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="co"># HTML rendering happens here!!</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">ggtext</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown</a></span><span class="op">(</span><span class="op">)</span>, </span>
-<span>         axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, </span>
-<span>         panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, </span>
-<span>         axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, </span>
-<span>         plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, </span>
-<span>                                   colour <span class="op">=</span> <span class="st">"blue"</span>, hjust <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>, </span>
-<span>         plot.subtitle<span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
-<span>         <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>With <code><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown()</a></code> applied to <code>axis.text.x</code>, ggplot correctly displays the league logos instead of plain text labels, as seen in the barchart above.</p>
-</section><section id="to-recap" class="level3"><h3 class="anchored" data-anchor-id="to-recap">To Recap</h3>
-<ol type="1">
-<li>Prepare your dataframe (existing or new)</li>
-<li>Choose your images (PNG recommended) and store their URLs</li>
-<li>Wrap each URL inside an HTML tag with a defined width</li>
-<li>Add this HTML column to your dataframe</li>
-<li>Map it to the ggplot axis</li>
-<li>Enable HTML rendering in plot theme using:</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">axis.text.x</span> <span class="op">=</span> <span class="fu">ggtext</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 <p><strong>Thanks for reading!</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -428,9 +420,10 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you want to stay up to date with the latest events from the <strong>Rome R Users Group</strong>, click here:<br>
-👉<a href="https://www.meetup.com/rome-r-users-group/" class="uri">https://www.meetup.com/rome-r-users-group/</a></p>
-<p>And if you are curious, the full Kaggle notebook used for this tip is available here: 🔗<a href="https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos" class="uri">https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos</a></p>
+<p>If you want to stay up to date with the latest events from the <strong>Rome R Users Group</strong>, click here:</p>
+<p>👉 <a href="https://www.meetup.com/rome-r-users-group/" class="uri">https://www.meetup.com/rome-r-users-group/</a></p>
+<p>And if you are curious, the full Kaggle notebook used for this tip is available here:</p>
+<p>🔗 <a href="https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r" class="uri">https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r</a></p>
 </div>
 </div>
 
@@ -847,7 +840,7 @@ Tip
 </div>   
     <div class="nav-footer-center">
 
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/112025/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/05122025/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
 <li class="nav-item compact">
