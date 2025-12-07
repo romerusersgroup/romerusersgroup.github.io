@@ -140,43 +140,43 @@
     "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
   },
   {
-    "objectID": "content/rhacks/posts/051220250/index.html",
-    "href": "content/rhacks/posts/051220250/index.html",
+    "objectID": "content/rhacks/posts/05122025/index.html",
+    "href": "content/rhacks/posts/05122025/index.html",
     "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
     "section": "",
     "text": "This hack is based on my Cyclistic analysis on Kaggle (see Chapter 8.12.4):\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r\nWorking with maps in R is easier than it seems.\nIf you want to visualize points, regions, or spatial patterns, the combination of GeoJSON files and the sf package gives you a simple and modern workflow.\nIn this hack, we’ll load a real city map (Chicago) directly from a URL, plot it with geom_sf(), and overlay simple point data."
   },
   {
-    "objectID": "content/rhacks/posts/051220250/index.html#step-0-what-is-a-geojson-file",
-    "href": "content/rhacks/posts/051220250/index.html#step-0-what-is-a-geojson-file",
+    "objectID": "content/rhacks/posts/05122025/index.html#step-0-what-is-a-geojson-file",
+    "href": "content/rhacks/posts/05122025/index.html#step-0-what-is-a-geojson-file",
     "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
     "section": "Step 0 – What is a GeoJSON file?",
     "text": "Step 0 – What is a GeoJSON file?\nA GeoJSON file is a JSON text file that stores geographic shapes (points, lines, polygons), together with their attributes (names, boundaries, codes, etc.).\nIt is one of the most common formats for open geographic data because it is lightweight, human-readable, and web-friendly.\nYou can often find GeoJSON files on:\n\ncity open data portals (City of Chicago, NYC Open Data, etc.)\n\nnational and international platforms (e.g., data.gov)\n\nGitHub repositories\n\nmany public mapping resources"
   },
   {
-    "objectID": "content/rhacks/posts/051220250/index.html#step-1-load-the-required-packages",
-    "href": "content/rhacks/posts/051220250/index.html#step-1-load-the-required-packages",
+    "objectID": "content/rhacks/posts/05122025/index.html#step-1-load-the-required-packages",
+    "href": "content/rhacks/posts/05122025/index.html#step-1-load-the-required-packages",
     "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
     "section": "Step 1 – Load the required packages",
     "text": "Step 1 – Load the required packages\n\nlibrary(sf)       # for spatial data (simple features)\nlibrary(ggplot2)  # for plotting"
   },
   {
-    "objectID": "content/rhacks/posts/051220250/index.html#step-2-read-a-geojson-map-with-sfst_read",
-    "href": "content/rhacks/posts/051220250/index.html#step-2-read-a-geojson-map-with-sfst_read",
+    "objectID": "content/rhacks/posts/05122025/index.html#step-2-read-a-geojson-map-with-sfst_read",
+    "href": "content/rhacks/posts/05122025/index.html#step-2-read-a-geojson-map-with-sfst_read",
     "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
     "section": "Step 2 – Read a GeoJSON map with sf::st_read()\n",
     "text": "Step 2 – Read a GeoJSON map with sf::st_read()\n\nIn this hack, we use a GeoJSON of Chicago community areas, provided by the City of Chicago Open Data Portal.\n⚠️ Before using any online map or dataset, always remember to check the terms of use of the source.\nYou can read a GeoJSON directly from a URL, without downloading anything manually:\n\nmap_of_chicago &lt;- sf::st_read(\n  \"https://data.cityofchicago.org/resource/y6yq-dbs2.geojson\",\n  quiet = TRUE\n  )\n\nhead(map_of_chicago)\n\nSimple feature collection with 6 features and 4 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -87.74141 ymin: 41.80189 xmax: -87.60641 ymax: 41.93272\nGeodetic CRS:  WGS 84\n           pri_neigh          sec_neigh    shape_area    shape_len\n1    Grand Boulevard        BRONZEVILLE 48492503.1554 28196.837157\n2       Printers Row       PRINTERS ROW 2162137.97139  6864.247156\n3      United Center      UNITED CENTER 32520512.7053 23101.363745\n4 Sheffield & DePaul SHEFFIELD & DEPAUL 10482592.2987 13227.049745\n5      Humboldt Park      HUMBOLDT PARK 125010425.593 46126.751351\n6      Garfield Park      GARFIELD PARK 89976069.5947  44460.91922\n                        geometry\n1 MULTIPOLYGON (((-87.60671 4...\n2 MULTIPOLYGON (((-87.62761 4...\n3 MULTIPOLYGON (((-87.66707 4...\n4 MULTIPOLYGON (((-87.65833 4...\n5 MULTIPOLYGON (((-87.7406 41...\n6 MULTIPOLYGON (((-87.6954 41...\n\n\n\nWhat you get:\n\n\nmap_of_chicago is an sf object -essentially a data frame with a special geometry column where each row is a polygon that represents one community area"
   },
   {
-    "objectID": "content/rhacks/posts/051220250/index.html#step-3-plot-a-basic-map-with-geom_sf",
-    "href": "content/rhacks/posts/051220250/index.html#step-3-plot-a-basic-map-with-geom_sf",
+    "objectID": "content/rhacks/posts/05122025/index.html#step-3-plot-a-basic-map-with-geom_sf",
+    "href": "content/rhacks/posts/05122025/index.html#step-3-plot-a-basic-map-with-geom_sf",
     "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
     "section": "Step 3 – Plot a basic map with geom_sf()\n",
     "text": "Step 3 – Plot a basic map with geom_sf()\n\nOnce the GeoJSON file has been loaded into an sf object, you can visualize it with geom_sf().\ngeom_sf() is the ggplot2 layer designed specifically for spatial data: it knows how to read the geometry column of an sf object and automatically draw points, lines, or polygons depending on what the data contains. In our case, it will draw the polygons of Chicago’s community areas.\n\nggplot() +\n  geom_sf(data = map_of_chicago, \n          fill = \"#f1f0f0\", color = \"grey50\") +\n  labs(title = \"Chicago community areas\",\n       subtitle = \"GeoJSON map loaded with sf::st_read()\") +\n  theme_void()"
   },
   {
-    "objectID": "content/rhacks/posts/051220250/index.html#to-recap",
-    "href": "content/rhacks/posts/051220250/index.html#to-recap",
+    "objectID": "content/rhacks/posts/05122025/index.html#to-recap",
+    "href": "content/rhacks/posts/05122025/index.html#to-recap",
     "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
     "section": "To Recap",
     "text": "To Recap\n\nGeoJSON = JSON file with geometry + attributes\nLoad it directly from a URL with sf::st_read()\nPlot it with geom_sf()\nAdd your own points using regular ggplot layers\nThis workflow is simple, beginner-friendly, and requires no GIS tools\n\n\nThanks for reading!\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events from the Rome R Users Group, click here:\n👉 https://www.meetup.com/rome-r-users-group/\nAnd if you are curious, the full Kaggle notebook used for this tip is available here:\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r"
