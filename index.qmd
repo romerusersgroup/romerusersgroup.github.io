@@ -1,6 +1,9 @@
 ---
 page-layout: custom
 toc: false
+listing:
+  contents: posts
+  feed: true
 ---
 
 
