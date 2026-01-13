@@ -35,5 +35,100 @@ Some R Conferences for 2025
 :::
 
 
+## Check recent posts from selected R and data science sources:
+
+```{r}
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+library(tidyverse)
+library(tidyRSS)
+library(lubridate)
+library(httr2)
+library(rvest)
+library(stringr)
+library(xml2)
+library(gt)
+
+feeds <- c(
+  "https://rladiesrome.org/index.xml",
+  "https://rweekly.org/atom.xml"
+)
+
+# ---- helper: extract preview image from the target page (og:image first) ----
+get_preview_image <- function(url) {
+  tryCatch({
+    html <- request(url) |>
+      req_user_agent("R-Ladies Rome link preview (+https://rladiesrome.org)") |>
+      req_timeout(15) |>
+      req_perform() |>
+      resp_body_html()
+
+    get_meta <- function(css) {
+      x <- html |> html_element(css) |> html_attr("content")
+      x <- str_squish(x)
+      if (is.na(x) || x == "") NA_character_ else x
+    }
+
+    img <- dplyr::coalesce(
+      get_meta("meta[property='og:image']"),
+      get_meta("meta[name='twitter:image']")
+    )
+
+    # make relative URLs absolute
+    if (!is.na(img) && !str_detect(img, "^https?://")) {
+      img <- tryCatch(url_absolute(img, url), error = function(e) img)
+    }
+
+    img
+  }, error = function(e) NA_character_)
+}
+
+all_feeds <- purrr::map_df(feeds, tidyfeed)
+
+feed_data <- all_feeds %>%
+    mutate(date = if_else(!is.na(item_pub_date), 
+                          item_pub_date, entry_last_updated),
+           date = as_date(date),
+           source = feed_title,
+           title=if_else(!is.na(item_title), item_title, entry_title),
+           link=if_else(!is.na(item_link), item_link, entry_link),
+           title = sprintf("[%s](%s)", title, link),
+           link)%>%
+    select(date,source,title, link) %>%
+  arrange(desc(date)) %>%
+  slice_head(n = 10) %>%
+  mutate(image_url = purrr::map_chr(link, get_preview_image)) 
+
+
+feed_data %>%
+  select(-link) %>%
+  gt() %>%
+  text_transform(
+    locations = cells_body(columns = image_url),
+    fn = function(x) {
+      ifelse(
+        is.na(x) | x == "",
+        "",
+        sprintf(
+          '<img src="%s" style="height:60px; width:200px; object-fit:cover; border-radius:6px;" loading="lazy">',
+          x
+        )
+      )
+    }
+  ) %>%
+  fmt_markdown(columns = title) %>%
+  cols_label(
+    date = "Date",
+    source = "Source",
+    title = "Title",
+    image_url = ""
+  ) %>%
+   tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_column_labels(everything())
+  )
+```
 
 
