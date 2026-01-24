@@ -5,9 +5,9 @@
 <meta name="generator" content="quarto-1.8.25">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Lucio Colonna">
-<meta name="dcterms.date" content="2025-12-05">
-<meta name="description" content="R-Hacks">
-<title>R Hack – Getting started with maps in R using GeoJSON and library sf – Rome R-Users Group</title>
+<meta name="dcterms.date" content="2026-01-23">
+<meta name="description" content="R-Hacks N.4">
+<title>R-Hacks | Showing Top &amp; Bottom values in one clear visualization – Rome R-Users Group</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -126,19 +126,19 @@ cookieconsent.run({
 });
 </script><style>html{ scroll-behavior: smooth; }</style>
 <link rel="stylesheet" href="../../../../styles.css">
-<meta property="og:title" content="R Hack – Getting started with maps in R using GeoJSON and library sf – Rome R-Users Group">
-<meta property="og:description" content="R-Hacks">
-<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/12052025/index_files/figure-html/unnamed-chunk-3-1.png">
+<meta property="og:title" content="R-Hacks | Showing Top &amp; Bottom values in one clear visualization – Rome R-Users Group">
+<meta property="og:description" content="R-Hacks N.4">
+<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/01232026-n4/image1.png">
 <meta property="og:site_name" content="Rome R-Users Group">
 <meta property="og:locale" content="en_US">
-<meta property="og:image:height" content="960">
-<meta property="og:image:width" content="1344">
-<meta name="twitter:title" content="R Hack – Getting started with maps in R using GeoJSON and library sf – Rome R-Users Group">
-<meta name="twitter:description" content="R-Hacks">
-<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/12052025/index_files/figure-html/unnamed-chunk-3-1.png">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="2400">
+<meta name="twitter:title" content="R-Hacks | Showing Top &amp; Bottom values in one clear visualization – Rome R-Users Group">
+<meta name="twitter:description" content="R-Hacks N.4">
+<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/01232026-n4/image1.png">
 <meta name="twitter:creator" content="@rladiesrome">
-<meta name="twitter:image-height" content="960">
-<meta name="twitter:image-width" content="1344">
+<meta name="twitter:image-height" content="1800">
+<meta name="twitter:image-width" content="2400">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body class="floating nav-fixed quarto-light">
@@ -215,36 +215,30 @@ cookieconsent.run({
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#step-0-what-is-a-geojson-file" id="toc-step-0-what-is-a-geojson-file" class="nav-link active" data-scroll-target="#step-0-what-is-a-geojson-file">Step 0 – What is a GeoJSON file?</a></li>
-  <li><a href="#step-1-load-the-required-packages" id="toc-step-1-load-the-required-packages" class="nav-link" data-scroll-target="#step-1-load-the-required-packages">Step 1 – Load the required packages</a></li>
-  <li><a href="#step-2-read-a-geojson-map-with-sfst_read" id="toc-step-2-read-a-geojson-map-with-sfst_read" class="nav-link" data-scroll-target="#step-2-read-a-geojson-map-with-sfst_read">Step 2 – Read a GeoJSON map with <code>sf::st_read()</code></a></li>
-  <li><a href="#step-3-plot-a-basic-map-with-geom_sf" id="toc-step-3-plot-a-basic-map-with-geom_sf" class="nav-link" data-scroll-target="#step-3-plot-a-basic-map-with-geom_sf">Step 3 – Plot a basic map with <code>geom_sf()</code></a></li>
-  <li>
-<a href="#step-4-add-your-own-data-on-top-of-the-map" id="toc-step-4-add-your-own-data-on-top-of-the-map" class="nav-link" data-scroll-target="#step-4-add-your-own-data-on-top-of-the-map">Step 4 – Add your own data on top of the map</a>
-  <ul class="collapse">
-<li><a href="#to-recap" id="toc-to-recap" class="nav-link" data-scroll-target="#to-recap">To Recap</a></li>
-  </ul>
-</li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/12052025/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<li><a href="#step-0-create-an-example-dataset" id="toc-step-0-create-an-example-dataset" class="nav-link active" data-scroll-target="#step-0-create-an-example-dataset">Step 0 – Create an example dataset</a></li>
+  <li><a href="#step-1-build-top-bottom-datasets-in-a-single-pipeline" id="toc-step-1-build-top-bottom-datasets-in-a-single-pipeline" class="nav-link" data-scroll-target="#step-1-build-top-bottom-datasets-in-a-single-pipeline">Step 1 – Build Top &amp; Bottom datasets in a single pipeline</a></li>
+  <li><a href="#step-2---plot-the-data" id="toc-step-2---plot-the-data" class="nav-link" data-scroll-target="#step-2---plot-the-data">Step 2 - Plot the data</a></li>
+  <li><a href="#step-3---generate-gradient-color-palettes" id="toc-step-3---generate-gradient-color-palettes" class="nav-link" data-scroll-target="#step-3---generate-gradient-color-palettes">Step 3 - Generate gradient color palettes</a></li>
+  <li><a href="#step-4---style-the-chart-using-the-new-colors" id="toc-step-4---style-the-chart-using-the-new-colors" class="nav-link" data-scroll-target="#step-4---style-the-chart-using-the-new-colors">Step 4 - Style the chart using the new colors</a></li>
+  <li><a href="#in-short" id="toc-in-short" class="nav-link" data-scroll-target="#in-short">In short</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/01232026-n4/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">R Hack – Getting started with maps in R using GeoJSON and library sf</h1>
-<p class="subtitle lead">A simple workflow to load and plot maps in R</p>
+<h1 class="title">R-Hacks | Showing Top &amp; Bottom values in one clear visualization</h1>
+<p class="subtitle lead">A simple pattern to compare extremes of a distribution</p>
   <div class="quarto-categories">
-    <div class="quarto-category">GeoJSON</div>
-    <div class="quarto-category">ggplot</div>
-    <div class="quarto-category">sf</div>
-    <div class="quarto-category">maps</div>
+    <div class="quarto-category">data-wrangling</div>
+    <div class="quarto-category">functions</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    R-Hacks
+    R-Hacks N.4
   </div>
 </div>
 
@@ -261,7 +255,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 5, 2025</p>
+      <p class="date">January 23, 2026</p>
     </div>
   </div>
   
@@ -270,81 +264,101 @@ cookieconsent.run({
   
 
 
-</header><p><em>This hack is based on my Cyclistic analysis on Kaggle (see Chapter <strong>8.12.4</strong>):</em><br>
-🔗 <a href="https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r" class="uri">https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r</a></p>
-<p>Working with maps in R is easier than it seems.<br>
-If you want to visualize points, regions, or spatial patterns, the combination of <strong>GeoJSON files</strong> and the <strong><code>sf</code></strong> package gives you a simple and modern workflow.</p>
-<p>In this hack, we’ll load a real city map (Chicago) directly from a URL, plot it with <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code>, and overlay simple point data.</p>
-<hr>
-<section id="step-0-what-is-a-geojson-file" class="level2"><h2 class="anchored" data-anchor-id="step-0-what-is-a-geojson-file">Step 0 – What is a GeoJSON file?</h2>
-<p>A <strong>GeoJSON</strong> file is a <strong>JSON text file</strong> that stores <strong>geographic shapes</strong> (points, lines, polygons), together with their <strong>attributes</strong> (names, boundaries, codes, etc.).</p>
-<p>It is one of the most common formats for open geographic data because it is <strong>lightweight, human-readable, and web-friendly</strong>.</p>
-<p>You can often find GeoJSON files on:</p>
-<ul>
-<li>city open data portals (City of Chicago, NYC Open Data, etc.)<br>
-</li>
-<li>national and international platforms (e.g., data.gov)<br>
-</li>
-<li>GitHub repositories<br>
-</li>
-<li>many public mapping resources</li>
-</ul>
-<hr></section><section id="step-1-load-the-required-packages" class="level2"><h2 class="anchored" data-anchor-id="step-1-load-the-required-packages">Step 1 – Load the required packages</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>       <span class="co"># for spatial data (simple features)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>  <span class="co"># for plotting</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</header><p><em>This hack is based on my analysis on Kaggle analysis linked as follows (please see Chapter <strong>4.3</strong>):</em><br>
+🔗 <a href="https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries" class="uri">https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries</a></p>
+<p><br> When exploring a distribution, a very common question is:</p>
+<blockquote class="blockquote">
+<p>Who are the top performers, and who are at the bottom?</p>
+</blockquote>
+<p>Showing only the Top values might hid some context, while showing two separate charts can make comparison harder.</p>
+<p>This R-Hack shows a <strong>simple</strong> and <strong>reusable pattern</strong> to display Top and Bottom values together in a single, clean visualization, as the one showed below:</p>
+<p><br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="image1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
 </div>
-<hr></section><section id="step-2-read-a-geojson-map-with-sfst_read" class="level2"><h2 class="anchored" data-anchor-id="step-2-read-a-geojson-map-with-sfst_read">Step 2 – Read a GeoJSON map with <code>sf::st_read()</code>
-</h2>
-<p>In this hack, we use a <strong>GeoJSON of Chicago community areas</strong>, provided by the <a href="https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Neighborhoods/bbvz-uum9">City of Chicago Open Data Portal</a>.</p>
-<p><em>⚠️ Before using any online map or dataset, always remember to check the terms of use of the source.</em></p>
-<p>You can read a GeoJSON directly from a URL, without downloading anything manually:</p>
+<p><br></p>
+<hr>
+<p><br></p>
+<section id="step-0-create-an-example-dataset" class="level2"><h2 class="anchored" data-anchor-id="step-0-create-an-example-dataset">Step 0 – Create an example dataset</h2>
+<p>Let’s start from a small, simulated dataset representing average salaries for different companies:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">map_of_chicago</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span></span>
-<span>  <span class="st">"https://data.cityofchicago.org/resource/y6yq-dbs2.geojson"</span>,</span>
-<span>  quiet <span class="op">=</span> <span class="cn">TRUE</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  company <span class="op">=</span> <span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">26</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  avg_salary <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">26</span>, min <span class="op">=</span> <span class="fl">60</span>, max <span class="op">=</span> <span class="fl">180</span><span class="op">)</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  company avg_salary
+1       A         95
+2       B        155
+3       C        109
+4       D        166
+5       E        173
+6       F         65</code></pre>
+</div>
+</div>
+<p><br></p>
+</section><section id="step-1-build-top-bottom-datasets-in-a-single-pipeline" class="level2"><h2 class="anchored" data-anchor-id="step-1-build-top-bottom-datasets-in-a-single-pipeline">Step 1 – Build Top &amp; Bottom datasets in a single pipeline</h2>
+<p>In this step, we extract both the Top 10 and Bottom 10 values using a single, readable pipeline.</p>
+<p>The idea is simple. Starting from the same dataset:</p>
+<ul>
+<li><p>select the <strong>Top 10</strong> by applying <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code>, which returns all observations within the top 10 ranking positions, including any ties</p></li>
+<li><p>select the <strong>Bottom 10</strong> by applying <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code>, returning all observations within the lowest 10 ranking positions, again including ties</p></li>
+<li><p>assign a clear <strong>group label</strong> to each subset</p></li>
+<li><p>combine the two subsets into a single dataframe for visualization and further analysis</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_df</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span></span>
+<span>    <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="va">avg_salary</span>, n <span class="op">=</span> <span class="fl">10</span>, with_ties <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>group <span class="op">=</span> <span class="st">"Top 10"</span><span class="op">)</span>,</span>
+<span>    </span>
+<span>    <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min</a></span><span class="op">(</span><span class="va">avg_salary</span>, n <span class="op">=</span> <span class="fl">10</span>, with_ties <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>group <span class="op">=</span> <span class="st">"Bottom 10"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">map_of_chicago</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">plot_df</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 6 features and 4 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: -87.74141 ymin: 41.80189 xmax: -87.60641 ymax: 41.93272
-Geodetic CRS:  WGS 84
-           pri_neigh          sec_neigh    shape_area    shape_len
-1    Grand Boulevard        BRONZEVILLE 48492503.1554 28196.837157
-2       Printers Row       PRINTERS ROW 2162137.97139  6864.247156
-3      United Center      UNITED CENTER 32520512.7053 23101.363745
-4 Sheffield &amp; DePaul SHEFFIELD &amp; DEPAUL 10482592.2987 13227.049745
-5      Humboldt Park      HUMBOLDT PARK 125010425.593 46126.751351
-6      Garfield Park      GARFIELD PARK 89976069.5947  44460.91922
-                        geometry
-1 MULTIPOLYGON (((-87.60671 4...
-2 MULTIPOLYGON (((-87.62761 4...
-3 MULTIPOLYGON (((-87.66707 4...
-4 MULTIPOLYGON (((-87.65833 4...
-5 MULTIPOLYGON (((-87.7406 41...
-6 MULTIPOLYGON (((-87.6954 41...</code></pre>
+<pre><code>  company avg_salary  group
+1       X        179 Top 10
+2       K        175 Top 10
+3       T        175 Top 10
+4       E        173 Top 10
+5       P        168 Top 10
+6       H        167 Top 10</code></pre>
 </div>
 </div>
-<hr>
-<p>What you get:</p>
-<ul>
-<li>
-<code>map_of_chicago</code> is an sf object -essentially a data frame with a special geometry column where each row is a polygon that represents one community area</li>
-</ul>
-<hr></section><section id="step-3-plot-a-basic-map-with-geom_sf" class="level2"><h2 class="anchored" data-anchor-id="step-3-plot-a-basic-map-with-geom_sf">Step 3 – Plot a basic map with <code>geom_sf()</code>
-</h2>
-<p>Once the GeoJSON file has been loaded into an sf object, you can visualize it with <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code>.</p>
-<p><code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code> is the ggplot2 layer designed specifically for spatial data: it knows how to read the geometry column of an sf object and automatically draw points, lines, or polygons depending on what the data contains. In our case, it will draw the polygons of Chicago’s community areas.</p>
+<p><br></p>
+</section><section id="step-2---plot-the-data" class="level2"><h2 class="anchored" data-anchor-id="step-2---plot-the-data">Step 2 - Plot the data</h2>
+<p>In this step, starting from the dataframe created in the previous step, we build a simple visualization with <code>ggplot</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">map_of_chicago</span>, </span>
-<span>          fill <span class="op">=</span> <span class="st">"#f1f0f0"</span>, color <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Chicago community areas"</span>,</span>
-<span>       subtitle <span class="op">=</span> <span class="st">"GeoJSON map loaded with sf::st_read()"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_base</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, </span>
+<span>                    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">company</span>, <span class="op">-</span><span class="va">avg_salary</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">avg_salary</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">avg_salary</span><span class="op">)</span>, vjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.4</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Top and Bottom Companies by Average Salary"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Simulated data example\n\n"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Average yearly salary"</span>,</span>
+<span>    x <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span>
+<span>    axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">plot_base</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
@@ -352,46 +366,63 @@ Geodetic CRS:  WGS 84
 </div>
 </div>
 </div>
-<hr></section><section id="step-4-add-your-own-data-on-top-of-the-map" class="level1"><h1>Step 4 – Add your own data on top of the map</h1>
-<p>If you have a dataset with latitude/longitude, you can overlay it on the map.</p>
-<p>For example, let’s create a small dummy dataset of bike sharing station locations:</p>
+<p><br></p>
+</section><section id="step-3---generate-gradient-color-palettes" class="level2"><h2 class="anchored" data-anchor-id="step-3---generate-gradient-color-palettes">Step 3 - Generate gradient color palettes</h2>
+<p>Now that the base chart is working, we can make it more informative by adding two gradient color palettes:</p>
+<ul>
+<li>one gradient for the Top group (blue shades)</li>
+<li>one gradient for the Bottom group (red shades)</li>
+</ul>
+<p>Instead of assigning a single color per group, we assign a slightly different shade to <strong>each bar</strong>. This creates a clean gradient effect while keeping the plot readable — even when ties produce more than 10 observations per group.</p>
+<p>To do this, we:</p>
+<ul>
+<li>generate a group-specific palette with <code><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette()</a></code>, sized to the number of rows in each group (so it adapts if ties expand the selection)</li>
+<li>group the data by <code>group</code> (Top vs Bottom)</li>
+<li>assign colors row by row using <code><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number()</a></code>
+</li>
+<li>store the result in a new column called <code>color</code>
+</li>
+</ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  start_lng <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>    <span class="op">-</span><span class="fl">87.6278</span>, <span class="op">-</span><span class="fl">87.6560</span>, <span class="op">-</span><span class="fl">87.6705</span>, <span class="op">-</span><span class="fl">87.6045</span>, <span class="op">-</span><span class="fl">87.5950</span>,</span>
-<span>    <span class="op">-</span><span class="fl">87.6850</span>, <span class="op">-</span><span class="fl">87.6515</span>, <span class="op">-</span><span class="fl">87.7080</span>, <span class="op">-</span><span class="fl">87.6405</span>, <span class="op">-</span><span class="fl">87.5600</span><span class="op">)</span>,</span>
-<span>  start_lat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>    <span class="fl">41.8925</span>, <span class="fl">41.9000</span>, <span class="fl">41.9120</span>, <span class="fl">41.8560</span>, <span class="fl">41.7920</span>,</span>
-<span>    <span class="fl">41.9220</span>, <span class="fl">41.9250</span>, <span class="fl">41.8810</span>, <span class="fl">41.9410</span>, <span class="fl">41.7600</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="va">plot_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    color <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span></span>
+<span>      <span class="va">group</span> <span class="op">==</span> <span class="st">"Top 10"</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"darkblue"</span>, <span class="st">"lightblue"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">]</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"darkred"</span>, <span class="st">"lightcoral"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">]</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">stations</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">plot_df</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   start_lng start_lat
-1   -87.6278   41.8925
-2   -87.6560   41.9000
-3   -87.6705   41.9120
-4   -87.6045   41.8560
-5   -87.5950   41.7920
-6   -87.6850   41.9220
-7   -87.6515   41.9250
-8   -87.7080   41.8810
-9   -87.6405   41.9410
-10  -87.5600   41.7600</code></pre>
+<pre><code># A tibble: 6 × 4
+  company avg_salary group  color  
+  &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  
+1 X              179 Top 10 #00008B
+2 K              175 Top 10 #131895
+3 T              175 Top 10 #26309F
+4 E              173 Top 10 #3948A9
+5 P              168 Top 10 #4C60B3
+6 H              167 Top 10 #6078BD</code></pre>
 </div>
 </div>
-<p>Now we can plot the base map plus the stations:</p>
+<p><br></p>
+</section><section id="step-4---style-the-chart-using-the-new-colors" class="level2"><h2 class="anchored" data-anchor-id="step-4---style-the-chart-using-the-new-colors">Step 4 - Style the chart using the new colors</h2>
+<p>At this point, we don’t want to rewrite the entire ggplot call. Instead, we:</p>
+<ul>
+<li><p>reuse the base chart (<code>plot_base</code>)</p></li>
+<li><p>replace its dataset with the updated <code>plot_df</code> (the one that now includes color) using the <code>%+%</code> operator</p></li>
+<li><p>add a new <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> that maps fill to the color column</p></li>
+<li><p>use <code><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">scale_fill_identity()</a></code> so <code>ggplot</code> uses the colors as they are listed in the <code>color</code> column</p></li>
+</ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">map_of_chicago</span>, </span>
-<span>          fill <span class="op">=</span> <span class="st">"#f1f0f0"</span>, color <span class="op">=</span> <span class="st">"grey70"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">stations</span>,</span>
-<span>             <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">start_lng</span>, y <span class="op">=</span> <span class="va">start_lat</span><span class="op">)</span>,</span>
-<span>             color <span class="op">=</span> <span class="st">"red"</span>,</span>
-<span>             size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Bike stations on top of a GeoJSON map of Chicago"</span>,</span>
-<span>       subtitle <span class="op">=</span> <span class="st">"Base map: Chicago community areas (GeoJSON + sf)"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_styled</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">plot_base</span> <span class="op"><a href="https://ggplot2.tidyverse.org/reference/gg-add.html">%+%</a></span> <span class="va">plot_df</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">scale_fill_identity</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">plot_styled</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
@@ -399,17 +430,15 @@ Geodetic CRS:  WGS 84
 </div>
 </div>
 </div>
-<hr>
-<section id="to-recap" class="level2"><h2 class="anchored" data-anchor-id="to-recap">To Recap</h2>
+<p><br></p>
+</section><section id="in-short" class="level2"><h2 class="anchored" data-anchor-id="in-short">In short</h2>
 <ul>
-<li><p>GeoJSON = JSON file with geometry + attributes</p></li>
-<li><p>Load it directly from a URL with <code><a href="https://r-spatial.github.io/sf/reference/st_read.html">sf::st_read()</a></code></p></li>
-<li><p>Plot it with <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code></p></li>
-<li><p>Add your own points using regular ggplot layers</p></li>
-<li><p>This workflow is simple, beginner-friendly, and requires no GIS tools</p></li>
+<li><p>Extract <strong>Top 10</strong> and <strong>Bottom 10</strong> values from the same dataset using <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code>, including ties</p></li>
+<li><p><strong>Combine</strong> the two subsets into a single dataframe for a compact overview of the distribution extremes</p></li>
+<li><p>Build a <strong>clean base plot</strong> to validate structure and layout</p></li>
+<li><p>Enhance the visualization by applying <strong>gradient colors</strong> to distinguish Top and Bottom groups</p></li>
 </ul>
 <p><br></p>
-<p><strong>Thanks for reading!</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -423,12 +452,12 @@ Tip
 <p>If you want to stay up to date with the latest events from the <strong>Rome R Users Group</strong>, click here:</p>
 <p>👉 <a href="https://www.meetup.com/rome-r-users-group/" class="uri">https://www.meetup.com/rome-r-users-group/</a></p>
 <p>And if you are curious, the full Kaggle notebook used for this tip is available here:</p>
-<p>🔗 <a href="https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r" class="uri">https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r</a></p>
+<p>🔗 <a href="https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries" class="uri">https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries</a></p>
 </div>
 </div>
 
 
-</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -840,7 +869,7 @@ Tip
 </div>   
     <div class="nav-footer-center">
 
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/12052025/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/01232026-n4/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
 <li class="nav-item compact">

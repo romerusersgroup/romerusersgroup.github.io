@@ -1,9 +1,9 @@
 ---
 title: "Compare multiple dataframes before binding them together"
 subtitle: "A lightweight R Hack to check structural compatibility across many dataframes"
-description: "R-Hacks"
+description: "R-Hacks N.3"
 author: "Lucio Colonna"
-date: "13 December 2026"
+date: "13 January 2026"
 images: "images/image-1.png"
 series: R-Hacks
 categories: 

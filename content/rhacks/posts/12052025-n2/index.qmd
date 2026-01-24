@@ -1,7 +1,7 @@
 ---
 title: "R Hack – Getting started with maps in R using GeoJSON and library sf"
 subtitle: "A simple workflow to load and plot maps in R"
-description: "R-Hacks"
+description: "R-Hacks N.2"
 author: "Lucio Colonna"
 date: "05 December 2025"
 images: "images/image-1.png"

@@ -1,7 +1,7 @@
 ---
 title: "How to Add Images to ggplot Axes Using `ggtext::element_markdown()`"
 subtitle: "A practical guide for adding logos, icons, and flags to your plots"
-description: "R-Hacks"
+description: "R-Hacks N.1"
 author: "Lucio Colonna"
 date: "19 November 2025"
 images: "images/image-1.png"
