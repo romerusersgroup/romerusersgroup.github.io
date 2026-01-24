@@ -238,50 +238,50 @@
     "text": "To Recap\n\nGeoJSON = JSON file with geometry + attributes\nLoad it directly from a URL with sf::st_read()\nPlot it with geom_sf()\nAdd your own points using regular ggplot layers\nThis workflow is simple, beginner-friendly, and requires no GIS tools\n\n\nThanks for reading!\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events from the Rome R Users Group, click here:\n👉 https://www.meetup.com/rome-r-users-group/\nAnd if you are curious, the full Kaggle notebook used for this tip is available here:\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r"
   },
   {
-    "objectID": "content/rhacks/posts/12132026-n3/index.html",
-    "href": "content/rhacks/posts/12132026-n3/index.html",
+    "objectID": "content/rhacks/posts/01132026-n3/index.html",
+    "href": "content/rhacks/posts/01132026-n3/index.html",
     "title": "Compare multiple dataframes before binding them together",
     "section": "",
     "text": "Create your function\n\nThis hack is based on my Cyclistic analysis on Kaggle (see Chapter 6.3):\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r\nWhen working with multiple datasets a common question is:\n\nAre these dataframes really compatible before I bind them together?\n\nPeople who work with data typically rely on a mix of approaches to answer this:\nmanual checks (names(), glimpse()), warnings raised by bind_rows(), or dedicated helpers such as compare_df_cols() from the janitor package — which is a solid and widely used solution for comparing column structures.\nHowever, in practice, it is often useful to have a single, lightweight helper that provides a compact and readable overview across many dataframes at once, without additional dependencies or verbose output.\nThis R Hack introduces a small custom helper function designed with that goal in mind, that you can easily reuse and adapt to your own workflows.\nIt performs an omnicomprehensive structural comparison before merging, checking column count, column names, and column classes across all pairs of dataframes:\n\n#   comparison   same_ncol same_names same_class\n#   &lt;chr&gt;        &lt;lgl&gt;     &lt;lgl&gt;      &lt;lgl&gt;     \n# 1 df_a vs df_b TRUE      TRUE       TRUE      \n# 2 df_a vs df_c TRUE      TRUE       FALSE     \n# 3 df_a vs df_d TRUE      FALSE      FALSE     \n# 4 df_b vs df_c TRUE      TRUE       FALSE     \n# 5 df_b vs df_d TRUE      FALSE      FALSE     \n# 6 df_c vs df_d TRUE      FALSE      FALSE"
   },
   {
-    "objectID": "content/rhacks/posts/12132026-n3/index.html#section",
-    "href": "content/rhacks/posts/12132026-n3/index.html#section",
+    "objectID": "content/rhacks/posts/01132026-n3/index.html#section",
+    "href": "content/rhacks/posts/01132026-n3/index.html#section",
     "title": "Compare multiple dataframes before binding them together",
     "section": "",
     "text": "Create your function\n\nThis hack is based on my Cyclistic analysis on Kaggle (see Chapter 6.3):\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r\nWhen working with multiple datasets a common question is:\n\nAre these dataframes really compatible before I bind them together?\n\nPeople who work with data typically rely on a mix of approaches to answer this:\nmanual checks (names(), glimpse()), warnings raised by bind_rows(), or dedicated helpers such as compare_df_cols() from the janitor package — which is a solid and widely used solution for comparing column structures.\nHowever, in practice, it is often useful to have a single, lightweight helper that provides a compact and readable overview across many dataframes at once, without additional dependencies or verbose output.\nThis R Hack introduces a small custom helper function designed with that goal in mind, that you can easily reuse and adapt to your own workflows.\nIt performs an omnicomprehensive structural comparison before merging, checking column count, column names, and column classes across all pairs of dataframes:\n\n#   comparison   same_ncol same_names same_class\n#   &lt;chr&gt;        &lt;lgl&gt;     &lt;lgl&gt;      &lt;lgl&gt;     \n# 1 df_a vs df_b TRUE      TRUE       TRUE      \n# 2 df_a vs df_c TRUE      TRUE       FALSE     \n# 3 df_a vs df_d TRUE      FALSE      FALSE     \n# 4 df_b vs df_c TRUE      TRUE       FALSE     \n# 5 df_b vs df_d TRUE      FALSE      FALSE     \n# 6 df_c vs df_d TRUE      FALSE      FALSE"
   },
   {
-    "objectID": "content/rhacks/posts/12132026-n3/index.html#step-0-create-example-dataframes-to-compare",
-    "href": "content/rhacks/posts/12132026-n3/index.html#step-0-create-example-dataframes-to-compare",
+    "objectID": "content/rhacks/posts/01132026-n3/index.html#step-0-create-example-dataframes-to-compare",
+    "href": "content/rhacks/posts/01132026-n3/index.html#step-0-create-example-dataframes-to-compare",
     "title": "Compare multiple dataframes before binding them together",
     "section": "Step 0 – Create example dataframes to compare",
     "text": "Step 0 – Create example dataframes to compare\nTo make the idea concrete, let’s create four small dataframes. Some of them match perfectly, others don’t:\n\ndf_a &lt;- data.frame(\n  id = 1:3,\n  value = c(10, 20, 30)\n)\n\ndf_b &lt;- data.frame(\n  id = 4:6,\n  value = c(40, 50, 60)\n)\n\n# Same columns, but different class for `value`\ndf_c &lt;- data.frame(\n  id = 7:9,\n  value = as.character(c(70, 80, 90))\n)\n\n# Different column name\ndf_d &lt;- data.frame(\n  id = 10:12,\n  amount = c(100, 200, 300)\n)"
   },
   {
-    "objectID": "content/rhacks/posts/12132026-n3/index.html#step-1-define-the-helper-function-to-compare-dataframes",
-    "href": "content/rhacks/posts/12132026-n3/index.html#step-1-define-the-helper-function-to-compare-dataframes",
+    "objectID": "content/rhacks/posts/01132026-n3/index.html#step-1-define-the-helper-function-to-compare-dataframes",
+    "href": "content/rhacks/posts/01132026-n3/index.html#step-1-define-the-helper-function-to-compare-dataframes",
     "title": "Compare multiple dataframes before binding them together",
     "section": "Step 1 – Define the helper function to compare dataframes",
     "text": "Step 1 – Define the helper function to compare dataframes\nThe function below takes a vector of dataframe names (as character strings) and compares each unique pair only once. It works in three simple steps:\n\nIt loads the dataframes from the environment using their names\nIt iterates over all unique dataframe combinations, ensuring that each pair is checked only once (for example, it compares df_a vs df_b, but not df_b vs df_a))\n\nFor each pair, it performs the following structural checks and stores the results in a tibble:\n\nwhether the number of columns matches\nwhether column names are identical\nwhether column classes are the same\n\n\n\nThe function then binds all tibbles together into a single summary table, making it easy to spot structural mismatches before combining the data.\n\nlibrary(tidyverse)\ncompare_dataframes &lt;- function(df_names) {\n\n  # Get DF names\n  df_list &lt;- lapply(df_names, get)\n\n  # Initialize an empty list\n  results &lt;- list()\n\n  # Selection of DF pairs to be compared\n  for (i in seq_len(length(df_list) - 1)) {\n    for (j in (i + 1):length(df_list)) {\n\n      results[[length(results) + 1]] &lt;- tibble(\n        comparison = paste(df_names[i], \"vs\", df_names[j]),\n\n        # check number of columns\n        same_ncol  = ncol(df_list[[i]]) == ncol(df_list[[j]]),\n\n        # check columns name\n        same_names = identical(names(df_list[[i]]), names(df_list[[j]])),\n\n        # check columns class\n        same_class = identical(\n          sapply(df_list[[i]], class),\n          sapply(df_list[[j]], class)\n        )\n      )\n    }\n  }\n\n  comparison_result &lt;- bind_rows(results)\n  return(comparison_result)\n}"
   },
   {
-    "objectID": "content/rhacks/posts/12132026-n3/index.html#step-2-apply-the-function",
-    "href": "content/rhacks/posts/12132026-n3/index.html#step-2-apply-the-function",
+    "objectID": "content/rhacks/posts/01132026-n3/index.html#step-2-apply-the-function",
+    "href": "content/rhacks/posts/01132026-n3/index.html#step-2-apply-the-function",
     "title": "Compare multiple dataframes before binding them together",
     "section": "Step 2 – Apply the function",
     "text": "Step 2 – Apply the function\nProvide the dataframe names as a character vector and invoke the function:\n\ndf_names &lt;- c(\"df_a\", \"df_b\", \"df_c\", \"df_d\")\n\ncomparison_result &lt;- compare_dataframes(df_names)\n\ncomparison_result\n\n# A tibble: 6 × 4\n  comparison   same_ncol same_names same_class\n  &lt;chr&gt;        &lt;lgl&gt;     &lt;lgl&gt;      &lt;lgl&gt;     \n1 df_a vs df_b TRUE      TRUE       TRUE      \n2 df_a vs df_c TRUE      TRUE       FALSE     \n3 df_a vs df_d TRUE      FALSE      FALSE     \n4 df_b vs df_c TRUE      TRUE       FALSE     \n5 df_b vs df_d TRUE      FALSE      FALSE     \n6 df_c vs df_d TRUE      FALSE      FALSE"
   },
   {
-    "objectID": "content/rhacks/posts/12132026-n3/index.html#step-3-interpret-the-results",
-    "href": "content/rhacks/posts/12132026-n3/index.html#step-3-interpret-the-results",
+    "objectID": "content/rhacks/posts/01132026-n3/index.html#step-3-interpret-the-results",
+    "href": "content/rhacks/posts/01132026-n3/index.html#step-3-interpret-the-results",
     "title": "Compare multiple dataframes before binding them together",
     "section": "Step 3 – Interpret the results",
     "text": "Step 3 – Interpret the results\nThe output table makes structural mismatches immediately visible:\nsame_ncol → different number of columns\nsame_names → different column names\nsame_class → same columns, but different data types\nIn the example provided:\ndf_a vs df_b → all TRUE (safe to bind)\ndf_a vs df_c → same_class = FALSE\ndf_a vs df_d → same_names = FALSE\nThis helps you catch issues before they turn into silent bugs."
   },
   {
-    "objectID": "content/rhacks/posts/12132026-n3/index.html#in-short",
-    "href": "content/rhacks/posts/12132026-n3/index.html#in-short",
+    "objectID": "content/rhacks/posts/01132026-n3/index.html#in-short",
+    "href": "content/rhacks/posts/01132026-n3/index.html#in-short",
     "title": "Compare multiple dataframes before binding them together",
     "section": "In short",
     "text": "In short\n\nThere is no single “official” way to compare many dataframes at once\nHelpers like compare_df_cols() from janitor are excellent for column-level inspection\nThis custom helper function provides a clear, compact overview before stacking or merging data\nThink of it as a pre-flight checklist before combining your data\n\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events from the Rome R Users Group, click here:\n👉 https://www.meetup.com/rome-r-users-group/\nAnd if you are curious, the full Kaggle notebook used for this tip is available here:\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r"
