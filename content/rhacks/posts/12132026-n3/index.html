@@ -5,9 +5,9 @@
 <meta name="generator" content="quarto-1.8.25">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Lucio Colonna">
-<meta name="dcterms.date" content="2026-12-23">
-<meta name="description" content="R-Hacks">
-<title>R-Hacks | Showing Top &amp; Bottom values in one clear visualization – Rome R-Users Group</title>
+<meta name="dcterms.date" content="2026-12-13">
+<meta name="description" content="R-Hacks N.3">
+<title>Compare multiple dataframes before binding them together – Rome R-Users Group</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -126,19 +126,19 @@ cookieconsent.run({
 });
 </script><style>html{ scroll-behavior: smooth; }</style>
 <link rel="stylesheet" href="../../../../styles.css">
-<meta property="og:title" content="R-Hacks | Showing Top &amp; Bottom values in one clear visualization – Rome R-Users Group">
-<meta property="og:description" content="R-Hacks">
-<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/01232026/image1.png">
+<meta property="og:title" content="Compare multiple dataframes before binding them together – Rome R-Users Group">
+<meta property="og:description" content="R-Hacks N.3">
+<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/12132026-n3/images/image-1.png">
 <meta property="og:site_name" content="Rome R-Users Group">
 <meta property="og:locale" content="en_US">
-<meta property="og:image:height" content="1800">
-<meta property="og:image:width" content="2400">
-<meta name="twitter:title" content="R-Hacks | Showing Top &amp; Bottom values in one clear visualization – Rome R-Users Group">
-<meta name="twitter:description" content="R-Hacks">
-<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/01232026/image1.png">
+<meta property="og:image:height" content="774">
+<meta property="og:image:width" content="1054">
+<meta name="twitter:title" content="Compare multiple dataframes before binding them together – Rome R-Users Group">
+<meta name="twitter:description" content="R-Hacks N.3">
+<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/12132026-n3/images/image-1.png">
 <meta name="twitter:creator" content="@rladiesrome">
-<meta name="twitter:image-height" content="1800">
-<meta name="twitter:image-width" content="2400">
+<meta name="twitter:image-height" content="774">
+<meta name="twitter:image-width" content="1054">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body class="floating nav-fixed quarto-light">
@@ -215,20 +215,21 @@ cookieconsent.run({
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#step-0-create-an-example-dataset" id="toc-step-0-create-an-example-dataset" class="nav-link active" data-scroll-target="#step-0-create-an-example-dataset">Step 0 – Create an example dataset</a></li>
-  <li><a href="#step-1-build-top-bottom-datasets-in-a-single-pipeline" id="toc-step-1-build-top-bottom-datasets-in-a-single-pipeline" class="nav-link" data-scroll-target="#step-1-build-top-bottom-datasets-in-a-single-pipeline">Step 1 – Build Top &amp; Bottom datasets in a single pipeline</a></li>
-  <li><a href="#step-2---plot-the-data" id="toc-step-2---plot-the-data" class="nav-link" data-scroll-target="#step-2---plot-the-data">Step 2 - Plot the data</a></li>
-  <li><a href="#step-3---generate-gradient-color-palettes" id="toc-step-3---generate-gradient-color-palettes" class="nav-link" data-scroll-target="#step-3---generate-gradient-color-palettes">Step 3 - Generate gradient color palettes</a></li>
-  <li><a href="#step-4---style-the-chart-using-the-new-colors" id="toc-step-4---style-the-chart-using-the-new-colors" class="nav-link" data-scroll-target="#step-4---style-the-chart-using-the-new-colors">Step 4 - Style the chart using the new colors</a></li>
+<li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
+  <li><a href="#step-0-create-example-dataframes-to-compare" id="toc-step-0-create-example-dataframes-to-compare" class="nav-link" data-scroll-target="#step-0-create-example-dataframes-to-compare">Step 0 – Create example dataframes to compare</a></li>
+  <li><a href="#step-1-define-the-helper-function-to-compare-dataframes" id="toc-step-1-define-the-helper-function-to-compare-dataframes" class="nav-link" data-scroll-target="#step-1-define-the-helper-function-to-compare-dataframes">Step 1 – Define the helper function to compare dataframes</a></li>
+  <li><a href="#step-2-apply-the-function" id="toc-step-2-apply-the-function" class="nav-link" data-scroll-target="#step-2-apply-the-function">Step 2 – Apply the function</a></li>
+  <li><a href="#step-3-interpret-the-results" id="toc-step-3-interpret-the-results" class="nav-link" data-scroll-target="#step-3-interpret-the-results">Step 3 – Interpret the results</a></li>
   <li><a href="#in-short" id="toc-in-short" class="nav-link" data-scroll-target="#in-short">In short</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/01232026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/12132026-n3/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">R-Hacks | Showing Top &amp; Bottom values in one clear visualization</h1>
+<h1 class="title">Compare multiple dataframes before binding them together</h1>
+<p class="subtitle lead">A lightweight R Hack to check structural compatibility across many dataframes</p>
   <div class="quarto-categories">
     <div class="quarto-category">data-wrangling</div>
     <div class="quarto-category">functions</div>
@@ -237,7 +238,7 @@ cookieconsent.run({
 
 <div>
   <div class="description">
-    R-Hacks
+    R-Hacks N.3
   </div>
 </div>
 
@@ -254,7 +255,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 23, 2026</p>
+      <p class="date">December 13, 2026</p>
     </div>
   </div>
   
@@ -263,179 +264,144 @@ cookieconsent.run({
   
 
 
-</header><p><em>This hack is based on my analysis on Kaggle analysis linked as follows (please see Chapter <strong>4.3</strong>):</em><br>
-🔗 <a href="https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries" class="uri">https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries</a></p>
-<p><br> When exploring a distribution, a very common question is:</p>
-<blockquote class="blockquote">
-<p>Who are the top performers, and who are at the bottom?</p>
-</blockquote>
-<p>Showing only the Top values might hid some context, while showing two separate charts can make comparison harder.</p>
-<p>This R-Hack shows a <strong>simple</strong> and <strong>reusable pattern</strong> to display Top and Bottom values together in a single, clean visualization, as the one showed below:</p>
-<p><br></p>
+</header><section id="section" class="level2"><h2 class="anchored" data-anchor-id="section"></h2>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="image1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
-</figure>
+<figure class="figure"><p><img src="images/image-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Create your function</figcaption></figure>
 </div>
-<p><br></p>
-<hr>
-<p><br></p>
-<section id="step-0-create-an-example-dataset" class="level2"><h2 class="anchored" data-anchor-id="step-0-create-an-example-dataset">Step 0 – Create an example dataset</h2>
-<p>Let’s start from a small, simulated dataset representing average salaries for different companies:</p>
+<p><em>This hack is based on my Cyclistic analysis on Kaggle (see Chapter <strong>6.3</strong>):</em><br>
+🔗 <a href="https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r" class="uri">https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r</a></p>
+<p>When working with multiple datasets a common question is:</p>
+<blockquote class="blockquote">
+<p><em>Are these dataframes really compatible before I bind them together?</em></p>
+</blockquote>
+<p>People who work with data typically rely on a mix of approaches to answer this:<br>
+manual checks (<code><a href="https://rdrr.io/r/base/names.html">names()</a></code>, <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code>), warnings raised by <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows()</a></code>, or dedicated helpers such as <code>compare_df_cols()</code> from the <strong><code>janitor</code></strong> package — which is a solid and widely used solution for comparing column structures.</p>
+<p>However, in practice, it is often useful to have a <strong>single, lightweight helper</strong> that provides a <strong>compact and readable overview</strong> across <em>many dataframes at once</em>, without additional dependencies or verbose output.</p>
+<p>This R Hack introduces a small <strong>custom helper function</strong> designed with that goal in mind, that you can easily reuse and adapt to your own workflows.</p>
+<p>It performs an <strong>omnicomprehensive structural comparison</strong> before merging, checking column <strong>count</strong>, column <strong>names</strong>, and column <strong>classes</strong> across all pairs of dataframes:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  company <span class="op">=</span> <span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">26</span><span class="op">]</span><span class="op">)</span>,</span>
-<span>  avg_salary <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">26</span>, min <span class="op">=</span> <span class="fl">60</span>, max <span class="op">=</span> <span class="fl">180</span><span class="op">)</span>, <span class="fl">0</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#   comparison   same_ncol same_names same_class</span></span>
+<span><span class="co">#   &lt;chr&gt;        &lt;lgl&gt;     &lt;lgl&gt;      &lt;lgl&gt;     </span></span>
+<span><span class="co"># 1 df_a vs df_b TRUE      TRUE       TRUE      </span></span>
+<span><span class="co"># 2 df_a vs df_c TRUE      TRUE       FALSE     </span></span>
+<span><span class="co"># 3 df_a vs df_d TRUE      FALSE      FALSE     </span></span>
+<span><span class="co"># 4 df_b vs df_c TRUE      TRUE       FALSE     </span></span>
+<span><span class="co"># 5 df_b vs df_d TRUE      FALSE      FALSE     </span></span>
+<span><span class="co"># 6 df_c vs df_d TRUE      FALSE      FALSE     </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr></section><section id="step-0-create-example-dataframes-to-compare" class="level2"><h2 class="anchored" data-anchor-id="step-0-create-example-dataframes-to-compare">Step 0 – Create example dataframes to compare</h2>
+<p>To make the idea concrete, let’s create four small dataframes. Some of them match perfectly, others don’t:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  company avg_salary
-1       A         95
-2       B        155
-3       C        109
-4       D        166
-5       E        173
-6       F         65</code></pre>
-</div>
-</div>
-<p><br></p>
-</section><section id="step-1-build-top-bottom-datasets-in-a-single-pipeline" class="level2"><h2 class="anchored" data-anchor-id="step-1-build-top-bottom-datasets-in-a-single-pipeline">Step 1 – Build Top &amp; Bottom datasets in a single pipeline</h2>
-<p>In this step, we extract both the Top 10 and Bottom 10 values using a single, readable pipeline.</p>
-<p>The idea is simple. Starting from the same dataset:</p>
-<ul>
-<li><p>select the <strong>Top 10</strong> by applying <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code>, which returns all observations within the top 10 ranking positions, including any ties</p></li>
-<li><p>select the <strong>Bottom 10</strong> by applying <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code>, returning all observations within the lowest 10 ranking positions, again including ties</p></li>
-<li><p>assign a clear <strong>group label</strong> to each subset</p></li>
-<li><p>combine the two subsets into a single dataframe for visualization and further analysis</p></li>
-</ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_df</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span></span>
-<span>    <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="va">avg_salary</span>, n <span class="op">=</span> <span class="fl">10</span>, with_ties <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>group <span class="op">=</span> <span class="st">"Top 10"</span><span class="op">)</span>,</span>
-<span>    </span>
-<span>    <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min</a></span><span class="op">(</span><span class="va">avg_salary</span>, n <span class="op">=</span> <span class="fl">10</span>, with_ties <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>group <span class="op">=</span> <span class="st">"Bottom 10"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
+<span><span class="va">df_b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">50</span>, <span class="fl">60</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">plot_df</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  company avg_salary  group
-1       X        179 Top 10
-2       K        175 Top 10
-3       T        175 Top 10
-4       E        173 Top 10
-5       P        168 Top 10
-6       H        167 Top 10</code></pre>
-</div>
-</div>
-<p><br></p>
-</section><section id="step-2---plot-the-data" class="level2"><h2 class="anchored" data-anchor-id="step-2---plot-the-data">Step 2 - Plot the data</h2>
-<p>In this step, starting from the dataframe created in the previous step, we build a simple visualization with <code>ggplot</code>:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_base</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, </span>
-<span>                    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">company</span>, <span class="op">-</span><span class="va">avg_salary</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">avg_salary</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">avg_salary</span><span class="op">)</span>, vjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.4</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
-<span>    title <span class="op">=</span> <span class="st">"Top and Bottom Companies by Average Salary"</span>,</span>
-<span>    subtitle <span class="op">=</span> <span class="st">"Simulated data example\n\n"</span>,</span>
-<span>    y <span class="op">=</span> <span class="st">"Average yearly salary"</span>,</span>
-<span>    x <span class="op">=</span> <span class="cn">NULL</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
-<span>    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>    axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span>
-<span>    axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
+<span><span class="co"># Same columns, but different class for `value`</span></span>
+<span><span class="va">df_c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">9</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">70</span>, <span class="fl">80</span>, <span class="fl">90</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">plot_base</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<span><span class="co"># Different column name</span></span>
+<span><span class="va">df_d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="fl">10</span><span class="op">:</span><span class="fl">12</span>,</span>
+<span>  amount <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">200</span>, <span class="fl">300</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-</div>
-<p><br></p>
-</section><section id="step-3---generate-gradient-color-palettes" class="level2"><h2 class="anchored" data-anchor-id="step-3---generate-gradient-color-palettes">Step 3 - Generate gradient color palettes</h2>
-<p>Now that the base chart is working, we can make it more informative by adding two gradient color palettes:</p>
+</section><section id="step-1-define-the-helper-function-to-compare-dataframes" class="level2"><h2 class="anchored" data-anchor-id="step-1-define-the-helper-function-to-compare-dataframes">Step 1 – Define the helper function to compare dataframes</h2>
+<p>The function below takes a vector of dataframe names (as character strings) and compares each unique pair only once. It works in three simple steps:</p>
+<ol type="1">
+<li><p>It loads the dataframes from the environment using their <strong>names</strong></p></li>
+<li><p>It iterates over all unique dataframe combinations, ensuring that each pair is checked only once (for example, it compares <code>df_a</code> vs <code>df_b</code>, but not <code>df_b</code> vs <code>df_a)</code>)</p></li>
+<li>
+<p>For each pair, it performs the following <strong>structural checks</strong> and stores the results in a tibble:</p>
 <ul>
-<li>one gradient for the Top group (blue shades)</li>
-<li>one gradient for the Bottom group (red shades)</li>
+<li>whether the <strong>number of columns</strong> matches</li>
+<li>whether column <strong>names</strong> are identical</li>
+<li>whether column <strong>classes</strong> are the same</li>
 </ul>
-<p>Instead of assigning a single color per group, we assign a slightly different shade to <strong>each bar</strong>. This creates a clean gradient effect while keeping the plot readable — even when ties produce more than 10 observations per group.</p>
-<p>To do this, we:</p>
-<ul>
-<li>generate a group-specific palette with <code><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette()</a></code>, sized to the number of rows in each group (so it adapts if ties expand the selection)</li>
-<li>group the data by <code>group</code> (Top vs Bottom)</li>
-<li>assign colors row by row using <code><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number()</a></code>
 </li>
-<li>store the result in a new column called <code>color</code>
-</li>
-</ul>
+</ol>
+<p>The function then binds all tibbles together into a single <strong>summary table</strong>, making it easy to spot structural mismatches before combining the data.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="va">plot_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    color <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span></span>
-<span>      <span class="va">group</span> <span class="op">==</span> <span class="st">"Top 10"</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"darkblue"</span>, <span class="st">"lightblue"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">]</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"darkred"</span>, <span class="st">"lightcoral"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">]</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">compare_dataframes</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df_names</span><span class="op">)</span> <span class="op">{</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">plot_df</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>  <span class="co"># Get DF names</span></span>
+<span>  <span class="va">df_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">df_names</span>, <span class="va">get</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># Initialize an empty list</span></span>
+<span>  <span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># Selection of DF pairs to be compared</span></span>
+<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="op">(</span><span class="va">i</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span></span>
+<span>      <span class="va">results</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>        comparison <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">df_names</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="st">"vs"</span>, <span class="va">df_names</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">)</span>,</span>
+<span></span>
+<span>        <span class="co"># check number of columns</span></span>
+<span>        same_ncol  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,</span>
+<span></span>
+<span>        <span class="co"># check columns name</span></span>
+<span>        same_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>,</span>
+<span></span>
+<span>        <span class="co"># check columns class</span></span>
+<span>        same_class <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span></span>
+<span>          <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>, <span class="va">class</span><span class="op">)</span>,</span>
+<span>          <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span>, <span class="va">class</span><span class="op">)</span></span>
+<span>        <span class="op">)</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>  <span class="op">}</span></span>
+<span></span>
+<span>  <span class="va">comparison_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">comparison_result</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="step-2-apply-the-function" class="level2"><h2 class="anchored" data-anchor-id="step-2-apply-the-function">Step 2 – Apply the function</h2>
+<p>Provide the dataframe names as a character vector and invoke the function:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"df_a"</span>, <span class="st">"df_b"</span>, <span class="st">"df_c"</span>, <span class="st">"df_d"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">comparison_result</span> <span class="op">&lt;-</span> <span class="fu">compare_dataframes</span><span class="op">(</span><span class="va">df_names</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">comparison_result</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  company avg_salary group  color  
-  &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  
-1 X              179 Top 10 #00008B
-2 K              175 Top 10 #131895
-3 T              175 Top 10 #26309F
-4 E              173 Top 10 #3948A9
-5 P              168 Top 10 #4C60B3
-6 H              167 Top 10 #6078BD</code></pre>
+  comparison   same_ncol same_names same_class
+  &lt;chr&gt;        &lt;lgl&gt;     &lt;lgl&gt;      &lt;lgl&gt;     
+1 df_a vs df_b TRUE      TRUE       TRUE      
+2 df_a vs df_c TRUE      TRUE       FALSE     
+3 df_a vs df_d TRUE      FALSE      FALSE     
+4 df_b vs df_c TRUE      TRUE       FALSE     
+5 df_b vs df_d TRUE      FALSE      FALSE     
+6 df_c vs df_d TRUE      FALSE      FALSE     </code></pre>
 </div>
 </div>
-<p><br></p>
-</section><section id="step-4---style-the-chart-using-the-new-colors" class="level2"><h2 class="anchored" data-anchor-id="step-4---style-the-chart-using-the-new-colors">Step 4 - Style the chart using the new colors</h2>
-<p>At this point, we don’t want to rewrite the entire ggplot call. Instead, we:</p>
-<ul>
-<li><p>reuse the base chart (<code>plot_base</code>)</p></li>
-<li><p>replace its dataset with the updated <code>plot_df</code> (the one that now includes color) using the <code>%+%</code> operator</p></li>
-<li><p>add a new <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> that maps fill to the color column</p></li>
-<li><p>use <code><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">scale_fill_identity()</a></code> so <code>ggplot</code> uses the colors as they are listed in the <code>color</code> column</p></li>
-</ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_styled</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">plot_base</span> <span class="op"><a href="https://ggplot2.tidyverse.org/reference/gg-add.html">%+%</a></span> <span class="va">plot_df</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">scale_fill_identity</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">plot_styled</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><br></p>
+</section><section id="step-3-interpret-the-results" class="level2"><h2 class="anchored" data-anchor-id="step-3-interpret-the-results">Step 3 – Interpret the results</h2>
+<p>The output table makes structural mismatches immediately visible:</p>
+<p><code>same_ncol</code> → different number of columns</p>
+<p><code>same_names</code> → different column names</p>
+<p><code>same_class</code> → same columns, but different data types</p>
+<p>In the example provided:</p>
+<p><code>df_a</code> vs <code>df_b</code> → all <strong>TRUE</strong> (safe to bind)</p>
+<p><code>df_a</code> vs <code>df_c</code> → same_class = <strong>FALSE</strong></p>
+<p><code>df_a</code> vs <code>df_d</code> → same_names = <strong>FALSE</strong></p>
+<p>This helps you catch issues before they turn into silent bugs.</p>
 </section><section id="in-short" class="level2"><h2 class="anchored" data-anchor-id="in-short">In short</h2>
 <ul>
-<li><p>Extract <strong>Top 10</strong> and <strong>Bottom 10</strong> values from the same dataset using <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code>, including ties</p></li>
-<li><p><strong>Combine</strong> the two subsets into a single dataframe for a compact overview of the distribution extremes</p></li>
-<li><p>Build a <strong>clean base plot</strong> to validate structure and layout</p></li>
-<li><p>Enhance the visualization by applying <strong>gradient colors</strong> to distinguish Top and Bottom groups</p></li>
+<li><p>There is no single “official” way to compare many dataframes at once</p></li>
+<li><p>Helpers like <code>compare_df_cols()</code> from <a href="https://github.com/sfirke/janitor">janitor</a> are excellent for column-level inspection</p></li>
+<li><p>This custom helper function provides a clear, compact overview before stacking or merging data</p></li>
+<li><p>Think of it as a pre-flight checklist before combining your data</p></li>
 </ul>
 <p><br></p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -451,7 +417,7 @@ Tip
 <p>If you want to stay up to date with the latest events from the <strong>Rome R Users Group</strong>, click here:</p>
 <p>👉 <a href="https://www.meetup.com/rome-r-users-group/" class="uri">https://www.meetup.com/rome-r-users-group/</a></p>
 <p>And if you are curious, the full Kaggle notebook used for this tip is available here:</p>
-<p>🔗 <a href="https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries" class="uri">https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries</a></p>
+<p>🔗 <a href="https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r" class="uri">https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r</a></p>
 </div>
 </div>
 
@@ -868,7 +834,7 @@ Tip
 </div>   
     <div class="nav-footer-center">
 
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/01232026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/12132026-n3/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
 <li class="nav-item compact">

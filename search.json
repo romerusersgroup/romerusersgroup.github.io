@@ -84,67 +84,74 @@
     "text": "Back to top"
   },
   {
-    "objectID": "content/rhacks/posts/11282025/index.html",
-    "href": "content/rhacks/posts/11282025/index.html",
+    "objectID": "content/rhacks/posts/11282025-n1/index.html",
+    "href": "content/rhacks/posts/11282025-n1/index.html",
     "title": "How to Add Images to ggplot Axes Using ggtext::element_markdown()\n",
     "section": "",
     "text": "This tip is based on a full Kaggle notebook, where this technique is applied in a complete Exploratory Data Analysis (EDA): 🔗 https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos\n\nHave you ever needed to show logos, icons, or flags directly on the axes of your ggplot charts?\n\nYou can do this using the element_markdown() function from the {ggtext} package!\nelement_markdown() is a function that tells ggplot to treat labels as HTML instead of plain text. It must be used in the theme() section of your ggplot code.\nThe chart below shows an example where league logos appear directly on the x-axis. It displays the total number of goals scored in the major European football leagues during the 2023/2024 season:\n\n\n\nEuropean football leagues 2023/2024"
   },
   {
-    "objectID": "content/rhacks/posts/11282025/index.html#section",
-    "href": "content/rhacks/posts/11282025/index.html#section",
+    "objectID": "content/rhacks/posts/11282025-n1/index.html#section",
+    "href": "content/rhacks/posts/11282025-n1/index.html#section",
     "title": "How to Add Images to ggplot Axes Using ggtext::element_markdown()\n",
     "section": "",
     "text": "This tip is based on a full Kaggle notebook, where this technique is applied in a complete Exploratory Data Analysis (EDA): 🔗 https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos\n\nHave you ever needed to show logos, icons, or flags directly on the axes of your ggplot charts?\n\nYou can do this using the element_markdown() function from the {ggtext} package!\nelement_markdown() is a function that tells ggplot to treat labels as HTML instead of plain text. It must be used in the theme() section of your ggplot code.\nThe chart below shows an example where league logos appear directly on the x-axis. It displays the total number of goals scored in the major European football leagues during the 2023/2024 season:\n\n\n\nEuropean football leagues 2023/2024"
   },
   {
-    "objectID": "content/rhacks/posts/11282025/index.html#exploratory-data-analysis-workflow",
-    "href": "content/rhacks/posts/11282025/index.html#exploratory-data-analysis-workflow",
+    "objectID": "content/rhacks/posts/11282025-n1/index.html#exploratory-data-analysis-workflow",
+    "href": "content/rhacks/posts/11282025-n1/index.html#exploratory-data-analysis-workflow",
     "title": "How to Add Images to ggplot Axes Using ggtext::element_markdown()\n",
     "section": "Exploratory Data Analysis Workflow",
     "text": "Exploratory Data Analysis Workflow\nHere is a short, practical guide showing how to recreate this plot.\nStep 0: Start from a basic dataframe\nIn most real situations you will already have a dataframe to work with. Here is the one used in this example:\n\ndf &lt;- data.frame(\n  league = c(\"Premier League\", \"La Liga\", \n             \"Serie A\", \"Bundesliga\", \"Ligue 1\"),\n  goals  = c(1197, 977, 968, 960, 804))\n\ndf\n\n          league goals\n1 Premier League  1197\n2        La Liga   977\n3        Serie A   968\n4     Bundesliga   960\n5        Ligue 1   804\n\n\nStep 1: Choose the images you want to display (PNG recommended)\nFirst decide which images you want to show on your ggplot axis. In this example I am using online image URLs (including links from Wikimedia), but you can use any source that provides a direct image URL, such as files hosted on GitHub repos or any public static hosting service. Just make sure the image format is supported — typically PNG or JPG/JPEG.\n\n# Define image URLs as variables\npremier_url &lt;- \"https://upload.wikimedia.org/wikipedia/it/6/6d/Premier_League_Logo_2016.png\"\nlaliga_url &lt;- \"https://upload.wikimedia.org/wikipedia/it/9/9b/LFP_La_Liga.png\"\nseriea_url &lt;- \"https://www.fifplay.com/img/public/serie-a-logo.png\"\nbundes_url &lt;- \"https://www.fifplay.com/img/public/bundesliga-logo.png\"\nligue1_url &lt;- \"https://upload.wikimedia.org/wikipedia/commons/a/a0/Ligue_1_2024_Logo.png\"\n\nStep 2: Add a column with HTML  tags\nIn order to display images on the axis, each image URL must be wrapped inside an HTML  tag. This simply means that the URL cannot appear alone — it must be placed inside the structure:\n`&lt;img src= + image_url + width='45'/&gt;`\nPlease note that in this example I use width=‘45’ just as a reference size, but you can choose any value depending on how big you want the image to appear in your plot.\nLet’s add the column to the df:\n\ndf$logo &lt;- c(\n  paste0(\"&lt;img src='\", premier_url, \"' width='45'/&gt;\"), \n  paste0(\"&lt;img src='\", laliga_url, \"' width='45'/&gt;\"), \n  paste0(\"&lt;img src='\", seriea_url, \"' width='45'/&gt;\"), \n  paste0(\"&lt;img src='\", bundes_url, \"' width='45'/&gt;\"), \n  paste0(\"&lt;img src='\", ligue1_url, \"' width='45'/&gt;\")\n  )\n\nAt this point, the dataframe should look like this:\n\n\n\n\n\n\n\n\nleague\ngoals\nlogo\n\n\n\nPremier League\n1197\n&lt;img src='https://upload.wikimedia.org/wikipedia/it/6/6d/Premier_League_Logo_2016.png' width='45'/&gt;\n\n\nLa Liga\n977\n&lt;img src='https://upload.wikimedia.org/wikipedia/it/9/9b/LFP_La_Liga.png' width='45'/&gt;\n\n\nSerie A\n968\n&lt;img src='https://www.fifplay.com/img/public/serie-a-logo.png' width='45'/&gt;\n\n\nBundesliga\n960\n&lt;img src='https://www.fifplay.com/img/public/bundesliga-logo.png' width='45'/&gt;\n\n\nLigue 1\n804\n&lt;img src='https://upload.wikimedia.org/wikipedia/commons/a/a0/Ligue_1_2024_Logo.png' width='45'/&gt;\n\n\n\n\nStep 3: Plot your data!\nNow that the dataframe contains a column of HTML  tags, we can use it directly on the x-axis. The key part is here:\n\ntheme( axis.text.x = element_markdown() )\n\nelement_markdown() function is what allows ggplot to interpret the HTML in your axis labels. Without it, ggplot would show the literal string &lt;img src='...'&gt; as plain text. With it, the &lt;img&gt; tags are rendered as actual images.\nHere is the full plotting code:\n\nlibrary(ggplot2)\nlibrary(ggtext)\n\n\noptions(repr.plot.width = 6, \n        repr.plot.height = 7, \n        warn = -1)\n\n\nggplot(df, \n       aes(x = reorder(logo, -goals), y = goals)) + \n  geom_col(fill = \"forestgreen\", width = .8) +\n  geom_text(aes(label = goals), vjust = -0.5, size = 4.5) + \n  labs(title = \"\\nFootball stats 2023/2024\",\n       subtitle = \"Total Goals scored in each League\\n\" ) + \n  theme_minimal(14) +\n  # HTML rendering happens here!!\n  theme(axis.text.x = ggtext::element_markdown(), \n         axis.text.y = element_blank(), \n         panel.grid = element_blank(), \n         axis.title = element_blank(), \n         plot.title = element_text(face = \"bold\", \n                                   colour = \"blue\", hjust = 0.05), \n         plot.subtitle= element_text(hjust = 0.05)\n         )\n\nWith element_markdown() applied to axis.text.x, ggplot correctly displays the league logos instead of plain text labels, as seen in the barchart above.\nTo Recap\n\nPrepare your dataframe (existing or new)\nChoose your images (PNG recommended) and store their URLs\nWrap each URL inside an HTML tag with a defined width\nAdd this HTML column to your dataframe\nMap it to the ggplot axis\nEnable HTML rendering in plot theme using:\n\n\naxis.text.x = ggtext::element_markdown()\n\nThanks for reading!\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events from the Rome R Users Group, click here:\n👉https://www.meetup.com/rome-r-users-group/\nAnd if you are curious, the full Kaggle notebook used for this tip is available here: 🔗https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos"
   },
   {
-    "objectID": "content/rhacks/posts/12052025/index.html",
-    "href": "content/rhacks/posts/12052025/index.html",
-    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
+    "objectID": "content/rhacks/posts/01232026-n4/index.html",
+    "href": "content/rhacks/posts/01232026-n4/index.html",
+    "title": "R-Hacks | Showing Top & Bottom values in one clear visualization",
     "section": "",
-    "text": "This hack is based on my Cyclistic analysis on Kaggle (see Chapter 8.12.4):\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r\nWorking with maps in R is easier than it seems.\nIf you want to visualize points, regions, or spatial patterns, the combination of GeoJSON files and the sf package gives you a simple and modern workflow.\nIn this hack, we’ll load a real city map (Chicago) directly from a URL, plot it with geom_sf(), and overlay simple point data."
+    "text": "This hack is based on my analysis on Kaggle analysis linked as follows (please see Chapter 4.3):\n🔗 https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries\nWhen exploring a distribution, a very common question is:\nShowing only the Top values might hid some context, while showing two separate charts can make comparison harder.\nThis R-Hack shows a simple and reusable pattern to display Top and Bottom values together in a single, clean visualization, as the one showed below:"
   },
   {
-    "objectID": "content/rhacks/posts/12052025/index.html#step-0-what-is-a-geojson-file",
-    "href": "content/rhacks/posts/12052025/index.html#step-0-what-is-a-geojson-file",
-    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
-    "section": "Step 0 – What is a GeoJSON file?",
-    "text": "Step 0 – What is a GeoJSON file?\nA GeoJSON file is a JSON text file that stores geographic shapes (points, lines, polygons), together with their attributes (names, boundaries, codes, etc.).\nIt is one of the most common formats for open geographic data because it is lightweight, human-readable, and web-friendly.\nYou can often find GeoJSON files on:\n\ncity open data portals (City of Chicago, NYC Open Data, etc.)\n\nnational and international platforms (e.g., data.gov)\n\nGitHub repositories\n\nmany public mapping resources"
+    "objectID": "content/rhacks/posts/01232026-n4/index.html#step-0-create-an-example-dataset",
+    "href": "content/rhacks/posts/01232026-n4/index.html#step-0-create-an-example-dataset",
+    "title": "R-Hacks | Showing Top & Bottom values in one clear visualization",
+    "section": "Step 0 – Create an example dataset",
+    "text": "Step 0 – Create an example dataset\nLet’s start from a small, simulated dataset representing average salaries for different companies:\n\nlibrary(tidyverse)\n\nset.seed(123)\n\ndf &lt;- data.frame(\n  company = (LETTERS[1:26]),\n  avg_salary = round(runif(26, min = 60, max = 180), 0)\n)\n\nhead(df)\n\n  company avg_salary\n1       A         95\n2       B        155\n3       C        109\n4       D        166\n5       E        173\n6       F         65"
   },
   {
-    "objectID": "content/rhacks/posts/12052025/index.html#step-1-load-the-required-packages",
-    "href": "content/rhacks/posts/12052025/index.html#step-1-load-the-required-packages",
-    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
-    "section": "Step 1 – Load the required packages",
-    "text": "Step 1 – Load the required packages\n\nlibrary(sf)       # for spatial data (simple features)\nlibrary(ggplot2)  # for plotting"
+    "objectID": "content/rhacks/posts/01232026-n4/index.html#step-1-build-top-bottom-datasets-in-a-single-pipeline",
+    "href": "content/rhacks/posts/01232026-n4/index.html#step-1-build-top-bottom-datasets-in-a-single-pipeline",
+    "title": "R-Hacks | Showing Top & Bottom values in one clear visualization",
+    "section": "Step 1 – Build Top & Bottom datasets in a single pipeline",
+    "text": "Step 1 – Build Top & Bottom datasets in a single pipeline\nIn this step, we extract both the Top 10 and Bottom 10 values using a single, readable pipeline.\nThe idea is simple. Starting from the same dataset:\n\nselect the Top 10 by applying slice_max(), which returns all observations within the top 10 ranking positions, including any ties\nselect the Bottom 10 by applying slice_min(), returning all observations within the lowest 10 ranking positions, again including ties\nassign a clear group label to each subset\ncombine the two subsets into a single dataframe for visualization and further analysis\n\n\nplot_df &lt;- \n  bind_rows(\n    df %&gt;% \n      slice_max(avg_salary, n = 10, with_ties = TRUE) %&gt;%\n      mutate(group = \"Top 10\"),\n    \n    df %&gt;% \n      slice_min(avg_salary, n = 10, with_ties = TRUE) %&gt;%\n      mutate(group = \"Bottom 10\")\n  )\n\nhead(plot_df)\n\n  company avg_salary  group\n1       X        179 Top 10\n2       K        175 Top 10\n3       T        175 Top 10\n4       E        173 Top 10\n5       P        168 Top 10\n6       H        167 Top 10"
   },
   {
-    "objectID": "content/rhacks/posts/12052025/index.html#step-2-read-a-geojson-map-with-sfst_read",
-    "href": "content/rhacks/posts/12052025/index.html#step-2-read-a-geojson-map-with-sfst_read",
-    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
-    "section": "Step 2 – Read a GeoJSON map with sf::st_read()\n",
-    "text": "Step 2 – Read a GeoJSON map with sf::st_read()\n\nIn this hack, we use a GeoJSON of Chicago community areas, provided by the City of Chicago Open Data Portal.\n⚠️ Before using any online map or dataset, always remember to check the terms of use of the source.\nYou can read a GeoJSON directly from a URL, without downloading anything manually:\n\nmap_of_chicago &lt;- sf::st_read(\n  \"https://data.cityofchicago.org/resource/y6yq-dbs2.geojson\",\n  quiet = TRUE\n  )\n\nhead(map_of_chicago)\n\nSimple feature collection with 6 features and 4 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -87.74141 ymin: 41.80189 xmax: -87.60641 ymax: 41.93272\nGeodetic CRS:  WGS 84\n           pri_neigh          sec_neigh    shape_area    shape_len\n1    Grand Boulevard        BRONZEVILLE 48492503.1554 28196.837157\n2       Printers Row       PRINTERS ROW 2162137.97139  6864.247156\n3      United Center      UNITED CENTER 32520512.7053 23101.363745\n4 Sheffield & DePaul SHEFFIELD & DEPAUL 10482592.2987 13227.049745\n5      Humboldt Park      HUMBOLDT PARK 125010425.593 46126.751351\n6      Garfield Park      GARFIELD PARK 89976069.5947  44460.91922\n                        geometry\n1 MULTIPOLYGON (((-87.60671 4...\n2 MULTIPOLYGON (((-87.62761 4...\n3 MULTIPOLYGON (((-87.66707 4...\n4 MULTIPOLYGON (((-87.65833 4...\n5 MULTIPOLYGON (((-87.7406 41...\n6 MULTIPOLYGON (((-87.6954 41...\n\n\n\nWhat you get:\n\n\nmap_of_chicago is an sf object -essentially a data frame with a special geometry column where each row is a polygon that represents one community area"
+    "objectID": "content/rhacks/posts/01232026-n4/index.html#step-2---plot-the-data",
+    "href": "content/rhacks/posts/01232026-n4/index.html#step-2---plot-the-data",
+    "title": "R-Hacks | Showing Top & Bottom values in one clear visualization",
+    "section": "Step 2 - Plot the data",
+    "text": "Step 2 - Plot the data\nIn this step, starting from the dataframe created in the previous step, we build a simple visualization with ggplot:\n\nplot_base &lt;- ggplot(plot_df, \n                    aes(x = reorder(company, -avg_salary), y = avg_salary)) +\n  geom_col(fill = \"steelblue\") +\n  geom_text(aes(label = avg_salary), vjust = -0.4, size = 4) +\n  facet_wrap(~ fct_rev(group), scales = \"free_x\") +\n  labs(\n    title = \"Top and Bottom Companies by Average Salary\",\n    subtitle = \"Simulated data example\\n\\n\",\n    y = \"Average yearly salary\",\n    x = NULL\n  ) +\n  theme_minimal() +\n  theme(\n    panel.grid = element_blank(),\n    axis.text.x = element_text(size = 10),\n    axis.text.y = element_blank()\n  )\n\nplot_base"
   },
   {
-    "objectID": "content/rhacks/posts/12052025/index.html#step-3-plot-a-basic-map-with-geom_sf",
-    "href": "content/rhacks/posts/12052025/index.html#step-3-plot-a-basic-map-with-geom_sf",
-    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
-    "section": "Step 3 – Plot a basic map with geom_sf()\n",
-    "text": "Step 3 – Plot a basic map with geom_sf()\n\nOnce the GeoJSON file has been loaded into an sf object, you can visualize it with geom_sf().\ngeom_sf() is the ggplot2 layer designed specifically for spatial data: it knows how to read the geometry column of an sf object and automatically draw points, lines, or polygons depending on what the data contains. In our case, it will draw the polygons of Chicago’s community areas.\n\nggplot() +\n  geom_sf(data = map_of_chicago, \n          fill = \"#f1f0f0\", color = \"grey50\") +\n  labs(title = \"Chicago community areas\",\n       subtitle = \"GeoJSON map loaded with sf::st_read()\") +\n  theme_void()"
+    "objectID": "content/rhacks/posts/01232026-n4/index.html#step-3---generate-gradient-color-palettes",
+    "href": "content/rhacks/posts/01232026-n4/index.html#step-3---generate-gradient-color-palettes",
+    "title": "R-Hacks | Showing Top & Bottom values in one clear visualization",
+    "section": "Step 3 - Generate gradient color palettes",
+    "text": "Step 3 - Generate gradient color palettes\nNow that the base chart is working, we can make it more informative by adding two gradient color palettes:\n\none gradient for the Top group (blue shades)\none gradient for the Bottom group (red shades)\n\nInstead of assigning a single color per group, we assign a slightly different shade to each bar. This creates a clean gradient effect while keeping the plot readable — even when ties produce more than 10 observations per group.\nTo do this, we:\n\ngenerate a group-specific palette with colorRampPalette(), sized to the number of rows in each group (so it adapts if ties expand the selection)\ngroup the data by group (Top vs Bottom)\nassign colors row by row using row_number()\n\nstore the result in a new column called color\n\n\n\nplot_df &lt;- plot_df %&gt;%\n  group_by(group) %&gt;%\n  mutate(\n    color = if_else(\n      group == \"Top 10\",\n      colorRampPalette(c(\"darkblue\", \"lightblue\"))(n())[row_number()],\n      colorRampPalette(c(\"darkred\", \"lightcoral\"))(n())[row_number()]\n    )\n  ) %&gt;%\n  ungroup()\n\nhead(plot_df)\n\n# A tibble: 6 × 4\n  company avg_salary group  color  \n  &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  \n1 X              179 Top 10 #00008B\n2 K              175 Top 10 #131895\n3 T              175 Top 10 #26309F\n4 E              173 Top 10 #3948A9\n5 P              168 Top 10 #4C60B3\n6 H              167 Top 10 #6078BD"
   },
   {
-    "objectID": "content/rhacks/posts/12052025/index.html#to-recap",
-    "href": "content/rhacks/posts/12052025/index.html#to-recap",
-    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
-    "section": "To Recap",
-    "text": "To Recap\n\nGeoJSON = JSON file with geometry + attributes\nLoad it directly from a URL with sf::st_read()\nPlot it with geom_sf()\nAdd your own points using regular ggplot layers\nThis workflow is simple, beginner-friendly, and requires no GIS tools\n\n\nThanks for reading!\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events from the Rome R Users Group, click here:\n👉 https://www.meetup.com/rome-r-users-group/\nAnd if you are curious, the full Kaggle notebook used for this tip is available here:\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r"
+    "objectID": "content/rhacks/posts/01232026-n4/index.html#step-4---style-the-chart-using-the-new-colors",
+    "href": "content/rhacks/posts/01232026-n4/index.html#step-4---style-the-chart-using-the-new-colors",
+    "title": "R-Hacks | Showing Top & Bottom values in one clear visualization",
+    "section": "Step 4 - Style the chart using the new colors",
+    "text": "Step 4 - Style the chart using the new colors\nAt this point, we don’t want to rewrite the entire ggplot call. Instead, we:\n\nreuse the base chart (plot_base)\nreplace its dataset with the updated plot_df (the one that now includes color) using the %+% operator\nadd a new geom_col() that maps fill to the color column\nuse scale_fill_identity() so ggplot uses the colors as they are listed in the color column\n\n\nplot_styled &lt;- (plot_base %+% plot_df) +\n  geom_col(aes(fill = color)) +\n  scale_fill_identity()\n\nplot_styled"
+  },
+  {
+    "objectID": "content/rhacks/posts/01232026-n4/index.html#in-short",
+    "href": "content/rhacks/posts/01232026-n4/index.html#in-short",
+    "title": "R-Hacks | Showing Top & Bottom values in one clear visualization",
+    "section": "In short",
+    "text": "In short\n\nExtract Top 10 and Bottom 10 values from the same dataset using slice_max() and slice_min(), including ties\nCombine the two subsets into a single dataframe for a compact overview of the distribution extremes\nBuild a clean base plot to validate structure and layout\nEnhance the visualization by applying gradient colors to distinguish Top and Bottom groups\n\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events from the Rome R Users Group, click here:\n👉 https://www.meetup.com/rome-r-users-group/\nAnd if you are curious, the full Kaggle notebook used for this tip is available here:\n🔗 https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries"
   },
   {
     "objectID": "content/news/index.html",
@@ -189,99 +196,92 @@
     "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
   },
   {
-    "objectID": "content/rhacks/posts/01232026/index.html",
-    "href": "content/rhacks/posts/01232026/index.html",
-    "title": "R-Hacks | Showing Top & Bottom values in one clear visualization",
+    "objectID": "content/rhacks/posts/12052025-n2/index.html",
+    "href": "content/rhacks/posts/12052025-n2/index.html",
+    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
     "section": "",
-    "text": "This hack is based on my analysis on Kaggle analysis linked as follows (please see Chapter 4.3):\n🔗 https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries\nWhen exploring a distribution, a very common question is:\nShowing only the Top values might hid some context, while showing two separate charts can make comparison harder.\nThis R-Hack shows a simple and reusable pattern to display Top and Bottom values together in a single, clean visualization, as the one showed below:"
+    "text": "This hack is based on my Cyclistic analysis on Kaggle (see Chapter 8.12.4):\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r\nWorking with maps in R is easier than it seems.\nIf you want to visualize points, regions, or spatial patterns, the combination of GeoJSON files and the sf package gives you a simple and modern workflow.\nIn this hack, we’ll load a real city map (Chicago) directly from a URL, plot it with geom_sf(), and overlay simple point data."
   },
   {
-    "objectID": "content/rhacks/posts/01232026/index.html#step-0-create-an-example-dataset",
-    "href": "content/rhacks/posts/01232026/index.html#step-0-create-an-example-dataset",
-    "title": "R-Hacks | Showing Top & Bottom values in one clear visualization",
-    "section": "Step 0 – Create an example dataset",
-    "text": "Step 0 – Create an example dataset\nLet’s start from a small, simulated dataset representing average salaries for different companies:\n\nlibrary(tidyverse)\n\nset.seed(123)\n\ndf &lt;- data.frame(\n  company = (LETTERS[1:26]),\n  avg_salary = round(runif(26, min = 60, max = 180), 0)\n)\n\nhead(df)\n\n  company avg_salary\n1       A         95\n2       B        155\n3       C        109\n4       D        166\n5       E        173\n6       F         65"
+    "objectID": "content/rhacks/posts/12052025-n2/index.html#step-0-what-is-a-geojson-file",
+    "href": "content/rhacks/posts/12052025-n2/index.html#step-0-what-is-a-geojson-file",
+    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
+    "section": "Step 0 – What is a GeoJSON file?",
+    "text": "Step 0 – What is a GeoJSON file?\nA GeoJSON file is a JSON text file that stores geographic shapes (points, lines, polygons), together with their attributes (names, boundaries, codes, etc.).\nIt is one of the most common formats for open geographic data because it is lightweight, human-readable, and web-friendly.\nYou can often find GeoJSON files on:\n\ncity open data portals (City of Chicago, NYC Open Data, etc.)\n\nnational and international platforms (e.g., data.gov)\n\nGitHub repositories\n\nmany public mapping resources"
   },
   {
-    "objectID": "content/rhacks/posts/01232026/index.html#step-1-build-top-bottom-datasets-in-a-single-pipeline",
-    "href": "content/rhacks/posts/01232026/index.html#step-1-build-top-bottom-datasets-in-a-single-pipeline",
-    "title": "R-Hacks | Showing Top & Bottom values in one clear visualization",
-    "section": "Step 1 – Build Top & Bottom datasets in a single pipeline",
-    "text": "Step 1 – Build Top & Bottom datasets in a single pipeline\nIn this step, we extract both the Top 10 and Bottom 10 values using a single, readable pipeline.\nThe idea is simple. Starting from the same dataset:\n\nselect the Top 10 by applying slice_max(), which returns all observations within the top 10 ranking positions, including any ties\nselect the Bottom 10 by applying slice_min(), returning all observations within the lowest 10 ranking positions, again including ties\nassign a clear group label to each subset\ncombine the two subsets into a single dataframe for visualization and further analysis\n\n\nplot_df &lt;- \n  bind_rows(\n    df %&gt;% \n      slice_max(avg_salary, n = 10, with_ties = TRUE) %&gt;%\n      mutate(group = \"Top 10\"),\n    \n    df %&gt;% \n      slice_min(avg_salary, n = 10, with_ties = TRUE) %&gt;%\n      mutate(group = \"Bottom 10\")\n  )\n\nhead(plot_df)\n\n  company avg_salary  group\n1       X        179 Top 10\n2       K        175 Top 10\n3       T        175 Top 10\n4       E        173 Top 10\n5       P        168 Top 10\n6       H        167 Top 10"
+    "objectID": "content/rhacks/posts/12052025-n2/index.html#step-1-load-the-required-packages",
+    "href": "content/rhacks/posts/12052025-n2/index.html#step-1-load-the-required-packages",
+    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
+    "section": "Step 1 – Load the required packages",
+    "text": "Step 1 – Load the required packages\n\nlibrary(sf)       # for spatial data (simple features)\nlibrary(ggplot2)  # for plotting"
   },
   {
-    "objectID": "content/rhacks/posts/01232026/index.html#step-2---plot-the-data",
-    "href": "content/rhacks/posts/01232026/index.html#step-2---plot-the-data",
-    "title": "R-Hacks | Showing Top & Bottom values in one clear visualization",
-    "section": "Step 2 - Plot the data",
-    "text": "Step 2 - Plot the data\nIn this step, starting from the dataframe created in the previous step, we build a simple visualization with ggplot:\n\nplot_base &lt;- ggplot(plot_df, \n                    aes(x = reorder(company, -avg_salary), y = avg_salary)) +\n  geom_col(fill = \"steelblue\") +\n  geom_text(aes(label = avg_salary), vjust = -0.4, size = 4) +\n  facet_wrap(~ fct_rev(group), scales = \"free_x\") +\n  labs(\n    title = \"Top and Bottom Companies by Average Salary\",\n    subtitle = \"Simulated data example\\n\\n\",\n    y = \"Average yearly salary\",\n    x = NULL\n  ) +\n  theme_minimal() +\n  theme(\n    panel.grid = element_blank(),\n    axis.text.x = element_text(size = 10),\n    axis.text.y = element_blank()\n  )\n\nplot_base"
+    "objectID": "content/rhacks/posts/12052025-n2/index.html#step-2-read-a-geojson-map-with-sfst_read",
+    "href": "content/rhacks/posts/12052025-n2/index.html#step-2-read-a-geojson-map-with-sfst_read",
+    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
+    "section": "Step 2 – Read a GeoJSON map with sf::st_read()\n",
+    "text": "Step 2 – Read a GeoJSON map with sf::st_read()\n\nIn this hack, we use a GeoJSON of Chicago community areas, provided by the City of Chicago Open Data Portal.\n⚠️ Before using any online map or dataset, always remember to check the terms of use of the source.\nYou can read a GeoJSON directly from a URL, without downloading anything manually:\n\nmap_of_chicago &lt;- sf::st_read(\n  \"https://data.cityofchicago.org/resource/y6yq-dbs2.geojson\",\n  quiet = TRUE\n  )\n\nhead(map_of_chicago)\n\nSimple feature collection with 6 features and 4 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -87.74141 ymin: 41.80189 xmax: -87.60641 ymax: 41.93272\nGeodetic CRS:  WGS 84\n           pri_neigh          sec_neigh    shape_area    shape_len\n1    Grand Boulevard        BRONZEVILLE 48492503.1554 28196.837157\n2       Printers Row       PRINTERS ROW 2162137.97139  6864.247156\n3      United Center      UNITED CENTER 32520512.7053 23101.363745\n4 Sheffield & DePaul SHEFFIELD & DEPAUL 10482592.2987 13227.049745\n5      Humboldt Park      HUMBOLDT PARK 125010425.593 46126.751351\n6      Garfield Park      GARFIELD PARK 89976069.5947  44460.91922\n                        geometry\n1 MULTIPOLYGON (((-87.60671 4...\n2 MULTIPOLYGON (((-87.62761 4...\n3 MULTIPOLYGON (((-87.66707 4...\n4 MULTIPOLYGON (((-87.65833 4...\n5 MULTIPOLYGON (((-87.7406 41...\n6 MULTIPOLYGON (((-87.6954 41...\n\n\n\nWhat you get:\n\n\nmap_of_chicago is an sf object -essentially a data frame with a special geometry column where each row is a polygon that represents one community area"
   },
   {
-    "objectID": "content/rhacks/posts/01232026/index.html#step-3---generate-gradient-color-palettes",
-    "href": "content/rhacks/posts/01232026/index.html#step-3---generate-gradient-color-palettes",
-    "title": "R-Hacks | Showing Top & Bottom values in one clear visualization",
-    "section": "Step 3 - Generate gradient color palettes",
-    "text": "Step 3 - Generate gradient color palettes\nNow that the base chart is working, we can make it more informative by adding two gradient color palettes:\n\none gradient for the Top group (blue shades)\none gradient for the Bottom group (red shades)\n\nInstead of assigning a single color per group, we assign a slightly different shade to each bar. This creates a clean gradient effect while keeping the plot readable — even when ties produce more than 10 observations per group.\nTo do this, we:\n\ngenerate a group-specific palette with colorRampPalette(), sized to the number of rows in each group (so it adapts if ties expand the selection)\ngroup the data by group (Top vs Bottom)\nassign colors row by row using row_number()\n\nstore the result in a new column called color\n\n\n\nplot_df &lt;- plot_df %&gt;%\n  group_by(group) %&gt;%\n  mutate(\n    color = if_else(\n      group == \"Top 10\",\n      colorRampPalette(c(\"darkblue\", \"lightblue\"))(n())[row_number()],\n      colorRampPalette(c(\"darkred\", \"lightcoral\"))(n())[row_number()]\n    )\n  ) %&gt;%\n  ungroup()\n\nhead(plot_df)\n\n# A tibble: 6 × 4\n  company avg_salary group  color  \n  &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  \n1 X              179 Top 10 #00008B\n2 K              175 Top 10 #131895\n3 T              175 Top 10 #26309F\n4 E              173 Top 10 #3948A9\n5 P              168 Top 10 #4C60B3\n6 H              167 Top 10 #6078BD"
+    "objectID": "content/rhacks/posts/12052025-n2/index.html#step-3-plot-a-basic-map-with-geom_sf",
+    "href": "content/rhacks/posts/12052025-n2/index.html#step-3-plot-a-basic-map-with-geom_sf",
+    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
+    "section": "Step 3 – Plot a basic map with geom_sf()\n",
+    "text": "Step 3 – Plot a basic map with geom_sf()\n\nOnce the GeoJSON file has been loaded into an sf object, you can visualize it with geom_sf().\ngeom_sf() is the ggplot2 layer designed specifically for spatial data: it knows how to read the geometry column of an sf object and automatically draw points, lines, or polygons depending on what the data contains. In our case, it will draw the polygons of Chicago’s community areas.\n\nggplot() +\n  geom_sf(data = map_of_chicago, \n          fill = \"#f1f0f0\", color = \"grey50\") +\n  labs(title = \"Chicago community areas\",\n       subtitle = \"GeoJSON map loaded with sf::st_read()\") +\n  theme_void()"
   },
   {
-    "objectID": "content/rhacks/posts/01232026/index.html#step-4---style-the-chart-using-the-new-colors",
-    "href": "content/rhacks/posts/01232026/index.html#step-4---style-the-chart-using-the-new-colors",
-    "title": "R-Hacks | Showing Top & Bottom values in one clear visualization",
-    "section": "Step 4 - Style the chart using the new colors",
-    "text": "Step 4 - Style the chart using the new colors\nAt this point, we don’t want to rewrite the entire ggplot call. Instead, we:\n\nreuse the base chart (plot_base)\nreplace its dataset with the updated plot_df (the one that now includes color) using the %+% operator\nadd a new geom_col() that maps fill to the color column\nuse scale_fill_identity() so ggplot uses the colors as they are listed in the color column\n\n\nplot_styled &lt;- (plot_base %+% plot_df) +\n  geom_col(aes(fill = color)) +\n  scale_fill_identity()\n\nplot_styled"
+    "objectID": "content/rhacks/posts/12052025-n2/index.html#to-recap",
+    "href": "content/rhacks/posts/12052025-n2/index.html#to-recap",
+    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
+    "section": "To Recap",
+    "text": "To Recap\n\nGeoJSON = JSON file with geometry + attributes\nLoad it directly from a URL with sf::st_read()\nPlot it with geom_sf()\nAdd your own points using regular ggplot layers\nThis workflow is simple, beginner-friendly, and requires no GIS tools\n\n\nThanks for reading!\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events from the Rome R Users Group, click here:\n👉 https://www.meetup.com/rome-r-users-group/\nAnd if you are curious, the full Kaggle notebook used for this tip is available here:\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r"
   },
   {
-    "objectID": "content/rhacks/posts/01232026/index.html#in-short",
-    "href": "content/rhacks/posts/01232026/index.html#in-short",
-    "title": "R-Hacks | Showing Top & Bottom values in one clear visualization",
-    "section": "In short",
-    "text": "In short\n\nExtract Top 10 and Bottom 10 values from the same dataset using slice_max() and slice_min(), including ties\nCombine the two subsets into a single dataframe for a compact overview of the distribution extremes\nBuild a clean base plot to validate structure and layout\nEnhance the visualization by applying gradient colors to distinguish Top and Bottom groups\n\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events from the Rome R Users Group, click here:\n👉 https://www.meetup.com/rome-r-users-group/\nAnd if you are curious, the full Kaggle notebook used for this tip is available here:\n🔗 https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries"
-  },
-  {
-    "objectID": "content/rhacks/posts/01132026/index.html",
-    "href": "content/rhacks/posts/01132026/index.html",
+    "objectID": "content/rhacks/posts/12132026-n3/index.html",
+    "href": "content/rhacks/posts/12132026-n3/index.html",
     "title": "Compare multiple dataframes before binding them together",
     "section": "",
     "text": "Create your function\n\nThis hack is based on my Cyclistic analysis on Kaggle (see Chapter 6.3):\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r\nWhen working with multiple datasets a common question is:\n\nAre these dataframes really compatible before I bind them together?\n\nPeople who work with data typically rely on a mix of approaches to answer this:\nmanual checks (names(), glimpse()), warnings raised by bind_rows(), or dedicated helpers such as compare_df_cols() from the janitor package — which is a solid and widely used solution for comparing column structures.\nHowever, in practice, it is often useful to have a single, lightweight helper that provides a compact and readable overview across many dataframes at once, without additional dependencies or verbose output.\nThis R Hack introduces a small custom helper function designed with that goal in mind, that you can easily reuse and adapt to your own workflows.\nIt performs an omnicomprehensive structural comparison before merging, checking column count, column names, and column classes across all pairs of dataframes:\n\n#   comparison   same_ncol same_names same_class\n#   &lt;chr&gt;        &lt;lgl&gt;     &lt;lgl&gt;      &lt;lgl&gt;     \n# 1 df_a vs df_b TRUE      TRUE       TRUE      \n# 2 df_a vs df_c TRUE      TRUE       FALSE     \n# 3 df_a vs df_d TRUE      FALSE      FALSE     \n# 4 df_b vs df_c TRUE      TRUE       FALSE     \n# 5 df_b vs df_d TRUE      FALSE      FALSE     \n# 6 df_c vs df_d TRUE      FALSE      FALSE"
   },
   {
-    "objectID": "content/rhacks/posts/01132026/index.html#section",
-    "href": "content/rhacks/posts/01132026/index.html#section",
+    "objectID": "content/rhacks/posts/12132026-n3/index.html#section",
+    "href": "content/rhacks/posts/12132026-n3/index.html#section",
     "title": "Compare multiple dataframes before binding them together",
     "section": "",
     "text": "Create your function\n\nThis hack is based on my Cyclistic analysis on Kaggle (see Chapter 6.3):\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r\nWhen working with multiple datasets a common question is:\n\nAre these dataframes really compatible before I bind them together?\n\nPeople who work with data typically rely on a mix of approaches to answer this:\nmanual checks (names(), glimpse()), warnings raised by bind_rows(), or dedicated helpers such as compare_df_cols() from the janitor package — which is a solid and widely used solution for comparing column structures.\nHowever, in practice, it is often useful to have a single, lightweight helper that provides a compact and readable overview across many dataframes at once, without additional dependencies or verbose output.\nThis R Hack introduces a small custom helper function designed with that goal in mind, that you can easily reuse and adapt to your own workflows.\nIt performs an omnicomprehensive structural comparison before merging, checking column count, column names, and column classes across all pairs of dataframes:\n\n#   comparison   same_ncol same_names same_class\n#   &lt;chr&gt;        &lt;lgl&gt;     &lt;lgl&gt;      &lt;lgl&gt;     \n# 1 df_a vs df_b TRUE      TRUE       TRUE      \n# 2 df_a vs df_c TRUE      TRUE       FALSE     \n# 3 df_a vs df_d TRUE      FALSE      FALSE     \n# 4 df_b vs df_c TRUE      TRUE       FALSE     \n# 5 df_b vs df_d TRUE      FALSE      FALSE     \n# 6 df_c vs df_d TRUE      FALSE      FALSE"
   },
   {
-    "objectID": "content/rhacks/posts/01132026/index.html#step-0-create-example-dataframes-to-compare",
-    "href": "content/rhacks/posts/01132026/index.html#step-0-create-example-dataframes-to-compare",
+    "objectID": "content/rhacks/posts/12132026-n3/index.html#step-0-create-example-dataframes-to-compare",
+    "href": "content/rhacks/posts/12132026-n3/index.html#step-0-create-example-dataframes-to-compare",
     "title": "Compare multiple dataframes before binding them together",
     "section": "Step 0 – Create example dataframes to compare",
     "text": "Step 0 – Create example dataframes to compare\nTo make the idea concrete, let’s create four small dataframes. Some of them match perfectly, others don’t:\n\ndf_a &lt;- data.frame(\n  id = 1:3,\n  value = c(10, 20, 30)\n)\n\ndf_b &lt;- data.frame(\n  id = 4:6,\n  value = c(40, 50, 60)\n)\n\n# Same columns, but different class for `value`\ndf_c &lt;- data.frame(\n  id = 7:9,\n  value = as.character(c(70, 80, 90))\n)\n\n# Different column name\ndf_d &lt;- data.frame(\n  id = 10:12,\n  amount = c(100, 200, 300)\n)"
   },
   {
-    "objectID": "content/rhacks/posts/01132026/index.html#step-1-define-the-helper-function-to-compare-dataframes",
-    "href": "content/rhacks/posts/01132026/index.html#step-1-define-the-helper-function-to-compare-dataframes",
+    "objectID": "content/rhacks/posts/12132026-n3/index.html#step-1-define-the-helper-function-to-compare-dataframes",
+    "href": "content/rhacks/posts/12132026-n3/index.html#step-1-define-the-helper-function-to-compare-dataframes",
     "title": "Compare multiple dataframes before binding them together",
     "section": "Step 1 – Define the helper function to compare dataframes",
     "text": "Step 1 – Define the helper function to compare dataframes\nThe function below takes a vector of dataframe names (as character strings) and compares each unique pair only once. It works in three simple steps:\n\nIt loads the dataframes from the environment using their names\nIt iterates over all unique dataframe combinations, ensuring that each pair is checked only once (for example, it compares df_a vs df_b, but not df_b vs df_a))\n\nFor each pair, it performs the following structural checks and stores the results in a tibble:\n\nwhether the number of columns matches\nwhether column names are identical\nwhether column classes are the same\n\n\n\nThe function then binds all tibbles together into a single summary table, making it easy to spot structural mismatches before combining the data.\n\nlibrary(tidyverse)\ncompare_dataframes &lt;- function(df_names) {\n\n  # Get DF names\n  df_list &lt;- lapply(df_names, get)\n\n  # Initialize an empty list\n  results &lt;- list()\n\n  # Selection of DF pairs to be compared\n  for (i in seq_len(length(df_list) - 1)) {\n    for (j in (i + 1):length(df_list)) {\n\n      results[[length(results) + 1]] &lt;- tibble(\n        comparison = paste(df_names[i], \"vs\", df_names[j]),\n\n        # check number of columns\n        same_ncol  = ncol(df_list[[i]]) == ncol(df_list[[j]]),\n\n        # check columns name\n        same_names = identical(names(df_list[[i]]), names(df_list[[j]])),\n\n        # check columns class\n        same_class = identical(\n          sapply(df_list[[i]], class),\n          sapply(df_list[[j]], class)\n        )\n      )\n    }\n  }\n\n  comparison_result &lt;- bind_rows(results)\n  return(comparison_result)\n}"
   },
   {
-    "objectID": "content/rhacks/posts/01132026/index.html#step-2-apply-the-function",
-    "href": "content/rhacks/posts/01132026/index.html#step-2-apply-the-function",
+    "objectID": "content/rhacks/posts/12132026-n3/index.html#step-2-apply-the-function",
+    "href": "content/rhacks/posts/12132026-n3/index.html#step-2-apply-the-function",
     "title": "Compare multiple dataframes before binding them together",
     "section": "Step 2 – Apply the function",
     "text": "Step 2 – Apply the function\nProvide the dataframe names as a character vector and invoke the function:\n\ndf_names &lt;- c(\"df_a\", \"df_b\", \"df_c\", \"df_d\")\n\ncomparison_result &lt;- compare_dataframes(df_names)\n\ncomparison_result\n\n# A tibble: 6 × 4\n  comparison   same_ncol same_names same_class\n  &lt;chr&gt;        &lt;lgl&gt;     &lt;lgl&gt;      &lt;lgl&gt;     \n1 df_a vs df_b TRUE      TRUE       TRUE      \n2 df_a vs df_c TRUE      TRUE       FALSE     \n3 df_a vs df_d TRUE      FALSE      FALSE     \n4 df_b vs df_c TRUE      TRUE       FALSE     \n5 df_b vs df_d TRUE      FALSE      FALSE     \n6 df_c vs df_d TRUE      FALSE      FALSE"
   },
   {
-    "objectID": "content/rhacks/posts/01132026/index.html#step-3-interpret-the-results",
-    "href": "content/rhacks/posts/01132026/index.html#step-3-interpret-the-results",
+    "objectID": "content/rhacks/posts/12132026-n3/index.html#step-3-interpret-the-results",
+    "href": "content/rhacks/posts/12132026-n3/index.html#step-3-interpret-the-results",
     "title": "Compare multiple dataframes before binding them together",
     "section": "Step 3 – Interpret the results",
     "text": "Step 3 – Interpret the results\nThe output table makes structural mismatches immediately visible:\nsame_ncol → different number of columns\nsame_names → different column names\nsame_class → same columns, but different data types\nIn the example provided:\ndf_a vs df_b → all TRUE (safe to bind)\ndf_a vs df_c → same_class = FALSE\ndf_a vs df_d → same_names = FALSE\nThis helps you catch issues before they turn into silent bugs."
   },
   {
-    "objectID": "content/rhacks/posts/01132026/index.html#in-short",
-    "href": "content/rhacks/posts/01132026/index.html#in-short",
+    "objectID": "content/rhacks/posts/12132026-n3/index.html#in-short",
+    "href": "content/rhacks/posts/12132026-n3/index.html#in-short",
     "title": "Compare multiple dataframes before binding them together",
     "section": "In short",
     "text": "In short\n\nThere is no single “official” way to compare many dataframes at once\nHelpers like compare_df_cols() from janitor are excellent for column-level inspection\nThis custom helper function provides a clear, compact overview before stacking or merging data\nThink of it as a pre-flight checklist before combining your data\n\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events from the Rome R Users Group, click here:\n👉 https://www.meetup.com/rome-r-users-group/\nAnd if you are curious, the full Kaggle notebook used for this tip is available here:\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r"
