@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.25">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="Lucio Colonna">
-<meta name="dcterms.date" content="2026-01-23">
-<meta name="description" content="R-Hacks N.4">
-<title>R-Hacks | Showing Top &amp; Bottom values in one clear visualization – Rome R-Users Group</title>
+<meta name="author" content="Federica Gazzelloni">
+<meta name="dcterms.date" content="2026-02-02">
+<meta name="description" content="R-Hacks N.5">
+<title>R-Hacks | One-Line Sanity Checks After Every Transformation – Rome R-Users Group</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -126,19 +126,19 @@ cookieconsent.run({
 });
 </script><style>html{ scroll-behavior: smooth; }</style>
 <link rel="stylesheet" href="../../../../styles.css">
-<meta property="og:title" content="R-Hacks | Showing Top &amp; Bottom values in one clear visualization – Rome R-Users Group">
-<meta property="og:description" content="R-Hacks N.4">
-<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/01232026-n4/image1.png">
+<meta property="og:title" content="R-Hacks | One-Line Sanity Checks After Every Transformation – Rome R-Users Group">
+<meta property="og:description" content="R-Hacks N.5">
+<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/05-02022026/images/image-1.png">
 <meta property="og:site_name" content="Rome R-Users Group">
 <meta property="og:locale" content="en_US">
-<meta property="og:image:height" content="1800">
-<meta property="og:image:width" content="2400">
-<meta name="twitter:title" content="R-Hacks | Showing Top &amp; Bottom values in one clear visualization – Rome R-Users Group">
-<meta name="twitter:description" content="R-Hacks N.4">
-<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/01232026-n4/image1.png">
+<meta property="og:image:height" content="961">
+<meta property="og:image:width" content="1467">
+<meta name="twitter:title" content="R-Hacks | One-Line Sanity Checks After Every Transformation – Rome R-Users Group">
+<meta name="twitter:description" content="R-Hacks N.5">
+<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/05-02022026/images/image-1.png">
 <meta name="twitter:creator" content="@rladiesrome">
-<meta name="twitter:image-height" content="1800">
-<meta name="twitter:image-width" content="2400">
+<meta name="twitter:image-height" content="961">
+<meta name="twitter:image-width" content="1467">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body class="floating nav-fixed quarto-light">
@@ -215,30 +215,36 @@ cookieconsent.run({
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#step-0-create-an-example-dataset" id="toc-step-0-create-an-example-dataset" class="nav-link active" data-scroll-target="#step-0-create-an-example-dataset">Step 0 – Create an example dataset</a></li>
-  <li><a href="#step-1-build-top-bottom-datasets-in-a-single-pipeline" id="toc-step-1-build-top-bottom-datasets-in-a-single-pipeline" class="nav-link" data-scroll-target="#step-1-build-top-bottom-datasets-in-a-single-pipeline">Step 1 – Build Top &amp; Bottom datasets in a single pipeline</a></li>
-  <li><a href="#step-2---plot-the-data" id="toc-step-2---plot-the-data" class="nav-link" data-scroll-target="#step-2---plot-the-data">Step 2 - Plot the data</a></li>
-  <li><a href="#step-3---generate-gradient-color-palettes" id="toc-step-3---generate-gradient-color-palettes" class="nav-link" data-scroll-target="#step-3---generate-gradient-color-palettes">Step 3 - Generate gradient color palettes</a></li>
-  <li><a href="#step-4---style-the-chart-using-the-new-colors" id="toc-step-4---style-the-chart-using-the-new-colors" class="nav-link" data-scroll-target="#step-4---style-the-chart-using-the-new-colors">Step 4 - Style the chart using the new colors</a></li>
-  <li><a href="#in-short" id="toc-in-short" class="nav-link" data-scroll-target="#in-short">In short</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/01232026-n4/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<li>
+<a href="#why-one-line-checks-matter" id="toc-why-one-line-checks-matter" class="nav-link active" data-scroll-target="#why-one-line-checks-matter">Why One-Line Checks Matter</a>
+  <ul class="collapse">
+<li><a href="#data-example-diabetes-dataset-before-clustering" id="toc-data-example-diabetes-dataset-before-clustering" class="nav-link" data-scroll-target="#data-example-diabetes-dataset-before-clustering">Data Example: Diabetes Dataset (Before Clustering)</a></li>
+  <li><a href="#check-1-did-the-row-count-change-as-expected" id="toc-check-1-did-the-row-count-change-as-expected" class="nav-link" data-scroll-target="#check-1-did-the-row-count-change-as-expected">Check 1 – Did the Row Count Change as Expected?</a></li>
+  <li><a href="#check-2-do-key-variables-still-look-reasonable" id="toc-check-2-do-key-variables-still-look-reasonable" class="nav-link" data-scroll-target="#check-2-do-key-variables-still-look-reasonable">Check 2 – Do Key Variables Still Look Reasonable?</a></li>
+  <li><a href="#check-3-did-missingness-increase" id="toc-check-3-did-missingness-increase" class="nav-link" data-scroll-target="#check-3-did-missingness-increase">Check 3 – Did Missingness Increase?</a></li>
+  <li><a href="#check-4-do-group-sizes-still-make-sense" id="toc-check-4-do-group-sizes-still-make-sense" class="nav-link" data-scroll-target="#check-4-do-group-sizes-still-make-sense">Check 4 – Do Group Sizes Still Make Sense?</a></li>
+  </ul>
+</li>
+  <li><a href="#making-this-a-habit" id="toc-making-this-a-habit" class="nav-link" data-scroll-target="#making-this-a-habit">Making This a Habit</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/05-02022026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">R-Hacks | Showing Top &amp; Bottom values in one clear visualization</h1>
-<p class="subtitle lead">A simple pattern to compare extremes of a distribution</p>
+<h1 class="title">R-Hacks | One-Line Sanity Checks After Every Transformation</h1>
+<p class="subtitle lead">Small habits that catch data bugs early</p>
   <div class="quarto-categories">
     <div class="quarto-category">data-wrangling</div>
-    <div class="quarto-category">functions</div>
+    <div class="quarto-category">debugging</div>
+    <div class="quarto-category">workflows</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    R-Hacks N.4
+    R-Hacks N.5
   </div>
 </div>
 
@@ -248,14 +254,14 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Lucio Colonna </p>
+             <p>Federica Gazzelloni </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 23, 2026</p>
+      <p class="date">February 2, 2026</p>
     </div>
   </div>
   
@@ -264,180 +270,261 @@ cookieconsent.run({
   
 
 
-</header><p><em>This hack is based on my analysis on Kaggle analysis linked as follows (please see Chapter <strong>4.3</strong>):</em><br>
-🔗 <a href="https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries" class="uri">https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries</a></p>
-<p><br> When exploring a distribution, a very common question is:</p>
+</header><p><em>This hack is based on <a href="https://rladiesrome.org/">RLadiesRome</a> Tutorial analysis on From Basics to Advanced Health Analytics: Exploring Diabetes Data:</em><br>
+🔗 <a href="https://rladiesrome.github.io/Principles-of-data-Analysis-in-R/" class="uri">https://rladiesrome.github.io/Principles-of-data-Analysis-in-R/</a></p>
+<p><br></p>
+<p>When working with data, most <strong>bugs</strong> don’t come from complex models.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>They come from small transformations that quietly change your data in ways you didn’t expect:</p>
+<ul>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> that drops too many rows</li>
+<li>
+<code>join()</code> that duplicates observations</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> that introduces impossible values</li>
+</ul>
+</div>
+</div>
+</div>
+<p>This R-Hack shows how to build a habit of running <strong>one-line sanity checks</strong> after every major transformation, using a concrete example from our <a href="https://rladiesrome.github.io/Principles-of-data-Analysis-in-R/02-exploring-diabetes-data.html">Exploring Diabetes Data tutorial</a>.</p>
 <blockquote class="blockquote">
-<p>Who are the top performers, and who are at the bottom?</p>
+<p>One-line sanity checks you can run after every major transformation.</p>
 </blockquote>
-<p>Showing only the Top values might hid some context, while showing two separate charts can make comparison harder.</p>
-<p>This R-Hack shows a <strong>simple</strong> and <strong>reusable pattern</strong> to display Top and Bottom values together in a single, clean visualization, as the one showed below:</p>
 <p><br></p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="image1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+<figure class="figure"><p><img src="images/image-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
 </figure>
 </div>
-<p><br></p>
-<hr>
-<p><br></p>
-<section id="step-0-create-an-example-dataset" class="level2"><h2 class="anchored" data-anchor-id="step-0-create-an-example-dataset">Step 0 – Create an example dataset</h2>
-<p>Let’s start from a small, simulated dataset representing average salaries for different companies:</p>
+<p>They are quick, cheap, and often enough to catch problems before plots or models hide them.</p>
+<section id="why-one-line-checks-matter" class="level2"><h2 class="anchored" data-anchor-id="why-one-line-checks-matter">Why One-Line Checks Matter</h2>
+<p>Transformations are the most fragile part of a data workflow. They change structure, size, and meaning — often without throwing an error.</p>
+<p>The goal here is not defensive programming or heavy validation. It’s about building small, automatic pauses that let you ask:</p>
+<blockquote class="blockquote">
+<p><em>“Does the data still look the way I expect?”</em></p>
+</blockquote>
+<section id="data-example-diabetes-dataset-before-clustering" class="level3"><h3 class="anchored" data-anchor-id="data-example-diabetes-dataset-before-clustering">Data Example: Diabetes Dataset (Before Clustering)</h3>
+<p>In the tutorial, the diabetes dataset is cleaned and prepared before moving to k-prototypes clustering.</p>
+<p>At that point, the data typically goes through steps like:</p>
+<ul>
+<li>selecting relevant variables</li>
+<li>recoding categorical fields</li>
+<li>filtering incomplete observations</li>
+</ul>
+<p>That makes it an ideal place to pause and check assumptions. Let’s simulate a sample dataset similar to the one used in the tutorial:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  company <span class="op">=</span> <span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">26</span><span class="op">]</span><span class="op">)</span>,</span>
-<span>  avg_salary <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">26</span>, min <span class="op">=</span> <span class="fl">60</span>, max <span class="op">=</span> <span class="fl">180</span><span class="op">)</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">df_before</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  id       <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">300</span>,</span>
+<span>  age      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">300</span>, mean <span class="op">=</span> <span class="fl">55</span>, sd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  bmi      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">300</span>, mean <span class="op">=</span> <span class="fl">28</span>, sd <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  glucose  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">300</span>, mean <span class="op">=</span> <span class="fl">120</span>, sd <span class="op">=</span> <span class="fl">30</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  sex      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Female"</span>, <span class="st">"Male"</span><span class="op">)</span>, <span class="fl">300</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  diabetes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No"</span>, <span class="st">"Yes"</span><span class="op">)</span>, <span class="fl">300</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co"># Introduce realistic missingness (so filtering has an effect)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">456</span><span class="op">)</span></span>
+<span><span class="va">df_before</span><span class="op">$</span><span class="va">bmi</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df_before</span><span class="op">)</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span><span class="va">df_before</span><span class="op">$</span><span class="va">glucose</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df_before</span><span class="op">)</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">df_before</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  company avg_salary
-1       A         95
-2       B        155
-3       C        109
-4       D        166
-5       E        173
-6       F         65</code></pre>
+<pre><code>[1] 300   6</code></pre>
 </div>
 </div>
-<p><br></p>
-</section><section id="step-1-build-top-bottom-datasets-in-a-single-pipeline" class="level2"><h2 class="anchored" data-anchor-id="step-1-build-top-bottom-datasets-in-a-single-pipeline">Step 1 – Build Top &amp; Bottom datasets in a single pipeline</h2>
-<p>In this step, we extract both the Top 10 and Bottom 10 values using a single, readable pipeline.</p>
-<p>The idea is simple. Starting from the same dataset:</p>
-<ul>
-<li><p>select the <strong>Top 10</strong> by applying <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code>, which returns all observations within the top 10 ranking positions, including any ties</p></li>
-<li><p>select the <strong>Bottom 10</strong> by applying <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code>, returning all observations within the lowest 10 ranking positions, again including ties</p></li>
-<li><p>assign a clear <strong>group label</strong> to each subset</p></li>
-<li><p>combine the two subsets into a single dataframe for visualization and further analysis</p></li>
-</ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_df</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span></span>
-<span>    <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="va">avg_salary</span>, n <span class="op">=</span> <span class="fl">10</span>, with_ties <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>group <span class="op">=</span> <span class="st">"Top 10"</span><span class="op">)</span>,</span>
-<span>    </span>
-<span>    <span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min</a></span><span class="op">(</span><span class="va">avg_salary</span>, n <span class="op">=</span> <span class="fl">10</span>, with_ties <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>group <span class="op">=</span> <span class="st">"Bottom 10"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_before</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id age  bmi glucose    sex diabetes
+1  1  49 24.4     152   Male       No
+2  2  53 24.2     119   Male       No
+3  3  71 23.3     119   Male       No
+4  4  56 22.7      75 Female      Yes
+5  5  56 25.8     144   Male       No
+6  6  72 29.7     114 Female      Yes</code></pre>
+</div>
+</div>
+<p>After the transformations, we get a new dataframe <code>df_after</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_after</span> <span class="op">&lt;-</span> <span class="va">df_before</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">glucose</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">bmi</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    diabetes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">diabetes</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No"</span>, <span class="st">"Yes"</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">plot_df</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  company avg_salary  group
-1       X        179 Top 10
-2       K        175 Top 10
-3       T        175 Top 10
-4       E        173 Top 10
-5       P        168 Top 10
-6       H        167 Top 10</code></pre>
+<pre><code>[1] 266   6</code></pre>
 </div>
 </div>
-<p><br></p>
-</section><section id="step-2---plot-the-data" class="level2"><h2 class="anchored" data-anchor-id="step-2---plot-the-data">Step 2 - Plot the data</h2>
-<p>In this step, starting from the dataframe created in the previous step, we build a simple visualization with <code>ggplot</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_base</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">plot_df</span>, </span>
-<span>                    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">company</span>, <span class="op">-</span><span class="va">avg_salary</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">avg_salary</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">avg_salary</span><span class="op">)</span>, vjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.4</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
-<span>    title <span class="op">=</span> <span class="st">"Top and Bottom Companies by Average Salary"</span>,</span>
-<span>    subtitle <span class="op">=</span> <span class="st">"Simulated data example\n\n"</span>,</span>
-<span>    y <span class="op">=</span> <span class="st">"Average yearly salary"</span>,</span>
-<span>    x <span class="op">=</span> <span class="cn">NULL</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
-<span>    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>    axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span>
-<span>    axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">plot_base</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><br></p>
-</section><section id="step-3---generate-gradient-color-palettes" class="level2"><h2 class="anchored" data-anchor-id="step-3---generate-gradient-color-palettes">Step 3 - Generate gradient color palettes</h2>
-<p>Now that the base chart is working, we can make it more informative by adding two gradient color palettes:</p>
-<ul>
-<li>one gradient for the Top group (blue shades)</li>
-<li>one gradient for the Bottom group (red shades)</li>
-</ul>
-<p>Instead of assigning a single color per group, we assign a slightly different shade to <strong>each bar</strong>. This creates a clean gradient effect while keeping the plot readable — even when ties produce more than 10 observations per group.</p>
-<p>To do this, we:</p>
-<ul>
-<li>generate a group-specific palette with <code><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette()</a></code>, sized to the number of rows in each group (so it adapts if ties expand the selection)</li>
-<li>group the data by <code>group</code> (Top vs Bottom)</li>
-<li>assign colors row by row using <code><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number()</a></code>
-</li>
-<li>store the result in a new column called <code>color</code>
-</li>
-</ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_df</span> <span class="op">&lt;-</span> <span class="va">plot_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    color <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span></span>
-<span>      <span class="va">group</span> <span class="op">==</span> <span class="st">"Top 10"</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"darkblue"</span>, <span class="st">"lightblue"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">]</span>,</span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"darkred"</span>, <span class="st">"lightcoral"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">]</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">plot_df</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-  company avg_salary group  color  
-  &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  
-1 X              179 Top 10 #00008B
-2 K              175 Top 10 #131895
-3 T              175 Top 10 #26309F
-4 E              173 Top 10 #3948A9
-5 P              168 Top 10 #4C60B3
-6 H              167 Top 10 #6078BD</code></pre>
+<pre><code>  id age  bmi glucose    sex diabetes
+1  1  49 24.4     152   Male       No
+2  2  53 24.2     119   Male       No
+3  3  71 23.3     119   Male       No
+4  4  56 22.7      75 Female      Yes
+5  5  56 25.8     144   Male       No
+6  6  72 29.7     114 Female      Yes</code></pre>
 </div>
 </div>
-<p><br></p>
-</section><section id="step-4---style-the-chart-using-the-new-colors" class="level2"><h2 class="anchored" data-anchor-id="step-4---style-the-chart-using-the-new-colors">Step 4 - Style the chart using the new colors</h2>
-<p>At this point, we don’t want to rewrite the entire ggplot call. Instead, we:</p>
-<ul>
-<li><p>reuse the base chart (<code>plot_base</code>)</p></li>
-<li><p>replace its dataset with the updated <code>plot_df</code> (the one that now includes color) using the <code>%+%</code> operator</p></li>
-<li><p>add a new <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> that maps fill to the color column</p></li>
-<li><p>use <code><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">scale_fill_identity()</a></code> so <code>ggplot</code> uses the colors as they are listed in the <code>color</code> column</p></li>
-</ul>
+</section><section id="check-1-did-the-row-count-change-as-expected" class="level3"><h3 class="anchored" data-anchor-id="check-1-did-the-row-count-change-as-expected">Check 1 – Did the Row Count Change as Expected?</h3>
+<p>After any operation that could affect the number of rows, check it explicitly.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_styled</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">plot_base</span> <span class="op"><a href="https://ggplot2.tidyverse.org/reference/gg-add.html">%+%</a></span> <span class="va">plot_df</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">scale_fill_identity</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">plot_styled</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># One-line sanity check: did we drop rows as expected?</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df_before</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 300</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 266</code></pre>
 </div>
 </div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p><br></p>
-</section><section id="in-short" class="level2"><h2 class="anchored" data-anchor-id="in-short">In short</h2>
+<div class="callout-body-container">
+<p>Notes (why this works)</p>
 <ul>
-<li><p>Extract <strong>Top 10</strong> and <strong>Bottom 10</strong> values from the same dataset using <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code>, including ties</p></li>
-<li><p><strong>Combine</strong> the two subsets into a single dataframe for a compact overview of the distribution extremes</p></li>
-<li><p>Build a <strong>clean base plot</strong> to validate structure and layout</p></li>
-<li><p>Enhance the visualization by applying <strong>gradient colors</strong> to distinguish Top and Bottom groups</p></li>
+<li>We create missing values in bmi and glucose, which is common in real health datasets.</li>
+<li>The filter step now drops incomplete rows, so df_after has fewer rows than df_before.</li>
+<li>This makes your “row count changed” check meaningful and aligned with Issue N.5’s message.</li>
 </ul>
+</div>
+</div>
+</div>
+<p>In this context, a reduction is expected, but it should be understood and intentional.</p>
+<p>Use this after:</p>
+<ul>
+<li><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code></li>
+<li><code>join()</code></li>
+<li><code>subsetting</code></li>
+<li><code>removing duplicates</code></li>
+</ul>
+<p>What this catches:</p>
+<ul>
+<li>accidental row loss</li>
+<li>many-to-many joins</li>
+<li>accidental over-filtering</li>
+<li>unintended row drops</li>
+<li>silent data duplication</li>
+</ul>
+<p>If the number changes unexpectedly, stop and investigate. This single check prevents a large class of downstream errors.</p>
+</section><section id="check-2-do-key-variables-still-look-reasonable" class="level3"><h3 class="anchored" data-anchor-id="check-2-do-key-variables-still-look-reasonable">Check 2 – Do Key Variables Still Look Reasonable?</h3>
+<p>Whenever you create or transform a variable, inspect its range.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">$</span><span class="va">age</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   32.0    49.0    55.0    55.4    61.0    87.0 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">$</span><span class="va">bmi</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 14.0 40.9</code></pre>
+</div>
+</div>
+<p>Look for:</p>
+<ul>
+<li>negative values where they shouldn’t exist</li>
+<li>impossible values (e.g.&nbsp;BMI of 5)</li>
+<li>suspicious defaults (e.g.&nbsp;all zeros)</li>
+<li>transformations that didn’t behave as expected</li>
+</ul>
+<p>These problems are much easier to fix immediately than after modelling.</p>
+</section><section id="check-3-did-missingness-increase" class="level3"><h3 class="anchored" data-anchor-id="check-3-did-missingness-increase">Check 3 – Did Missingness Increase?</h3>
+<p>Joins and reshaping often introduce NAs. Count them explicitly.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      id      age      bmi  glucose      sex diabetes 
+       0        0        0        0        0        0 </code></pre>
+</div>
+</div>
+<p>This gives a fast overview of:</p>
+<ul>
+<li>columns that need cleaning</li>
+<li>variables that may bias analysis</li>
+<li>fields that should be dropped or imputed</li>
+</ul>
+<p>Never assume “there aren’t many NAs”. Check!</p>
+</section><section id="check-4-do-group-sizes-still-make-sense" class="level3"><h3 class="anchored" data-anchor-id="check-4-do-group-sizes-still-make-sense">Check 4 – Do Group Sizes Still Make Sense?</h3>
+<p>Before summarising or modelling grouped data, look at the group counts. In particular, before using categorical variables in clustering or summaries, check their distribution.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_after</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">diabetes</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  diabetes   n
+1       No 188
+2      Yes  78</code></pre>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>This is especially important before:</p>
+<ul>
+<li>rates or percentages</li>
+<li>averages by group</li>
+<li>comparisons across categories</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p>This prevents:</p>
+<ul>
+<li>unstable clusters</li>
+<li>categories with too few observations</li>
+<li>misleading interpretations</li>
+</ul>
+</div>
+</div>
+<p>What this catches:</p>
+<ul>
+<li>tiny or empty groups</li>
+<li>unstable estimates</li>
+<li>summaries that look precise but aren’t meaningful</li>
+</ul></section></section><section id="making-this-a-habit" class="level2"><h2 class="anchored" data-anchor-id="making-this-a-habit">Making This a Habit</h2>
+<p>These checks are not meant to clutter your script. They are meant to become automatic.</p>
+<p>A good rule of thumb:</p>
+<ul>
+<li>After anything that changes rows → check <code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code>
+</li>
+<li>After anything that changes values → check <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> or <code><a href="https://rdrr.io/r/base/range.html">range()</a></code>
+</li>
+<li>After anything that combines data → check <code>NAs</code>
+</li>
+<li>Before summarising → check group sizes</li>
+</ul>
+<p>One line is often enough.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>In Short</p>
+<ul>
+<li>Most data bugs enter during transformations</li>
+<li>One-line checks catch problems early</li>
+<li>They cost seconds and save hours</li>
+<li>Make them a habit, not an afterthought</li>
+</ul>
+</div>
+</div>
+</div>
+<p>This is not about perfection. It’s about seeing problems while they’re still small.</p>
 <p><br></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -449,10 +536,8 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you want to stay up to date with the latest events from the <strong>Rome R Users Group</strong>, click here:</p>
-<p>👉 <a href="https://www.meetup.com/rome-r-users-group/" class="uri">https://www.meetup.com/rome-r-users-group/</a></p>
-<p>And if you are curious, the full Kaggle notebook used for this tip is available here:</p>
-<p>🔗 <a href="https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries" class="uri">https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries</a></p>
+<p>If you want to stay up to date with the latest events and posts from the Rome R Users Group, follow us here:</p>
+<p>👉 <a href="https://www.meetup.com/rome-r-users-group/">https://www.meetup.com/rome-r-users-group/</a></p>
 </div>
 </div>
 
@@ -869,7 +954,7 @@ Tip
 </div>   
     <div class="nav-footer-center">
 
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/01232026-n4/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/05-02022026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
 <li class="nav-item compact">
