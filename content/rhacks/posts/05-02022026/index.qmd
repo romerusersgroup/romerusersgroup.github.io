@@ -1,0 +1,263 @@
+---
+title: "R-Hacks | One-Line Sanity Checks After Every Transformation"
+subtitle: "Small habits that catch data bugs early"
+description: "R-Hacks N.5"
+author: "Federica Gazzelloni"
+date: "02 February 2026"
+images: "images/image-1.png"
+series: R-Hacks
+categories:
+  - data-wrangling
+  - debugging
+  - workflows
+layout: single
+toc-location: left
+toc: true
+code-overflow: wrap
+execute:
+  warning: false
+  message: false
+---
+
+*This hack is based on [RLadiesRome](https://rladiesrome.org/) Tutorial analysis on From Basics to Advanced Health Analytics: Exploring Diabetes Data:*  
+🔗 <https://rladiesrome.github.io/Principles-of-data-Analysis-in-R/>
+
+<br>
+
+
+When working with data, most **bugs** don't come from complex models. 
+
+:::{.callout-note appearance="simple"}
+They come from small transformations that quietly change your data in ways you didn't expect:
+
+- `filter()` that drops too many rows
+- `join()` that duplicates observations
+- `mutate()` that introduces impossible values
+:::
+
+This R-Hack shows how to build a habit of running **one-line sanity checks** after every major transformation, using a concrete example from our [Exploring Diabetes Data tutorial](https://rladiesrome.github.io/Principles-of-data-Analysis-in-R/02-exploring-diabetes-data.html).
+
+> One-line sanity checks you can run after every major transformation.
+
+<br>
+
+![](images/image-1.png){width="80%" fig-align="center"}
+
+They are quick, cheap, and often enough to catch problems before plots or models hide them.
+
+
+## Why One-Line Checks Matter
+
+Transformations are the most fragile part of a data workflow.
+They change structure, size, and meaning — often without throwing an error.
+
+The goal here is not defensive programming or heavy validation.
+It's about building small, automatic pauses that let you ask:
+
+> *“Does the data still look the way I expect?”*
+
+
+### Data Example: Diabetes Dataset (Before Clustering)
+
+In the tutorial, the diabetes dataset is cleaned and prepared before moving to k-prototypes clustering.
+
+At that point, the data typically goes through steps like:
+
+- selecting relevant variables
+- recoding categorical fields
+- filtering incomplete observations
+
+That makes it an ideal place to pause and check assumptions. Let's simulate a sample dataset similar to the one used in the tutorial:
+
+```{r}
+library(dplyr)
+
+set.seed(123)
+
+df_before <- data.frame(
+  id       = 1:300,
+  age      = round(rnorm(300, mean = 55, sd = 10)),
+  bmi      = round(rnorm(300, mean = 28, sd = 5), 1),
+  glucose  = round(rnorm(300, mean = 120, sd = 30)),
+  sex      = sample(c("Female", "Male"), 300, replace = TRUE),
+  diabetes = sample(c("No", "Yes"), 300, replace = TRUE, prob = c(0.7, 0.3))
+)
+
+# Introduce realistic missingness (so filtering has an effect)
+set.seed(456)
+df_before$bmi[sample(seq_len(nrow(df_before)), size = 20)] <- NA
+df_before$glucose[sample(seq_len(nrow(df_before)), size = 15)] <- NA
+
+
+dim(df_before)
+```
+
+
+```{r}
+head(df_before)
+```
+
+
+After the transformations, we get a new dataframe `df_after`:
+```{r}
+df_after <- df_before |>
+  dplyr::filter(!is.na(glucose), !is.na(bmi)) |>
+  dplyr::mutate(
+    diabetes = factor(diabetes, levels = c("No", "Yes"))
+  )
+
+dim(df_after)
+```
+
+```{r}
+head(df_after)
+```
+
+
+### Check 1 – Did the Row Count Change as Expected?
+
+After any operation that could affect the number of rows, check it explicitly.
+
+```{r}
+# One-line sanity check: did we drop rows as expected?
+nrow(df_before)
+nrow(df_after)
+```
+
+
+:::{.callout-note appearance="simple"}
+Notes (why this works)
+
+- We create missing values in bmi and glucose, which is common in real health datasets.
+- The filter step now drops incomplete rows, so df_after has fewer rows than df_before.
+- This makes your “row count changed” check meaningful and aligned with Issue N.5's message.
+:::
+
+In this context, a reduction is expected, but it should be understood and intentional.
+
+Use this after:
+
+- `filter()`
+- `join()`
+- `subsetting`
+- `removing duplicates`
+
+What this catches:
+
+- accidental row loss
+- many-to-many joins
+- accidental over-filtering
+- unintended row drops
+- silent data duplication
+
+If the number changes unexpectedly, stop and investigate. This single check prevents a large class of downstream errors.
+
+### Check 2 – Do Key Variables Still Look Reasonable?
+
+Whenever you create or transform a variable, inspect its range.
+```{r}
+summary(df_after$age)
+```
+
+
+```{r}
+range(df_after$bmi, na.rm = TRUE)
+```
+
+Look for:
+
+- negative values where they shouldn't exist
+- impossible values (e.g. BMI of 5)
+- suspicious defaults (e.g. all zeros)
+- transformations that didn't behave as expected
+
+These problems are much easier to fix immediately than after modelling.
+
+
+### Check 3 – Did Missingness Increase?
+
+Joins and reshaping often introduce NAs. Count them explicitly.
+```{r}
+colSums(is.na(df_after))
+```
+
+
+This gives a fast overview of:
+
+- columns that need cleaning
+- variables that may bias analysis
+- fields that should be dropped or imputed
+
+Never assume "there aren't many NAs". Check!
+
+
+### Check 4 – Do Group Sizes Still Make Sense?
+
+Before summarising or modelling grouped data, look at the group counts. In particular, before using categorical variables in clustering or summaries, check their distribution.
+
+```{r}
+df_after |> dplyr::count(diabetes)
+```
+
+
+::::{.columns}
+::: {.column width="50%"}
+This is especially important before:
+
+- rates or percentages
+- averages by group
+- comparisons across categories
+
+:::
+
+::: {.column width="50%"}
+This prevents:
+
+- unstable clusters
+- categories with too few observations
+- misleading interpretations
+
+:::
+::::
+
+What this catches:
+
+- tiny or empty groups
+- unstable estimates
+- summaries that look precise but aren't meaningful
+
+
+## Making This a Habit
+
+These checks are not meant to clutter your script.
+They are meant to become automatic.
+
+A good rule of thumb:
+
+- After anything that changes rows → check `nrow()`
+- After anything that changes values → check `summary()` or `range()`
+- After anything that combines data → check `NAs`
+- Before summarising → check group sizes
+
+One line is often enough.
+
+:::{.callout-note appearance="simple"}
+In Short
+
+- Most data bugs enter during transformations
+- One-line checks catch problems early
+- They cost seconds and save hours
+- Make them a habit, not an afterthought
+:::
+
+This is not about perfection.
+It's about seeing problems while they're still small.
+
+<br>
+
+:::{.callout-tip}
+If you want to stay up to date with the latest events and posts from the Rome R Users Group, follow us here:
+
+👉 [https://www.meetup.com/rome-r-users-group/](https://www.meetup.com/rome-r-users-group/)
+:::
+

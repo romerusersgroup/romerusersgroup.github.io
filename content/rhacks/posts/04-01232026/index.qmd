@@ -18,7 +18,7 @@ execute:
   message: false
 ---
 
- *This hack is based on my analysis on Kaggle analysis linked as follows (please see Chapter **4.3**):*  
+*This hack is based on my analysis on Kaggle analysis linked as follows (please see Chapter **4.3**):*  
 🔗 <https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries>
 
 <br>
