@@ -1,5 +1,5 @@
 ---
-title: "R-Hacks | Showing Top & Bottom values in one clear visualization"
+title: "Showing Top & Bottom values in one clear visualization"
 subtitle: "A simple pattern to compare extremes of a distribution"
 description: "R-Hacks N.4"
 author: "Lucio Colonna"

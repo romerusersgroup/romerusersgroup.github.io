@@ -22,10 +22,13 @@ Our in-person focused group events are designed to foster deeper conversations a
 
 > For More Information about Next Events/Workshops/Tutorials Please Check: <https://www.meetup.com/rome-r-users-group/>
 
-:::: {.grid}
 
+<center>
 
-::::
+[![`Mark Griffin`](https://secure.meetupstatic.com/photos/event/8/8/4/e/highres_532594894.webp?w=1080){.card-link width="60%"}](https://www.meetup.com/rome-r-users-group/events/313218192)
+
+</center>
+
 
 ## Past Events
 

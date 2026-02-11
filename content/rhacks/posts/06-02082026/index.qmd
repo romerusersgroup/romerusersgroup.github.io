@@ -1,0 +1,213 @@
+---
+title: "When to Pivot: Spotting Data Shape Problems Early"
+subtitle: "A small structural decision that simplifies everything downstream"
+description: "R-Hacks N.6"
+author: "Federica Gazzelloni"
+date: "08 February 2026"
+images: "images/image-1.png"
+series: R-Hacks
+categories:
+  - data-wrangling
+  - workflows
+  - tidyr
+layout: single
+toc-location: left
+toc: true
+code-overflow: wrap
+execute:
+  warning: false
+  message: false
+---
+
+<br>
+
+![Wide vs long data illustration (ChatGPT generated image)](images/image-1.png){width="80%" fig-align="center" fig-alt="ChatGPT generated image"}
+
+
+### If your code feels harder than it should be, the problem is often not your logic.
+
+> It's the shape of your data.
+
+This R-Hack focuses on a common but under-diagnosed issue: delaying reshaping, then compensating with complex code. Learning to recognise early signals that data should be pivoted can dramatically simplify summaries, plots, and models.
+
+
+### What *"data shape"* means (in practice)
+
+Forget theory. In practice, data shape answers one question:
+
+> What is an observation?
+
+If an observation is:
+
+- a person at a time point
+- a measurement of a variable
+- a category–value pair
+
+then your data should reflect that row by row.
+
+
+:::{.callout-note appearance="simple"}
+
+A quick rule of thumb:
+
+If you are repeating the same operation across multiple columns, your data likely wants to be long.
+
+:::
+
+
+## Early warning signs you should pivot
+
+If you see any of the following, pause and consider reshaping:
+
+- `mutate()` or `summarise()` repeated across many columns
+- `across(starts_with(...))` doing heavy lifting
+- `ggplot` code that manually references multiple variables
+- column names encoding values (e.g. sales_2022, sales_2023)
+- copy–paste patterns that differ only by column name
+
+These are shape problems, not syntax problems.
+
+
+## A minimal example
+
+Let's simulate a small, tidy-looking dataset that is actually awkward to work with.
+
+```{r}
+library(dplyr)
+library(tidyr)
+
+df_wide <- data.frame(
+  id = 1:5,
+  glucose_morning = c(110, 98, 130, 105, 120),
+  glucose_evening = c(140, 115, 160, 125, 150)
+)
+
+df_wide
+```
+
+:::{.callout-note appearance="simple"}
+
+At first glance, this looks fine. But now try to:
+
+- compute summaries
+- make a single plot
+- compare morning vs evening values
+
+:::
+
+
+Everything becomes more complicated than necessary.
+
+
+## Pivot once, simplify everything
+
+A single `pivot_longer()` changes the workflow completely.
+
+```{r}
+df_long <- df_wide |>
+  pivot_longer(
+    cols = starts_with("glucose"),
+    names_to = "time",
+    values_to = "glucose"
+  )
+
+df_long
+```
+
+Now each row is a measurement, not a column variant.
+
+
+> See the payoff immediately
+
+### Summaries become simpler
+
+```{r}
+df_long |>
+  group_by(time) |>
+  summarise(
+    n = n(),
+    mean_glucose = mean(glucose)
+  )
+```
+
+### Plots become trivial
+
+```{r}
+#| fig-width: 4
+#| fig-height: 3
+#| fig-align: center
+
+library(ggplot2)
+
+ggplot(df_long, aes(x = time, y = glucose)) +
+  geom_boxplot() +
+  labs(
+    title = "Glucose levels by time of day",
+    x = NULL,
+    y = "Glucose"
+  ) +
+  theme_minimal()
+```
+
+- No manual aesthetics
+- No duplicated code
+- No workarounds
+
+
+> When not to pivot
+
+Not everything should be long.
+
+:::{.callout-note appearance="simple"}
+
+Avoid pivoting when:
+
+- columns represent different concepts (e.g. age vs height)
+- you are producing final reporting tables
+- identifiers would be duplicated unnecessarily
+
+:::
+
+Pivoting is a tool, not a rule.
+
+
+## Making this a habit
+
+Before adding complexity, ask:
+- Am I repeating the same logic across columns?
+- Am I fighting ggplot instead of feeding it clean data?
+- Are column names doing the job rows should be doing?
+
+If the answer is *"yes"*, try reshaping early.
+
+
+:::{.callout-note appearance="simple"}
+
+In short
+
+- Many messy workflows start with data in the wrong shape
+- Shape problems masquerade as logic problems
+- One early pivot can remove dozens of lines of code
+- Decide structure early, then move on
+
+:::
+
+This is not about writing more code.
+It's about writing less.
+
+
+## Industry update (short note)
+
+Posit has opened a private beta of an AI assistant embedded directly in `RStudio.`
+If you're curious to try it, you can join the waiting list here:
+
+👉 <https://posit.co/products/enterprise/ai/>
+
+
+:::{.callout-tip}
+
+If you want to stay up to date with the latest events and posts from the Rome R Users Group, follow us here:
+
+👉 <https://www.meetup.com/rome-r-users-group/>
+
+:::

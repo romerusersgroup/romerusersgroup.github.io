@@ -1,5 +1,5 @@
 ---
-title: "R-Hacks | One-Line Sanity Checks After Every Transformation"
+title: "One-Line Sanity Checks After Every Transformation"
 subtitle: "Small habits that catch data bugs early"
 description: "R-Hacks N.5"
 author: "Federica Gazzelloni"
