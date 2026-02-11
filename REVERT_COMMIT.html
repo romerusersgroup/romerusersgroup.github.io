@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Each post focuses on a small, practical task you can apply immediately—whether you’re cleaning data, visualising results, automating a workflow, or debugging a stubborn function. Think of it as a growing toolbox designed to make your R workflow faster, smoother, and more effective.">
 
-<title>R-Hacks – Rome R-Users Group</title>
+<title>revert_commit – Rome R-Users Group</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,29 +23,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../images/logos/RUsers_transparent.png" rel="icon" type="image/png">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
-<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ce18f8c10f8d73d1419e482b0ab78abc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./images/logos/RUsers_transparent.png" rel="icon" type="image/png">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ce18f8c10f8d73d1419e482b0ab78abc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,35 +71,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id="></script>
 
 <script type="text/plain" cookie-consent="tracking">
@@ -132,65 +100,30 @@ cookieconsent.run({
   
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="R-Hacks – Rome R-Users Group">
-<meta property="og:description" content="Each post focuses on a small, practical task you can apply immediately—whether you’re cleaning data, visualising results, automating a workflow, or debugging a stubborn function. Think of it as a growing toolbox designed to make your R workflow faster, smoother, and more effective.">
-<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/r-hacks.png">
+<meta property="og:title" content="Rome R-Users Group">
+<meta property="og:description" content="Online Learning Resources for Rome R Users Group">
 <meta property="og:site_name" content="Rome R-Users Group">
 <meta property="og:locale" content="en_US">
-<meta property="og:image:height" content="236">
-<meta property="og:image:width" content="1417">
-<meta name="twitter:title" content="R-Hacks – Rome R-Users Group">
-<meta name="twitter:description" content="Each post focuses on a small, practical task you can apply immediately—whether you’re cleaning data, visualising results, automating a workflow, or debugging a stubborn function. Think of it as a growing toolbox designed to make your R workflow faster, smoother, and more effective.">
-<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/r-hacks.png">
+<meta name="twitter:title" content="Rome R-Users Group">
+<meta name="twitter:description" content="Online Learning Resources for Rome R Users Group">
 <meta name="twitter:creator" content="@rladiesrome">
-<meta name="twitter:image-height" content="236">
-<meta name="twitter:image-width" content="1417">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content">
-    <img src="../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content">
+    <img src="./images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Rome R-Users Group</span>
     </a>
   </div>
@@ -201,23 +134,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../content/events/index.html"> 
+    <a class="nav-link" href="./content/events/index.html"> 
 <span class="menu-text">Events</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../content/rhacks/index.html" aria-current="page"> 
+    <a class="nav-link" href="./content/rhacks/index.html"> 
 <span class="menu-text">R-Hacks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../content/resources/index.html"> 
+    <a class="nav-link" href="./content/resources/index.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../content/news/index.html"> 
+    <a class="nav-link" href="./content/news/index.html"> 
 <span class="menu-text">News</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -226,11 +159,11 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
         <li>
-    <a class="dropdown-item" href="../../about/organizers.html">
+    <a class="dropdown-item" href="./about/organizers.html">
  <span class="dropdown-text">Organizers</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../about/sponsors.html">
+    <a class="dropdown-item" href="./about/sponsors.html">
  <span class="dropdown-text">Sponsor</span></a>
   </li>  
     </ul>
@@ -252,277 +185,22 @@ window.Quarto = {
 </div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">R-Hacks</h1>
-            <p class="subtitle lead">Collection of concise, ready-to-use R tips, tricks, and code snippets.</p>
-                  <div>
-        <div class="description">
-          Each post focuses on a small, practical task you can apply immediately—whether you’re cleaning data, visualising results, automating a workflow, or debugging a stubborn function. Think of it as a growing toolbox designed to make your R workflow faster, smoother, and more effective.
-        </div>
-      </div>
-                </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="ZGF0YS13cmFuZ2xpbmc=">data-wrangling <span class="quarto-category-count">(4)</span></div><div class="category" data-category="ZGVidWdnaW5n">debugging <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZnVuY3Rpb25z">functions <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R2VvSlNPTg==">GeoJSON <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2dwbG90">ggplot <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Z2d0ZXh0">ggtext <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWFwcw==">maps <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c2Y=">sf <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGlkeXI=">tidyr <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d29ya2Zsb3dz">workflows <span class="quarto-category-count">(2)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
 
-
-<p><img src="r-hacks.png" class="img-fluid"></p>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
-<p>R-Hacks specialises in short, focused examples that solve a concrete problem. No long tutorials, no heavy theory—just the exact piece of code you need right now. From quick ggplot adjustments to clever data wrangling patterns, each snippet is built to be copied, adapted, and used immediately in your own analysis.</p>
-<p>Beyond simple tricks, the blog highlights efficient ways of thinking about data. You’ll find micro-workflows that combine tidyverse tools, reproducible visualisation techniques, and small utilities that make routine tasks easier. Every post aims to help you write cleaner, faster, and more robust R code by adopting sensible, modern practices.</p>
-<p><code>R-Hacks</code> is powered by the <code>Rome R Users Group</code> community. We collect clever ideas, handy functions, and small daily discoveries shared during meetups or projects. The goal is to create a living library of high-impact examples that reflect what people actually use in their analysis—not theoretical snippets, but real solutions to real problems.</p>
-</section>
-<section id="section-1" class="level2">
-<h2 class="anchored" data-anchor-id="section-1"></h2>
+<p>Reverting commit 9c46debf34f29489a9e7643954aa39af8230fb64</p>
+<p>This commit reverts the repository to commit 094a36109625c3fa867185fb2cf3297643eb7ecd.</p>
 
 
 
-</section>
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="ZGF0YS13cmFuZ2xpbmclMkN3b3JrZmxvd3MlMkN0aWR5cg==" data-listing-date-sort="1770508800000" data-listing-file-modified-sort="1770812486668" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="534">
-<div class="thumbnail"><a href="../../content/rhacks/posts/06-02082026/index.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/06-02082026/images/image-1.png" alt="ChatGPT generated image"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/rhacks/posts/06-02082026/index.html" class="no-external">When to Pivot: Spotting Data Shape Problems Early</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../../content/rhacks/posts/06-02082026/index.html" class="no-external">A small structural decision that simplifies everything downstream</a>
-</div>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YS13cmFuZ2xpbmc='); return false;">data-wrangling</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('d29ya2Zsb3dz'); return false;">workflows</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('dGlkeXI='); return false;">tidyr</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/rhacks/posts/06-02082026/index.html" class="no-external">
-<p>R-Hacks N.6</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/rhacks/posts/06-02082026/index.html" class="no-external">
-<div class="listing-date">
-Feb 8, 2026
-</div>
-<div class="listing-author">
-Federica Gazzelloni
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="ZGF0YS13cmFuZ2xpbmclMkNkZWJ1Z2dpbmclMkN3b3JrZmxvd3M=" data-listing-date-sort="1769990400000" data-listing-file-modified-sort="1770812486666" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="769">
-<div class="thumbnail"><a href="../../content/rhacks/posts/05-02022026/index.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/05-02022026/images/image-1.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/rhacks/posts/05-02022026/index.html" class="no-external">One-Line Sanity Checks After Every Transformation</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../../content/rhacks/posts/05-02022026/index.html" class="no-external">Small habits that catch data bugs early</a>
-</div>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YS13cmFuZ2xpbmc='); return false;">data-wrangling</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZGVidWdnaW5n'); return false;">debugging</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('d29ya2Zsb3dz'); return false;">workflows</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/rhacks/posts/05-02022026/index.html" class="no-external">
-<p>R-Hacks N.5</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/rhacks/posts/05-02022026/index.html" class="no-external">
-<div class="listing-date">
-Feb 2, 2026
-</div>
-<div class="listing-author">
-Federica Gazzelloni
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="ZGF0YS13cmFuZ2xpbmclMkNmdW5jdGlvbnM=" data-listing-date-sort="1769126400000" data-listing-file-modified-sort="1770812486664" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="771">
-<div class="thumbnail"><a href="../../content/rhacks/posts/04-01232026/index.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/04-01232026/image1.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/rhacks/posts/04-01232026/index.html" class="no-external">Showing Top &amp; Bottom values in one clear visualization</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../../content/rhacks/posts/04-01232026/index.html" class="no-external">A simple pattern to compare extremes of a distribution</a>
-</div>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YS13cmFuZ2xpbmc='); return false;">data-wrangling</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZnVuY3Rpb25z'); return false;">functions</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/rhacks/posts/04-01232026/index.html" class="no-external">
-<p>R-Hacks N.4</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/rhacks/posts/04-01232026/index.html" class="no-external">
-<div class="listing-date">
-Jan 23, 2026
-</div>
-<div class="listing-author">
-Lucio Colonna
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="ZGF0YS13cmFuZ2xpbmclMkNmdW5jdGlvbnM=" data-listing-date-sort="1768262400000" data-listing-file-modified-sort="1770812486663" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="896">
-<div class="thumbnail"><a href="../../content/rhacks/posts/03-01132026/index.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/03-01132026/images/image-1.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/rhacks/posts/03-01132026/index.html" class="no-external">Compare multiple dataframes before binding them together</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../../content/rhacks/posts/03-01132026/index.html" class="no-external">A lightweight R Hack to check structural compatibility across many dataframes</a>
-</div>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YS13cmFuZ2xpbmc='); return false;">data-wrangling</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZnVuY3Rpb25z'); return false;">functions</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/rhacks/posts/03-01132026/index.html" class="no-external">
-<p>R-Hacks N.3</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/rhacks/posts/03-01132026/index.html" class="no-external">
-<div class="listing-date">
-Jan 13, 2026
-</div>
-<div class="listing-author">
-Lucio Colonna
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="R2VvSlNPTiUyQ2dncGxvdCUyQ3NmJTJDbWFwcw==" data-listing-date-sort="1764892800000" data-listing-file-modified-sort="1770812486662" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="683">
-<div class="thumbnail"><a href="../../content/rhacks/posts/02-12052025/index.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/02-12052025/index_files/figure-html/unnamed-chunk-3-1.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/rhacks/posts/02-12052025/index.html" class="no-external">R Hack – Getting started with maps in R using GeoJSON and library sf</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../../content/rhacks/posts/02-12052025/index.html" class="no-external">A simple workflow to load and plot maps in R</a>
-</div>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('R2VvSlNPTg=='); return false;">GeoJSON</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z2dwbG90'); return false;">ggplot</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('c2Y='); return false;">sf</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('bWFwcw=='); return false;">maps</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/rhacks/posts/02-12052025/index.html" class="no-external">
-<p>R-Hacks N.2</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/rhacks/posts/02-12052025/index.html" class="no-external">
-<div class="listing-date">
-Dec 5, 2025
-</div>
-<div class="listing-author">
-Lucio Colonna
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="Z2d0ZXh0JTJDZ2dwbG90" data-listing-date-sort="1763510400000" data-listing-file-modified-sort="1770812486661" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="888">
-<div class="thumbnail"><a href="../../content/rhacks/posts/01-11282025/index.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/01-11282025/images/image-1.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../../content/rhacks/posts/01-11282025/index.html" class="no-external">How to Add Images to ggplot Axes Using <code>ggtext::element_markdown()</code></a>
-</h3>
-<div class="listing-subtitle">
-<a href="../../content/rhacks/posts/01-11282025/index.html" class="no-external">A practical guide for adding logos, icons, and flags to your plots</a>
-</div>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z2d0ZXh0'); return false;">ggtext</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Z2dwbG90'); return false;">ggplot</div>
-
-</div>
-<div class="delink listing-description"><a href="../../content/rhacks/posts/01-11282025/index.html" class="no-external">
-<p>R-Hacks N.1</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../../content/rhacks/posts/01-11282025/index.html" class="no-external">
-<div class="listing-date">
-Nov 19, 2025
-</div>
-<div class="listing-author">
-Lucio Colonna
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -932,11 +610,11 @@ Lucio Colonna
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright © 2025 Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://github.com/Fgazzelloni">Federica Gazzelloni</a><br>Powered by: Quarto &amp; GitHub Pages | <a href="../../LICENSE.html">MIT License</a>.</p>
+<p>Copyright © 2025 Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://github.com/Fgazzelloni">Federica Gazzelloni</a><br>Powered by: Quarto &amp; GitHub Pages | <a href="./LICENSE.html">MIT License</a>.</p>
 </div>   
     <div class="nav-footer-center">
 
-<div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/REVERT_COMMIT.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -958,7 +636,7 @@ Lucio Colonna
     </a>
   </li>  
     <li class="nav-item compact">
-    <a class="nav-link" href="../../index.xml">
+    <a class="nav-link" href="./index.xml">
       <i class="bi bi-rss" role="img">
 </i> 
     </a>
@@ -971,5 +649,5 @@ Lucio Colonna
 
 
 
-<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
