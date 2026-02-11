@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.27">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Lucio Colonna">
 <meta name="dcterms.date" content="2025-11-19">
 <meta name="description" content="R-Hacks N.1">
+
 <title>How to Add Images to ggplot Axes Using ggtext::element_markdown() – Rome R-Users Group</title>
 <style>
 code{white-space: pre-wrap;}
@@ -57,6 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
@@ -74,10 +78,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-8001c2e1f85531b6432cdb718d58219b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../../../../site_libs/bootstrap/bootstrap-ce18f8c10f8d73d1419e482b0ab78abc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -103,13 +108,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id="></script><script type="text/plain" cookie-consent="tracking">
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id="></script>
+
+<script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '', { 'anonymize_ip': true});
-</script><script type="text/javascript" charset="UTF-8">
+</script>
+
+<script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({
   "notice_banner_type":"headline",
@@ -124,7 +134,11 @@ cookieconsent.run({
 "language":"en"
   });
 });
-</script><style>html{ scroll-behavior: smooth; }</style>
+</script> 
+  
+<style>html{ scroll-behavior: smooth; }</style>
+
+
 <link rel="stylesheet" href="../../../../styles.css">
 <meta property="og:title" content="How to Add Images to ggplot Axes Using ggtext::element_markdown() – Rome R-Users Group">
 <meta property="og:description" content="R-Hacks N.1">
@@ -141,13 +155,18 @@ cookieconsent.run({
 <meta name="twitter:image-width" content="934">
 <meta name="twitter:card" content="summary_large_image">
 </head>
+
 <body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content"><img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content"></a>
+    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content">
+    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content">
+    </a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Rome R-Users Group</span>
     </a>
@@ -158,7 +177,7 @@ cookieconsent.run({
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
@@ -182,8 +201,8 @@ cookieconsent.run({
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">About</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">
-<li>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
     <a class="dropdown-item" href="../../../../about/organizers.html">
  <span class="dropdown-text">Organizers</span></a>
   </li>  
@@ -192,49 +211,53 @@ cookieconsent.run({
  <span class="dropdown-text">Sponsor</span></a>
   </li>  
     </ul>
-</li>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.meetup.com/pro/r-user-groups/"> <i class="bi bi-globe" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="mailto:romerusersgroup@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav><div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden">
-<i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden"><i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
 <p>Alert! Free tutorials available!</p>
-</div>
-<i class="bi bi-x-lg quarto-announcement-action"></i>
-</div>
-</header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
-  <li>
-<a href="#exploratory-data-analysis-workflow" id="toc-exploratory-data-analysis-workflow" class="nav-link" data-scroll-target="#exploratory-data-analysis-workflow">Exploratory Data Analysis Workflow</a>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
+  <li><a href="#exploratory-data-analysis-workflow" id="toc-exploratory-data-analysis-workflow" class="nav-link" data-scroll-target="#exploratory-data-analysis-workflow">Exploratory Data Analysis Workflow</a>
   <ul class="collapse">
-<li><a href="#step-0-start-from-a-basic-dataframe" id="toc-step-0-start-from-a-basic-dataframe" class="nav-link" data-scroll-target="#step-0-start-from-a-basic-dataframe">Step 0: Start from a basic dataframe</a></li>
+  <li><a href="#step-0-start-from-a-basic-dataframe" id="toc-step-0-start-from-a-basic-dataframe" class="nav-link" data-scroll-target="#step-0-start-from-a-basic-dataframe">Step 0: Start from a basic dataframe</a></li>
   <li><a href="#step-1-choose-the-images-you-want-to-display-png-recommended" id="toc-step-1-choose-the-images-you-want-to-display-png-recommended" class="nav-link" data-scroll-target="#step-1-choose-the-images-you-want-to-display-png-recommended">Step 1: Choose the images you want to display (PNG recommended)</a></li>
   <li><a href="#step-2-add-a-column-with-html-tags" id="toc-step-2-add-a-column-with-html-tags" class="nav-link" data-scroll-target="#step-2-add-a-column-with-html-tags">Step 2: Add a column with HTML <img> tags</a></li>
   <li><a href="#step-3-plot-your-data" id="toc-step-3-plot-your-data" class="nav-link" data-scroll-target="#step-3-plot-your-data">Step 3: Plot your data!</a></li>
   <li><a href="#to-recap" id="toc-to-recap" class="nav-link" data-scroll-target="#to-recap">To Recap</a></li>
+  </ul></li>
   </ul>
-</li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/01-11282025/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/01-11282025/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">How to Add Images to ggplot Axes Using <code>ggtext::element_markdown()</code>
-</h1>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">How to Add Images to ggplot Axes Using <code>ggtext::element_markdown()</code></h1>
 <p class="subtitle lead">A practical guide for adding logos, icons, and flags to your plots</p>
   <div class="quarto-categories">
     <div class="quarto-category">ggtext</div>
@@ -270,31 +293,40 @@ cookieconsent.run({
   
 
 
-</header><section id="section" class="level2"><h2 class="anchored" data-anchor-id="section"></h2>
+</header>
+
+
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
 <p><em>This tip is based on a full <strong>Kaggle notebook</strong>, where this technique is applied in a complete <strong>Exploratory Data Analysis (EDA)</strong>: 🔗 <a href="https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos" class="uri">https://www.kaggle.com/code/lcolon/football-2023-2024-eda-and-pa-with-logos</a></em></p>
 <blockquote class="blockquote">
 <p><strong>Have you ever needed to show logos, icons, or flags directly on the axes of your ggplot charts?</strong></p>
 </blockquote>
-<p>You can do this using the <code><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown()</a></code> function from the <strong>{ggtext}</strong> package!</p>
-<p><code><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown()</a></code> is a function that tells <code>ggplot</code> to treat labels as HTML instead of plain text. It must be used in the <code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code> section of your ggplot code.</p>
+<p>You can do this using the <code>element_markdown()</code> function from the <strong>{ggtext}</strong> package!</p>
+<p><code>element_markdown()</code> is a function that tells <code>ggplot</code> to treat labels as HTML instead of plain text. It must be used in the <code>theme()</code> section of your ggplot code.</p>
 <p>The chart below shows an example where league logos appear directly on the x-axis. It displays the total number of goals scored in the major <strong>European football leagues during the 2023/2024 season</strong>:</p>
 <center>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/image-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>European football leagues 2023/2024</figcaption></figure>
+<figure class="figure">
+<p><img src="images/image-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>European football leagues 2023/2024</figcaption>
+</figure>
 </div>
 </center>
-</section><section id="exploratory-data-analysis-workflow" class="level2"><h2 class="anchored" data-anchor-id="exploratory-data-analysis-workflow">Exploratory Data Analysis Workflow</h2>
+</section>
+<section id="exploratory-data-analysis-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-data-analysis-workflow">Exploratory Data Analysis Workflow</h2>
 <p>Here is a short, practical guide showing how to recreate this plot.</p>
-<section id="step-0-start-from-a-basic-dataframe" class="level3"><h3 class="anchored" data-anchor-id="step-0-start-from-a-basic-dataframe">Step 0: Start from a basic dataframe</h3>
+<section id="step-0-start-from-a-basic-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="step-0-start-from-a-basic-dataframe">Step 0: Start from a basic dataframe</h3>
 <p>In most real situations you will already have a dataframe to work with. Here is the one used in this example:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  league <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Premier League"</span>, <span class="st">"La Liga"</span>, </span>
-<span>             <span class="st">"Serie A"</span>, <span class="st">"Bundesliga"</span>, <span class="st">"Ligue 1"</span><span class="op">)</span>,</span>
-<span>  goals  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1197</span>, <span class="fl">977</span>, <span class="fl">968</span>, <span class="fl">960</span>, <span class="fl">804</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">df</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">league =</span> <span class="fu">c</span>(<span class="st">"Premier League"</span>, <span class="st">"La Liga"</span>, </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Serie A"</span>, <span class="st">"Bundesliga"</span>, <span class="st">"Ligue 1"</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">goals  =</span> <span class="fu">c</span>(<span class="dv">1197</span>, <span class="dv">977</span>, <span class="dv">968</span>, <span class="dv">960</span>, <span class="dv">804</span>))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          league goals
 1 Premier League  1197
@@ -304,29 +336,33 @@ cookieconsent.run({
 5        Ligue 1   804</code></pre>
 </div>
 </div>
-</section><section id="step-1-choose-the-images-you-want-to-display-png-recommended" class="level3"><h3 class="anchored" data-anchor-id="step-1-choose-the-images-you-want-to-display-png-recommended">Step 1: Choose the images you want to display (PNG recommended)</h3>
+</section>
+<section id="step-1-choose-the-images-you-want-to-display-png-recommended" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-choose-the-images-you-want-to-display-png-recommended">Step 1: Choose the images you want to display (PNG recommended)</h3>
 <p>First decide which images you want to show on your <code>ggplot</code> axis. In this example I am using online image <strong>URLs</strong> (including links from <strong>Wikimedia</strong>), but you can use any source that provides a direct image URL, such as files hosted on <strong>GitHub repos</strong> or any public static hosting service. Just make sure the image format is supported — typically <strong>PNG</strong> or <strong>JPG/JPEG</strong>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Define image URLs as variables</span></span>
-<span><span class="va">premier_url</span> <span class="op">&lt;-</span> <span class="st">"https://upload.wikimedia.org/wikipedia/it/6/6d/Premier_League_Logo_2016.png"</span></span>
-<span><span class="va">laliga_url</span> <span class="op">&lt;-</span> <span class="st">"https://upload.wikimedia.org/wikipedia/it/9/9b/LFP_La_Liga.png"</span></span>
-<span><span class="va">seriea_url</span> <span class="op">&lt;-</span> <span class="st">"https://www.fifplay.com/img/public/serie-a-logo.png"</span></span>
-<span><span class="va">bundes_url</span> <span class="op">&lt;-</span> <span class="st">"https://www.fifplay.com/img/public/bundesliga-logo.png"</span></span>
-<span><span class="va">ligue1_url</span> <span class="op">&lt;-</span> <span class="st">"https://upload.wikimedia.org/wikipedia/commons/a/a0/Ligue_1_2024_Logo.png"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define image URLs as variables</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>premier_url <span class="ot">&lt;-</span> <span class="st">"https://upload.wikimedia.org/wikipedia/it/6/6d/Premier_League_Logo_2016.png"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>laliga_url <span class="ot">&lt;-</span> <span class="st">"https://upload.wikimedia.org/wikipedia/it/9/9b/LFP_La_Liga.png"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>seriea_url <span class="ot">&lt;-</span> <span class="st">"https://www.fifplay.com/img/public/serie-a-logo.png"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>bundes_url <span class="ot">&lt;-</span> <span class="st">"https://www.fifplay.com/img/public/bundesliga-logo.png"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>ligue1_url <span class="ot">&lt;-</span> <span class="st">"https://upload.wikimedia.org/wikipedia/commons/a/a0/Ligue_1_2024_Logo.png"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="step-2-add-a-column-with-html-tags" class="level3"><h3 class="anchored" data-anchor-id="step-2-add-a-column-with-html-tags">Step 2: Add a column with HTML <img> tags</h3>
+</section>
+<section id="step-2-add-a-column-with-html-tags" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-add-a-column-with-html-tags">Step 2: Add a column with HTML <img> tags</h3>
 <p>In order to display images on the axis, each image URL must be <strong>wrapped inside an HTML <img> tag</strong>. This simply means that the URL cannot appear alone — it must be placed <em>inside</em> the structure:</p>
 <pre><code>`&lt;img src= + image_url + width='45'/&gt;`</code></pre>
 <p><em>Please note that in this example I use width=‘45’ just as a reference size, but you can choose any value depending on how big you want the image to appear in your plot.</em></p>
 <p>Let’s add the column to the df:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span><span class="op">$</span><span class="va">logo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"&lt;img src='"</span>, <span class="va">premier_url</span>, <span class="st">"' width='45'/&gt;"</span><span class="op">)</span>, </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"&lt;img src='"</span>, <span class="va">laliga_url</span>, <span class="st">"' width='45'/&gt;"</span><span class="op">)</span>, </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"&lt;img src='"</span>, <span class="va">seriea_url</span>, <span class="st">"' width='45'/&gt;"</span><span class="op">)</span>, </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"&lt;img src='"</span>, <span class="va">bundes_url</span>, <span class="st">"' width='45'/&gt;"</span><span class="op">)</span>, </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"&lt;img src='"</span>, <span class="va">ligue1_url</span>, <span class="st">"' width='45'/&gt;"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>logo <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">"&lt;img src='"</span>, premier_url, <span class="st">"' width='45'/&gt;"</span>), </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">"&lt;img src='"</span>, laliga_url, <span class="st">"' width='45'/&gt;"</span>), </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">"&lt;img src='"</span>, seriea_url, <span class="st">"' width='45'/&gt;"</span>), </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">"&lt;img src='"</span>, bundes_url, <span class="st">"' width='45'/&gt;"</span>), </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">"&lt;img src='"</span>, ligue1_url, <span class="st">"' width='45'/&gt;"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>At this point, the dataframe should look like this:</p>
 <p><br></p>
@@ -336,11 +372,13 @@ cookieconsent.run({
 <col style="width: 17%">
 <col style="width: 64%">
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th>league</th>
 <th>goals</th>
 <th>logo</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td>Premier League</td>
@@ -370,42 +408,46 @@ cookieconsent.run({
 </tbody>
 </table>
 <p><br></p>
-</section><section id="step-3-plot-your-data" class="level3"><h3 class="anchored" data-anchor-id="step-3-plot-your-data">Step 3: Plot your data!</h3>
+</section>
+<section id="step-3-plot-your-data" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-plot-your-data">Step 3: Plot your data!</h3>
 <p>Now that the dataframe contains a column of HTML <img> tags, we can use it directly on the x-axis. The key part is here:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">theme</span><span class="op">(</span> axis.text.x <span class="op">=</span> <span class="fu">element_markdown</span><span class="op">(</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>( <span class="at">axis.text.x =</span> <span class="fu">element_markdown</span>() )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><code><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown()</a></code> function is what allows <code>ggplot</code> to interpret the HTML in your axis labels. Without it, <code>ggplot</code> would show the literal string <code>&lt;img src='...'&gt;</code> as plain text. With it, the <code>&lt;img&gt;</code> tags are rendered as actual images.</p>
+<p><code>element_markdown()</code> function is what allows <code>ggplot</code> to interpret the HTML in your axis labels. Without it, <code>ggplot</code> would show the literal string <code>&lt;img src='...'&gt;</code> as plain text. With it, the <code>&lt;img&gt;</code> tags are rendered as actual images.</p>
 <p>Here is the full plotting code:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/ggtext/">ggtext</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtext)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>repr.plot.width <span class="op">=</span> <span class="fl">6</span>, </span>
-<span>        repr.plot.height <span class="op">=</span> <span class="fl">7</span>, </span>
-<span>        warn <span class="op">=</span> <span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">6</span>, </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">repr.plot.height =</span> <span class="dv">7</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">warn =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, </span>
-<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">logo</span>, <span class="op">-</span><span class="va">goals</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">goals</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"forestgreen"</span>, width <span class="op">=</span> <span class="fl">.8</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">goals</span><span class="op">)</span>, vjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span>, size <span class="op">=</span> <span class="fl">4.5</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"\nFootball stats 2023/2024"</span>,</span>
-<span>       subtitle <span class="op">=</span> <span class="st">"Total Goals scored in each League\n"</span> <span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="fl">14</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="co"># HTML rendering happens here!!</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">ggtext</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown</a></span><span class="op">(</span><span class="op">)</span>, </span>
-<span>         axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, </span>
-<span>         panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, </span>
-<span>         axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, </span>
-<span>         plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>, </span>
-<span>                                   colour <span class="op">=</span> <span class="st">"blue"</span>, hjust <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>, </span>
-<span>         plot.subtitle<span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
-<span>         <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(logo, <span class="sc">-</span>goals), <span class="at">y =</span> goals)) <span class="sc">+</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"forestgreen"</span>, <span class="at">width =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> goals), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">Football stats 2023/2024"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Total Goals scored in each League</span><span class="sc">\n</span><span class="st">"</span> ) <span class="sc">+</span> </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># HTML rendering happens here!!</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> ggtext<span class="sc">::</span><span class="fu">element_markdown</span>(), </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">axis.title =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">colour =</span> <span class="st">"blue"</span>, <span class="at">hjust =</span> <span class="fl">0.05</span>), </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">plot.subtitle=</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.05</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>         )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>With <code><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown()</a></code> applied to <code>axis.text.x</code>, ggplot correctly displays the league logos instead of plain text labels, as seen in the barchart above.</p>
-</section><section id="to-recap" class="level3"><h3 class="anchored" data-anchor-id="to-recap">To Recap</h3>
+<p>With <code>element_markdown()</code> applied to <code>axis.text.x</code>, ggplot correctly displays the league logos instead of plain text labels, as seen in the barchart above.</p>
+</section>
+<section id="to-recap" class="level3">
+<h3 class="anchored" data-anchor-id="to-recap">To Recap</h3>
 <ol type="1">
 <li>Prepare your dataframe (existing or new)</li>
 <li>Choose your images (PNG recommended) and store their URLs</li>
@@ -415,7 +457,7 @@ cookieconsent.run({
 <li>Enable HTML rendering in plot theme using:</li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">axis.text.x</span> <span class="op">=</span> <span class="fu">ggtext</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>axis.text.x <span class="ot">=</span> ggtext<span class="sc">::</span><span class="fu">element_markdown</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Thanks for reading!</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -435,7 +477,11 @@ Tip
 </div>
 
 
-</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -841,7 +887,8 @@ Tip
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p>Copyright © 2025 Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://github.com/Fgazzelloni">Federica Gazzelloni</a><br>Powered by: Quarto &amp; GitHub Pages | <a href="../../../../LICENSE.html">MIT License</a>.</p>
 </div>   
@@ -850,7 +897,7 @@ Tip
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/01-11282025/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-<li class="nav-item compact">
+    <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/RomeRUsersGroup">
       <i class="bi bi-github" role="img">
 </i> 
@@ -875,9 +922,11 @@ Tip
     </a>
   </li>  
 </ul>
-</div>
+    </div>
   </div>
 </footer>
+
+
 
 
 <script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>
