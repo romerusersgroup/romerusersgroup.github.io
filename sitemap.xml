@@ -1,83 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://romerusersgroup.github.io/about.html</loc>
+    <lastmod>2025-10-14T07:39:45.513Z</lastmod>
+  </url>
+  <url>
     <loc>https://romerusersgroup.github.io/about/sponsors.html</loc>
-    <lastmod>2026-02-11T12:21:26.629Z</lastmod>
-  </url>
-  <url>
-    <loc>https://romerusersgroup.github.io/content/news/index.html</loc>
-    <lastmod>2026-02-11T12:21:26.629Z</lastmod>
-  </url>
-  <url>
-    <loc>https://romerusersgroup.github.io/content/events/posts/01102025_inperson.html</loc>
-    <lastmod>2026-02-11T12:21:26.629Z</lastmod>
-  </url>
-  <url>
-    <loc>https://romerusersgroup.github.io/content/events/posts/01062025_inperson.html</loc>
-    <lastmod>2026-02-11T12:21:26.629Z</lastmod>
+    <lastmod>2025-06-25T16:07:57.329Z</lastmod>
   </url>
   <url>
     <loc>https://romerusersgroup.github.io/content/events/index.html</loc>
-    <lastmod>2026-02-11T12:21:26.629Z</lastmod>
+    <lastmod>2026-02-08T18:17:31.063Z</lastmod>
   </url>
   <url>
-    <loc>https://romerusersgroup.github.io/content/rhacks/posts/04-01232026/index.html</loc>
-    <lastmod>2026-02-11T12:21:26.664Z</lastmod>
-  </url>
-  <url>
-    <loc>https://romerusersgroup.github.io/content/rhacks/posts/03-01132026/index.html</loc>
-    <lastmod>2026-02-11T12:21:26.663Z</lastmod>
-  </url>
-  <url>
-    <loc>https://romerusersgroup.github.io/content/rhacks/posts/05-02022026/index.html</loc>
-    <lastmod>2026-02-11T12:21:26.666Z</lastmod>
-  </url>
-  <url>
-    <loc>https://romerusersgroup.github.io/about.html</loc>
-    <lastmod>2026-02-11T12:21:26.622Z</lastmod>
-  </url>
-  <url>
-    <loc>https://romerusersgroup.github.io/index.html</loc>
-    <lastmod>2026-02-11T12:21:26.675Z</lastmod>
-  </url>
-  <url>
-    <loc>https://romerusersgroup.github.io/LICENSE.html</loc>
-    <lastmod>2026-02-11T12:21:26.550Z</lastmod>
-  </url>
-  <url>
-    <loc>https://romerusersgroup.github.io/REVERT_COMMIT.html</loc>
-    <lastmod>2026-02-11T12:21:26.550Z</lastmod>
-  </url>
-  <url>
-    <loc>https://romerusersgroup.github.io/content/rhacks/index.html</loc>
-    <lastmod>2026-02-11T12:21:26.661Z</lastmod>
-  </url>
-  <url>
-    <loc>https://romerusersgroup.github.io/content/rhacks/posts/06-02082026/index.html</loc>
-    <lastmod>2026-02-11T12:21:26.668Z</lastmod>
-  </url>
-  <url>
-    <loc>https://romerusersgroup.github.io/content/rhacks/posts/02-12052025/index.html</loc>
-    <lastmod>2026-02-11T12:21:26.662Z</lastmod>
-  </url>
-  <url>
-    <loc>https://romerusersgroup.github.io/content/rhacks/posts/01-11282025/index.html</loc>
-    <lastmod>2026-02-11T12:21:26.661Z</lastmod>
-  </url>
-  <url>
-    <loc>https://romerusersgroup.github.io/content/events/posts/27112025_jakubnowosad.html</loc>
-    <lastmod>2026-02-11T12:21:26.629Z</lastmod>
+    <loc>https://romerusersgroup.github.io/content/events/posts/01102025_inperson.html</loc>
+    <lastmod>2025-11-30T19:21:09.175Z</lastmod>
   </url>
   <url>
     <loc>https://romerusersgroup.github.io/content/events/posts/01052025.html</loc>
-    <lastmod>2026-02-11T12:21:26.629Z</lastmod>
+    <lastmod>2025-11-30T19:20:38.341Z</lastmod>
+  </url>
+  <url>
+    <loc>https://romerusersgroup.github.io/content/rhacks/posts/01-11282025/index.html</loc>
+    <lastmod>2026-01-24T02:17:10.871Z</lastmod>
+  </url>
+  <url>
+    <loc>https://romerusersgroup.github.io/content/rhacks/posts/02-12052025/index.html</loc>
+    <lastmod>2026-01-24T02:17:00.606Z</lastmod>
+  </url>
+  <url>
+    <loc>https://romerusersgroup.github.io/content/rhacks/posts/03-01132026/index.html</loc>
+    <lastmod>2026-01-24T02:19:30.988Z</lastmod>
+  </url>
+  <url>
+    <loc>https://romerusersgroup.github.io/content/news/index.html</loc>
+    <lastmod>2026-02-11T11:38:03.419Z</lastmod>
+  </url>
+  <url>
+    <loc>https://romerusersgroup.github.io/LICENSE.html</loc>
+    <lastmod>2025-06-24T23:18:48.938Z</lastmod>
   </url>
   <url>
     <loc>https://romerusersgroup.github.io/content/resources/index.html</loc>
-    <lastmod>2026-02-11T12:21:26.661Z</lastmod>
+    <lastmod>2025-09-02T21:08:39.157Z</lastmod>
+  </url>
+  <url>
+    <loc>https://romerusersgroup.github.io/content/rhacks/posts/05-02022026/index.html</loc>
+    <lastmod>2026-02-08T17:51:03.591Z</lastmod>
+  </url>
+  <url>
+    <loc>https://romerusersgroup.github.io/content/rhacks/posts/06-02082026/index.html</loc>
+    <lastmod>2026-02-08T18:06:09.518Z</lastmod>
+  </url>
+  <url>
+    <loc>https://romerusersgroup.github.io/content/rhacks/posts/04-01232026/index.html</loc>
+    <lastmod>2026-02-08T17:50:52.160Z</lastmod>
+  </url>
+  <url>
+    <loc>https://romerusersgroup.github.io/content/rhacks/index.html</loc>
+    <lastmod>2025-11-20T18:51:07.088Z</lastmod>
+  </url>
+  <url>
+    <loc>https://romerusersgroup.github.io/content/events/posts/01062025_inperson.html</loc>
+    <lastmod>2025-11-30T19:20:45.038Z</lastmod>
+  </url>
+  <url>
+    <loc>https://romerusersgroup.github.io/content/events/posts/27112025_jakubnowosad.html</loc>
+    <lastmod>2025-12-04T20:02:55.798Z</lastmod>
   </url>
   <url>
     <loc>https://romerusersgroup.github.io/about/organizers.html</loc>
-    <lastmod>2026-02-11T12:21:26.622Z</lastmod>
+    <lastmod>2025-10-12T08:51:52.716Z</lastmod>
+  </url>
+  <url>
+    <loc>https://romerusersgroup.github.io/index.html</loc>
+    <lastmod>2026-02-08T18:11:45.467Z</lastmod>
   </url>
 </urlset>
