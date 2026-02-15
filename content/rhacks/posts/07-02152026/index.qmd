@@ -1,0 +1,227 @@
+---
+title: "R-Hacks | Stop Copy–Pasting. Start Iterating."
+subtitle: "Making a loop (when and how to do it properly)"
+description: "R-Hacks N.7"
+author: "Federica Gazzelloni"
+date: "15 February 2026"
+images: "images/image-1.png"
+series: R-Hacks
+categories:
+  - workflows
+  - iteration
+  - programming
+layout: single
+toc-location: left
+toc: true
+code-overflow: wrap
+execute:
+  warning: false
+  message: false
+---
+
+<br>
+
+![Stop Copy–Pasting. Start Iterating (ChatGPT generated image)](images/image-1.png){width="80%" fig-align="center" fig-alt="ChatGPT generated image"}
+
+**After fixing structure (N.3), adding sanity checks (N.5), and reshaping data properly (N.6), the next natural step is iteration over clean data.**
+
+In R, [**the problem is rarely how to write a loop**]{.underline}. The real question is:
+
+> **When should you loop — and when should you not?**
+
+This R-Hack focuses on replacing duplication with controlled iteration.
+
+## The Core Problem: Duplication
+
+You see code like this:
+
+```{r}
+#| eval: false
+
+mean(df$var1)
+mean(df$var2)
+mean(df$var3)
+```
+
+Or:
+
+```{r}
+#| eval: false
+plot(df$year_2020)
+plot(df$year_2021)
+plot(df$year_2022)
+```
+
+**It works.**
+
+::: {.callout-note appearance="simple"}
+-   But it does not scale
+-   It is fragile
+-   And it invites mistakes
+:::
+
+> [**Duplication is your signal that iteration may be appropriate.**]{.underline}
+
+### Step 1 – Simulate Example Data
+
+```{r}
+set.seed(123)
+
+df <- data.frame(
+  var1 = rnorm(100),
+  var2 = rnorm(100, mean = 2),
+  var3 = rnorm(100, mean = 4)
+)
+
+head(df)
+```
+
+### Step 2 – A Clean for Loop
+
+Instead of repeating logic, define the variables once.
+
+```{r}
+vars <- names(df)
+
+for (v in vars) {
+  print(mean(df[[v]], na.rm = TRUE))
+}
+
+```
+
+This loop:
+
+-   iterates over column names
+-   extracts values using \[\[ \]\]
+-   avoids copy–paste
+-   keeps logic consistent
+
+Simple and readable.
+
+### Step 3 – Storing Results Properly (Preallocation)
+
+If you need results for later use, preallocate.
+
+```{r}
+results <- numeric(length(vars))
+
+for (i in seq_along(vars)) {
+  results[i] <- mean(df[[vars[i]]], na.rm = TRUE)
+}
+
+results
+```
+
+Why preallocate?
+
+-   avoids growing objects inside the loop
+-   keeps structure explicit
+-   improves clarity and performance
+
+> [**Preallocation is not about micro-optimisation. It is about good structure.**]{.underline}
+
+### Step 4 – Plotting Without Copy–Paste
+
+❌ The Copy–Paste Pattern
+
+```{r}
+#| layout-ncol: 3
+plot(df$var1)
+plot(df$var2)
+plot(df$var3)
+```
+
+This works — but does not scale.
+
+✅ Base R Loop
+
+```{r}
+#| layout-ncol: 3
+for (v in vars) {
+  hist(df[[v]],
+       main = paste("Histogram of", v),
+       col = "steelblue")
+}
+```
+
+This produces one histogram per variable.
+
+✅ ggplot2 Loop (Important Detail)
+
+```{r}
+#| layout-ncol: 3
+library(ggplot2)
+
+for (v in vars) {
+  p <- ggplot(df, aes(x = .data[[v]])) +
+    geom_histogram(fill = "steelblue", bins = 20) +
+    labs(title = paste("Histogram of", v)) +
+    theme_minimal()
+
+  print(p)
+}
+```
+
+::: {.callout-note appearance="simple"}
+**🔎 Important**: `print(p)` is required inside loops. Without it, nothing is displayed.
+:::
+
+This is a subtle but crucial detail many users miss.
+
+## When Not to Loop
+
+If you are looping over columns, pause. Ask:
+
+> [**Should the data be long instead?**]{.underline}
+
+For example [(see R-Hacks N.6)](https://romerusersgroup.github.io/content/rhacks/posts/06-02082026/):
+
+```{r}
+#| fig-width: 8
+#| fig-height: 4
+library(tidyr)
+
+df_long <- df |>
+  pivot_longer(
+    cols = everything(),
+    names_to = "variable",
+    values_to = "value"
+  )
+
+ggplot(df_long, aes(value)) +
+  geom_histogram(bins = 20, fill = "steelblue") +
+  facet_wrap(~ variable, scales = "free") +
+  theme_minimal()
+```
+
+Sometimes reshaping simplifies everything more than iterating.
+
+## Editorial Stance
+
+Loops are not bad. Copy–paste is worse.
+
+The goal is not to write clever code. The goal is to write less duplicated code.
+
+Iteration becomes powerful when:
+
+-   structure is clean
+-   shape is correct
+-   logic is stable
+
+::: {.callout-note appearance="“simple”"}
+In Short
+
+-   Duplication is a signal
+-   Replace repetition with controlled iteration
+-   Preallocate when storing results
+-   Remember print() inside ggplot loops
+-   If you are looping across columns, reconsider the data shape
+:::
+
+Iteration is not about complexity. It is about discipline.
+
+::: callout-tip
+If you want to stay up to date with the latest events and posts from the Rome R Users Group:
+
+👉 https://www.meetup.com/rome-r-users-group/
+:::

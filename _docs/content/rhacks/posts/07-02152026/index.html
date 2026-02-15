@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="Lucio Colonna">
-<meta name="dcterms.date" content="2026-01-13">
-<meta name="description" content="R-Hacks N.3">
-<title>Compare multiple dataframes before binding them together – Rome R-Users Group</title>
+<meta name="author" content="Federica Gazzelloni">
+<meta name="dcterms.date" content="2026-02-15">
+<meta name="description" content="R-Hacks N.7">
+<title>R-Hacks | Stop Copy–Pasting. Start Iterating. – Rome R-Users Group</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -126,19 +126,21 @@ cookieconsent.run({
 });
 </script><style>html{ scroll-behavior: smooth; }</style>
 <link rel="stylesheet" href="../../../../styles.css">
-<meta property="og:title" content="Compare multiple dataframes before binding them together – Rome R-Users Group">
-<meta property="og:description" content="R-Hacks N.3">
-<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/03-01132026/images/image-1.png">
+<meta property="og:title" content="R-Hacks | Stop Copy–Pasting. Start Iterating. – Rome R-Users Group">
+<meta property="og:description" content="R-Hacks N.7">
+<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/07-02152026/images/image-1.png">
 <meta property="og:site_name" content="Rome R-Users Group">
 <meta property="og:locale" content="en_US">
-<meta property="og:image:height" content="774">
-<meta property="og:image:width" content="1054">
-<meta name="twitter:title" content="Compare multiple dataframes before binding them together – Rome R-Users Group">
-<meta name="twitter:description" content="R-Hacks N.3">
-<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/03-01132026/images/image-1.png">
+<meta property="og:image:alt" content="ChatGPT generated image">
+<meta property="og:image:height" content="972">
+<meta property="og:image:width" content="1505">
+<meta name="twitter:title" content="R-Hacks | Stop Copy–Pasting. Start Iterating. – Rome R-Users Group">
+<meta name="twitter:description" content="R-Hacks N.7">
+<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/07-02152026/images/image-1.png">
 <meta name="twitter:creator" content="@rladiesrome">
-<meta name="twitter:image-height" content="774">
-<meta name="twitter:image-width" content="1054">
+<meta name="twitter:image:alt" content="ChatGPT generated image">
+<meta name="twitter:image-height" content="972">
+<meta name="twitter:image-width" content="1505">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body class="floating nav-fixed quarto-light">
@@ -215,30 +217,36 @@ cookieconsent.run({
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
-  <li><a href="#step-0-create-example-dataframes-to-compare" id="toc-step-0-create-example-dataframes-to-compare" class="nav-link" data-scroll-target="#step-0-create-example-dataframes-to-compare">Step 0 – Create example dataframes to compare</a></li>
-  <li><a href="#step-1-define-the-helper-function-to-compare-dataframes" id="toc-step-1-define-the-helper-function-to-compare-dataframes" class="nav-link" data-scroll-target="#step-1-define-the-helper-function-to-compare-dataframes">Step 1 – Define the helper function to compare dataframes</a></li>
-  <li><a href="#step-2-apply-the-function" id="toc-step-2-apply-the-function" class="nav-link" data-scroll-target="#step-2-apply-the-function">Step 2 – Apply the function</a></li>
-  <li><a href="#step-3-interpret-the-results" id="toc-step-3-interpret-the-results" class="nav-link" data-scroll-target="#step-3-interpret-the-results">Step 3 – Interpret the results</a></li>
-  <li><a href="#in-short" id="toc-in-short" class="nav-link" data-scroll-target="#in-short">In short</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/03-01132026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<li>
+<a href="#the-core-problem-duplication" id="toc-the-core-problem-duplication" class="nav-link active" data-scroll-target="#the-core-problem-duplication">The Core Problem: Duplication</a>
+  <ul class="collapse">
+<li><a href="#step-1-simulate-example-data" id="toc-step-1-simulate-example-data" class="nav-link" data-scroll-target="#step-1-simulate-example-data">Step 1 – Simulate Example Data</a></li>
+  <li><a href="#step-2-a-clean-for-loop" id="toc-step-2-a-clean-for-loop" class="nav-link" data-scroll-target="#step-2-a-clean-for-loop">Step 2 – A Clean for Loop</a></li>
+  <li><a href="#step-3-storing-results-properly-preallocation" id="toc-step-3-storing-results-properly-preallocation" class="nav-link" data-scroll-target="#step-3-storing-results-properly-preallocation">Step 3 – Storing Results Properly (Preallocation)</a></li>
+  <li><a href="#step-4-plotting-without-copypaste" id="toc-step-4-plotting-without-copypaste" class="nav-link" data-scroll-target="#step-4-plotting-without-copypaste">Step 4 – Plotting Without Copy–Paste</a></li>
+  </ul>
+</li>
+  <li><a href="#when-not-to-loop" id="toc-when-not-to-loop" class="nav-link" data-scroll-target="#when-not-to-loop">When Not to Loop</a></li>
+  <li><a href="#editorial-stance" id="toc-editorial-stance" class="nav-link" data-scroll-target="#editorial-stance">Editorial Stance</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/07-02152026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Compare multiple dataframes before binding them together</h1>
-<p class="subtitle lead">A lightweight R Hack to check structural compatibility across many dataframes</p>
+<h1 class="title">R-Hacks | Stop Copy–Pasting. Start Iterating.</h1>
+<p class="subtitle lead">Making a loop (when and how to do it properly)</p>
   <div class="quarto-categories">
-    <div class="quarto-category">data-wrangling</div>
-    <div class="quarto-category">functions</div>
+    <div class="quarto-category">workflows</div>
+    <div class="quarto-category">iteration</div>
+    <div class="quarto-category">programming</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    R-Hacks N.3
+    R-Hacks N.7
   </div>
 </div>
 
@@ -248,14 +256,14 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Lucio Colonna </p>
+             <p>Federica Gazzelloni </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 13, 2026</p>
+      <p class="date">February 15, 2026</p>
     </div>
   </div>
   
@@ -264,146 +272,246 @@ cookieconsent.run({
   
 
 
-</header><section id="section" class="level2"><h2 class="anchored" data-anchor-id="section"></h2>
+</header><p><br></p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/image-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Create your function</figcaption></figure>
+<figure class="figure"><p><img src="images/image-1.png" class="img-fluid figure-img" style="width:80.0%" alt="ChatGPT generated image"></p>
+<figcaption>Stop Copy–Pasting. Start Iterating (ChatGPT generated image)</figcaption></figure>
 </div>
-<p><em>This hack is based on my Cyclistic analysis on Kaggle (see Chapter <strong>6.3</strong>):</em><br>
-🔗 <a href="https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r" class="uri">https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r</a></p>
-<p>When working with multiple datasets a common question is:</p>
+<p><strong>After fixing structure (N.3), adding sanity checks (N.5), and reshaping data properly (N.6), the next natural step is iteration over clean data.</strong></p>
+<p>In R, <u><strong>the problem is rarely how to write a loop</strong></u>. The real question is:</p>
 <blockquote class="blockquote">
-<p><em>Are these dataframes really compatible before I bind them together?</em></p>
+<p><strong>When should you loop — and when should you not?</strong></p>
 </blockquote>
-<p>People who work with data typically rely on a mix of approaches to answer this:<br>
-manual checks (<code><a href="https://rdrr.io/r/base/names.html">names()</a></code>, <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code>), warnings raised by <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows()</a></code>, or dedicated helpers such as <code>compare_df_cols()</code> from the <strong><code>janitor</code></strong> package — which is a solid and widely used solution for comparing column structures.</p>
-<p>However, in practice, it is often useful to have a <strong>single, lightweight helper</strong> that provides a <strong>compact and readable overview</strong> across <em>many dataframes at once</em>, without additional dependencies or verbose output.</p>
-<p>This R Hack introduces a small <strong>custom helper function</strong> designed with that goal in mind, that you can easily reuse and adapt to your own workflows.</p>
-<p>It performs an <strong>omnicomprehensive structural comparison</strong> before merging, checking column <strong>count</strong>, column <strong>names</strong>, and column <strong>classes</strong> across all pairs of dataframes:</p>
+<p>This R-Hack focuses on replacing duplication with controlled iteration.</p>
+<section id="the-core-problem-duplication" class="level2"><h2 class="anchored" data-anchor-id="the-core-problem-duplication">The Core Problem: Duplication</h2>
+<p>You see code like this:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#   comparison   same_ncol same_names same_class</span></span>
-<span><span class="co">#   &lt;chr&gt;        &lt;lgl&gt;     &lt;lgl&gt;      &lt;lgl&gt;     </span></span>
-<span><span class="co"># 1 df_a vs df_b TRUE      TRUE       TRUE      </span></span>
-<span><span class="co"># 2 df_a vs df_c TRUE      TRUE       FALSE     </span></span>
-<span><span class="co"># 3 df_a vs df_d TRUE      FALSE      FALSE     </span></span>
-<span><span class="co"># 4 df_b vs df_c TRUE      TRUE       FALSE     </span></span>
-<span><span class="co"># 5 df_b vs df_d TRUE      FALSE      FALSE     </span></span>
-<span><span class="co"># 6 df_c vs df_d TRUE      FALSE      FALSE     </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">var1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">var2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">var3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<hr></section><section id="step-0-create-example-dataframes-to-compare" class="level2"><h2 class="anchored" data-anchor-id="step-0-create-example-dataframes-to-compare">Step 0 – Create example dataframes to compare</h2>
-<p>To make the idea concrete, let’s create four small dataframes. Some of them match perfectly, others don’t:</p>
+<p>Or:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span>
-<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">df_b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  id <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span>,</span>
-<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">50</span>, <span class="fl">60</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Same columns, but different class for `value`</span></span>
-<span><span class="va">df_c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  id <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">9</span>,</span>
-<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">70</span>, <span class="fl">80</span>, <span class="fl">90</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Different column name</span></span>
-<span><span class="va">df_d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  id <span class="op">=</span> <span class="fl">10</span><span class="op">:</span><span class="fl">12</span>,</span>
-<span>  amount <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">200</span>, <span class="fl">300</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">year_2020</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">year_2021</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">year_2022</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="step-1-define-the-helper-function-to-compare-dataframes" class="level2"><h2 class="anchored" data-anchor-id="step-1-define-the-helper-function-to-compare-dataframes">Step 1 – Define the helper function to compare dataframes</h2>
-<p>The function below takes a vector of dataframe names (as character strings) and compares each unique pair only once. It works in three simple steps:</p>
-<ol type="1">
-<li><p>It loads the dataframes from the environment using their <strong>names</strong></p></li>
-<li><p>It iterates over all unique dataframe combinations, ensuring that each pair is checked only once (for example, it compares <code>df_a</code> vs <code>df_b</code>, but not <code>df_b</code> vs <code>df_a)</code>)</p></li>
-<li>
-<p>For each pair, it performs the following <strong>structural checks</strong> and stores the results in a tibble:</p>
+<p><strong>It works.</strong></p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
 <ul>
-<li>whether the <strong>number of columns</strong> matches</li>
-<li>whether column <strong>names</strong> are identical</li>
-<li>whether column <strong>classes</strong> are the same</li>
+<li>But it does not scale</li>
+<li>It is fragile</li>
+<li>And it invites mistakes</li>
 </ul>
-</li>
-</ol>
-<p>The function then binds all tibbles together into a single <strong>summary table</strong>, making it easy to spot structural mismatches before combining the data.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="va">compare_dataframes</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df_names</span><span class="op">)</span> <span class="op">{</span></span>
-<span></span>
-<span>  <span class="co"># Get DF names</span></span>
-<span>  <span class="va">df_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">df_names</span>, <span class="va">get</span><span class="op">)</span></span>
-<span></span>
-<span>  <span class="co"># Initialize an empty list</span></span>
-<span>  <span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span>  <span class="co"># Selection of DF pairs to be compared</span></span>
-<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="op">(</span><span class="va">i</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span></span>
-<span>      <span class="va">results</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>        comparison <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">df_names</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="st">"vs"</span>, <span class="va">df_names</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">)</span>,</span>
-<span></span>
-<span>        <span class="co"># check number of columns</span></span>
-<span>        same_ncol  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,</span>
-<span></span>
-<span>        <span class="co"># check columns name</span></span>
-<span>        same_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>,</span>
-<span></span>
-<span>        <span class="co"># check columns class</span></span>
-<span>        same_class <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span></span>
-<span>          <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>, <span class="va">class</span><span class="op">)</span>,</span>
-<span>          <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span>, <span class="va">class</span><span class="op">)</span></span>
-<span>        <span class="op">)</span></span>
-<span>      <span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span>  <span class="op">}</span></span>
-<span></span>
-<span>  <span class="va">comparison_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">comparison_result</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="step-2-apply-the-function" class="level2"><h2 class="anchored" data-anchor-id="step-2-apply-the-function">Step 2 – Apply the function</h2>
-<p>Provide the dataframe names as a character vector and invoke the function:</p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><u><strong>Duplication is your signal that iteration may be appropriate.</strong></u></p>
+</blockquote>
+<section id="step-1-simulate-example-data" class="level3"><h3 class="anchored" data-anchor-id="step-1-simulate-example-data">Step 1 – Simulate Example Data</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"df_a"</span>, <span class="st">"df_b"</span>, <span class="st">"df_c"</span>, <span class="st">"df_d"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">comparison_result</span> <span class="op">&lt;-</span> <span class="fu">compare_dataframes</span><span class="op">(</span><span class="va">df_names</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  var1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>,</span>
+<span>  var2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, mean <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
+<span>  var3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, mean <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">comparison_result</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-  comparison   same_ncol same_names same_class
-  &lt;chr&gt;        &lt;lgl&gt;     &lt;lgl&gt;      &lt;lgl&gt;     
-1 df_a vs df_b TRUE      TRUE       TRUE      
-2 df_a vs df_c TRUE      TRUE       FALSE     
-3 df_a vs df_d TRUE      FALSE      FALSE     
-4 df_b vs df_c TRUE      TRUE       FALSE     
-5 df_b vs df_d TRUE      FALSE      FALSE     
-6 df_c vs df_d TRUE      FALSE      FALSE     </code></pre>
+<pre><code>         var1     var2     var3
+1 -0.56047565 1.289593 6.198810
+2 -0.23017749 2.256884 5.312413
+3  1.55870831 1.753308 3.734855
+4  0.07050839 1.652457 4.543194
+5  0.12928774 1.048381 3.585660
+6  1.71506499 1.954972 3.523753</code></pre>
 </div>
 </div>
-</section><section id="step-3-interpret-the-results" class="level2"><h2 class="anchored" data-anchor-id="step-3-interpret-the-results">Step 3 – Interpret the results</h2>
-<p>The output table makes structural mismatches immediately visible:</p>
-<p><code>same_ncol</code> → different number of columns</p>
-<p><code>same_names</code> → different column names</p>
-<p><code>same_class</code> → same columns, but different data types</p>
-<p>In the example provided:</p>
-<p><code>df_a</code> vs <code>df_b</code> → all <strong>TRUE</strong> (safe to bind)</p>
-<p><code>df_a</code> vs <code>df_c</code> → same_class = <strong>FALSE</strong></p>
-<p><code>df_a</code> vs <code>df_d</code> → same_names = <strong>FALSE</strong></p>
-<p>This helps you catch issues before they turn into silent bugs.</p>
-</section><section id="in-short" class="level2"><h2 class="anchored" data-anchor-id="in-short">In short</h2>
+</section><section id="step-2-a-clean-for-loop" class="level3"><h3 class="anchored" data-anchor-id="step-2-a-clean-for-loop">Step 2 – A Clean for Loop</h3>
+<p>Instead of repeating logic, define the variables once.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">v</span> <span class="kw">in</span> <span class="va">vars</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">df</span><span class="op">[[</span><span class="va">v</span><span class="op">]</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.09040591
+[1] 1.892453
+[1] 4.120465</code></pre>
+</div>
+</div>
+<p>This loop:</p>
 <ul>
-<li><p>There is no single “official” way to compare many dataframes at once</p></li>
-<li><p>Helpers like <code>compare_df_cols()</code> from <a href="https://github.com/sfirke/janitor">janitor</a> are excellent for column-level inspection</p></li>
-<li><p>This custom helper function provides a clear, compact overview before stacking or merging data</p></li>
-<li><p>Think of it as a pre-flight checklist before combining your data</p></li>
+<li>iterates over column names</li>
+<li>extracts values using [[ ]]</li>
+<li>avoids copy–paste</li>
+<li>keeps logic consistent</li>
 </ul>
-<p><br></p>
+<p>Simple and readable.</p>
+</section><section id="step-3-storing-results-properly-preallocation" class="level3"><h3 class="anchored" data-anchor-id="step-3-storing-results-properly-preallocation">Step 3 – Storing Results Properly (Preallocation)</h3>
+<p>If you need results for later use, preallocate.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">vars</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">vars</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">results</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">df</span><span class="op">[[</span><span class="va">vars</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">results</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.09040591 1.89245320 4.12046511</code></pre>
+</div>
+</div>
+<p>Why preallocate?</p>
+<ul>
+<li>avoids growing objects inside the loop</li>
+<li>keeps structure explicit</li>
+<li>improves clarity and performance</li>
+</ul>
+<blockquote class="blockquote">
+<p><u><strong>Preallocation is not about micro-optimisation. It is about good structure.</strong></u></p>
+</blockquote>
+</section><section id="step-4-plotting-without-copypaste" class="level3"><h3 class="anchored" data-anchor-id="step-4-plotting-without-copypaste">Step 4 – Plotting Without Copy–Paste</h3>
+<p>❌ The Copy–Paste Pattern</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">var1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">var2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">var3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="index_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="index_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p>This works — but does not scale.</p>
+<p>✅ Base R Loop</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">v</span> <span class="kw">in</span> <span class="va">vars</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">df</span><span class="op">[[</span><span class="va">v</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>       main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Histogram of"</span>, <span class="va">v</span><span class="op">)</span>,</span>
+<span>       col <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="index_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="index_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p>This produces one histogram per variable.</p>
+<p>✅ ggplot2 Loop (Important Detail)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">v</span> <span class="kw">in</span> <span class="va">vars</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">.data</span><span class="op">[[</span><span class="va">v</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"steelblue"</span>, bins <span class="op">=</span> <span class="fl">20</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Histogram of"</span>, <span class="va">v</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="index_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="index_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>🔎 Important</strong>: <code>print(p)</code> is required inside loops. Without it, nothing is displayed.</p>
+</div>
+</div>
+</div>
+<p>This is a subtle but crucial detail many users miss.</p>
+</section></section><section id="when-not-to-loop" class="level2"><h2 class="anchored" data-anchor-id="when-not-to-loop">When Not to Loop</h2>
+<p>If you are looping over columns, pause. Ask:</p>
+<blockquote class="blockquote">
+<p><u><strong>Should the data be long instead?</strong></u></p>
+</blockquote>
+<p>For example <a href="https://romerusersgroup.github.io/content/rhacks/posts/06-02082026/">(see R-Hacks N.6)</a>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df_long</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span></span>
+<span>    cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    names_to <span class="op">=</span> <span class="st">"variable"</span>,</span>
+<span>    values_to <span class="op">=</span> <span class="st">"value"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">20</span>, fill <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">variable</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Sometimes reshaping simplifies everything more than iterating.</p>
+</section><section id="editorial-stance" class="level2"><h2 class="anchored" data-anchor-id="editorial-stance">Editorial Stance</h2>
+<p>Loops are not bad. Copy–paste is worse.</p>
+<p>The goal is not to write clever code. The goal is to write less duplicated code.</p>
+<p>Iteration becomes powerful when:</p>
+<ul>
+<li>structure is clean</li>
+<li>shape is correct</li>
+<li>logic is stable</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In Short</p>
+<ul>
+<li>Duplication is a signal</li>
+<li>Replace repetition with controlled iteration</li>
+<li>Preallocate when storing results</li>
+<li>Remember print() inside ggplot loops</li>
+<li>If you are looping across columns, reconsider the data shape</li>
+</ul>
+</div>
+</div>
+<p>Iteration is not about complexity. It is about discipline.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -414,10 +522,8 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you want to stay up to date with the latest events from the <strong>Rome R Users Group</strong>, click here:</p>
-<p>👉 <a href="https://www.meetup.com/rome-r-users-group/" class="uri">https://www.meetup.com/rome-r-users-group/</a></p>
-<p>And if you are curious, the full Kaggle notebook used for this tip is available here:</p>
-<p>🔗 <a href="https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r" class="uri">https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r</a></p>
+<p>If you want to stay up to date with the latest events and posts from the Rome R Users Group:</p>
+<p>👉 https://www.meetup.com/rome-r-users-group/</p>
 </div>
 </div>
 
@@ -834,7 +940,7 @@ Tip
 </div>   
     <div class="nav-footer-center">
 
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/03-01132026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/07-02152026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
 <li class="nav-item compact">
