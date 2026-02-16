@@ -7,5 +7,5 @@
 docs/
 project-tree.R
 /.quarto/
-
+former-organizers.qmd
 **/*.quarto_ipynb
