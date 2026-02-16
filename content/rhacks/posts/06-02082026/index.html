@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Federica Gazzelloni">
 <meta name="dcterms.date" content="2026-02-08">
 <meta name="description" content="R-Hacks N.6">
+
 <title>When to Pivot: Spotting Data Shape Problems Early – Rome R-Users Group</title>
 <style>
 code{white-space: pre-wrap;}
@@ -57,6 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
@@ -77,7 +81,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-8001c2e1f85531b6432cdb718d58219b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../../../../site_libs/bootstrap/bootstrap-86199a96b140e2f39dcbb9539747684a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -103,13 +108,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id="></script><script type="text/plain" cookie-consent="tracking">
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id="></script>
+
+<script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '', { 'anonymize_ip': true});
-</script><script type="text/javascript" charset="UTF-8">
+</script>
+
+<script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({
   "notice_banner_type":"headline",
@@ -124,7 +134,11 @@ cookieconsent.run({
 "language":"en"
   });
 });
-</script><style>html{ scroll-behavior: smooth; }</style>
+</script> 
+  
+<style>html{ scroll-behavior: smooth; }</style>
+
+
 <link rel="stylesheet" href="../../../../styles.css">
 <meta property="og:title" content="When to Pivot: Spotting Data Shape Problems Early – Rome R-Users Group">
 <meta property="og:description" content="R-Hacks N.6">
@@ -143,13 +157,18 @@ cookieconsent.run({
 <meta name="twitter:image-width" content="1366">
 <meta name="twitter:card" content="summary_large_image">
 </head>
+
 <body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content"><img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content"></a>
+    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content">
+    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content">
+    </a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Rome R-Users Group</span>
     </a>
@@ -160,7 +179,7 @@ cookieconsent.run({
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
@@ -184,8 +203,8 @@ cookieconsent.run({
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">About</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">
-<li>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
     <a class="dropdown-item" href="../../../../about/organizers.html">
  <span class="dropdown-text">Organizers</span></a>
   </li>  
@@ -194,55 +213,54 @@ cookieconsent.run({
  <span class="dropdown-text">Sponsor</span></a>
   </li>  
     </ul>
-</li>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.meetup.com/pro/r-user-groups/"> <i class="bi bi-globe" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item">
-    <a class="nav-link" href="https://rladiesrome.org"> 
-<span class="menu-text"><img src="../../../../images/logos/RLadiesRome_logo_transparent.png" class="img-fluid" width="70" alt="R-Ladies Rome"><strong>R-Ladies Rome</strong></span></a>
-  </li>  
-</ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="mailto:romerusersgroup@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav><div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden">
-<i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden"><i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
 <p>Alert! Free tutorials available!</p>
-</div>
-<i class="bi bi-x-lg quarto-announcement-action"></i>
-</div>
-</header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#if-your-code-feels-harder-than-it-should-be-the-problem-is-often-not-your-logic." id="toc-if-your-code-feels-harder-than-it-should-be-the-problem-is-often-not-your-logic." class="nav-link active" data-scroll-target="#if-your-code-feels-harder-than-it-should-be-the-problem-is-often-not-your-logic.">If your code feels harder than it should be, the problem is often not your logic.</a></li>
+  <li><a href="#if-your-code-feels-harder-than-it-should-be-the-problem-is-often-not-your-logic." id="toc-if-your-code-feels-harder-than-it-should-be-the-problem-is-often-not-your-logic." class="nav-link active" data-scroll-target="#if-your-code-feels-harder-than-it-should-be-the-problem-is-often-not-your-logic.">If your code feels harder than it should be, the problem is often not your logic.</a></li>
   <li><a href="#what-data-shape-means-in-practice" id="toc-what-data-shape-means-in-practice" class="nav-link" data-scroll-target="#what-data-shape-means-in-practice">What <em>“data shape”</em> means (in practice)</a></li>
   <li><a href="#early-warning-signs-you-should-pivot" id="toc-early-warning-signs-you-should-pivot" class="nav-link" data-scroll-target="#early-warning-signs-you-should-pivot">Early warning signs you should pivot</a></li>
   <li><a href="#a-minimal-example" id="toc-a-minimal-example" class="nav-link" data-scroll-target="#a-minimal-example">A minimal example</a></li>
-  <li>
-<a href="#pivot-once-simplify-everything" id="toc-pivot-once-simplify-everything" class="nav-link" data-scroll-target="#pivot-once-simplify-everything">Pivot once, simplify everything</a>
+  <li><a href="#pivot-once-simplify-everything" id="toc-pivot-once-simplify-everything" class="nav-link" data-scroll-target="#pivot-once-simplify-everything">Pivot once, simplify everything</a>
   <ul class="collapse">
-<li><a href="#summaries-become-simpler" id="toc-summaries-become-simpler" class="nav-link" data-scroll-target="#summaries-become-simpler">Summaries become simpler</a></li>
+  <li><a href="#summaries-become-simpler" id="toc-summaries-become-simpler" class="nav-link" data-scroll-target="#summaries-become-simpler">Summaries become simpler</a></li>
   <li><a href="#plots-become-trivial" id="toc-plots-become-trivial" class="nav-link" data-scroll-target="#plots-become-trivial">Plots become trivial</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#making-this-a-habit" id="toc-making-this-a-habit" class="nav-link" data-scroll-target="#making-this-a-habit">Making this a habit</a></li>
   <li><a href="#industry-update-short-note" id="toc-industry-update-short-note" class="nav-link" data-scroll-target="#industry-update-short-note">Industry update (short note)</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/06-02082026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/06-02082026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title">When to Pivot: Spotting Data Shape Problems Early</h1>
 <p class="subtitle lead">A small structural decision that simplifies everything downstream</p>
   <div class="quarto-categories">
@@ -280,17 +298,25 @@ cookieconsent.run({
   
 
 
-</header><p><br></p>
+</header>
+
+
+<p><br></p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/image-1.png" class="img-fluid figure-img" style="width:80.0%" alt="ChatGPT generated image"></p>
-<figcaption>Wide vs long data illustration (ChatGPT generated image)</figcaption></figure>
+<figure class="figure">
+<p><img src="images/image-1.png" class="img-fluid figure-img" style="width:80.0%" alt="ChatGPT generated image"></p>
+<figcaption>Wide vs long data illustration (ChatGPT generated image)</figcaption>
+</figure>
 </div>
-<section id="if-your-code-feels-harder-than-it-should-be-the-problem-is-often-not-your-logic." class="level3"><h3 class="anchored" data-anchor-id="if-your-code-feels-harder-than-it-should-be-the-problem-is-often-not-your-logic.">If your code feels harder than it should be, the problem is often not your logic.</h3>
+<section id="if-your-code-feels-harder-than-it-should-be-the-problem-is-often-not-your-logic." class="level3">
+<h3 class="anchored" data-anchor-id="if-your-code-feels-harder-than-it-should-be-the-problem-is-often-not-your-logic.">If your code feels harder than it should be, the problem is often not your logic.</h3>
 <blockquote class="blockquote">
 <p>It’s the shape of your data.</p>
 </blockquote>
 <p>This R-Hack focuses on a common but under-diagnosed issue: delaying reshaping, then compensating with complex code. Learning to recognise early signals that data should be pivoted can dramatically simplify summaries, plots, and models.</p>
-</section><section id="what-data-shape-means-in-practice" class="level3"><h3 class="anchored" data-anchor-id="what-data-shape-means-in-practice">What <em>“data shape”</em> means (in practice)</h3>
+</section>
+<section id="what-data-shape-means-in-practice" class="level3">
+<h3 class="anchored" data-anchor-id="what-data-shape-means-in-practice">What <em>“data shape”</em> means (in practice)</h3>
 <p>Forget theory. In practice, data shape answers one question:</p>
 <blockquote class="blockquote">
 <p>What is an observation?</p>
@@ -313,32 +339,33 @@ cookieconsent.run({
 </div>
 </div>
 </div>
-</section><section id="early-warning-signs-you-should-pivot" class="level2"><h2 class="anchored" data-anchor-id="early-warning-signs-you-should-pivot">Early warning signs you should pivot</h2>
+</section>
+<section id="early-warning-signs-you-should-pivot" class="level2">
+<h2 class="anchored" data-anchor-id="early-warning-signs-you-should-pivot">Early warning signs you should pivot</h2>
 <p>If you see any of the following, pause and consider reshaping:</p>
 <ul>
-<li>
-<code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> or <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> repeated across many columns</li>
-<li>
-<code>across(starts_with(...))</code> doing heavy lifting</li>
-<li>
-<code>ggplot</code> code that manually references multiple variables</li>
+<li><code>mutate()</code> or <code>summarise()</code> repeated across many columns</li>
+<li><code>across(starts_with(...))</code> doing heavy lifting</li>
+<li><code>ggplot</code> code that manually references multiple variables</li>
 <li>column names encoding values (e.g.&nbsp;sales_2022, sales_2023)</li>
 <li>copy–paste patterns that differ only by column name</li>
 </ul>
 <p>These are shape problems, not syntax problems.</p>
-</section><section id="a-minimal-example" class="level2"><h2 class="anchored" data-anchor-id="a-minimal-example">A minimal example</h2>
+</section>
+<section id="a-minimal-example" class="level2">
+<h2 class="anchored" data-anchor-id="a-minimal-example">A minimal example</h2>
 <p>Let’s simulate a small, tidy-looking dataset that is actually awkward to work with.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">df_wide</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span>
-<span>  glucose_morning <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">110</span>, <span class="fl">98</span>, <span class="fl">130</span>, <span class="fl">105</span>, <span class="fl">120</span><span class="op">)</span>,</span>
-<span>  glucose_evening <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">140</span>, <span class="fl">115</span>, <span class="fl">160</span>, <span class="fl">125</span>, <span class="fl">150</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">df_wide</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>df_wide <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">glucose_morning =</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">98</span>, <span class="dv">130</span>, <span class="dv">105</span>, <span class="dv">120</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">glucose_evening =</span> <span class="fu">c</span>(<span class="dv">140</span>, <span class="dv">115</span>, <span class="dv">160</span>, <span class="dv">125</span>, <span class="dv">150</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df_wide</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id glucose_morning glucose_evening
 1  1             110             140
@@ -364,17 +391,19 @@ cookieconsent.run({
 </div>
 </div>
 <p>Everything becomes more complicated than necessary.</p>
-</section><section id="pivot-once-simplify-everything" class="level2"><h2 class="anchored" data-anchor-id="pivot-once-simplify-everything">Pivot once, simplify everything</h2>
-<p>A single <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> changes the workflow completely.</p>
+</section>
+<section id="pivot-once-simplify-everything" class="level2">
+<h2 class="anchored" data-anchor-id="pivot-once-simplify-everything">Pivot once, simplify everything</h2>
+<p>A single <code>pivot_longer()</code> changes the workflow completely.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_long</span> <span class="op">&lt;-</span> <span class="va">df_wide</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span></span>
-<span>    cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"glucose"</span><span class="op">)</span>,</span>
-<span>    names_to <span class="op">=</span> <span class="st">"time"</span>,</span>
-<span>    values_to <span class="op">=</span> <span class="st">"glucose"</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">df_long</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df_wide <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"glucose"</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"time"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"glucose"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>df_long</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 3
       id time            glucose
@@ -395,14 +424,15 @@ cookieconsent.run({
 <blockquote class="blockquote">
 <p>See the payoff immediately</p>
 </blockquote>
-<section id="summaries-become-simpler" class="level3"><h3 class="anchored" data-anchor-id="summaries-become-simpler">Summaries become simpler</h3>
+<section id="summaries-become-simpler" class="level3">
+<h3 class="anchored" data-anchor-id="summaries-become-simpler">Summaries become simpler</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_long</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">time</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
-<span>    n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>    mean_glucose <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">glucose</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_long <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(time) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_glucose =</span> <span class="fu">mean</span>(glucose)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
   time                n mean_glucose
@@ -411,21 +441,24 @@ cookieconsent.run({
 2 glucose_morning     5         113.</code></pre>
 </div>
 </div>
-</section><section id="plots-become-trivial" class="level3"><h3 class="anchored" data-anchor-id="plots-become-trivial">Plots become trivial</h3>
+</section>
+<section id="plots-become-trivial" class="level3">
+<h3 class="anchored" data-anchor-id="plots-become-trivial">Plots become trivial</h3>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df_long</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">glucose</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
-<span>    title <span class="op">=</span> <span class="st">"Glucose levels by time of day"</span>,</span>
-<span>    x <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>    y <span class="op">=</span> <span class="st">"Glucose"</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_long, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> glucose)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Glucose levels by time of day"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Glucose"</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="384"></p>
 </figure>
 </div>
 </div>
@@ -455,7 +488,10 @@ cookieconsent.run({
 </div>
 </div>
 <p>Pivoting is a tool, not a rule.</p>
-</section></section><section id="making-this-a-habit" class="level2"><h2 class="anchored" data-anchor-id="making-this-a-habit">Making this a habit</h2>
+</section>
+</section>
+<section id="making-this-a-habit" class="level2">
+<h2 class="anchored" data-anchor-id="making-this-a-habit">Making this a habit</h2>
 <p>Before adding complexity, ask: - Am I repeating the same logic across columns? - Am I fighting ggplot instead of feeding it clean data? - Are column names doing the job rows should be doing?</p>
 <p>If the answer is <em>“yes”</em>, try reshaping early.</p>
 <div class="callout callout-style-simple callout-note">
@@ -475,7 +511,9 @@ cookieconsent.run({
 </div>
 </div>
 <p>This is not about writing more code. It’s about writing less.</p>
-</section><section id="industry-update-short-note" class="level2"><h2 class="anchored" data-anchor-id="industry-update-short-note">Industry update (short note)</h2>
+</section>
+<section id="industry-update-short-note" class="level2">
+<h2 class="anchored" data-anchor-id="industry-update-short-note">Industry update (short note)</h2>
 <p>Posit has opened a private beta of an AI assistant embedded directly in <code>RStudio.</code> If you’re curious to try it, you can join the waiting list here:</p>
 <p>👉 <a href="https://posit.co/products/enterprise/ai/" class="uri">https://posit.co/products/enterprise/ai/</a></p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -494,7 +532,10 @@ Tip
 </div>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -900,7 +941,8 @@ Tip
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p>Copyright © 2025 Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://github.com/Fgazzelloni">Federica Gazzelloni</a><br>Powered by: Quarto &amp; GitHub Pages | <a href="../../../../LICENSE.html">MIT License</a>.</p>
 </div>   
@@ -909,7 +951,7 @@ Tip
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/06-02082026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-<li class="nav-item compact">
+    <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/RomeRUsersGroup">
       <i class="bi bi-github" role="img">
 </i> 
@@ -934,9 +976,11 @@ Tip
     </a>
   </li>  
 </ul>
-</div>
+    </div>
   </div>
 </footer>
+
+
 
 
 <script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>
