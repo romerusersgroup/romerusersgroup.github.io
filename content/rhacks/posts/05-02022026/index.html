@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Federica Gazzelloni">
 <meta name="dcterms.date" content="2026-02-02">
 <meta name="description" content="R-Hacks N.5">
-
 <title>One-Line Sanity Checks After Every Transformation – Rome R-Users Group</title>
 <style>
 code{white-space: pre-wrap;}
@@ -60,7 +57,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
@@ -81,8 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-86199a96b140e2f39dcbb9539747684a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../../../site_libs/bootstrap/bootstrap-8001c2e1f85531b6432cdb718d58219b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -108,18 +103,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id="></script>
-
-<script type="text/plain" cookie-consent="tracking">
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id="></script><script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '', { 'anonymize_ip': true});
-</script>
-
-<script type="text/javascript" charset="UTF-8">
+</script><script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({
   "notice_banner_type":"headline",
@@ -134,11 +124,7 @@ cookieconsent.run({
 "language":"en"
   });
 });
-</script> 
-  
-<style>html{ scroll-behavior: smooth; }</style>
-
-
+</script><style>html{ scroll-behavior: smooth; }</style>
 <link rel="stylesheet" href="../../../../styles.css">
 <meta property="og:title" content="One-Line Sanity Checks After Every Transformation – Rome R-Users Group">
 <meta property="og:description" content="R-Hacks N.5">
@@ -155,18 +141,13 @@ cookieconsent.run({
 <meta name="twitter:image-width" content="1467">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-
 <body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content">
-    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content">
-    </a>
+    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content"><img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content"></a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Rome R-Users Group</span>
     </a>
@@ -177,7 +158,7 @@ cookieconsent.run({
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
@@ -201,8 +182,8 @@ cookieconsent.run({
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">About</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
-        <li>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">
+<li>
     <a class="dropdown-item" href="../../../../about/organizers.html">
  <span class="dropdown-text">Organizers</span></a>
   </li>  
@@ -211,52 +192,47 @@ cookieconsent.run({
  <span class="dropdown-text">Sponsor</span></a>
   </li>  
     </ul>
-  </li>
+</li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.meetup.com/pro/r-user-groups/"> <i class="bi bi-globe" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="mailto:romerusersgroup@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-  <div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden"><i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
+    </nav><div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden">
+<i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
 <p>Alert! Free tutorials available!</p>
-</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+</div>
+<i class="bi bi-x-lg quarto-announcement-action"></i>
+</div>
+</header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#why-one-line-checks-matter" id="toc-why-one-line-checks-matter" class="nav-link active" data-scroll-target="#why-one-line-checks-matter">Why One-Line Checks Matter</a>
+<li>
+<a href="#why-one-line-checks-matter" id="toc-why-one-line-checks-matter" class="nav-link active" data-scroll-target="#why-one-line-checks-matter">Why One-Line Checks Matter</a>
   <ul class="collapse">
-  <li><a href="#data-example-diabetes-dataset-before-clustering" id="toc-data-example-diabetes-dataset-before-clustering" class="nav-link" data-scroll-target="#data-example-diabetes-dataset-before-clustering">Data Example: Diabetes Dataset (Before Clustering)</a></li>
+<li><a href="#data-example-diabetes-dataset-before-clustering" id="toc-data-example-diabetes-dataset-before-clustering" class="nav-link" data-scroll-target="#data-example-diabetes-dataset-before-clustering">Data Example: Diabetes Dataset (Before Clustering)</a></li>
   <li><a href="#check-1-did-the-row-count-change-as-expected" id="toc-check-1-did-the-row-count-change-as-expected" class="nav-link" data-scroll-target="#check-1-did-the-row-count-change-as-expected">Check 1 – Did the Row Count Change as Expected?</a></li>
   <li><a href="#check-2-do-key-variables-still-look-reasonable" id="toc-check-2-do-key-variables-still-look-reasonable" class="nav-link" data-scroll-target="#check-2-do-key-variables-still-look-reasonable">Check 2 – Do Key Variables Still Look Reasonable?</a></li>
   <li><a href="#check-3-did-missingness-increase" id="toc-check-3-did-missingness-increase" class="nav-link" data-scroll-target="#check-3-did-missingness-increase">Check 3 – Did Missingness Increase?</a></li>
   <li><a href="#check-4-do-group-sizes-still-make-sense" id="toc-check-4-do-group-sizes-still-make-sense" class="nav-link" data-scroll-target="#check-4-do-group-sizes-still-make-sense">Check 4 – Do Group Sizes Still Make Sense?</a></li>
-  </ul></li>
-  <li><a href="#making-this-a-habit" id="toc-making-this-a-habit" class="nav-link" data-scroll-target="#making-this-a-habit">Making This a Habit</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/05-02022026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</li>
+  <li><a href="#making-this-a-habit" id="toc-making-this-a-habit" class="nav-link" data-scroll-target="#making-this-a-habit">Making This a Habit</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/05-02022026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">One-Line Sanity Checks After Every Transformation</h1>
 <p class="subtitle lead">Small habits that catch data bugs early</p>
   <div class="quarto-categories">
@@ -294,10 +270,7 @@ cookieconsent.run({
   
 
 
-</header>
-
-
-<p><em>This hack is based on <a href="https://rladiesrome.org/">RLadiesRome</a> Tutorial analysis on From Basics to Advanced Health Analytics: Exploring Diabetes Data:</em><br>
+</header><p><em>This hack is based on <a href="https://rladiesrome.org/">RLadiesRome</a> Tutorial analysis on From Basics to Advanced Health Analytics: Exploring Diabetes Data:</em><br>
 🔗 <a href="https://rladiesrome.github.io/Principles-of-data-Analysis-in-R/" class="uri">https://rladiesrome.github.io/Principles-of-data-Analysis-in-R/</a></p>
 <p><br></p>
 <p>When working with data, most <strong>bugs</strong> don’t come from complex models.</p>
@@ -309,9 +282,12 @@ cookieconsent.run({
 <div class="callout-body-container">
 <p>They come from small transformations that quietly change your data in ways you didn’t expect:</p>
 <ul>
-<li><code>filter()</code> that drops too many rows</li>
-<li><code>join()</code> that duplicates observations</li>
-<li><code>mutate()</code> that introduces impossible values</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> that drops too many rows</li>
+<li>
+<code>join()</code> that duplicates observations</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> that introduces impossible values</li>
 </ul>
 </div>
 </div>
@@ -322,20 +298,17 @@ cookieconsent.run({
 </blockquote>
 <p><br></p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/image-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+<figure class="figure"><p><img src="images/image-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
 </figure>
 </div>
 <p>They are quick, cheap, and often enough to catch problems before plots or models hide them.</p>
-<section id="why-one-line-checks-matter" class="level2">
-<h2 class="anchored" data-anchor-id="why-one-line-checks-matter">Why One-Line Checks Matter</h2>
+<section id="why-one-line-checks-matter" class="level2"><h2 class="anchored" data-anchor-id="why-one-line-checks-matter">Why One-Line Checks Matter</h2>
 <p>Transformations are the most fragile part of a data workflow. They change structure, size, and meaning — often without throwing an error.</p>
 <p>The goal here is not defensive programming or heavy validation. It’s about building small, automatic pauses that let you ask:</p>
 <blockquote class="blockquote">
 <p><em>“Does the data still look the way I expect?”</em></p>
 </blockquote>
-<section id="data-example-diabetes-dataset-before-clustering" class="level3">
-<h3 class="anchored" data-anchor-id="data-example-diabetes-dataset-before-clustering">Data Example: Diabetes Dataset (Before Clustering)</h3>
+<section id="data-example-diabetes-dataset-before-clustering" class="level3"><h3 class="anchored" data-anchor-id="data-example-diabetes-dataset-before-clustering">Data Example: Diabetes Dataset (Before Clustering)</h3>
 <p>In the tutorial, the diabetes dataset is cleaned and prepared before moving to k-prototypes clustering.</p>
 <p>At that point, the data typically goes through steps like:</p>
 <ul>
@@ -345,32 +318,32 @@ cookieconsent.run({
 </ul>
 <p>That makes it an ideal place to pause and check assumptions. Let’s simulate a sample dataset similar to the one used in the tutorial:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df_before <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">id       =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">300</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">age      =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">300</span>, <span class="at">mean =</span> <span class="dv">55</span>, <span class="at">sd =</span> <span class="dv">10</span>)),</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">bmi      =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">300</span>, <span class="at">mean =</span> <span class="dv">28</span>, <span class="at">sd =</span> <span class="dv">5</span>), <span class="dv">1</span>),</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">glucose  =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="dv">300</span>, <span class="at">mean =</span> <span class="dv">120</span>, <span class="at">sd =</span> <span class="dv">30</span>)),</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex      =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"Male"</span>), <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">diabetes =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Yes"</span>), <span class="dv">300</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.7</span>, <span class="fl">0.3</span>))</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Introduce realistic missingness (so filtering has an effect)</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>df_before<span class="sc">$</span>bmi[<span class="fu">sample</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(df_before)), <span class="at">size =</span> <span class="dv">20</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>df_before<span class="sc">$</span>glucose[<span class="fu">sample</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(df_before)), <span class="at">size =</span> <span class="dv">15</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df_before)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df_before</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  id       <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">300</span>,</span>
+<span>  age      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">300</span>, mean <span class="op">=</span> <span class="fl">55</span>, sd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  bmi      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">300</span>, mean <span class="op">=</span> <span class="fl">28</span>, sd <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  glucose  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">300</span>, mean <span class="op">=</span> <span class="fl">120</span>, sd <span class="op">=</span> <span class="fl">30</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  sex      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Female"</span>, <span class="st">"Male"</span><span class="op">)</span>, <span class="fl">300</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  diabetes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No"</span>, <span class="st">"Yes"</span><span class="op">)</span>, <span class="fl">300</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Introduce realistic missingness (so filtering has an effect)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">456</span><span class="op">)</span></span>
+<span><span class="va">df_before</span><span class="op">$</span><span class="va">bmi</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df_before</span><span class="op">)</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span><span class="va">df_before</span><span class="op">$</span><span class="va">glucose</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df_before</span><span class="op">)</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">df_before</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 300   6</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_before)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_before</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id age  bmi glucose    sex diabetes
 1  1  49 24.4     152   Male       No
@@ -383,19 +356,19 @@ cookieconsent.run({
 </div>
 <p>After the transformations, we get a new dataframe <code>df_after</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_after <span class="ot">&lt;-</span> df_before <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(glucose), <span class="sc">!</span><span class="fu">is.na</span>(bmi)) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">diabetes =</span> <span class="fu">factor</span>(diabetes, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Yes"</span>))</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df_after)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_after</span> <span class="op">&lt;-</span> <span class="va">df_before</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">glucose</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">bmi</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    diabetes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">diabetes</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No"</span>, <span class="st">"Yes"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 266   6</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_after)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id age  bmi glucose    sex diabetes
 1  1  49 24.4     152   Male       No
@@ -406,17 +379,15 @@ cookieconsent.run({
 6  6  72 29.7     114 Female      Yes</code></pre>
 </div>
 </div>
-</section>
-<section id="check-1-did-the-row-count-change-as-expected" class="level3">
-<h3 class="anchored" data-anchor-id="check-1-did-the-row-count-change-as-expected">Check 1 – Did the Row Count Change as Expected?</h3>
+</section><section id="check-1-did-the-row-count-change-as-expected" class="level3"><h3 class="anchored" data-anchor-id="check-1-did-the-row-count-change-as-expected">Check 1 – Did the Row Count Change as Expected?</h3>
 <p>After any operation that could affect the number of rows, check it explicitly.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># One-line sanity check: did we drop rows as expected?</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_before)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># One-line sanity check: did we drop rows as expected?</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df_before</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 300</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df_after)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 266</code></pre>
 </div>
@@ -439,7 +410,7 @@ cookieconsent.run({
 <p>In this context, a reduction is expected, but it should be understood and intentional.</p>
 <p>Use this after:</p>
 <ul>
-<li><code>filter()</code></li>
+<li><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code></li>
 <li><code>join()</code></li>
 <li><code>subsetting</code></li>
 <li><code>removing duplicates</code></li>
@@ -453,19 +424,17 @@ cookieconsent.run({
 <li>silent data duplication</li>
 </ul>
 <p>If the number changes unexpectedly, stop and investigate. This single check prevents a large class of downstream errors.</p>
-</section>
-<section id="check-2-do-key-variables-still-look-reasonable" class="level3">
-<h3 class="anchored" data-anchor-id="check-2-do-key-variables-still-look-reasonable">Check 2 – Do Key Variables Still Look Reasonable?</h3>
+</section><section id="check-2-do-key-variables-still-look-reasonable" class="level3"><h3 class="anchored" data-anchor-id="check-2-do-key-variables-still-look-reasonable">Check 2 – Do Key Variables Still Look Reasonable?</h3>
 <p>Whenever you create or transform a variable, inspect its range.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_after<span class="sc">$</span>age)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">$</span><span class="va">age</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    32.0    49.0    55.0    55.4    61.0    87.0 </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(df_after<span class="sc">$</span>bmi, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">$</span><span class="va">bmi</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 14.0 40.9</code></pre>
 </div>
@@ -478,12 +447,10 @@ cookieconsent.run({
 <li>transformations that didn’t behave as expected</li>
 </ul>
 <p>These problems are much easier to fix immediately than after modelling.</p>
-</section>
-<section id="check-3-did-missingness-increase" class="level3">
-<h3 class="anchored" data-anchor-id="check-3-did-missingness-increase">Check 3 – Did Missingness Increase?</h3>
+</section><section id="check-3-did-missingness-increase" class="level3"><h3 class="anchored" data-anchor-id="check-3-did-missingness-increase">Check 3 – Did Missingness Increase?</h3>
 <p>Joins and reshaping often introduce NAs. Count them explicitly.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(df_after))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      id      age      bmi  glucose      sex diabetes 
        0        0        0        0        0        0 </code></pre>
@@ -496,12 +463,10 @@ cookieconsent.run({
 <li>fields that should be dropped or imputed</li>
 </ul>
 <p>Never assume “there aren’t many NAs”. Check!</p>
-</section>
-<section id="check-4-do-group-sizes-still-make-sense" class="level3">
-<h3 class="anchored" data-anchor-id="check-4-do-group-sizes-still-make-sense">Check 4 – Do Group Sizes Still Make Sense?</h3>
+</section><section id="check-4-do-group-sizes-still-make-sense" class="level3"><h3 class="anchored" data-anchor-id="check-4-do-group-sizes-still-make-sense">Check 4 – Do Group Sizes Still Make Sense?</h3>
 <p>Before summarising or modelling grouped data, look at the group counts. In particular, before using categorical variables in clustering or summaries, check their distribution.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_after <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">count</span>(diabetes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_after</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">diabetes</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  diabetes   n
 1       No 188
@@ -530,17 +495,16 @@ cookieconsent.run({
 <li>tiny or empty groups</li>
 <li>unstable estimates</li>
 <li>summaries that look precise but aren’t meaningful</li>
-</ul>
-</section>
-</section>
-<section id="making-this-a-habit" class="level2">
-<h2 class="anchored" data-anchor-id="making-this-a-habit">Making This a Habit</h2>
+</ul></section></section><section id="making-this-a-habit" class="level2"><h2 class="anchored" data-anchor-id="making-this-a-habit">Making This a Habit</h2>
 <p>These checks are not meant to clutter your script. They are meant to become automatic.</p>
 <p>A good rule of thumb:</p>
 <ul>
-<li>After anything that changes rows → check <code>nrow()</code></li>
-<li>After anything that changes values → check <code>summary()</code> or <code>range()</code></li>
-<li>After anything that combines data → check <code>NAs</code></li>
+<li>After anything that changes rows → check <code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code>
+</li>
+<li>After anything that changes values → check <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> or <code><a href="https://rdrr.io/r/base/range.html">range()</a></code>
+</li>
+<li>After anything that combines data → check <code>NAs</code>
+</li>
 <li>Before summarising → check group sizes</li>
 </ul>
 <p>One line is often enough.</p>
@@ -578,10 +542,7 @@ Tip
 </div>
 
 
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -987,8 +948,7 @@ Tip
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>Copyright © 2025 Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://github.com/Fgazzelloni">Federica Gazzelloni</a><br>Powered by: Quarto &amp; GitHub Pages | <a href="../../../../LICENSE.html">MIT License</a>.</p>
 </div>   
@@ -997,7 +957,7 @@ Tip
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/05-02022026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/RomeRUsersGroup">
       <i class="bi bi-github" role="img">
 </i> 
@@ -1022,11 +982,9 @@ Tip
     </a>
   </li>  
 </ul>
-    </div>
+</div>
   </div>
 </footer>
-
-
 
 
 <script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>
