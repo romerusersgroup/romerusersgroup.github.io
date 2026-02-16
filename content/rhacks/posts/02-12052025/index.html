@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Lucio Colonna">
 <meta name="dcterms.date" content="2025-12-05">
 <meta name="description" content="R-Hacks N.2">
+
 <title>R Hack – Getting started with maps in R using GeoJSON and library sf – Rome R-Users Group</title>
 <style>
 code{white-space: pre-wrap;}
@@ -57,6 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
@@ -77,7 +81,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-8001c2e1f85531b6432cdb718d58219b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../../../../site_libs/bootstrap/bootstrap-86199a96b140e2f39dcbb9539747684a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -103,13 +108,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id="></script><script type="text/plain" cookie-consent="tracking">
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id="></script>
+
+<script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '', { 'anonymize_ip': true});
-</script><script type="text/javascript" charset="UTF-8">
+</script>
+
+<script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({
   "notice_banner_type":"headline",
@@ -124,7 +134,11 @@ cookieconsent.run({
 "language":"en"
   });
 });
-</script><style>html{ scroll-behavior: smooth; }</style>
+</script> 
+  
+<style>html{ scroll-behavior: smooth; }</style>
+
+
 <link rel="stylesheet" href="../../../../styles.css">
 <meta property="og:title" content="R Hack – Getting started with maps in R using GeoJSON and library sf – Rome R-Users Group">
 <meta property="og:description" content="R-Hacks N.2">
@@ -141,13 +155,18 @@ cookieconsent.run({
 <meta name="twitter:image-width" content="1344">
 <meta name="twitter:card" content="summary_large_image">
 </head>
+
 <body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content"><img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content"></a>
+    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content">
+    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content">
+    </a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Rome R-Users Group</span>
     </a>
@@ -158,7 +177,7 @@ cookieconsent.run({
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
@@ -182,8 +201,8 @@ cookieconsent.run({
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">About</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">
-<li>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
     <a class="dropdown-item" href="../../../../about/organizers.html">
  <span class="dropdown-text">Organizers</span></a>
   </li>  
@@ -192,46 +211,51 @@ cookieconsent.run({
  <span class="dropdown-text">Sponsor</span></a>
   </li>  
     </ul>
-</li>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.meetup.com/pro/r-user-groups/"> <i class="bi bi-globe" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="mailto:romerusersgroup@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav><div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden">
-<i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden"><i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
 <p>Alert! Free tutorials available!</p>
-</div>
-<i class="bi bi-x-lg quarto-announcement-action"></i>
-</div>
-</header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#step-0-what-is-a-geojson-file" id="toc-step-0-what-is-a-geojson-file" class="nav-link active" data-scroll-target="#step-0-what-is-a-geojson-file">Step 0 – What is a GeoJSON file?</a></li>
+  <li><a href="#step-0-what-is-a-geojson-file" id="toc-step-0-what-is-a-geojson-file" class="nav-link active" data-scroll-target="#step-0-what-is-a-geojson-file">Step 0 – What is a GeoJSON file?</a></li>
   <li><a href="#step-1-load-the-required-packages" id="toc-step-1-load-the-required-packages" class="nav-link" data-scroll-target="#step-1-load-the-required-packages">Step 1 – Load the required packages</a></li>
   <li><a href="#step-2-read-a-geojson-map-with-sfst_read" id="toc-step-2-read-a-geojson-map-with-sfst_read" class="nav-link" data-scroll-target="#step-2-read-a-geojson-map-with-sfst_read">Step 2 – Read a GeoJSON map with <code>sf::st_read()</code></a></li>
   <li><a href="#step-3-plot-a-basic-map-with-geom_sf" id="toc-step-3-plot-a-basic-map-with-geom_sf" class="nav-link" data-scroll-target="#step-3-plot-a-basic-map-with-geom_sf">Step 3 – Plot a basic map with <code>geom_sf()</code></a></li>
-  <li>
-<a href="#step-4-add-your-own-data-on-top-of-the-map" id="toc-step-4-add-your-own-data-on-top-of-the-map" class="nav-link" data-scroll-target="#step-4-add-your-own-data-on-top-of-the-map">Step 4 – Add your own data on top of the map</a>
+  <li><a href="#step-4-add-your-own-data-on-top-of-the-map" id="toc-step-4-add-your-own-data-on-top-of-the-map" class="nav-link" data-scroll-target="#step-4-add-your-own-data-on-top-of-the-map">Step 4 – Add your own data on top of the map</a>
   <ul class="collapse">
-<li><a href="#to-recap" id="toc-to-recap" class="nav-link" data-scroll-target="#to-recap">To Recap</a></li>
+  <li><a href="#to-recap" id="toc-to-recap" class="nav-link" data-scroll-target="#to-recap">To Recap</a></li>
+  </ul></li>
   </ul>
-</li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/02-12052025/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/02-12052025/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title">R Hack – Getting started with maps in R using GeoJSON and library sf</h1>
 <p class="subtitle lead">A simple workflow to load and plot maps in R</p>
   <div class="quarto-categories">
@@ -270,13 +294,17 @@ cookieconsent.run({
   
 
 
-</header><p><em>This hack is based on my Cyclistic analysis on Kaggle (see Chapter <strong>8.12.4</strong>):</em><br>
+</header>
+
+
+<p><em>This hack is based on my Cyclistic analysis on Kaggle (see Chapter <strong>8.12.4</strong>):</em><br>
 🔗 <a href="https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r" class="uri">https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r</a></p>
 <p>Working with maps in R is easier than it seems.<br>
 If you want to visualize points, regions, or spatial patterns, the combination of <strong>GeoJSON files</strong> and the <strong><code>sf</code></strong> package gives you a simple and modern workflow.</p>
-<p>In this hack, we’ll load a real city map (Chicago) directly from a URL, plot it with <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code>, and overlay simple point data.</p>
+<p>In this hack, we’ll load a real city map (Chicago) directly from a URL, plot it with <code>geom_sf()</code>, and overlay simple point data.</p>
 <hr>
-<section id="step-0-what-is-a-geojson-file" class="level2"><h2 class="anchored" data-anchor-id="step-0-what-is-a-geojson-file">Step 0 – What is a GeoJSON file?</h2>
+<section id="step-0-what-is-a-geojson-file" class="level2">
+<h2 class="anchored" data-anchor-id="step-0-what-is-a-geojson-file">Step 0 – What is a GeoJSON file?</h2>
 <p>A <strong>GeoJSON</strong> file is a <strong>JSON text file</strong> that stores <strong>geographic shapes</strong> (points, lines, polygons), together with their <strong>attributes</strong> (names, boundaries, codes, etc.).</p>
 <p>It is one of the most common formats for open geographic data because it is <strong>lightweight, human-readable, and web-friendly</strong>.</p>
 <p>You can often find GeoJSON files on:</p>
@@ -289,23 +317,28 @@ If you want to visualize points, regions, or spatial patterns, the combination o
 </li>
 <li>many public mapping resources</li>
 </ul>
-<hr></section><section id="step-1-load-the-required-packages" class="level2"><h2 class="anchored" data-anchor-id="step-1-load-the-required-packages">Step 1 – Load the required packages</h2>
+<hr>
+</section>
+<section id="step-1-load-the-required-packages" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-load-the-required-packages">Step 1 – Load the required packages</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>       <span class="co"># for spatial data (simple features)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>  <span class="co"># for plotting</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)       <span class="co"># for spatial data (simple features)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)  <span class="co"># for plotting</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<hr></section><section id="step-2-read-a-geojson-map-with-sfst_read" class="level2"><h2 class="anchored" data-anchor-id="step-2-read-a-geojson-map-with-sfst_read">Step 2 – Read a GeoJSON map with <code>sf::st_read()</code>
-</h2>
+<hr>
+</section>
+<section id="step-2-read-a-geojson-map-with-sfst_read" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-read-a-geojson-map-with-sfst_read">Step 2 – Read a GeoJSON map with <code>sf::st_read()</code></h2>
 <p>In this hack, we use a <strong>GeoJSON of Chicago community areas</strong>, provided by the <a href="https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Neighborhoods/bbvz-uum9">City of Chicago Open Data Portal</a>.</p>
 <p><em>⚠️ Before using any online map or dataset, always remember to check the terms of use of the source.</em></p>
 <p>You can read a GeoJSON directly from a URL, without downloading anything manually:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">map_of_chicago</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span></span>
-<span>  <span class="st">"https://data.cityofchicago.org/resource/y6yq-dbs2.geojson"</span>,</span>
-<span>  quiet <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">map_of_chicago</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>map_of_chicago <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://data.cityofchicago.org/resource/y6yq-dbs2.geojson"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">quiet =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(map_of_chicago)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Simple feature collection with 6 features and 4 fields
 Geometry type: MULTIPOLYGON
@@ -331,41 +364,46 @@ Geodetic CRS:  WGS 84
 <hr>
 <p>What you get:</p>
 <ul>
-<li>
-<code>map_of_chicago</code> is an sf object -essentially a data frame with a special geometry column where each row is a polygon that represents one community area</li>
+<li><code>map_of_chicago</code> is an sf object -essentially a data frame with a special geometry column where each row is a polygon that represents one community area</li>
 </ul>
-<hr></section><section id="step-3-plot-a-basic-map-with-geom_sf" class="level2"><h2 class="anchored" data-anchor-id="step-3-plot-a-basic-map-with-geom_sf">Step 3 – Plot a basic map with <code>geom_sf()</code>
-</h2>
-<p>Once the GeoJSON file has been loaded into an sf object, you can visualize it with <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code>.</p>
-<p><code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code> is the ggplot2 layer designed specifically for spatial data: it knows how to read the geometry column of an sf object and automatically draw points, lines, or polygons depending on what the data contains. In our case, it will draw the polygons of Chicago’s community areas.</p>
+<hr>
+</section>
+<section id="step-3-plot-a-basic-map-with-geom_sf" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-plot-a-basic-map-with-geom_sf">Step 3 – Plot a basic map with <code>geom_sf()</code></h2>
+<p>Once the GeoJSON file has been loaded into an sf object, you can visualize it with <code>geom_sf()</code>.</p>
+<p><code>geom_sf()</code> is the ggplot2 layer designed specifically for spatial data: it knows how to read the geometry column of an sf object and automatically draw points, lines, or polygons depending on what the data contains. In our case, it will draw the polygons of Chicago’s community areas.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">map_of_chicago</span>, </span>
-<span>          fill <span class="op">=</span> <span class="st">"#f1f0f0"</span>, color <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Chicago community areas"</span>,</span>
-<span>       subtitle <span class="op">=</span> <span class="st">"GeoJSON map loaded with sf::st_read()"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> map_of_chicago, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">"#f1f0f0"</span>, <span class="at">color =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Chicago community areas"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"GeoJSON map loaded with sf::st_read()"</span>) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<hr></section><section id="step-4-add-your-own-data-on-top-of-the-map" class="level1"><h1>Step 4 – Add your own data on top of the map</h1>
+<hr>
+</section>
+<section id="step-4-add-your-own-data-on-top-of-the-map" class="level1">
+<h1>Step 4 – Add your own data on top of the map</h1>
 <p>If you have a dataset with latitude/longitude, you can overlay it on the map.</p>
 <p>For example, let’s create a small dummy dataset of bike sharing station locations:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  start_lng <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>    <span class="op">-</span><span class="fl">87.6278</span>, <span class="op">-</span><span class="fl">87.6560</span>, <span class="op">-</span><span class="fl">87.6705</span>, <span class="op">-</span><span class="fl">87.6045</span>, <span class="op">-</span><span class="fl">87.5950</span>,</span>
-<span>    <span class="op">-</span><span class="fl">87.6850</span>, <span class="op">-</span><span class="fl">87.6515</span>, <span class="op">-</span><span class="fl">87.7080</span>, <span class="op">-</span><span class="fl">87.6405</span>, <span class="op">-</span><span class="fl">87.5600</span><span class="op">)</span>,</span>
-<span>  start_lat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>    <span class="fl">41.8925</span>, <span class="fl">41.9000</span>, <span class="fl">41.9120</span>, <span class="fl">41.8560</span>, <span class="fl">41.7920</span>,</span>
-<span>    <span class="fl">41.9220</span>, <span class="fl">41.9250</span>, <span class="fl">41.8810</span>, <span class="fl">41.9410</span>, <span class="fl">41.7600</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="va">stations</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>stations <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">start_lng =</span> <span class="fu">c</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span><span class="fl">87.6278</span>, <span class="sc">-</span><span class="fl">87.6560</span>, <span class="sc">-</span><span class="fl">87.6705</span>, <span class="sc">-</span><span class="fl">87.6045</span>, <span class="sc">-</span><span class="fl">87.5950</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span><span class="fl">87.6850</span>, <span class="sc">-</span><span class="fl">87.6515</span>, <span class="sc">-</span><span class="fl">87.7080</span>, <span class="sc">-</span><span class="fl">87.6405</span>, <span class="sc">-</span><span class="fl">87.5600</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">start_lat =</span> <span class="fu">c</span>(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fl">41.8925</span>, <span class="fl">41.9000</span>, <span class="fl">41.9120</span>, <span class="fl">41.8560</span>, <span class="fl">41.7920</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="fl">41.9220</span>, <span class="fl">41.9250</span>, <span class="fl">41.8810</span>, <span class="fl">41.9410</span>, <span class="fl">41.7600</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>stations</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   start_lng start_lat
 1   -87.6278   41.8925
@@ -382,29 +420,31 @@ Geodetic CRS:  WGS 84
 </div>
 <p>Now we can plot the base map plus the stations:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">map_of_chicago</span>, </span>
-<span>          fill <span class="op">=</span> <span class="st">"#f1f0f0"</span>, color <span class="op">=</span> <span class="st">"grey70"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">stations</span>,</span>
-<span>             <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">start_lng</span>, y <span class="op">=</span> <span class="va">start_lat</span><span class="op">)</span>,</span>
-<span>             color <span class="op">=</span> <span class="st">"red"</span>,</span>
-<span>             size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Bike stations on top of a GeoJSON map of Chicago"</span>,</span>
-<span>       subtitle <span class="op">=</span> <span class="st">"Base map: Chicago community areas (GeoJSON + sf)"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> map_of_chicago, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">"#f1f0f0"</span>, <span class="at">color =</span> <span class="st">"grey70"</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> stations,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> start_lng, <span class="at">y =</span> start_lat),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"red"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bike stations on top of a GeoJSON map of Chicago"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Base map: Chicago community areas (GeoJSON + sf)"</span>) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <hr>
-<section id="to-recap" class="level2"><h2 class="anchored" data-anchor-id="to-recap">To Recap</h2>
+<section id="to-recap" class="level2">
+<h2 class="anchored" data-anchor-id="to-recap">To Recap</h2>
 <ul>
 <li><p>GeoJSON = JSON file with geometry + attributes</p></li>
-<li><p>Load it directly from a URL with <code><a href="https://r-spatial.github.io/sf/reference/st_read.html">sf::st_read()</a></code></p></li>
-<li><p>Plot it with <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code></p></li>
+<li><p>Load it directly from a URL with <code>sf::st_read()</code></p></li>
+<li><p>Plot it with <code>geom_sf()</code></p></li>
 <li><p>Add your own points using regular ggplot layers</p></li>
 <li><p>This workflow is simple, beginner-friendly, and requires no GIS tools</p></li>
 </ul>
@@ -428,7 +468,11 @@ Tip
 </div>
 
 
-</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -834,7 +878,8 @@ Tip
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p>Copyright © 2025 Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://github.com/Fgazzelloni">Federica Gazzelloni</a><br>Powered by: Quarto &amp; GitHub Pages | <a href="../../../../LICENSE.html">MIT License</a>.</p>
 </div>   
@@ -843,7 +888,7 @@ Tip
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/02-12052025/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-<li class="nav-item compact">
+    <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/RomeRUsersGroup">
       <i class="bi bi-github" role="img">
 </i> 
@@ -868,9 +913,11 @@ Tip
     </a>
   </li>  
 </ul>
-</div>
+    </div>
   </div>
 </footer>
+
+
 
 
 <script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>

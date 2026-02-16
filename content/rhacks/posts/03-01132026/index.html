@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Lucio Colonna">
 <meta name="dcterms.date" content="2026-01-13">
 <meta name="description" content="R-Hacks N.3">
+
 <title>Compare multiple dataframes before binding them together – Rome R-Users Group</title>
 <style>
 code{white-space: pre-wrap;}
@@ -57,6 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
@@ -77,7 +81,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-8001c2e1f85531b6432cdb718d58219b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../../../../site_libs/bootstrap/bootstrap-86199a96b140e2f39dcbb9539747684a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -103,13 +108,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id="></script><script type="text/plain" cookie-consent="tracking">
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id="></script>
+
+<script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '', { 'anonymize_ip': true});
-</script><script type="text/javascript" charset="UTF-8">
+</script>
+
+<script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({
   "notice_banner_type":"headline",
@@ -124,7 +134,11 @@ cookieconsent.run({
 "language":"en"
   });
 });
-</script><style>html{ scroll-behavior: smooth; }</style>
+</script> 
+  
+<style>html{ scroll-behavior: smooth; }</style>
+
+
 <link rel="stylesheet" href="../../../../styles.css">
 <meta property="og:title" content="Compare multiple dataframes before binding them together – Rome R-Users Group">
 <meta property="og:description" content="R-Hacks N.3">
@@ -141,13 +155,18 @@ cookieconsent.run({
 <meta name="twitter:image-width" content="1054">
 <meta name="twitter:card" content="summary_large_image">
 </head>
+
 <body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content"><img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content"></a>
+    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content">
+    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content">
+    </a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Rome R-Users Group</span>
     </a>
@@ -158,7 +177,7 @@ cookieconsent.run({
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
@@ -182,8 +201,8 @@ cookieconsent.run({
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">About</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">
-<li>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
     <a class="dropdown-item" href="../../../../about/organizers.html">
  <span class="dropdown-text">Organizers</span></a>
   </li>  
@@ -192,42 +211,49 @@ cookieconsent.run({
  <span class="dropdown-text">Sponsor</span></a>
   </li>  
     </ul>
-</li>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.meetup.com/pro/r-user-groups/"> <i class="bi bi-globe" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="mailto:romerusersgroup@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav><div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden">
-<i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden"><i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
 <p>Alert! Free tutorials available!</p>
-</div>
-<i class="bi bi-x-lg quarto-announcement-action"></i>
-</div>
-</header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
   <li><a href="#step-0-create-example-dataframes-to-compare" id="toc-step-0-create-example-dataframes-to-compare" class="nav-link" data-scroll-target="#step-0-create-example-dataframes-to-compare">Step 0 – Create example dataframes to compare</a></li>
   <li><a href="#step-1-define-the-helper-function-to-compare-dataframes" id="toc-step-1-define-the-helper-function-to-compare-dataframes" class="nav-link" data-scroll-target="#step-1-define-the-helper-function-to-compare-dataframes">Step 1 – Define the helper function to compare dataframes</a></li>
   <li><a href="#step-2-apply-the-function" id="toc-step-2-apply-the-function" class="nav-link" data-scroll-target="#step-2-apply-the-function">Step 2 – Apply the function</a></li>
   <li><a href="#step-3-interpret-the-results" id="toc-step-3-interpret-the-results" class="nav-link" data-scroll-target="#step-3-interpret-the-results">Step 3 – Interpret the results</a></li>
   <li><a href="#in-short" id="toc-in-short" class="nav-link" data-scroll-target="#in-short">In short</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/03-01132026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/03-01132026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title">Compare multiple dataframes before binding them together</h1>
 <p class="subtitle lead">A lightweight R Hack to check structural compatibility across many dataframes</p>
   <div class="quarto-categories">
@@ -264,10 +290,16 @@ cookieconsent.run({
   
 
 
-</header><section id="section" class="level2"><h2 class="anchored" data-anchor-id="section"></h2>
+</header>
+
+
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/image-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Create your function</figcaption></figure>
+<figure class="figure">
+<p><img src="images/image-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Create your function</figcaption>
+</figure>
 </div>
 <p><em>This hack is based on my Cyclistic analysis on Kaggle (see Chapter <strong>6.3</strong>):</em><br>
 🔗 <a href="https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r" class="uri">https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r</a></p>
@@ -276,104 +308,109 @@ cookieconsent.run({
 <p><em>Are these dataframes really compatible before I bind them together?</em></p>
 </blockquote>
 <p>People who work with data typically rely on a mix of approaches to answer this:<br>
-manual checks (<code><a href="https://rdrr.io/r/base/names.html">names()</a></code>, <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code>), warnings raised by <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows()</a></code>, or dedicated helpers such as <code>compare_df_cols()</code> from the <strong><code>janitor</code></strong> package — which is a solid and widely used solution for comparing column structures.</p>
+manual checks (<code>names()</code>, <code>glimpse()</code>), warnings raised by <code>bind_rows()</code>, or dedicated helpers such as <code>compare_df_cols()</code> from the <strong><code>janitor</code></strong> package — which is a solid and widely used solution for comparing column structures.</p>
 <p>However, in practice, it is often useful to have a <strong>single, lightweight helper</strong> that provides a <strong>compact and readable overview</strong> across <em>many dataframes at once</em>, without additional dependencies or verbose output.</p>
 <p>This R Hack introduces a small <strong>custom helper function</strong> designed with that goal in mind, that you can easily reuse and adapt to your own workflows.</p>
 <p>It performs an <strong>omnicomprehensive structural comparison</strong> before merging, checking column <strong>count</strong>, column <strong>names</strong>, and column <strong>classes</strong> across all pairs of dataframes:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#   comparison   same_ncol same_names same_class</span></span>
-<span><span class="co">#   &lt;chr&gt;        &lt;lgl&gt;     &lt;lgl&gt;      &lt;lgl&gt;     </span></span>
-<span><span class="co"># 1 df_a vs df_b TRUE      TRUE       TRUE      </span></span>
-<span><span class="co"># 2 df_a vs df_c TRUE      TRUE       FALSE     </span></span>
-<span><span class="co"># 3 df_a vs df_d TRUE      FALSE      FALSE     </span></span>
-<span><span class="co"># 4 df_b vs df_c TRUE      TRUE       FALSE     </span></span>
-<span><span class="co"># 5 df_b vs df_d TRUE      FALSE      FALSE     </span></span>
-<span><span class="co"># 6 df_c vs df_d TRUE      FALSE      FALSE     </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#   comparison   same_ncol same_names same_class</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   &lt;chr&gt;        &lt;lgl&gt;     &lt;lgl&gt;      &lt;lgl&gt;     </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 df_a vs df_b TRUE      TRUE       TRUE      </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 df_a vs df_c TRUE      TRUE       FALSE     </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 df_a vs df_d TRUE      FALSE      FALSE     </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 df_b vs df_c TRUE      TRUE       FALSE     </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 df_b vs df_d TRUE      FALSE      FALSE     </span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 df_c vs df_d TRUE      FALSE      FALSE     </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<hr></section><section id="step-0-create-example-dataframes-to-compare" class="level2"><h2 class="anchored" data-anchor-id="step-0-create-example-dataframes-to-compare">Step 0 – Create example dataframes to compare</h2>
+<hr>
+</section>
+<section id="step-0-create-example-dataframes-to-compare" class="level2">
+<h2 class="anchored" data-anchor-id="step-0-create-example-dataframes-to-compare">Step 0 – Create example dataframes to compare</h2>
 <p>To make the idea concrete, let’s create four small dataframes. Some of them match perfectly, others don’t:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span>
-<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">df_b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  id <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">6</span>,</span>
-<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">50</span>, <span class="fl">60</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Same columns, but different class for `value`</span></span>
-<span><span class="va">df_c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  id <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">9</span>,</span>
-<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">70</span>, <span class="fl">80</span>, <span class="fl">90</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Different column name</span></span>
-<span><span class="va">df_d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  id <span class="op">=</span> <span class="fl">10</span><span class="op">:</span><span class="fl">12</span>,</span>
-<span>  amount <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">200</span>, <span class="fl">300</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df_a <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>df_b <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Same columns, but different class for `value`</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>df_c <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">7</span><span class="sc">:</span><span class="dv">9</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">as.character</span>(<span class="fu">c</span>(<span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Different column name</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>df_d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">amount =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="step-1-define-the-helper-function-to-compare-dataframes" class="level2"><h2 class="anchored" data-anchor-id="step-1-define-the-helper-function-to-compare-dataframes">Step 1 – Define the helper function to compare dataframes</h2>
+</section>
+<section id="step-1-define-the-helper-function-to-compare-dataframes" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-define-the-helper-function-to-compare-dataframes">Step 1 – Define the helper function to compare dataframes</h2>
 <p>The function below takes a vector of dataframe names (as character strings) and compares each unique pair only once. It works in three simple steps:</p>
 <ol type="1">
 <li><p>It loads the dataframes from the environment using their <strong>names</strong></p></li>
 <li><p>It iterates over all unique dataframe combinations, ensuring that each pair is checked only once (for example, it compares <code>df_a</code> vs <code>df_b</code>, but not <code>df_b</code> vs <code>df_a)</code>)</p></li>
-<li>
-<p>For each pair, it performs the following <strong>structural checks</strong> and stores the results in a tibble:</p>
+<li><p>For each pair, it performs the following <strong>structural checks</strong> and stores the results in a tibble:</p>
 <ul>
 <li>whether the <strong>number of columns</strong> matches</li>
 <li>whether column <strong>names</strong> are identical</li>
 <li>whether column <strong>classes</strong> are the same</li>
-</ul>
-</li>
+</ul></li>
 </ol>
 <p>The function then binds all tibbles together into a single <strong>summary table</strong>, making it easy to spot structural mismatches before combining the data.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="va">compare_dataframes</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df_names</span><span class="op">)</span> <span class="op">{</span></span>
-<span></span>
-<span>  <span class="co"># Get DF names</span></span>
-<span>  <span class="va">df_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">df_names</span>, <span class="va">get</span><span class="op">)</span></span>
-<span></span>
-<span>  <span class="co"># Initialize an empty list</span></span>
-<span>  <span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span>  <span class="co"># Selection of DF pairs to be compared</span></span>
-<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="op">(</span><span class="va">i</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span></span>
-<span>      <span class="va">results</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>        comparison <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">df_names</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="st">"vs"</span>, <span class="va">df_names</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">)</span>,</span>
-<span></span>
-<span>        <span class="co"># check number of columns</span></span>
-<span>        same_ncol  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,</span>
-<span></span>
-<span>        <span class="co"># check columns name</span></span>
-<span>        same_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>,</span>
-<span></span>
-<span>        <span class="co"># check columns class</span></span>
-<span>        same_class <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span></span>
-<span>          <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>, <span class="va">class</span><span class="op">)</span>,</span>
-<span>          <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span>, <span class="va">class</span><span class="op">)</span></span>
-<span>        <span class="op">)</span></span>
-<span>      <span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
-<span>  <span class="op">}</span></span>
-<span></span>
-<span>  <span class="va">comparison_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">comparison_result</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>compare_dataframes <span class="ot">&lt;-</span> <span class="cf">function</span>(df_names) {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get DF names</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  df_list <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df_names, get)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Initialize an empty list</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Selection of DF pairs to be compared</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">length</span>(df_list) <span class="sc">-</span> <span class="dv">1</span>)) {</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> (i <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span><span class="fu">length</span>(df_list)) {</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      results[[<span class="fu">length</span>(results) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">comparison =</span> <span class="fu">paste</span>(df_names[i], <span class="st">"vs"</span>, df_names[j]),</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># check number of columns</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">same_ncol  =</span> <span class="fu">ncol</span>(df_list[[i]]) <span class="sc">==</span> <span class="fu">ncol</span>(df_list[[j]]),</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># check columns name</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">same_names =</span> <span class="fu">identical</span>(<span class="fu">names</span>(df_list[[i]]), <span class="fu">names</span>(df_list[[j]])),</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># check columns class</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">same_class =</span> <span class="fu">identical</span>(</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>          <span class="fu">sapply</span>(df_list[[i]], class),</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>          <span class="fu">sapply</span>(df_list[[j]], class)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  comparison_result <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(results)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(comparison_result)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="step-2-apply-the-function" class="level2"><h2 class="anchored" data-anchor-id="step-2-apply-the-function">Step 2 – Apply the function</h2>
+</section>
+<section id="step-2-apply-the-function" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-apply-the-function">Step 2 – Apply the function</h2>
 <p>Provide the dataframe names as a character vector and invoke the function:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"df_a"</span>, <span class="st">"df_b"</span>, <span class="st">"df_c"</span>, <span class="st">"df_d"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">comparison_result</span> <span class="op">&lt;-</span> <span class="fu">compare_dataframes</span><span class="op">(</span><span class="va">df_names</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">comparison_result</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"df_a"</span>, <span class="st">"df_b"</span>, <span class="st">"df_c"</span>, <span class="st">"df_d"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>comparison_result <span class="ot">&lt;-</span> <span class="fu">compare_dataframes</span>(df_names)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>comparison_result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
   comparison   same_ncol same_names same_class
@@ -386,7 +423,9 @@ manual checks (<code><a href="https://rdrr.io/r/base/names.html">names()</a></co
 6 df_c vs df_d TRUE      FALSE      FALSE     </code></pre>
 </div>
 </div>
-</section><section id="step-3-interpret-the-results" class="level2"><h2 class="anchored" data-anchor-id="step-3-interpret-the-results">Step 3 – Interpret the results</h2>
+</section>
+<section id="step-3-interpret-the-results" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-interpret-the-results">Step 3 – Interpret the results</h2>
 <p>The output table makes structural mismatches immediately visible:</p>
 <p><code>same_ncol</code> → different number of columns</p>
 <p><code>same_names</code> → different column names</p>
@@ -396,10 +435,12 @@ manual checks (<code><a href="https://rdrr.io/r/base/names.html">names()</a></co
 <p><code>df_a</code> vs <code>df_c</code> → same_class = <strong>FALSE</strong></p>
 <p><code>df_a</code> vs <code>df_d</code> → same_names = <strong>FALSE</strong></p>
 <p>This helps you catch issues before they turn into silent bugs.</p>
-</section><section id="in-short" class="level2"><h2 class="anchored" data-anchor-id="in-short">In short</h2>
+</section>
+<section id="in-short" class="level2">
+<h2 class="anchored" data-anchor-id="in-short">In short</h2>
 <ul>
 <li><p>There is no single “official” way to compare many dataframes at once</p></li>
-<li><p>Helpers like <code>compare_df_cols()</code> from <a href="https://github.com/sfirke/janitor">janitor</a> are excellent for column-level inspection</p></li>
+<li><p>Helpers like <code>compare_df_cols()</code> from <code>{janitor}</code> are excellent for column-level inspection</p></li>
 <li><p>This custom helper function provides a clear, compact overview before stacking or merging data</p></li>
 <li><p>Think of it as a pre-flight checklist before combining your data</p></li>
 </ul>
@@ -422,7 +463,10 @@ Tip
 </div>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -828,7 +872,8 @@ Tip
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p>Copyright © 2025 Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://github.com/Fgazzelloni">Federica Gazzelloni</a><br>Powered by: Quarto &amp; GitHub Pages | <a href="../../../../LICENSE.html">MIT License</a>.</p>
 </div>   
@@ -837,7 +882,7 @@ Tip
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/03-01132026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-<li class="nav-item compact">
+    <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/RomeRUsersGroup">
       <i class="bi bi-github" role="img">
 </i> 
@@ -862,9 +907,11 @@ Tip
     </a>
   </li>  
 </ul>
-</div>
+    </div>
   </div>
 </footer>
+
+
 
 
 <script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>

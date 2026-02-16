@@ -1,12 +1,7 @@
 [
   {
-    "listing": "/content/events/index.html",
-    "items": [
-      "/content/events/posts/27112025_jakubnowosad.html",
-      "/content/events/posts/01102025_inperson.html",
-      "/content/events/posts/01062025_inperson.html",
-      "/content/events/posts/01052025.html"
-    ]
+    "listing": "/index.html",
+    "items": []
   },
   {
     "listing": "/content/rhacks/index.html",
@@ -21,7 +16,12 @@
     ]
   },
   {
-    "listing": "/index.html",
-    "items": []
+    "listing": "/content/events/index.html",
+    "items": [
+      "/content/events/posts/27112025_jakubnowosad.html",
+      "/content/events/posts/01102025_inperson.html",
+      "/content/events/posts/01062025_inperson.html",
+      "/content/events/posts/01052025.html"
+    ]
   }
 ]
