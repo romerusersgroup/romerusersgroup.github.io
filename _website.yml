@@ -28,9 +28,9 @@ website:
     logo: "images/logos/r-logo.png"
     logo-alt: "RUsers Logo"
     collapse: true
-    #right: 
-      #- text: "![R-Ladies Rome](/images/logos/RLadiesRome_logo_transparent.png){width=70px}**R-Ladies Rome**"
-       # href: https://rladiesrome.org
+    right: 
+      - text: "![R-Ladies Rome](/images/logos/RLadiesRome_logo_transparent.png){width=70px}**R-Ladies Rome**"
+        href: https://rladiesrome.org
     left:
       - text: Home
         href: index.qmd
