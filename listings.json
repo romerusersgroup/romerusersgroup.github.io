@@ -1,5 +1,9 @@
 [
   {
+    "listing": "/index.html",
+    "items": []
+  },
+  {
     "listing": "/content/rhacks/index.html",
     "items": [
       "/content/rhacks/posts/07-02152026/index.html",
@@ -19,9 +23,5 @@
       "/content/events/posts/01062025_inperson.html",
       "/content/events/posts/01052025.html"
     ]
-  },
-  {
-    "listing": "/index.html",
-    "items": []
   }
 ]
