@@ -44,6 +44,9 @@ jobs:
           ))
         shell: Rscript {0}
       
+      - name: Clear freeze cache
+        run: rm -rf _freeze
+      
       - name: Render Quarto site
         run: quarto render
       

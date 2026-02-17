@@ -38,8 +38,7 @@ Some R Conferences for 2025
 ## Check recent posts from selected R and data science sources:
 
 ```{r}
-#| cache: true
-#| cache.extra: !expr lubridate::today()
+#| cache: false
 #| echo: false
 #| eval: true
 #| message: false
