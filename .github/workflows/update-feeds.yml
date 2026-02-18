@@ -28,10 +28,24 @@ jobs:
         with:
           r-version: 'release'
       
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libcurl4-openssl-dev \
+            libxml2-dev \
+            libssl-dev \
+            libfontconfig1-dev \
+            libfreetype6-dev \
+            libharfbuzz-dev \
+            libfribidi-dev \
+            libpng-dev \
+            libtiff5-dev \
+            libjpeg-dev
+      
       - name: Install R packages
         run: |
           install.packages(c(
-            'tidyverse',
             'tidyRSS',
             'lubridate',
             'httr2',
@@ -39,20 +53,20 @@ jobs:
             'stringr',
             'xml2',
             'gt',
-            'knitr',
-            'rmarkdown'
+            'dplyr',
+            'purrr'
           ))
         shell: Rscript {0}
       
-      - name: Clear freeze cache
-        run: rm -rf _freeze
+      - name: Clear freeze cache for news page
+        run: rm -rf _freeze/content/news
       
-      - name: Render Quarto site
-        run: quarto render
+      - name: Render only news page
+        run: quarto render content/news/index.qmd
       
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Publish directory matches output-dir in _quarto.yml
           publish_dir: ./_docs
+          keep_files: true  # Keep other pages intact
