@@ -113,7 +113,7 @@ feed_data %>%
         is.na(x) | x == "",
         "",
         sprintf(
-          '<img src="%s" style="height:60px; width:200px; object-fit:cover; border-radius:6px;" loading="lazy">',
+          '<img src="%s" style="height:100px; width:400px; object-fit:cover; border-radius:6px;" loading="lazy">',
           x
         )
       )
