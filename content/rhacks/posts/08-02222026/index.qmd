@@ -1,0 +1,232 @@
+---
+title: "CSV vs Parquet: A Better Default for Analytics"
+subtitle: "Faster reads, smaller files, cleaner workflows"
+description: "R-Hacks N.8"
+author: "Federica Gazzelloni"
+date: "22 February 2026"
+images: "images/image-1.png"
+series: R-Hacks
+categories:
+  - Parquet
+  - Arrow
+  - data-storage
+  - performance
+layout: single
+toc-location: left
+toc: true
+code-overflow: wrap
+execute:
+  warning: false
+  message: false
+---
+
+<br>
+
+![CSV vs Parquet: A Better Default for Analytics (ChatGPT generated image)](images/image-1.png){width="80%" fig-align="center" fig-alt="ChatGPT generated image"}
+
+
+If you are still saving analytical datasets as .csv by default, you are likely paying a hidden tax:
+
+- slower reads
+- larger files
+- fragile type handling
+- unnecessary reprocessing
+
+CSV is universal.
+But universal does not mean optimal.
+
+This R-Hack explains why Parquet should often be your default for analytical workflows.
+
+
+## What Is Parquet?
+
+Parquet is a columnar, binary storage format designed for analytics.
+
+Unlike CSV:
+
+- It stores column types explicitly
+- It compresses data efficiently
+- It reads columns independently
+
+In R, Parquet support is provided by the arrow package.
+
+```{r}
+# Example R code chunk
+# Load necessary libraries
+library(arrow)
+library(dplyr)
+
+# Create a sample data frame
+data <- data.frame(
+  id = 1:5,
+  value = c(10.5, 20.3, 30.8, 40.2, 50.1)
+)
+
+# Write the data frame to a Parquet file
+write_parquet(data, "sample_data.parquet")
+
+# Read the Parquet file back into R
+data_read <- read_parquet("sample_data.parquet")
+
+# Print the data
+print(data_read)
+```
+
+
+## Step 1 — Simulate a Realistic Dataset
+
+```{r}
+set.seed(123)
+
+df <- data.frame(
+  id = 1:200000,
+  category = sample(LETTERS[1:5], 200000, replace = TRUE),
+  value = rnorm(200000),
+  flag = sample(c(TRUE, FALSE), 200000, replace = TRUE)
+)
+```
+
+This mimics a moderately sized analytical dataset.
+
+## Step 2 — Save and Read as CSV
+
+```{r}
+write.csv(df, "data.csv", row.names = FALSE)
+
+system.time({
+  df_csv <- read.csv("data.csv")
+})
+```
+
+Now check file size:
+
+```{r}
+file.info("data.csv")$size
+```
+
+CSV:
+
+- stores everything as text
+- requires parsing every time
+- guesses types on read
+
+
+
+## Step 3 — Save and Read as Parquet
+
+```{r}
+write_parquet(df, "data.parquet")
+
+system.time({
+  df_parquet <- read_parquet("data.parquet")
+})
+```
+
+Check file size:
+
+```{r}
+file.info("data.parquet")$size
+```
+
+
+You will typically observe:
+
+- faster read time
+- smaller file size
+- preserved data types
+
+
+> **Why This Matters in Practice?**
+
+### 1️⃣ Speed
+
+Parquet reads are faster because:
+
+- it stores columns independently
+- it avoids text parsing
+- it uses compression effectively
+
+This becomes significant as datasets grow.
+
+
+### 2️⃣ File Size
+
+Parquet compresses automatically. In many real-world cases parquet files are 30–70% smaller than CSV equivalents:
+
+- Less storage
+- Faster transfer
+- Cleaner repositories
+
+
+### 3️⃣ Type Safety
+
+CSV does not store types.
+
+Every read operation reinterprets:
+
+- logical values
+- factors
+- dates
+- numeric columns
+
+Parquet preserves them.
+
+This reduces silent coercion bugs.
+
+## Bonus — Select Columns Without Loading Everything
+
+With arrow, you can load only what you need:
+
+```{r}
+read_parquet("data.parquet", col_select = c("id", "value"))
+```
+
+
+This is especially powerful for:
+
+- large analytical datasets
+- remote storage
+- modular pipelines
+
+### When CSV Is Still Appropriate
+
+CSV is fine when:
+
+- exporting for non-technical users
+- sharing small files
+- generating human-readable outputs
+
+> **But for analytical workflows?**
+
+Parquet is usually superior.
+
+
+## Workflow Recommendation
+
+For reproducible projects:
+
+- Raw data → store as Parquet
+- Intermediate processed data → store as Parquet
+- Final exports → optionally CSV
+
+Think of Parquet as your working format,
+and CSV as your exchange format.
+
+
+
+:::{.callout-note appearance=“simple”}
+In Short
+
+- CSV is universal but inefficient
+- Parquet is faster, smaller, and type-safe
+- Switching requires only {arrow}
+- Make Parquet your default for analysis projects
+:::
+
+Modern workflows deserve modern storage.
+
+::: callout-tip
+If you want to stay up to date with the latest events and posts from the Rome R Users Group:
+
+👉 https://www.meetup.com/rome-r-users-group/
+:::
