@@ -210,130 +210,46 @@
     "text": "In short\n\nExtract Top 10 and Bottom 10 values from the same dataset using slice_max() and slice_min(), including ties\nCombine the two subsets into a single dataframe for a compact overview of the distribution extremes\nBuild a clean base plot to validate structure and layout\nEnhance the visualization by applying gradient colors to distinguish Top and Bottom groups\n\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events from the Rome R Users Group, click here:\n👉 https://www.meetup.com/rome-r-users-group/\nAnd if you are curious, the full Kaggle notebook used for this tip is available here:\n🔗 https://www.kaggle.com/code/lcolon/exploring-2024-software-engineer-salaries"
   },
   {
-    "objectID": "content/rhacks/posts/07-02152026/index.html",
-    "href": "content/rhacks/posts/07-02152026/index.html",
-    "title": "Stop Copy–Pasting. Start Iterating.",
+    "objectID": "content/rhacks/posts/02-12052025/index.html",
+    "href": "content/rhacks/posts/02-12052025/index.html",
+    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
     "section": "",
-    "text": "After fixing structure (N.3), adding sanity checks (N.5), and reshaping data properly (N.6), the next natural step is iteration over clean data.\nIn R, the problem is rarely how to write a loop. The real question is:\nThis R-Hack focuses on replacing duplication with controlled iteration."
+    "text": "This hack is based on my Cyclistic analysis on Kaggle (see Chapter 8.12.4):\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r\nWorking with maps in R is easier than it seems.\nIf you want to visualize points, regions, or spatial patterns, the combination of GeoJSON files and the sf package gives you a simple and modern workflow.\nIn this hack, we’ll load a real city map (Chicago) directly from a URL, plot it with geom_sf(), and overlay simple point data."
   },
   {
-    "objectID": "content/rhacks/posts/07-02152026/index.html#the-core-problem-duplication",
-    "href": "content/rhacks/posts/07-02152026/index.html#the-core-problem-duplication",
-    "title": "Stop Copy–Pasting. Start Iterating.",
-    "section": "The Core Problem: Duplication",
-    "text": "The Core Problem: Duplication\nYou see code like this:\n\nmean(df$var1)\nmean(df$var2)\nmean(df$var3)\n\nOr:\n\nplot(df$year_2020)\nplot(df$year_2021)\nplot(df$year_2022)\n\nIt works.\n\n\n\n\n\n\n\nBut it does not scale\nIt is fragile\nAnd it invites mistakes\n\n\n\n\n\nDuplication is your signal that iteration may be appropriate.\n\nStep 1 – Simulate Example Data\n\nset.seed(123)\n\ndf &lt;- data.frame(\n  var1 = rnorm(100),\n  var2 = rnorm(100, mean = 2),\n  var3 = rnorm(100, mean = 4)\n)\n\nhead(df)\n\n         var1     var2     var3\n1 -0.56047565 1.289593 6.198810\n2 -0.23017749 2.256884 5.312413\n3  1.55870831 1.753308 3.734855\n4  0.07050839 1.652457 4.543194\n5  0.12928774 1.048381 3.585660\n6  1.71506499 1.954972 3.523753\n\n\nStep 2 – A Clean for Loop\nInstead of repeating logic, define the variables once.\n\nvars &lt;- names(df)\n\nfor (v in vars) {\n  print(mean(df[[v]], na.rm = TRUE))\n}\n\n[1] 0.09040591\n[1] 1.892453\n[1] 4.120465\n\n\nThis loop:\n\niterates over column names\nextracts values using [[ ]]\navoids copy–paste\nkeeps logic consistent\n\nSimple and readable.\nStep 3 – Storing Results Properly (Preallocation)\nIf you need results for later use, preallocate.\n\nresults &lt;- numeric(length(vars))\n\nfor (i in seq_along(vars)) {\n  results[i] &lt;- mean(df[[vars[i]]], na.rm = TRUE)\n}\n\nresults\n\n[1] 0.09040591 1.89245320 4.12046511\n\n\nWhy preallocate?\n\navoids growing objects inside the loop\nkeeps structure explicit\nimproves clarity and performance\n\n\nPreallocation is not about micro-optimisation. It is about good structure.\n\nStep 4 – Plotting Without Copy–Paste\n❌ The Copy–Paste Pattern\nplot(df$var1)\nplot(df$var2)\nplot(df$var3)\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis works — but does not scale.\n✅ Base R Loop\nfor (v in vars) {\n  hist(df[[v]],\n       main = paste(\"Histogram of\", v),\n       col = \"steelblue\")\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis produces one histogram per variable.\n✅ ggplot2 Loop (Important Detail)\nlibrary(ggplot2)\n\nfor (v in vars) {\n  p &lt;- ggplot(df, aes(x = .data[[v]])) +\n    geom_histogram(fill = \"steelblue\", bins = 20) +\n    labs(title = paste(\"Histogram of\", v)) +\n    theme_minimal()\n\n  print(p)\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n🔎 Important: print(p) is required inside loops. Without it, nothing is displayed.\n\n\n\nThis is a subtle but crucial detail many users miss."
+    "objectID": "content/rhacks/posts/02-12052025/index.html#step-0-what-is-a-geojson-file",
+    "href": "content/rhacks/posts/02-12052025/index.html#step-0-what-is-a-geojson-file",
+    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
+    "section": "Step 0 – What is a GeoJSON file?",
+    "text": "Step 0 – What is a GeoJSON file?\nA GeoJSON file is a JSON text file that stores geographic shapes (points, lines, polygons), together with their attributes (names, boundaries, codes, etc.).\nIt is one of the most common formats for open geographic data because it is lightweight, human-readable, and web-friendly.\nYou can often find GeoJSON files on:\n\ncity open data portals (City of Chicago, NYC Open Data, etc.)\n\nnational and international platforms (e.g., data.gov)\n\nGitHub repositories\n\nmany public mapping resources"
   },
   {
-    "objectID": "content/rhacks/posts/07-02152026/index.html#when-not-to-loop",
-    "href": "content/rhacks/posts/07-02152026/index.html#when-not-to-loop",
-    "title": "Stop Copy–Pasting. Start Iterating.",
-    "section": "When Not to Loop",
-    "text": "When Not to Loop\nIf you are looping over columns, pause. Ask:\n\nShould the data be long instead?\n\nFor example (see R-Hacks N.6):\n\nlibrary(tidyr)\n\ndf_long &lt;- df |&gt;\n  pivot_longer(\n    cols = everything(),\n    names_to = \"variable\",\n    values_to = \"value\"\n  )\n\nggplot(df_long, aes(value)) +\n  geom_histogram(bins = 20, fill = \"steelblue\") +\n  facet_wrap(~ variable, scales = \"free\") +\n  theme_minimal()\n\n\n\n\n\n\n\nSometimes reshaping simplifies everything more than iterating."
+    "objectID": "content/rhacks/posts/02-12052025/index.html#step-1-load-the-required-packages",
+    "href": "content/rhacks/posts/02-12052025/index.html#step-1-load-the-required-packages",
+    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
+    "section": "Step 1 – Load the required packages",
+    "text": "Step 1 – Load the required packages\n\nlibrary(sf)       # for spatial data (simple features)\nlibrary(ggplot2)  # for plotting"
   },
   {
-    "objectID": "content/rhacks/posts/07-02152026/index.html#editorial-stance",
-    "href": "content/rhacks/posts/07-02152026/index.html#editorial-stance",
-    "title": "Stop Copy–Pasting. Start Iterating.",
-    "section": "Editorial Stance",
-    "text": "Editorial Stance\nLoops are not bad. Copy–paste is worse.\nThe goal is not to write clever code. The goal is to write less duplicated code.\nIteration becomes powerful when:\n\nstructure is clean\nshape is correct\nlogic is stable\n\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n\nDuplication is a signal\nReplace repetition with controlled iteration\nPreallocate when storing results\nRemember print() inside ggplot loops\nIf you are looping across columns, reconsider the data shape\n\n\n\nIteration is not about complexity. It is about discipline.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
+    "objectID": "content/rhacks/posts/02-12052025/index.html#step-2-read-a-geojson-map-with-sfst_read",
+    "href": "content/rhacks/posts/02-12052025/index.html#step-2-read-a-geojson-map-with-sfst_read",
+    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
+    "section": "Step 2 – Read a GeoJSON map with sf::st_read()\n",
+    "text": "Step 2 – Read a GeoJSON map with sf::st_read()\n\nIn this hack, we use a GeoJSON of Chicago community areas, provided by the City of Chicago Open Data Portal.\n⚠️ Before using any online map or dataset, always remember to check the terms of use of the source.\nYou can read a GeoJSON directly from a URL, without downloading anything manually:\n\nmap_of_chicago &lt;- sf::st_read(\n  \"https://data.cityofchicago.org/resource/y6yq-dbs2.geojson\",\n  quiet = TRUE\n  )\n\nhead(map_of_chicago)\n\nSimple feature collection with 6 features and 4 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -87.74141 ymin: 41.80189 xmax: -87.60641 ymax: 41.93272\nGeodetic CRS:  WGS 84\n           pri_neigh          sec_neigh    shape_area    shape_len\n1    Grand Boulevard        BRONZEVILLE 48492503.1554 28196.837157\n2       Printers Row       PRINTERS ROW 2162137.97139  6864.247156\n3      United Center      UNITED CENTER 32520512.7053 23101.363745\n4 Sheffield & DePaul SHEFFIELD & DEPAUL 10482592.2987 13227.049745\n5      Humboldt Park      HUMBOLDT PARK 125010425.593 46126.751351\n6      Garfield Park      GARFIELD PARK 89976069.5947  44460.91922\n                        geometry\n1 MULTIPOLYGON (((-87.60671 4...\n2 MULTIPOLYGON (((-87.62761 4...\n3 MULTIPOLYGON (((-87.66707 4...\n4 MULTIPOLYGON (((-87.65833 4...\n5 MULTIPOLYGON (((-87.7406 41...\n6 MULTIPOLYGON (((-87.6954 41...\n\n\n\nWhat you get:\n\n\nmap_of_chicago is an sf object -essentially a data frame with a special geometry column where each row is a polygon that represents one community area"
   },
   {
-    "objectID": "content/rhacks/posts/06-02082026/index.html#early-warning-signs-you-should-pivot",
-    "href": "content/rhacks/posts/06-02082026/index.html#early-warning-signs-you-should-pivot",
-    "title": "When to Pivot: Spotting Data Shape Problems Early",
-    "section": "Early warning signs you should pivot",
-    "text": "Early warning signs you should pivot\nIf you see any of the following, pause and consider reshaping:\n\n\nmutate() or summarise() repeated across many columns\n\nacross(starts_with(...)) doing heavy lifting\n\nggplot code that manually references multiple variables\ncolumn names encoding values (e.g. sales_2022, sales_2023)\ncopy–paste patterns that differ only by column name\n\nThese are shape problems, not syntax problems."
+    "objectID": "content/rhacks/posts/02-12052025/index.html#step-3-plot-a-basic-map-with-geom_sf",
+    "href": "content/rhacks/posts/02-12052025/index.html#step-3-plot-a-basic-map-with-geom_sf",
+    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
+    "section": "Step 3 – Plot a basic map with geom_sf()\n",
+    "text": "Step 3 – Plot a basic map with geom_sf()\n\nOnce the GeoJSON file has been loaded into an sf object, you can visualize it with geom_sf().\ngeom_sf() is the ggplot2 layer designed specifically for spatial data: it knows how to read the geometry column of an sf object and automatically draw points, lines, or polygons depending on what the data contains. In our case, it will draw the polygons of Chicago’s community areas.\n\nggplot() +\n  geom_sf(data = map_of_chicago, \n          fill = \"#f1f0f0\", color = \"grey50\") +\n  labs(title = \"Chicago community areas\",\n       subtitle = \"GeoJSON map loaded with sf::st_read()\") +\n  theme_void()"
   },
   {
-    "objectID": "content/rhacks/posts/06-02082026/index.html#a-minimal-example",
-    "href": "content/rhacks/posts/06-02082026/index.html#a-minimal-example",
-    "title": "When to Pivot: Spotting Data Shape Problems Early",
-    "section": "A minimal example",
-    "text": "A minimal example\nLet’s simulate a small, tidy-looking dataset that is actually awkward to work with.\n\nlibrary(dplyr)\nlibrary(tidyr)\n\ndf_wide &lt;- data.frame(\n  id = 1:5,\n  glucose_morning = c(110, 98, 130, 105, 120),\n  glucose_evening = c(140, 115, 160, 125, 150)\n)\n\ndf_wide\n\n  id glucose_morning glucose_evening\n1  1             110             140\n2  2              98             115\n3  3             130             160\n4  4             105             125\n5  5             120             150\n\n\n\n\n\n\n\n\nAt first glance, this looks fine. But now try to:\n\ncompute summaries\nmake a single plot\ncompare morning vs evening values\n\n\n\n\nEverything becomes more complicated than necessary."
-  },
-  {
-    "objectID": "content/rhacks/posts/06-02082026/index.html#pivot-once-simplify-everything",
-    "href": "content/rhacks/posts/06-02082026/index.html#pivot-once-simplify-everything",
-    "title": "When to Pivot: Spotting Data Shape Problems Early",
-    "section": "Pivot once, simplify everything",
-    "text": "Pivot once, simplify everything\nA single pivot_longer() changes the workflow completely.\n\ndf_long &lt;- df_wide |&gt;\n  pivot_longer(\n    cols = starts_with(\"glucose\"),\n    names_to = \"time\",\n    values_to = \"glucose\"\n  )\n\ndf_long\n\n# A tibble: 10 × 3\n      id time            glucose\n   &lt;int&gt; &lt;chr&gt;             &lt;dbl&gt;\n 1     1 glucose_morning     110\n 2     1 glucose_evening     140\n 3     2 glucose_morning      98\n 4     2 glucose_evening     115\n 5     3 glucose_morning     130\n 6     3 glucose_evening     160\n 7     4 glucose_morning     105\n 8     4 glucose_evening     125\n 9     5 glucose_morning     120\n10     5 glucose_evening     150\n\n\nNow each row is a measurement, not a column variant.\n\nSee the payoff immediately\n\nSummaries become simpler\n\ndf_long |&gt;\n  group_by(time) |&gt;\n  summarise(\n    n = n(),\n    mean_glucose = mean(glucose)\n  )\n\n# A tibble: 2 × 3\n  time                n mean_glucose\n  &lt;chr&gt;           &lt;int&gt;        &lt;dbl&gt;\n1 glucose_evening     5         138 \n2 glucose_morning     5         113.\n\n\nPlots become trivial\n\nlibrary(ggplot2)\n\nggplot(df_long, aes(x = time, y = glucose)) +\n  geom_boxplot() +\n  labs(\n    title = \"Glucose levels by time of day\",\n    x = NULL,\n    y = \"Glucose\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\nNo manual aesthetics\nNo duplicated code\nNo workarounds\n\n\nWhen not to pivot\n\nNot everything should be long.\n\n\n\n\n\n\nAvoid pivoting when:\n\ncolumns represent different concepts (e.g. age vs height)\nyou are producing final reporting tables\nidentifiers would be duplicated unnecessarily\n\n\n\n\nPivoting is a tool, not a rule."
-  },
-  {
-    "objectID": "content/rhacks/posts/06-02082026/index.html#making-this-a-habit",
-    "href": "content/rhacks/posts/06-02082026/index.html#making-this-a-habit",
-    "title": "When to Pivot: Spotting Data Shape Problems Early",
-    "section": "Making this a habit",
-    "text": "Making this a habit\nBefore adding complexity, ask: - Am I repeating the same logic across columns? - Am I fighting ggplot instead of feeding it clean data? - Are column names doing the job rows should be doing?\nIf the answer is “yes”, try reshaping early.\n\n\n\n\n\n\nIn short\n\nMany messy workflows start with data in the wrong shape\nShape problems masquerade as logic problems\nOne early pivot can remove dozens of lines of code\nDecide structure early, then move on\n\n\n\n\nThis is not about writing more code. It’s about writing less."
-  },
-  {
-    "objectID": "content/rhacks/posts/06-02082026/index.html#industry-update-short-note",
-    "href": "content/rhacks/posts/06-02082026/index.html#industry-update-short-note",
-    "title": "When to Pivot: Spotting Data Shape Problems Early",
-    "section": "Industry update (short note)",
-    "text": "Industry update (short note)\nPosit has opened a private beta of an AI assistant embedded directly in RStudio. If you’re curious to try it, you can join the waiting list here:\n👉 https://posit.co/products/enterprise/ai/\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group, follow us here:\n👉 https://www.meetup.com/rome-r-users-group/"
-  },
-  {
-    "objectID": "content/rhacks/posts/05-02022026/index.html",
-    "href": "content/rhacks/posts/05-02022026/index.html",
-    "title": "One-Line Sanity Checks After Every Transformation",
-    "section": "",
-    "text": "This hack is based on RLadiesRome Tutorial analysis on From Basics to Advanced Health Analytics: Exploring Diabetes Data:\n🔗 https://rladiesrome.github.io/Principles-of-data-Analysis-in-R/\nWhen working with data, most bugs don’t come from complex models.\nThis R-Hack shows how to build a habit of running one-line sanity checks after every major transformation, using a concrete example from our Exploring Diabetes Data tutorial.\nThey are quick, cheap, and often enough to catch problems before plots or models hide them."
-  },
-  {
-    "objectID": "content/rhacks/posts/05-02022026/index.html#why-one-line-checks-matter",
-    "href": "content/rhacks/posts/05-02022026/index.html#why-one-line-checks-matter",
-    "title": "One-Line Sanity Checks After Every Transformation",
-    "section": "Why One-Line Checks Matter",
-    "text": "Why One-Line Checks Matter\nTransformations are the most fragile part of a data workflow. They change structure, size, and meaning — often without throwing an error.\nThe goal here is not defensive programming or heavy validation. It’s about building small, automatic pauses that let you ask:\n\n“Does the data still look the way I expect?”\n\nData Example: Diabetes Dataset (Before Clustering)\nIn the tutorial, the diabetes dataset is cleaned and prepared before moving to k-prototypes clustering.\nAt that point, the data typically goes through steps like:\n\nselecting relevant variables\nrecoding categorical fields\nfiltering incomplete observations\n\nThat makes it an ideal place to pause and check assumptions. Let’s simulate a sample dataset similar to the one used in the tutorial:\n\nlibrary(dplyr)\n\nset.seed(123)\n\ndf_before &lt;- data.frame(\n  id       = 1:300,\n  age      = round(rnorm(300, mean = 55, sd = 10)),\n  bmi      = round(rnorm(300, mean = 28, sd = 5), 1),\n  glucose  = round(rnorm(300, mean = 120, sd = 30)),\n  sex      = sample(c(\"Female\", \"Male\"), 300, replace = TRUE),\n  diabetes = sample(c(\"No\", \"Yes\"), 300, replace = TRUE, prob = c(0.7, 0.3))\n)\n\n# Introduce realistic missingness (so filtering has an effect)\nset.seed(456)\ndf_before$bmi[sample(seq_len(nrow(df_before)), size = 20)] &lt;- NA\ndf_before$glucose[sample(seq_len(nrow(df_before)), size = 15)] &lt;- NA\n\n\ndim(df_before)\n\n[1] 300   6\n\n\n\nhead(df_before)\n\n  id age  bmi glucose    sex diabetes\n1  1  49 24.4     152   Male       No\n2  2  53 24.2     119   Male       No\n3  3  71 23.3     119   Male       No\n4  4  56 22.7      75 Female      Yes\n5  5  56 25.8     144   Male       No\n6  6  72 29.7     114 Female      Yes\n\n\nAfter the transformations, we get a new dataframe df_after:\n\ndf_after &lt;- df_before |&gt;\n  dplyr::filter(!is.na(glucose), !is.na(bmi)) |&gt;\n  dplyr::mutate(\n    diabetes = factor(diabetes, levels = c(\"No\", \"Yes\"))\n  )\n\ndim(df_after)\n\n[1] 266   6\n\n\n\nhead(df_after)\n\n  id age  bmi glucose    sex diabetes\n1  1  49 24.4     152   Male       No\n2  2  53 24.2     119   Male       No\n3  3  71 23.3     119   Male       No\n4  4  56 22.7      75 Female      Yes\n5  5  56 25.8     144   Male       No\n6  6  72 29.7     114 Female      Yes\n\n\nCheck 1 – Did the Row Count Change as Expected?\nAfter any operation that could affect the number of rows, check it explicitly.\n\n# One-line sanity check: did we drop rows as expected?\nnrow(df_before)\n\n[1] 300\n\nnrow(df_after)\n\n[1] 266\n\n\n\n\n\n\n\n\nNotes (why this works)\n\nWe create missing values in bmi and glucose, which is common in real health datasets.\nThe filter step now drops incomplete rows, so df_after has fewer rows than df_before.\nThis makes your “row count changed” check meaningful and aligned with Issue N.5’s message.\n\n\n\n\nIn this context, a reduction is expected, but it should be understood and intentional.\nUse this after:\n\nfilter()\njoin()\nsubsetting\nremoving duplicates\n\nWhat this catches:\n\naccidental row loss\nmany-to-many joins\naccidental over-filtering\nunintended row drops\nsilent data duplication\n\nIf the number changes unexpectedly, stop and investigate. This single check prevents a large class of downstream errors.\nCheck 2 – Do Key Variables Still Look Reasonable?\nWhenever you create or transform a variable, inspect its range.\n\nsummary(df_after$age)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   32.0    49.0    55.0    55.4    61.0    87.0 \n\n\n\nrange(df_after$bmi, na.rm = TRUE)\n\n[1] 14.0 40.9\n\n\nLook for:\n\nnegative values where they shouldn’t exist\nimpossible values (e.g. BMI of 5)\nsuspicious defaults (e.g. all zeros)\ntransformations that didn’t behave as expected\n\nThese problems are much easier to fix immediately than after modelling.\nCheck 3 – Did Missingness Increase?\nJoins and reshaping often introduce NAs. Count them explicitly.\n\ncolSums(is.na(df_after))\n\n      id      age      bmi  glucose      sex diabetes \n       0        0        0        0        0        0 \n\n\nThis gives a fast overview of:\n\ncolumns that need cleaning\nvariables that may bias analysis\nfields that should be dropped or imputed\n\nNever assume “there aren’t many NAs”. Check!\nCheck 4 – Do Group Sizes Still Make Sense?\nBefore summarising or modelling grouped data, look at the group counts. In particular, before using categorical variables in clustering or summaries, check their distribution.\n\ndf_after |&gt; dplyr::count(diabetes)\n\n  diabetes   n\n1       No 188\n2      Yes  78\n\n\n\n\nThis is especially important before:\n\nrates or percentages\naverages by group\ncomparisons across categories\n\n\nThis prevents:\n\nunstable clusters\ncategories with too few observations\nmisleading interpretations\n\n\n\nWhat this catches:\n\ntiny or empty groups\nunstable estimates\nsummaries that look precise but aren’t meaningful"
-  },
-  {
-    "objectID": "content/rhacks/posts/05-02022026/index.html#making-this-a-habit",
-    "href": "content/rhacks/posts/05-02022026/index.html#making-this-a-habit",
-    "title": "One-Line Sanity Checks After Every Transformation",
-    "section": "Making This a Habit",
-    "text": "Making This a Habit\nThese checks are not meant to clutter your script. They are meant to become automatic.\nA good rule of thumb:\n\nAfter anything that changes rows → check nrow()\n\nAfter anything that changes values → check summary() or range()\n\nAfter anything that combines data → check NAs\n\nBefore summarising → check group sizes\n\nOne line is often enough.\n\n\n\n\n\n\nIn Short\n\nMost data bugs enter during transformations\nOne-line checks catch problems early\nThey cost seconds and save hours\nMake them a habit, not an afterthought\n\n\n\n\nThis is not about perfection. It’s about seeing problems while they’re still small.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group, follow us here:\n👉 https://www.meetup.com/rome-r-users-group/"
-  },
-  {
-    "objectID": "content/resources/index.html",
-    "href": "content/resources/index.html",
-    "title": "Rome R-Users Group",
-    "section": "",
-    "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
-  },
-  {
-    "objectID": "content/resources/index.html#resources",
-    "href": "content/resources/index.html#resources",
-    "title": "Rome R-Users Group",
-    "section": "",
-    "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
-  },
-  {
-    "objectID": "LICENSE.html",
-    "href": "LICENSE.html",
-    "title": "MIT License",
-    "section": "",
-    "text": "MIT License\nCopyright (c) 2025 Rome-R-Users-Group authors\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "content/news/index.html",
-    "href": "content/news/index.html",
-    "title": "R Consortium Events & Workshops",
-    "section": "",
-    "text": "Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:"
-  },
-  {
-    "objectID": "content/news/index.html#news",
-    "href": "content/news/index.html#news",
-    "title": "R Consortium Events & Workshops",
-    "section": "",
-    "text": "Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:"
-  },
-  {
-    "objectID": "content/news/index.html#check-recent-posts-from-selected-r-and-data-science-sources",
-    "href": "content/news/index.html#check-recent-posts-from-selected-r-and-data-science-sources",
-    "title": "R Consortium Events & Workshops",
-    "section": "Check recent posts from selected R and data science sources:",
-    "text": "Check recent posts from selected R and data science sources:\n\n\n\n\n\n\nDate\nSource\nTitle\n\n\n\n\n2026-02-16\nR-Ladies Rome\nA Year of Learning, Growth, and Community at R-Ladies Rome 🌟\n\n\n\n2026-02-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W08 submissions working group, nested Lists with xfun::tabset\n\n\n\n2026-02-15\nR-Ladies Rome\nFrom Data to Decisions: Digital Twins for Smarter Maintenance\n\n\n\n2026-02-09\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W07 sitrep, webRios, Jarl linter\n\n\n\n2026-02-02\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W06 Interview, Practical git, duckdb\n\n\n\n2026-01-28\nR-Ladies Rome\nGit & GitHub: Practical Version Control for Data Work\n\n\n\n2026-01-26\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W05 LLMs & plots, soil flux, futurize\n\n\n\n2026-01-20\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W04 Automate PR’s with Claude, Accessible line charts\n\n\n\n2026-01-12\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W03 R & Python Pluralism, RAG Setup, tinyshinyserver\n\n\n\n2025-12-22\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2025-W52 Festive ML, next gen R contributors, The Economist style ggplot2"
+    "objectID": "content/rhacks/posts/02-12052025/index.html#to-recap",
+    "href": "content/rhacks/posts/02-12052025/index.html#to-recap",
+    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
+    "section": "To Recap",
+    "text": "To Recap\n\nGeoJSON = JSON file with geometry + attributes\nLoad it directly from a URL with sf::st_read()\nPlot it with geom_sf()\nAdd your own points using regular ggplot layers\nThis workflow is simple, beginner-friendly, and requires no GIS tools\n\n\nThanks for reading!\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events from the Rome R Users Group, click here:\n👉 https://www.meetup.com/rome-r-users-group/\nAnd if you are curious, the full Kaggle notebook used for this tip is available here:\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r"
   },
   {
     "objectID": "content/rhacks/posts/03-01132026/index.html",
@@ -385,95 +301,130 @@
     "text": "In short\n\nThere is no single “official” way to compare many dataframes at once\nHelpers like compare_df_cols() from janitor are excellent for column-level inspection\nThis custom helper function provides a clear, compact overview before stacking or merging data\nThink of it as a pre-flight checklist before combining your data\n\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events from the Rome R Users Group, click here:\n👉 https://www.meetup.com/rome-r-users-group/\nAnd if you are curious, the full Kaggle notebook used for this tip is available here:\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r"
   },
   {
-    "objectID": "content/rhacks/posts/02-12052025/index.html",
-    "href": "content/rhacks/posts/02-12052025/index.html",
-    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
+    "objectID": "content/news/index.html",
+    "href": "content/news/index.html",
+    "title": "R Consortium Events & Workshops",
     "section": "",
-    "text": "This hack is based on my Cyclistic analysis on Kaggle (see Chapter 8.12.4):\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r\nWorking with maps in R is easier than it seems.\nIf you want to visualize points, regions, or spatial patterns, the combination of GeoJSON files and the sf package gives you a simple and modern workflow.\nIn this hack, we’ll load a real city map (Chicago) directly from a URL, plot it with geom_sf(), and overlay simple point data."
+    "text": "Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:"
   },
   {
-    "objectID": "content/rhacks/posts/02-12052025/index.html#step-0-what-is-a-geojson-file",
-    "href": "content/rhacks/posts/02-12052025/index.html#step-0-what-is-a-geojson-file",
-    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
-    "section": "Step 0 – What is a GeoJSON file?",
-    "text": "Step 0 – What is a GeoJSON file?\nA GeoJSON file is a JSON text file that stores geographic shapes (points, lines, polygons), together with their attributes (names, boundaries, codes, etc.).\nIt is one of the most common formats for open geographic data because it is lightweight, human-readable, and web-friendly.\nYou can often find GeoJSON files on:\n\ncity open data portals (City of Chicago, NYC Open Data, etc.)\n\nnational and international platforms (e.g., data.gov)\n\nGitHub repositories\n\nmany public mapping resources"
-  },
-  {
-    "objectID": "content/rhacks/posts/02-12052025/index.html#step-1-load-the-required-packages",
-    "href": "content/rhacks/posts/02-12052025/index.html#step-1-load-the-required-packages",
-    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
-    "section": "Step 1 – Load the required packages",
-    "text": "Step 1 – Load the required packages\n\nlibrary(sf)       # for spatial data (simple features)\nlibrary(ggplot2)  # for plotting"
-  },
-  {
-    "objectID": "content/rhacks/posts/02-12052025/index.html#step-2-read-a-geojson-map-with-sfst_read",
-    "href": "content/rhacks/posts/02-12052025/index.html#step-2-read-a-geojson-map-with-sfst_read",
-    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
-    "section": "Step 2 – Read a GeoJSON map with sf::st_read()\n",
-    "text": "Step 2 – Read a GeoJSON map with sf::st_read()\n\nIn this hack, we use a GeoJSON of Chicago community areas, provided by the City of Chicago Open Data Portal.\n⚠️ Before using any online map or dataset, always remember to check the terms of use of the source.\nYou can read a GeoJSON directly from a URL, without downloading anything manually:\n\nmap_of_chicago &lt;- sf::st_read(\n  \"https://data.cityofchicago.org/resource/y6yq-dbs2.geojson\",\n  quiet = TRUE\n  )\n\nhead(map_of_chicago)\n\nSimple feature collection with 6 features and 4 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -87.74141 ymin: 41.80189 xmax: -87.60641 ymax: 41.93272\nGeodetic CRS:  WGS 84\n           pri_neigh          sec_neigh    shape_area    shape_len\n1    Grand Boulevard        BRONZEVILLE 48492503.1554 28196.837157\n2       Printers Row       PRINTERS ROW 2162137.97139  6864.247156\n3      United Center      UNITED CENTER 32520512.7053 23101.363745\n4 Sheffield & DePaul SHEFFIELD & DEPAUL 10482592.2987 13227.049745\n5      Humboldt Park      HUMBOLDT PARK 125010425.593 46126.751351\n6      Garfield Park      GARFIELD PARK 89976069.5947  44460.91922\n                        geometry\n1 MULTIPOLYGON (((-87.60671 4...\n2 MULTIPOLYGON (((-87.62761 4...\n3 MULTIPOLYGON (((-87.66707 4...\n4 MULTIPOLYGON (((-87.65833 4...\n5 MULTIPOLYGON (((-87.7406 41...\n6 MULTIPOLYGON (((-87.6954 41...\n\n\n\nWhat you get:\n\n\nmap_of_chicago is an sf object -essentially a data frame with a special geometry column where each row is a polygon that represents one community area"
-  },
-  {
-    "objectID": "content/rhacks/posts/02-12052025/index.html#step-3-plot-a-basic-map-with-geom_sf",
-    "href": "content/rhacks/posts/02-12052025/index.html#step-3-plot-a-basic-map-with-geom_sf",
-    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
-    "section": "Step 3 – Plot a basic map with geom_sf()\n",
-    "text": "Step 3 – Plot a basic map with geom_sf()\n\nOnce the GeoJSON file has been loaded into an sf object, you can visualize it with geom_sf().\ngeom_sf() is the ggplot2 layer designed specifically for spatial data: it knows how to read the geometry column of an sf object and automatically draw points, lines, or polygons depending on what the data contains. In our case, it will draw the polygons of Chicago’s community areas.\n\nggplot() +\n  geom_sf(data = map_of_chicago, \n          fill = \"#f1f0f0\", color = \"grey50\") +\n  labs(title = \"Chicago community areas\",\n       subtitle = \"GeoJSON map loaded with sf::st_read()\") +\n  theme_void()"
-  },
-  {
-    "objectID": "content/rhacks/posts/02-12052025/index.html#to-recap",
-    "href": "content/rhacks/posts/02-12052025/index.html#to-recap",
-    "title": "R Hack – Getting started with maps in R using GeoJSON and library sf",
-    "section": "To Recap",
-    "text": "To Recap\n\nGeoJSON = JSON file with geometry + attributes\nLoad it directly from a URL with sf::st_read()\nPlot it with geom_sf()\nAdd your own points using regular ggplot layers\nThis workflow is simple, beginner-friendly, and requires no GIS tools\n\n\nThanks for reading!\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events from the Rome R Users Group, click here:\n👉 https://www.meetup.com/rome-r-users-group/\nAnd if you are curious, the full Kaggle notebook used for this tip is available here:\n🔗 https://www.kaggle.com/code/lcolon/cyclistic-2023-google-da-capstone-project-r"
-  },
-  {
-    "objectID": "content/rhacks/posts/08-02222026/index.html",
-    "href": "content/rhacks/posts/08-02222026/index.html",
-    "title": "CSV vs Parquet: A Better Default for Analytics",
+    "objectID": "content/news/index.html#news",
+    "href": "content/news/index.html#news",
+    "title": "R Consortium Events & Workshops",
     "section": "",
-    "text": "If you are still saving analytical datasets as .csv by default, you are likely paying a hidden tax:\nCSV is universal. But universal does not mean optimal.\nThis R-Hack explains why Parquet should often be your default for analytical workflows."
+    "text": "Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:"
   },
   {
-    "objectID": "content/rhacks/posts/08-02222026/index.html#what-is-parquet",
-    "href": "content/rhacks/posts/08-02222026/index.html#what-is-parquet",
-    "title": "CSV vs Parquet: A Better Default for Analytics",
-    "section": "What Is Parquet?",
-    "text": "What Is Parquet?\nParquet is a columnar, binary storage format designed for analytics.\nUnlike CSV:\n\nIt stores column types explicitly\nIt compresses data efficiently\nIt reads columns independently\n\nIn R, Parquet support is provided by the arrow package.\n\n# Example R code chunk\n# Load necessary libraries\nlibrary(arrow)\nlibrary(dplyr)\n\n# Create a sample data frame\ndata &lt;- data.frame(\n  id = 1:5,\n  value = c(10.5, 20.3, 30.8, 40.2, 50.1)\n)\n\n# Write the data frame to a Parquet file\nwrite_parquet(data, \"sample_data.parquet\")\n\n# Read the Parquet file back into R\ndata_read &lt;- read_parquet(\"sample_data.parquet\")\n\n# Print the data\nprint(data_read)\n\n# A tibble: 5 × 2\n     id value\n  &lt;int&gt; &lt;dbl&gt;\n1     1  10.5\n2     2  20.3\n3     3  30.8\n4     4  40.2\n5     5  50.1"
+    "objectID": "content/news/index.html#check-recent-posts-from-selected-r-and-data-science-sources",
+    "href": "content/news/index.html#check-recent-posts-from-selected-r-and-data-science-sources",
+    "title": "R Consortium Events & Workshops",
+    "section": "Check recent posts from selected R and data science sources:",
+    "text": "Check recent posts from selected R and data science sources:\n\n\n\n\n\n\n\n\nDate\nSource\nTitle\n\n\n\n\n\n2026-02-16\nR-Ladies Rome\nA Year of Learning, Growth, and Community at R-Ladies Rome 🌟\n\n\n\n2026-02-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W08 submissions working group, nested Lists with xfun::tabset\n\n\n\n2026-02-15\nR-Ladies Rome\nFrom Data to Decisions: Digital Twins for Smarter Maintenance\n\n\n\n2026-02-09\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W07 sitrep, webRios, Jarl linter\n\n\n\n2026-02-02\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W06 Interview, Practical git, duckdb\n\n\n\n2026-01-28\nR-Ladies Rome\nGit & GitHub: Practical Version Control for Data Work\n\n\n\n2026-01-26\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W05 LLMs & plots, soil flux, futurize\n\n\n\n2026-01-20\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W04 Automate PR’s with Claude, Accessible line charts\n\n\n\n2026-01-12\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W03 R & Python Pluralism, RAG Setup, tinyshinyserver\n\n\n\n2025-12-22\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2025-W52 Festive ML, next gen R contributors, The Economist style ggplot2"
   },
   {
-    "objectID": "content/rhacks/posts/08-02222026/index.html#step-1-simulate-a-realistic-dataset",
-    "href": "content/rhacks/posts/08-02222026/index.html#step-1-simulate-a-realistic-dataset",
-    "title": "CSV vs Parquet: A Better Default for Analytics",
-    "section": "Step 1 — Simulate a Realistic Dataset",
-    "text": "Step 1 — Simulate a Realistic Dataset\n\nset.seed(123)\n\ndf &lt;- data.frame(\n  id = 1:200000,\n  category = sample(LETTERS[1:5], 200000, replace = TRUE),\n  value = rnorm(200000),\n  flag = sample(c(TRUE, FALSE), 200000, replace = TRUE)\n)\n\nThis mimics a moderately sized analytical dataset."
+    "objectID": "LICENSE.html",
+    "href": "LICENSE.html",
+    "title": "MIT License",
+    "section": "",
+    "text": "MIT License\nCopyright (c) 2025 Rome-R-Users-Group authors\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n\n Back to top"
   },
   {
-    "objectID": "content/rhacks/posts/08-02222026/index.html#step-2-save-and-read-as-csv",
-    "href": "content/rhacks/posts/08-02222026/index.html#step-2-save-and-read-as-csv",
-    "title": "CSV vs Parquet: A Better Default for Analytics",
-    "section": "Step 2 — Save and Read as CSV",
-    "text": "Step 2 — Save and Read as CSV\n\nwrite.csv(df, \"data.csv\", row.names = FALSE)\n\nsystem.time({\n  df_csv &lt;- read.csv(\"data.csv\")\n})\n\n   user  system elapsed \n  0.261   0.007   0.273 \n\n\nNow check file size:\n\nfile.info(\"data.csv\")$size\n\n[1] 6819327\n\n\nCSV:\n\nstores everything as text\nrequires parsing every time\nguesses types on read"
+    "objectID": "content/resources/index.html",
+    "href": "content/resources/index.html",
+    "title": "Rome R-Users Group",
+    "section": "",
+    "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
   },
   {
-    "objectID": "content/rhacks/posts/08-02222026/index.html#step-3-save-and-read-as-parquet",
-    "href": "content/rhacks/posts/08-02222026/index.html#step-3-save-and-read-as-parquet",
-    "title": "CSV vs Parquet: A Better Default for Analytics",
-    "section": "Step 3 — Save and Read as Parquet",
-    "text": "Step 3 — Save and Read as Parquet\n\nwrite_parquet(df, \"data.parquet\")\n\nsystem.time({\n  df_parquet &lt;- read_parquet(\"data.parquet\")\n})\n\n   user  system elapsed \n  0.008   0.001   0.007 \n\n\nCheck file size:\n\nfile.info(\"data.parquet\")$size\n\n[1] 3231687\n\n\nYou will typically observe:\n\nfaster read time\nsmaller file size\npreserved data types\n\n\nWhy This Matters in Practice?\n\n1️⃣ Speed\nParquet reads are faster because:\n\nit stores columns independently\nit avoids text parsing\nit uses compression effectively\n\nThis becomes significant as datasets grow.\n2️⃣ File Size\nParquet compresses automatically. In many real-world cases parquet files are 30–70% smaller than CSV equivalents:\n\nLess storage\nFaster transfer\nCleaner repositories\n3️⃣ Type Safety\nCSV does not store types.\nEvery read operation reinterprets:\n\nlogical values\nfactors\ndates\nnumeric columns\n\nParquet preserves them.\nThis reduces silent coercion bugs."
+    "objectID": "content/resources/index.html#resources",
+    "href": "content/resources/index.html#resources",
+    "title": "Rome R-Users Group",
+    "section": "",
+    "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
   },
   {
-    "objectID": "content/rhacks/posts/08-02222026/index.html#bonus-select-columns-without-loading-everything",
-    "href": "content/rhacks/posts/08-02222026/index.html#bonus-select-columns-without-loading-everything",
-    "title": "CSV vs Parquet: A Better Default for Analytics",
-    "section": "Bonus — Select Columns Without Loading Everything",
-    "text": "Bonus — Select Columns Without Loading Everything\nWith arrow, you can load only what you need:\n\nread_parquet(\"data.parquet\", col_select = c(\"id\", \"value\"))\n\n# A tibble: 200,000 × 2\n      id   value\n   &lt;int&gt;   &lt;dbl&gt;\n 1     1  0.945 \n 2     2 -0.284 \n 3     3  0.395 \n 4     4  1.32  \n 5     5  0.872 \n 6     6  0.0354\n 7     7 -0.427 \n 8     8 -0.975 \n 9     9  0.0965\n10    10  0.808 \n# ℹ 199,990 more rows\n\n\nThis is especially powerful for:\n\nlarge analytical datasets\nremote storage\nmodular pipelines\n\nWhen CSV Is Still Appropriate\nCSV is fine when:\n\nexporting for non-technical users\nsharing small files\ngenerating human-readable outputs\n\n\nBut for analytical workflows?\n\nParquet is usually superior."
+    "objectID": "content/rhacks/posts/05-02022026/index.html",
+    "href": "content/rhacks/posts/05-02022026/index.html",
+    "title": "One-Line Sanity Checks After Every Transformation",
+    "section": "",
+    "text": "This hack is based on RLadiesRome Tutorial analysis on From Basics to Advanced Health Analytics: Exploring Diabetes Data:\n🔗 https://rladiesrome.github.io/Principles-of-data-Analysis-in-R/\nWhen working with data, most bugs don’t come from complex models.\nThis R-Hack shows how to build a habit of running one-line sanity checks after every major transformation, using a concrete example from our Exploring Diabetes Data tutorial.\nThey are quick, cheap, and often enough to catch problems before plots or models hide them."
   },
   {
-    "objectID": "content/rhacks/posts/08-02222026/index.html#workflow-recommendation",
-    "href": "content/rhacks/posts/08-02222026/index.html#workflow-recommendation",
-    "title": "CSV vs Parquet: A Better Default for Analytics",
-    "section": "Workflow Recommendation",
-    "text": "Workflow Recommendation\nFor reproducible projects:\n\nRaw data → store as Parquet\nIntermediate processed data → store as Parquet\nFinal exports → optionally CSV\n\nThink of Parquet as your working format, and CSV as your exchange format.\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n\nCSV is universal but inefficient\nParquet is faster, smaller, and type-safe\nSwitching requires only {arrow}\nMake Parquet your default for analysis projects\n\n\n\nModern workflows deserve modern storage.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
+    "objectID": "content/rhacks/posts/05-02022026/index.html#why-one-line-checks-matter",
+    "href": "content/rhacks/posts/05-02022026/index.html#why-one-line-checks-matter",
+    "title": "One-Line Sanity Checks After Every Transformation",
+    "section": "Why One-Line Checks Matter",
+    "text": "Why One-Line Checks Matter\nTransformations are the most fragile part of a data workflow. They change structure, size, and meaning — often without throwing an error.\nThe goal here is not defensive programming or heavy validation. It’s about building small, automatic pauses that let you ask:\n\n“Does the data still look the way I expect?”\n\nData Example: Diabetes Dataset (Before Clustering)\nIn the tutorial, the diabetes dataset is cleaned and prepared before moving to k-prototypes clustering.\nAt that point, the data typically goes through steps like:\n\nselecting relevant variables\nrecoding categorical fields\nfiltering incomplete observations\n\nThat makes it an ideal place to pause and check assumptions. Let’s simulate a sample dataset similar to the one used in the tutorial:\n\nlibrary(dplyr)\n\nset.seed(123)\n\ndf_before &lt;- data.frame(\n  id       = 1:300,\n  age      = round(rnorm(300, mean = 55, sd = 10)),\n  bmi      = round(rnorm(300, mean = 28, sd = 5), 1),\n  glucose  = round(rnorm(300, mean = 120, sd = 30)),\n  sex      = sample(c(\"Female\", \"Male\"), 300, replace = TRUE),\n  diabetes = sample(c(\"No\", \"Yes\"), 300, replace = TRUE, prob = c(0.7, 0.3))\n)\n\n# Introduce realistic missingness (so filtering has an effect)\nset.seed(456)\ndf_before$bmi[sample(seq_len(nrow(df_before)), size = 20)] &lt;- NA\ndf_before$glucose[sample(seq_len(nrow(df_before)), size = 15)] &lt;- NA\n\n\ndim(df_before)\n\n[1] 300   6\n\n\n\nhead(df_before)\n\n  id age  bmi glucose    sex diabetes\n1  1  49 24.4     152   Male       No\n2  2  53 24.2     119   Male       No\n3  3  71 23.3     119   Male       No\n4  4  56 22.7      75 Female      Yes\n5  5  56 25.8     144   Male       No\n6  6  72 29.7     114 Female      Yes\n\n\nAfter the transformations, we get a new dataframe df_after:\n\ndf_after &lt;- df_before |&gt;\n  dplyr::filter(!is.na(glucose), !is.na(bmi)) |&gt;\n  dplyr::mutate(\n    diabetes = factor(diabetes, levels = c(\"No\", \"Yes\"))\n  )\n\ndim(df_after)\n\n[1] 266   6\n\n\n\nhead(df_after)\n\n  id age  bmi glucose    sex diabetes\n1  1  49 24.4     152   Male       No\n2  2  53 24.2     119   Male       No\n3  3  71 23.3     119   Male       No\n4  4  56 22.7      75 Female      Yes\n5  5  56 25.8     144   Male       No\n6  6  72 29.7     114 Female      Yes\n\n\nCheck 1 – Did the Row Count Change as Expected?\nAfter any operation that could affect the number of rows, check it explicitly.\n\n# One-line sanity check: did we drop rows as expected?\nnrow(df_before)\n\n[1] 300\n\nnrow(df_after)\n\n[1] 266\n\n\n\n\n\n\n\n\nNotes (why this works)\n\nWe create missing values in bmi and glucose, which is common in real health datasets.\nThe filter step now drops incomplete rows, so df_after has fewer rows than df_before.\nThis makes your “row count changed” check meaningful and aligned with Issue N.5’s message.\n\n\n\n\nIn this context, a reduction is expected, but it should be understood and intentional.\nUse this after:\n\nfilter()\njoin()\nsubsetting\nremoving duplicates\n\nWhat this catches:\n\naccidental row loss\nmany-to-many joins\naccidental over-filtering\nunintended row drops\nsilent data duplication\n\nIf the number changes unexpectedly, stop and investigate. This single check prevents a large class of downstream errors.\nCheck 2 – Do Key Variables Still Look Reasonable?\nWhenever you create or transform a variable, inspect its range.\n\nsummary(df_after$age)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   32.0    49.0    55.0    55.4    61.0    87.0 \n\n\n\nrange(df_after$bmi, na.rm = TRUE)\n\n[1] 14.0 40.9\n\n\nLook for:\n\nnegative values where they shouldn’t exist\nimpossible values (e.g. BMI of 5)\nsuspicious defaults (e.g. all zeros)\ntransformations that didn’t behave as expected\n\nThese problems are much easier to fix immediately than after modelling.\nCheck 3 – Did Missingness Increase?\nJoins and reshaping often introduce NAs. Count them explicitly.\n\ncolSums(is.na(df_after))\n\n      id      age      bmi  glucose      sex diabetes \n       0        0        0        0        0        0 \n\n\nThis gives a fast overview of:\n\ncolumns that need cleaning\nvariables that may bias analysis\nfields that should be dropped or imputed\n\nNever assume “there aren’t many NAs”. Check!\nCheck 4 – Do Group Sizes Still Make Sense?\nBefore summarising or modelling grouped data, look at the group counts. In particular, before using categorical variables in clustering or summaries, check their distribution.\n\ndf_after |&gt; dplyr::count(diabetes)\n\n  diabetes   n\n1       No 188\n2      Yes  78\n\n\n\n\nThis is especially important before:\n\nrates or percentages\naverages by group\ncomparisons across categories\n\n\nThis prevents:\n\nunstable clusters\ncategories with too few observations\nmisleading interpretations\n\n\n\nWhat this catches:\n\ntiny or empty groups\nunstable estimates\nsummaries that look precise but aren’t meaningful"
+  },
+  {
+    "objectID": "content/rhacks/posts/05-02022026/index.html#making-this-a-habit",
+    "href": "content/rhacks/posts/05-02022026/index.html#making-this-a-habit",
+    "title": "One-Line Sanity Checks After Every Transformation",
+    "section": "Making This a Habit",
+    "text": "Making This a Habit\nThese checks are not meant to clutter your script. They are meant to become automatic.\nA good rule of thumb:\n\nAfter anything that changes rows → check nrow()\n\nAfter anything that changes values → check summary() or range()\n\nAfter anything that combines data → check NAs\n\nBefore summarising → check group sizes\n\nOne line is often enough.\n\n\n\n\n\n\nIn Short\n\nMost data bugs enter during transformations\nOne-line checks catch problems early\nThey cost seconds and save hours\nMake them a habit, not an afterthought\n\n\n\n\nThis is not about perfection. It’s about seeing problems while they’re still small.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group, follow us here:\n👉 https://www.meetup.com/rome-r-users-group/"
+  },
+  {
+    "objectID": "content/rhacks/posts/06-02082026/index.html#early-warning-signs-you-should-pivot",
+    "href": "content/rhacks/posts/06-02082026/index.html#early-warning-signs-you-should-pivot",
+    "title": "When to Pivot: Spotting Data Shape Problems Early",
+    "section": "Early warning signs you should pivot",
+    "text": "Early warning signs you should pivot\nIf you see any of the following, pause and consider reshaping:\n\n\nmutate() or summarise() repeated across many columns\n\nacross(starts_with(...)) doing heavy lifting\n\nggplot code that manually references multiple variables\ncolumn names encoding values (e.g. sales_2022, sales_2023)\ncopy–paste patterns that differ only by column name\n\nThese are shape problems, not syntax problems."
+  },
+  {
+    "objectID": "content/rhacks/posts/06-02082026/index.html#a-minimal-example",
+    "href": "content/rhacks/posts/06-02082026/index.html#a-minimal-example",
+    "title": "When to Pivot: Spotting Data Shape Problems Early",
+    "section": "A minimal example",
+    "text": "A minimal example\nLet’s simulate a small, tidy-looking dataset that is actually awkward to work with.\n\nlibrary(dplyr)\nlibrary(tidyr)\n\ndf_wide &lt;- data.frame(\n  id = 1:5,\n  glucose_morning = c(110, 98, 130, 105, 120),\n  glucose_evening = c(140, 115, 160, 125, 150)\n)\n\ndf_wide\n\n  id glucose_morning glucose_evening\n1  1             110             140\n2  2              98             115\n3  3             130             160\n4  4             105             125\n5  5             120             150\n\n\n\n\n\n\n\n\nAt first glance, this looks fine. But now try to:\n\ncompute summaries\nmake a single plot\ncompare morning vs evening values\n\n\n\n\nEverything becomes more complicated than necessary."
+  },
+  {
+    "objectID": "content/rhacks/posts/06-02082026/index.html#pivot-once-simplify-everything",
+    "href": "content/rhacks/posts/06-02082026/index.html#pivot-once-simplify-everything",
+    "title": "When to Pivot: Spotting Data Shape Problems Early",
+    "section": "Pivot once, simplify everything",
+    "text": "Pivot once, simplify everything\nA single pivot_longer() changes the workflow completely.\n\ndf_long &lt;- df_wide |&gt;\n  pivot_longer(\n    cols = starts_with(\"glucose\"),\n    names_to = \"time\",\n    values_to = \"glucose\"\n  )\n\ndf_long\n\n# A tibble: 10 × 3\n      id time            glucose\n   &lt;int&gt; &lt;chr&gt;             &lt;dbl&gt;\n 1     1 glucose_morning     110\n 2     1 glucose_evening     140\n 3     2 glucose_morning      98\n 4     2 glucose_evening     115\n 5     3 glucose_morning     130\n 6     3 glucose_evening     160\n 7     4 glucose_morning     105\n 8     4 glucose_evening     125\n 9     5 glucose_morning     120\n10     5 glucose_evening     150\n\n\nNow each row is a measurement, not a column variant.\n\nSee the payoff immediately\n\nSummaries become simpler\n\ndf_long |&gt;\n  group_by(time) |&gt;\n  summarise(\n    n = n(),\n    mean_glucose = mean(glucose)\n  )\n\n# A tibble: 2 × 3\n  time                n mean_glucose\n  &lt;chr&gt;           &lt;int&gt;        &lt;dbl&gt;\n1 glucose_evening     5         138 \n2 glucose_morning     5         113.\n\n\nPlots become trivial\n\nlibrary(ggplot2)\n\nggplot(df_long, aes(x = time, y = glucose)) +\n  geom_boxplot() +\n  labs(\n    title = \"Glucose levels by time of day\",\n    x = NULL,\n    y = \"Glucose\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\nNo manual aesthetics\nNo duplicated code\nNo workarounds\n\n\nWhen not to pivot\n\nNot everything should be long.\n\n\n\n\n\n\nAvoid pivoting when:\n\ncolumns represent different concepts (e.g. age vs height)\nyou are producing final reporting tables\nidentifiers would be duplicated unnecessarily\n\n\n\n\nPivoting is a tool, not a rule."
+  },
+  {
+    "objectID": "content/rhacks/posts/06-02082026/index.html#making-this-a-habit",
+    "href": "content/rhacks/posts/06-02082026/index.html#making-this-a-habit",
+    "title": "When to Pivot: Spotting Data Shape Problems Early",
+    "section": "Making this a habit",
+    "text": "Making this a habit\nBefore adding complexity, ask: - Am I repeating the same logic across columns? - Am I fighting ggplot instead of feeding it clean data? - Are column names doing the job rows should be doing?\nIf the answer is “yes”, try reshaping early.\n\n\n\n\n\n\nIn short\n\nMany messy workflows start with data in the wrong shape\nShape problems masquerade as logic problems\nOne early pivot can remove dozens of lines of code\nDecide structure early, then move on\n\n\n\n\nThis is not about writing more code. It’s about writing less."
+  },
+  {
+    "objectID": "content/rhacks/posts/06-02082026/index.html#industry-update-short-note",
+    "href": "content/rhacks/posts/06-02082026/index.html#industry-update-short-note",
+    "title": "When to Pivot: Spotting Data Shape Problems Early",
+    "section": "Industry update (short note)",
+    "text": "Industry update (short note)\nPosit has opened a private beta of an AI assistant embedded directly in RStudio. If you’re curious to try it, you can join the waiting list here:\n👉 https://posit.co/products/enterprise/ai/\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group, follow us here:\n👉 https://www.meetup.com/rome-r-users-group/"
+  },
+  {
+    "objectID": "content/rhacks/posts/07-02152026/index.html",
+    "href": "content/rhacks/posts/07-02152026/index.html",
+    "title": "R-Hacks | Stop Copy–Pasting. Start Iterating.",
+    "section": "",
+    "text": "After fixing structure (N.3), adding sanity checks (N.5), and reshaping data properly (N.6), the next natural step is iteration over clean data.\nIn R, the problem is rarely how to write a loop. The real question is:\nThis R-Hack focuses on replacing duplication with controlled iteration."
+  },
+  {
+    "objectID": "content/rhacks/posts/07-02152026/index.html#the-core-problem-duplication",
+    "href": "content/rhacks/posts/07-02152026/index.html#the-core-problem-duplication",
+    "title": "R-Hacks | Stop Copy–Pasting. Start Iterating.",
+    "section": "The Core Problem: Duplication",
+    "text": "The Core Problem: Duplication\nYou see code like this:\n\nmean(df$var1)\nmean(df$var2)\nmean(df$var3)\n\nOr:\n\nplot(df$year_2020)\nplot(df$year_2021)\nplot(df$year_2022)\n\nIt works.\n\n\n\n\n\n\n\nBut it does not scale\nIt is fragile\nAnd it invites mistakes\n\n\n\n\n\nDuplication is your signal that iteration may be appropriate.\n\nStep 1 – Simulate Example Data\n\nset.seed(123)\n\ndf &lt;- data.frame(\n  var1 = rnorm(100),\n  var2 = rnorm(100, mean = 2),\n  var3 = rnorm(100, mean = 4)\n)\n\nhead(df)\n\n         var1     var2     var3\n1 -0.56047565 1.289593 6.198810\n2 -0.23017749 2.256884 5.312413\n3  1.55870831 1.753308 3.734855\n4  0.07050839 1.652457 4.543194\n5  0.12928774 1.048381 3.585660\n6  1.71506499 1.954972 3.523753\n\n\nStep 2 – A Clean for Loop\nInstead of repeating logic, define the variables once.\n\nvars &lt;- names(df)\n\nfor (v in vars) {\n  print(mean(df[[v]], na.rm = TRUE))\n}\n\n[1] 0.09040591\n[1] 1.892453\n[1] 4.120465\n\n\nThis loop:\n\niterates over column names\nextracts values using [[ ]]\navoids copy–paste\nkeeps logic consistent\n\nSimple and readable.\nStep 3 – Storing Results Properly (Preallocation)\nIf you need results for later use, preallocate.\n\nresults &lt;- numeric(length(vars))\n\nfor (i in seq_along(vars)) {\n  results[i] &lt;- mean(df[[vars[i]]], na.rm = TRUE)\n}\n\nresults\n\n[1] 0.09040591 1.89245320 4.12046511\n\n\nWhy preallocate?\n\navoids growing objects inside the loop\nkeeps structure explicit\nimproves clarity and performance\n\n\nPreallocation is not about micro-optimisation. It is about good structure.\n\nStep 4 – Plotting Without Copy–Paste\n❌ The Copy–Paste Pattern\nplot(df$var1)\nplot(df$var2)\nplot(df$var3)\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis works — but does not scale.\n✅ Base R Loop\nfor (v in vars) {\n  hist(df[[v]],\n       main = paste(\"Histogram of\", v),\n       col = \"steelblue\")\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis produces one histogram per variable.\n✅ ggplot2 Loop (Important Detail)\nlibrary(ggplot2)\n\nfor (v in vars) {\n  p &lt;- ggplot(df, aes(x = .data[[v]])) +\n    geom_histogram(fill = \"steelblue\", bins = 20) +\n    labs(title = paste(\"Histogram of\", v)) +\n    theme_minimal()\n\n  print(p)\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n🔎 Important: print(p) is required inside loops. Without it, nothing is displayed.\n\n\n\nThis is a subtle but crucial detail many users miss."
+  },
+  {
+    "objectID": "content/rhacks/posts/07-02152026/index.html#when-not-to-loop",
+    "href": "content/rhacks/posts/07-02152026/index.html#when-not-to-loop",
+    "title": "R-Hacks | Stop Copy–Pasting. Start Iterating.",
+    "section": "When Not to Loop",
+    "text": "When Not to Loop\nIf you are looping over columns, pause. Ask:\n\nShould the data be long instead?\n\nFor example (see R-Hacks N.6):\n\nlibrary(tidyr)\n\ndf_long &lt;- df |&gt;\n  pivot_longer(\n    cols = everything(),\n    names_to = \"variable\",\n    values_to = \"value\"\n  )\n\nggplot(df_long, aes(value)) +\n  geom_histogram(bins = 20, fill = \"steelblue\") +\n  facet_wrap(~ variable, scales = \"free\") +\n  theme_minimal()\n\n\n\n\n\n\n\nSometimes reshaping simplifies everything more than iterating."
+  },
+  {
+    "objectID": "content/rhacks/posts/07-02152026/index.html#editorial-stance",
+    "href": "content/rhacks/posts/07-02152026/index.html#editorial-stance",
+    "title": "R-Hacks | Stop Copy–Pasting. Start Iterating.",
+    "section": "Editorial Stance",
+    "text": "Editorial Stance\nLoops are not bad. Copy–paste is worse.\nThe goal is not to write clever code. The goal is to write less duplicated code.\nIteration becomes powerful when:\n\nstructure is clean\nshape is correct\nlogic is stable\n\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n\nDuplication is a signal\nReplace repetition with controlled iteration\nPreallocate when storing results\nRemember print() inside ggplot loops\nIf you are looping across columns, reconsider the data shape\n\n\n\nIteration is not about complexity. It is about discipline.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   },
   {
     "objectID": "content/rhacks/posts/01-11282025/index.html",
