@@ -5,9 +5,9 @@
 <meta name="generator" content="quarto-1.8.25">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Federica Gazzelloni">
-<meta name="dcterms.date" content="2026-02-02">
-<meta name="description" content="R-Hacks N.5">
-<title>One-Line Sanity Checks After Every Transformation – Rome R-Users Group</title>
+<meta name="dcterms.date" content="2026-02-22">
+<meta name="description" content="R-Hacks N.8">
+<title>CSV vs Parquet: A Better Default for Analytics – Rome R-Users Group</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -126,19 +126,21 @@ cookieconsent.run({
 });
 </script><style>html{ scroll-behavior: smooth; }</style>
 <link rel="stylesheet" href="../../../../styles.css">
-<meta property="og:title" content="One-Line Sanity Checks After Every Transformation – Rome R-Users Group">
-<meta property="og:description" content="R-Hacks N.5">
-<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/05-02022026/images/image-1.png">
+<meta property="og:title" content="CSV vs Parquet: A Better Default for Analytics – Rome R-Users Group">
+<meta property="og:description" content="R-Hacks N.8">
+<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/08-02222026/images/image-1.png">
 <meta property="og:site_name" content="Rome R-Users Group">
 <meta property="og:locale" content="en_US">
-<meta property="og:image:height" content="961">
-<meta property="og:image:width" content="1467">
-<meta name="twitter:title" content="One-Line Sanity Checks After Every Transformation – Rome R-Users Group">
-<meta name="twitter:description" content="R-Hacks N.5">
-<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/05-02022026/images/image-1.png">
+<meta property="og:image:alt" content="ChatGPT generated image">
+<meta property="og:image:height" content="808">
+<meta property="og:image:width" content="1407">
+<meta name="twitter:title" content="CSV vs Parquet: A Better Default for Analytics – Rome R-Users Group">
+<meta name="twitter:description" content="R-Hacks N.8">
+<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/08-02222026/images/image-1.png">
 <meta name="twitter:creator" content="@rladiesrome">
-<meta name="twitter:image-height" content="961">
-<meta name="twitter:image-width" content="1467">
+<meta name="twitter:image:alt" content="ChatGPT generated image">
+<meta name="twitter:image-height" content="808">
+<meta name="twitter:image-width" content="1407">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body class="floating nav-fixed quarto-light">
@@ -221,36 +223,44 @@ cookieconsent.run({
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li>
-<a href="#why-one-line-checks-matter" id="toc-why-one-line-checks-matter" class="nav-link active" data-scroll-target="#why-one-line-checks-matter">Why One-Line Checks Matter</a>
+<li><a href="#what-is-parquet" id="toc-what-is-parquet" class="nav-link active" data-scroll-target="#what-is-parquet">What Is Parquet?</a></li>
+  <li><a href="#step-1-simulate-a-realistic-dataset" id="toc-step-1-simulate-a-realistic-dataset" class="nav-link" data-scroll-target="#step-1-simulate-a-realistic-dataset">Step 1 — Simulate a Realistic Dataset</a></li>
+  <li><a href="#step-2-save-and-read-as-csv" id="toc-step-2-save-and-read-as-csv" class="nav-link" data-scroll-target="#step-2-save-and-read-as-csv">Step 2 — Save and Read as CSV</a></li>
+  <li>
+<a href="#step-3-save-and-read-as-parquet" id="toc-step-3-save-and-read-as-parquet" class="nav-link" data-scroll-target="#step-3-save-and-read-as-parquet">Step 3 — Save and Read as Parquet</a>
   <ul class="collapse">
-<li><a href="#data-example-diabetes-dataset-before-clustering" id="toc-data-example-diabetes-dataset-before-clustering" class="nav-link" data-scroll-target="#data-example-diabetes-dataset-before-clustering">Data Example: Diabetes Dataset (Before Clustering)</a></li>
-  <li><a href="#check-1-did-the-row-count-change-as-expected" id="toc-check-1-did-the-row-count-change-as-expected" class="nav-link" data-scroll-target="#check-1-did-the-row-count-change-as-expected">Check 1 – Did the Row Count Change as Expected?</a></li>
-  <li><a href="#check-2-do-key-variables-still-look-reasonable" id="toc-check-2-do-key-variables-still-look-reasonable" class="nav-link" data-scroll-target="#check-2-do-key-variables-still-look-reasonable">Check 2 – Do Key Variables Still Look Reasonable?</a></li>
-  <li><a href="#check-3-did-missingness-increase" id="toc-check-3-did-missingness-increase" class="nav-link" data-scroll-target="#check-3-did-missingness-increase">Check 3 – Did Missingness Increase?</a></li>
-  <li><a href="#check-4-do-group-sizes-still-make-sense" id="toc-check-4-do-group-sizes-still-make-sense" class="nav-link" data-scroll-target="#check-4-do-group-sizes-still-make-sense">Check 4 – Do Group Sizes Still Make Sense?</a></li>
+<li><a href="#speed" id="toc-speed" class="nav-link" data-scroll-target="#speed">1️⃣ Speed</a></li>
+  <li><a href="#file-size" id="toc-file-size" class="nav-link" data-scroll-target="#file-size">2️⃣ File Size</a></li>
+  <li><a href="#type-safety" id="toc-type-safety" class="nav-link" data-scroll-target="#type-safety">3️⃣ Type Safety</a></li>
   </ul>
 </li>
-  <li><a href="#making-this-a-habit" id="toc-making-this-a-habit" class="nav-link" data-scroll-target="#making-this-a-habit">Making This a Habit</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/05-02022026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+  <li>
+<a href="#bonus-select-columns-without-loading-everything" id="toc-bonus-select-columns-without-loading-everything" class="nav-link" data-scroll-target="#bonus-select-columns-without-loading-everything">Bonus — Select Columns Without Loading Everything</a>
+  <ul class="collapse">
+<li><a href="#when-csv-is-still-appropriate" id="toc-when-csv-is-still-appropriate" class="nav-link" data-scroll-target="#when-csv-is-still-appropriate">When CSV Is Still Appropriate</a></li>
+  </ul>
+</li>
+  <li><a href="#workflow-recommendation" id="toc-workflow-recommendation" class="nav-link" data-scroll-target="#workflow-recommendation">Workflow Recommendation</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/08-02222026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">One-Line Sanity Checks After Every Transformation</h1>
-<p class="subtitle lead">Small habits that catch data bugs early</p>
+<h1 class="title">CSV vs Parquet: A Better Default for Analytics</h1>
+<p class="subtitle lead">Faster reads, smaller files, cleaner workflows</p>
   <div class="quarto-categories">
-    <div class="quarto-category">data-wrangling</div>
-    <div class="quarto-category">debugging</div>
-    <div class="quarto-category">workflows</div>
+    <div class="quarto-category">Parquet</div>
+    <div class="quarto-category">Arrow</div>
+    <div class="quarto-category">data-storage</div>
+    <div class="quarto-category">performance</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    R-Hacks N.5
+    R-Hacks N.8
   </div>
 </div>
 
@@ -267,7 +277,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 2, 2026</p>
+      <p class="date">February 22, 2026</p>
     </div>
   </div>
   
@@ -276,262 +286,215 @@ cookieconsent.run({
   
 
 
-</header><p><em>This hack is based on <a href="https://rladiesrome.org/">RLadiesRome</a> Tutorial analysis on From Basics to Advanced Health Analytics: Exploring Diabetes Data:</em><br>
-🔗 <a href="https://rladiesrome.github.io/Principles-of-data-Analysis-in-R/" class="uri">https://rladiesrome.github.io/Principles-of-data-Analysis-in-R/</a></p>
-<p><br></p>
-<p>When working with data, most <strong>bugs</strong> don’t come from complex models.</p>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>They come from small transformations that quietly change your data in ways you didn’t expect:</p>
-<ul>
-<li>
-<code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> that drops too many rows</li>
-<li>
-<code>join()</code> that duplicates observations</li>
-<li>
-<code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> that introduces impossible values</li>
-</ul>
-</div>
-</div>
-</div>
-<p>This R-Hack shows how to build a habit of running <strong>one-line sanity checks</strong> after every major transformation, using a concrete example from our <a href="https://rladiesrome.github.io/Principles-of-data-Analysis-in-R/02-exploring-diabetes-data.html">Exploring Diabetes Data tutorial</a>.</p>
-<blockquote class="blockquote">
-<p>One-line sanity checks you can run after every major transformation.</p>
-</blockquote>
-<p><br></p>
+</header><p><br></p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/image-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
-</figure>
+<figure class="figure"><p><img src="images/image-1.png" class="img-fluid figure-img" style="width:80.0%" alt="ChatGPT generated image"></p>
+<figcaption>CSV vs Parquet: A Better Default for Analytics (ChatGPT generated image)</figcaption></figure>
 </div>
-<p>They are quick, cheap, and often enough to catch problems before plots or models hide them.</p>
-<section id="why-one-line-checks-matter" class="level2"><h2 class="anchored" data-anchor-id="why-one-line-checks-matter">Why One-Line Checks Matter</h2>
-<p>Transformations are the most fragile part of a data workflow. They change structure, size, and meaning — often without throwing an error.</p>
-<p>The goal here is not defensive programming or heavy validation. It’s about building small, automatic pauses that let you ask:</p>
-<blockquote class="blockquote">
-<p><em>“Does the data still look the way I expect?”</em></p>
-</blockquote>
-<section id="data-example-diabetes-dataset-before-clustering" class="level3"><h3 class="anchored" data-anchor-id="data-example-diabetes-dataset-before-clustering">Data Example: Diabetes Dataset (Before Clustering)</h3>
-<p>In the tutorial, the diabetes dataset is cleaned and prepared before moving to k-prototypes clustering.</p>
-<p>At that point, the data typically goes through steps like:</p>
+<p>If you are still saving analytical datasets as .csv by default, you are likely paying a hidden tax:</p>
 <ul>
-<li>selecting relevant variables</li>
-<li>recoding categorical fields</li>
-<li>filtering incomplete observations</li>
+<li>slower reads</li>
+<li>larger files</li>
+<li>fragile type handling</li>
+<li>unnecessary reprocessing</li>
 </ul>
-<p>That makes it an ideal place to pause and check assumptions. Let’s simulate a sample dataset similar to the one used in the tutorial:</p>
+<p>CSV is universal. But universal does not mean optimal.</p>
+<p>This R-Hack explains why Parquet should often be your default for analytical workflows.</p>
+<section id="what-is-parquet" class="level2"><h2 class="anchored" data-anchor-id="what-is-parquet">What Is Parquet?</h2>
+<p>Parquet is a columnar, binary storage format designed for analytics.</p>
+<p>Unlike CSV:</p>
+<ul>
+<li>It stores column types explicitly</li>
+<li>It compresses data efficiently</li>
+<li>It reads columns independently</li>
+</ul>
+<p>In R, Parquet support is provided by the arrow package.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Example R code chunk</span></span>
+<span><span class="co"># Load necessary libraries</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/apache/arrow/">arrow</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">df_before</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
-<span>  id       <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">300</span>,</span>
-<span>  age      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">300</span>, mean <span class="op">=</span> <span class="fl">55</span>, sd <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  bmi      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">300</span>, mean <span class="op">=</span> <span class="fl">28</span>, sd <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>,</span>
-<span>  glucose  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">300</span>, mean <span class="op">=</span> <span class="fl">120</span>, sd <span class="op">=</span> <span class="fl">30</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  sex      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Female"</span>, <span class="st">"Male"</span><span class="op">)</span>, <span class="fl">300</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>  diabetes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No"</span>, <span class="st">"Yes"</span><span class="op">)</span>, <span class="fl">300</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Create a sample data frame</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10.5</span>, <span class="fl">20.3</span>, <span class="fl">30.8</span>, <span class="fl">40.2</span>, <span class="fl">50.1</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Introduce realistic missingness (so filtering has an effect)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">456</span><span class="op">)</span></span>
-<span><span class="va">df_before</span><span class="op">$</span><span class="va">bmi</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df_before</span><span class="op">)</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
-<span><span class="va">df_before</span><span class="op">$</span><span class="va">glucose</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df_before</span><span class="op">)</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span><span class="co"># Write the data frame to a Parquet file</span></span>
+<span><span class="fu"><a href="https://arrow.apache.org/docs/r/reference/write_parquet.html">write_parquet</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"sample_data.parquet"</span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># Read the Parquet file back into R</span></span>
+<span><span class="va">data_read</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://arrow.apache.org/docs/r/reference/read_parquet.html">read_parquet</a></span><span class="op">(</span><span class="st">"sample_data.parquet"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">df_before</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co"># Print the data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">data_read</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 300   6</code></pre>
+<pre><code># A tibble: 5 × 2
+     id value
+  &lt;int&gt; &lt;dbl&gt;
+1     1  10.5
+2     2  20.3
+3     3  30.8
+4     4  40.2
+5     5  50.1</code></pre>
 </div>
 </div>
+</section><section id="step-1-simulate-a-realistic-dataset" class="level2"><h2 class="anchored" data-anchor-id="step-1-simulate-a-realistic-dataset">Step 1 — Simulate a Realistic Dataset</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_before</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  id age  bmi glucose    sex diabetes
-1  1  49 24.4     152   Male       No
-2  2  53 24.2     119   Male       No
-3  3  71 23.3     119   Male       No
-4  4  56 22.7      75 Female      Yes
-5  5  56 25.8     144   Male       No
-6  6  72 29.7     114 Female      Yes</code></pre>
-</div>
-</div>
-<p>After the transformations, we get a new dataframe <code>df_after</code>:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_after</span> <span class="op">&lt;-</span> <span class="va">df_before</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">glucose</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">bmi</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    diabetes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">diabetes</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"No"</span>, <span class="st">"Yes"</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 266   6</code></pre>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">200000</span>,</span>
+<span>  category <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, <span class="fl">200000</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">200000</span><span class="op">)</span>,</span>
+<span>  flag <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>, <span class="fl">200000</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
+<p>This mimics a moderately sized analytical dataset.</p>
+</section><section id="step-2-save-and-read-as-csv" class="level2"><h2 class="anchored" data-anchor-id="step-2-save-and-read-as-csv">Step 2 — Save and Read as CSV</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.csv</a></span><span class="op">(</span><span class="va">df</span>, <span class="st">"data.csv"</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="va">df_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data.csv"</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  id age  bmi glucose    sex diabetes
-1  1  49 24.4     152   Male       No
-2  2  53 24.2     119   Male       No
-3  3  71 23.3     119   Male       No
-4  4  56 22.7      75 Female      Yes
-5  5  56 25.8     144   Male       No
-6  6  72 29.7     114 Female      Yes</code></pre>
+<pre><code>   user  system elapsed 
+  0.261   0.007   0.273 </code></pre>
 </div>
 </div>
-</section><section id="check-1-did-the-row-count-change-as-expected" class="level3"><h3 class="anchored" data-anchor-id="check-1-did-the-row-count-change-as-expected">Check 1 – Did the Row Count Change as Expected?</h3>
-<p>After any operation that could affect the number of rows, check it explicitly.</p>
+<p>Now check file size:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># One-line sanity check: did we drop rows as expected?</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df_before</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/file.info.html">file.info</a></span><span class="op">(</span><span class="st">"data.csv"</span><span class="op">)</span><span class="op">$</span><span class="va">size</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 300</code></pre>
+<pre><code>[1] 6819327</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>CSV:</p>
+<ul>
+<li>stores everything as text</li>
+<li>requires parsing every time</li>
+<li>guesses types on read</li>
+</ul></section><section id="step-3-save-and-read-as-parquet" class="level2"><h2 class="anchored" data-anchor-id="step-3-save-and-read-as-parquet">Step 3 — Save and Read as Parquet</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://arrow.apache.org/docs/r/reference/write_parquet.html">write_parquet</a></span><span class="op">(</span><span class="va">df</span>, <span class="st">"data.parquet"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="va">df_parquet</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://arrow.apache.org/docs/r/reference/read_parquet.html">read_parquet</a></span><span class="op">(</span><span class="st">"data.parquet"</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 266</code></pre>
+<pre><code>   user  system elapsed 
+  0.008   0.001   0.007 </code></pre>
 </div>
 </div>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
+<p>Check file size:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/file.info.html">file.info</a></span><span class="op">(</span><span class="st">"data.parquet"</span><span class="op">)</span><span class="op">$</span><span class="va">size</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3231687</code></pre>
+</div>
+</div>
+<p>You will typically observe:</p>
+<ul>
+<li>faster read time</li>
+<li>smaller file size</li>
+<li>preserved data types</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Why This Matters in Practice?</strong></p>
+</blockquote>
+<section id="speed" class="level3"><h3 class="anchored" data-anchor-id="speed">1️⃣ Speed</h3>
+<p>Parquet reads are faster because:</p>
+<ul>
+<li>it stores columns independently</li>
+<li>it avoids text parsing</li>
+<li>it uses compression effectively</li>
+</ul>
+<p>This becomes significant as datasets grow.</p>
+</section><section id="file-size" class="level3"><h3 class="anchored" data-anchor-id="file-size">2️⃣ File Size</h3>
+<p>Parquet compresses automatically. In many real-world cases parquet files are 30–70% smaller than CSV equivalents:</p>
+<ul>
+<li>Less storage</li>
+<li>Faster transfer</li>
+<li>Cleaner repositories</li>
+</ul></section><section id="type-safety" class="level3"><h3 class="anchored" data-anchor-id="type-safety">3️⃣ Type Safety</h3>
+<p>CSV does not store types.</p>
+<p>Every read operation reinterprets:</p>
+<ul>
+<li>logical values</li>
+<li>factors</li>
+<li>dates</li>
+<li>numeric columns</li>
+</ul>
+<p>Parquet preserves them.</p>
+<p>This reduces silent coercion bugs.</p>
+</section></section><section id="bonus-select-columns-without-loading-everything" class="level2"><h2 class="anchored" data-anchor-id="bonus-select-columns-without-loading-everything">Bonus — Select Columns Without Loading Everything</h2>
+<p>With arrow, you can load only what you need:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://arrow.apache.org/docs/r/reference/read_parquet.html">read_parquet</a></span><span class="op">(</span><span class="st">"data.parquet"</span>, col_select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"value"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 200,000 × 2
+      id   value
+   &lt;int&gt;   &lt;dbl&gt;
+ 1     1  0.945 
+ 2     2 -0.284 
+ 3     3  0.395 
+ 4     4  1.32  
+ 5     5  0.872 
+ 6     6  0.0354
+ 7     7 -0.427 
+ 8     8 -0.975 
+ 9     9  0.0965
+10    10  0.808 
+# ℹ 199,990 more rows</code></pre>
+</div>
+</div>
+<p>This is especially powerful for:</p>
+<ul>
+<li>large analytical datasets</li>
+<li>remote storage</li>
+<li>modular pipelines</li>
+</ul>
+<section id="when-csv-is-still-appropriate" class="level3"><h3 class="anchored" data-anchor-id="when-csv-is-still-appropriate">When CSV Is Still Appropriate</h3>
+<p>CSV is fine when:</p>
+<ul>
+<li>exporting for non-technical users</li>
+<li>sharing small files</li>
+<li>generating human-readable outputs</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>But for analytical workflows?</strong></p>
+</blockquote>
+<p>Parquet is usually superior.</p>
+</section></section><section id="workflow-recommendation" class="level2"><h2 class="anchored" data-anchor-id="workflow-recommendation">Workflow Recommendation</h2>
+<p>For reproducible projects:</p>
+<ul>
+<li>Raw data → store as Parquet</li>
+<li>Intermediate processed data → store as Parquet</li>
+<li>Final exports → optionally CSV</li>
+</ul>
+<p>Think of Parquet as your working format, and CSV as your exchange format.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-body-container">
-<p>Notes (why this works)</p>
-<ul>
-<li>We create missing values in bmi and glucose, which is common in real health datasets.</li>
-<li>The filter step now drops incomplete rows, so df_after has fewer rows than df_before.</li>
-<li>This makes your “row count changed” check meaningful and aligned with Issue N.5’s message.</li>
-</ul>
+<div class="callout-title-container flex-fill">
+Note
 </div>
 </div>
-</div>
-<p>In this context, a reduction is expected, but it should be understood and intentional.</p>
-<p>Use this after:</p>
-<ul>
-<li><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code></li>
-<li><code>join()</code></li>
-<li><code>subsetting</code></li>
-<li><code>removing duplicates</code></li>
-</ul>
-<p>What this catches:</p>
-<ul>
-<li>accidental row loss</li>
-<li>many-to-many joins</li>
-<li>accidental over-filtering</li>
-<li>unintended row drops</li>
-<li>silent data duplication</li>
-</ul>
-<p>If the number changes unexpectedly, stop and investigate. This single check prevents a large class of downstream errors.</p>
-</section><section id="check-2-do-key-variables-still-look-reasonable" class="level3"><h3 class="anchored" data-anchor-id="check-2-do-key-variables-still-look-reasonable">Check 2 – Do Key Variables Still Look Reasonable?</h3>
-<p>Whenever you create or transform a variable, inspect its range.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">$</span><span class="va">age</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   32.0    49.0    55.0    55.4    61.0    87.0 </code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">$</span><span class="va">bmi</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 14.0 40.9</code></pre>
-</div>
-</div>
-<p>Look for:</p>
-<ul>
-<li>negative values where they shouldn’t exist</li>
-<li>impossible values (e.g.&nbsp;BMI of 5)</li>
-<li>suspicious defaults (e.g.&nbsp;all zeros)</li>
-<li>transformations that didn’t behave as expected</li>
-</ul>
-<p>These problems are much easier to fix immediately than after modelling.</p>
-</section><section id="check-3-did-missingness-increase" class="level3"><h3 class="anchored" data-anchor-id="check-3-did-missingness-increase">Check 3 – Did Missingness Increase?</h3>
-<p>Joins and reshaping often introduce NAs. Count them explicitly.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">df_after</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      id      age      bmi  glucose      sex diabetes 
-       0        0        0        0        0        0 </code></pre>
-</div>
-</div>
-<p>This gives a fast overview of:</p>
-<ul>
-<li>columns that need cleaning</li>
-<li>variables that may bias analysis</li>
-<li>fields that should be dropped or imputed</li>
-</ul>
-<p>Never assume “there aren’t many NAs”. Check!</p>
-</section><section id="check-4-do-group-sizes-still-make-sense" class="level3"><h3 class="anchored" data-anchor-id="check-4-do-group-sizes-still-make-sense">Check 4 – Do Group Sizes Still Make Sense?</h3>
-<p>Before summarising or modelling grouped data, look at the group counts. In particular, before using categorical variables in clustering or summaries, check their distribution.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df_after</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">diabetes</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  diabetes   n
-1       No 188
-2      Yes  78</code></pre>
-</div>
-</div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>This is especially important before:</p>
-<ul>
-<li>rates or percentages</li>
-<li>averages by group</li>
-<li>comparisons across categories</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p>This prevents:</p>
-<ul>
-<li>unstable clusters</li>
-<li>categories with too few observations</li>
-<li>misleading interpretations</li>
-</ul>
-</div>
-</div>
-<p>What this catches:</p>
-<ul>
-<li>tiny or empty groups</li>
-<li>unstable estimates</li>
-<li>summaries that look precise but aren’t meaningful</li>
-</ul></section></section><section id="making-this-a-habit" class="level2"><h2 class="anchored" data-anchor-id="making-this-a-habit">Making This a Habit</h2>
-<p>These checks are not meant to clutter your script. They are meant to become automatic.</p>
-<p>A good rule of thumb:</p>
-<ul>
-<li>After anything that changes rows → check <code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code>
-</li>
-<li>After anything that changes values → check <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> or <code><a href="https://rdrr.io/r/base/range.html">range()</a></code>
-</li>
-<li>After anything that combines data → check <code>NAs</code>
-</li>
-<li>Before summarising → check group sizes</li>
-</ul>
-<p>One line is often enough.</p>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
+<div class="callout-body-container callout-body">
 <p>In Short</p>
 <ul>
-<li>Most data bugs enter during transformations</li>
-<li>One-line checks catch problems early</li>
-<li>They cost seconds and save hours</li>
-<li>Make them a habit, not an afterthought</li>
+<li>CSV is universal but inefficient</li>
+<li>Parquet is faster, smaller, and type-safe</li>
+<li>Switching requires only {arrow}</li>
+<li>Make Parquet your default for analysis projects</li>
 </ul>
 </div>
 </div>
-</div>
-<p>This is not about perfection. It’s about seeing problems while they’re still small.</p>
-<p><br></p>
+<p>Modern workflows deserve modern storage.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -542,8 +505,8 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you want to stay up to date with the latest events and posts from the Rome R Users Group, follow us here:</p>
-<p>👉 <a href="https://www.meetup.com/rome-r-users-group/">https://www.meetup.com/rome-r-users-group/</a></p>
+<p>If you want to stay up to date with the latest events and posts from the Rome R Users Group:</p>
+<p>👉 https://www.meetup.com/rome-r-users-group/</p>
 </div>
 </div>
 
@@ -960,7 +923,7 @@ Tip
 </div>   
     <div class="nav-footer-center">
 
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/05-02022026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/08-02222026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
 <li class="nav-item compact">
