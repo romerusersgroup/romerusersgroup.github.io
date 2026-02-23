@@ -53,7 +53,7 @@ website:
         href: mailto:romerusersgroup@gmail.com
   page-footer:
     left: |
-      Copyright © 2025 Rome R Users Group<br>Designer & Maintainer: <a href="https://github.com/Fgazzelloni">Federica Gazzelloni</a><br>Powered by: Quarto & GitHub Pages | <a href="/LICENSE.md">MIT License</a>.
+      Copyright © 2025 Rome R Users Group<br>Designer & Maintainer: <a href="https://github.com/Fgazzelloni">Federica Gazzelloni</a><br>Powered by: <a href="https://github.com/Fgazzelloni/datametricus">DataMetricus</a> | <a href="/LICENSE.md">MIT License</a>.
     right:
       - icon: github
         href: https://github.com/RomeRUsersGroup

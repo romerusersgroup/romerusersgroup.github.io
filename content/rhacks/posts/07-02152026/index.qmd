@@ -1,5 +1,5 @@
 ---
-title: "R-Hacks | Stop Copy–Pasting. Start Iterating."
+title: "Stop Copy–Pasting. Start Iterating."
 subtitle: "Making a loop (when and how to do it properly)"
 description: "R-Hacks N.7"
 author: "Federica Gazzelloni"
