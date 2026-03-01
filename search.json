@@ -294,27 +294,6 @@
     "text": "Making This a Habit\nThese checks are not meant to clutter your script. They are meant to become automatic.\nA good rule of thumb:\n\nAfter anything that changes rows → check nrow()\n\nAfter anything that changes values → check summary() or range()\n\nAfter anything that combines data → check NAs\n\nBefore summarising → check group sizes\n\nOne line is often enough.\n\n\n\n\n\n\nIn Short\n\nMost data bugs enter during transformations\nOne-line checks catch problems early\nThey cost seconds and save hours\nMake them a habit, not an afterthought\n\n\n\n\nThis is not about perfection. It’s about seeing problems while they’re still small.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group, follow us here:\n👉 https://www.meetup.com/rome-r-users-group/"
   },
   {
-    "objectID": "content/resources/index.html",
-    "href": "content/resources/index.html",
-    "title": "Rome R-Users Group",
-    "section": "",
-    "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
-  },
-  {
-    "objectID": "content/resources/index.html#resources",
-    "href": "content/resources/index.html#resources",
-    "title": "Rome R-Users Group",
-    "section": "",
-    "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
-  },
-  {
-    "objectID": "LICENSE.html",
-    "href": "LICENSE.html",
-    "title": "MIT License",
-    "section": "",
-    "text": "MIT License\nCopyright (c) 2025 Rome-R-Users-Group authors\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n\n Back to top"
-  },
-  {
     "objectID": "content/news/index.html",
     "href": "content/news/index.html",
     "title": "R Consortium Events & Workshops",
@@ -333,7 +312,84 @@
     "href": "content/news/index.html#check-recent-posts-from-selected-r-and-data-science-sources",
     "title": "R Consortium Events & Workshops",
     "section": "Check recent posts from selected R and data science sources:",
-    "text": "Check recent posts from selected R and data science sources:\n\n\n\n\n\n\n\n\nDate\nSource\nTitle\n\n\n\n\n\n2026-02-23\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W09 Git commits, Pick a License, and How to choose the best LLM using R and vitals\n\n\n\n2026-02-16\nR-Ladies Rome\nA Year of Learning, Growth, and Community at R-Ladies Rome 🌟\n\n\n\n2026-02-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W08 submissions working group, nested Lists with xfun::tabset\n\n\n\n2026-02-15\nR-Ladies Rome\nFrom Data to Decisions: Digital Twins for Smarter Maintenance\n\n\n\n2026-02-09\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W07 sitrep, webRios, Jarl linter\n\n\n\n2026-02-02\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W06 Interview, Practical git, duckdb\n\n\n\n2026-01-28\nR-Ladies Rome\nGit & GitHub: Practical Version Control for Data Work\n\n\n\n2026-01-26\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W05 LLMs & plots, soil flux, futurize\n\n\n\n2026-01-20\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W04 Automate PR’s with Claude, Accessible line charts\n\n\n\n2026-01-12\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W03 R & Python Pluralism, RAG Setup, tinyshinyserver"
+    "text": "Check recent posts from selected R and data science sources:\n\n\n\n\n\n\nDate\nSource\nTitle\n\n\n\n\n2026-02-23\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W09 Git commits, Pick a License, and How to choose the best LLM using R and vitals\n\n\n\n2026-02-16\nR-Ladies Rome\nA Year of Learning, Growth, and Community at R-Ladies Rome 🌟\n\n\n\n2026-02-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W08 submissions working group, nested Lists with xfun::tabset\n\n\n\n2026-02-15\nR-Ladies Rome\nFrom Data to Decisions: Digital Twins for Smarter Maintenance\n\n\n\n2026-02-09\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W07 sitrep, webRios, Jarl linter\n\n\n\n2026-02-02\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W06 Interview, Practical git, duckdb\n\n\n\n2026-01-28\nR-Ladies Rome\nGit & GitHub: Practical Version Control for Data Work\n\n\n\n2026-01-26\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W05 LLMs & plots, soil flux, futurize\n\n\n\n2026-01-20\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W04 Automate PR’s with Claude, Accessible line charts\n\n\n\n2026-01-12\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W03 R & Python Pluralism, RAG Setup, tinyshinyserver"
+  },
+  {
+    "objectID": "LICENSE.html",
+    "href": "LICENSE.html",
+    "title": "MIT License",
+    "section": "",
+    "text": "MIT License\nCopyright (c) 2025 Rome-R-Users-Group authors\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "content/resources/index.html",
+    "href": "content/resources/index.html",
+    "title": "Rome R-Users Group",
+    "section": "",
+    "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
+  },
+  {
+    "objectID": "content/resources/index.html#resources",
+    "href": "content/resources/index.html#resources",
+    "title": "Rome R-Users Group",
+    "section": "",
+    "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
+  },
+  {
+    "objectID": "content/rhacks/posts/09-03012029/index.html",
+    "href": "content/rhacks/posts/09-03012029/index.html",
+    "title": "What R Is Best For (And Why It Still Matters)",
+    "section": "",
+    "text": "The question is not:\nThe better question is:"
+  },
+  {
+    "objectID": "content/rhacks/posts/09-03012029/index.html#vectorised-data-manipulation",
+    "href": "content/rhacks/posts/09-03012029/index.html#vectorised-data-manipulation",
+    "title": "What R Is Best For (And Why It Still Matters)",
+    "section": "1️⃣ Vectorised Data Manipulation",
+    "text": "1️⃣ Vectorised Data Manipulation\nIn R, most operations are naturally vectorised.\n\nmean(df$col)\ndf$col &gt; 100\ndf$new_col &lt;- df$col * 2\n\nNo explicit loops required.\nThis makes analytical code:\n\nconcise\nexpressive\nreadable\n\nR was built for data first — not as a general-purpose programming language."
+  },
+  {
+    "objectID": "content/rhacks/posts/09-03012029/index.html#statistical-modeling-out-of-the-box",
+    "href": "content/rhacks/posts/09-03012029/index.html#statistical-modeling-out-of-the-box",
+    "title": "What R Is Best For (And Why It Still Matters)",
+    "section": "2️⃣ Statistical Modeling (Out of the Box)",
+    "text": "2️⃣ Statistical Modeling (Out of the Box)\nR was designed for statistics.\nModeling syntax is natural:\n\nmodel &lt;- lm(y ~ x1 + x2, data = df)\nsummary(model)\n\nCompare this to lower-level implementations elsewhere.\nR’s formula interface is still one of the most elegant modeling abstractions available."
+  },
+  {
+    "objectID": "content/rhacks/posts/09-03012029/index.html#reproducible-reporting",
+    "href": "content/rhacks/posts/09-03012029/index.html#reproducible-reporting",
+    "title": "What R Is Best For (And Why It Still Matters)",
+    "section": "3️⃣ Reproducible Reporting",
+    "text": "3️⃣ Reproducible Reporting\nR integrates seamlessly with:\n\nQuarto\nR Markdown\nparameterised reports\ndynamic documents\n\nYou can move from:\n\n\n\n\n\n\nTip\n\n\n\ndata → model → visual → report\n\n\nin one environment.\nFew ecosystems make this as smooth."
+  },
+  {
+    "objectID": "content/rhacks/posts/09-03012029/index.html#exploratory-data-analysis",
+    "href": "content/rhacks/posts/09-03012029/index.html#exploratory-data-analysis",
+    "title": "What R Is Best For (And Why It Still Matters)",
+    "section": "4️⃣ Exploratory Data Analysis",
+    "text": "4️⃣ Exploratory Data Analysis\nR encourages rapid iteration:\n\ndf |&gt;\n  group_by(group) |&gt;\n  summarise(mean_value = mean(value))\n\nThe tidyverse philosophy makes analytical transformations readable and composable.\nFor exploratory statistics, this is powerful."
+  },
+  {
+    "objectID": "content/rhacks/posts/09-03012029/index.html#publication-ready-visualisation",
+    "href": "content/rhacks/posts/09-03012029/index.html#publication-ready-visualisation",
+    "title": "What R Is Best For (And Why It Still Matters)",
+    "section": "5️⃣ Publication-Ready Visualisation",
+    "text": "5️⃣ Publication-Ready Visualisation\nggplot2 remains one of the most coherent grammar-based plotting systems.\n\nggplot(df, aes(x, y)) +\n  geom_point() +\n  theme_minimal()\n\nLayered, declarative, expressive."
+  },
+  {
+    "objectID": "content/rhacks/posts/09-03012029/index.html#where-r-is-not-always-best",
+    "href": "content/rhacks/posts/09-03012029/index.html#where-r-is-not-always-best",
+    "title": "What R Is Best For (And Why It Still Matters)",
+    "section": "6️⃣ Where R Is Not Always Best",
+    "text": "6️⃣ Where R Is Not Always Best\nR may not be the best choice for:\n\nlarge-scale production APIs\nfull-stack applications\nsystem-level programming\n\nAnd that’s fine.\nTools should be chosen by purpose, not ideology."
+  },
+  {
+    "objectID": "content/rhacks/posts/09-03012029/index.html#the-practical-conclusion",
+    "href": "content/rhacks/posts/09-03012029/index.html#the-practical-conclusion",
+    "title": "What R Is Best For (And Why It Still Matters)",
+    "section": "The Practical Conclusion",
+    "text": "The Practical Conclusion\nIf your work is:\n\nstatistical\nanalytical\nexploratory\nreport-driven\nreproducible\n\nR is still one of the most efficient tools available.\nNot because it replaces everything.\nBut because it was designed for analysis.\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n\nR excels at statistics and modeling\nR is expressive for analytical workflows\nR integrates naturally with reporting\nR remains extremely strong for EDA and visualisation\nChoose tools based on task, not trend\n\n\n\nR does not need to compete with everything.\nIt just needs to do what it does best.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   },
   {
     "objectID": "content/rhacks/posts/03-01132026/index.html",
@@ -431,7 +487,7 @@
     "href": "content/rhacks/posts/08-02222026/index.html",
     "title": "CSV vs Parquet: A Better Default for Analytics",
     "section": "",
-    "text": "If you are still saving analytical datasets as .csv by default, you are likely paying a hidden tax:\nCSV is universal. But universal does not mean optimal.\nThis R-Hack explains why Parquet should often be your default for analytical workflows."
+    "text": "If you are still saving analytical datasets as .csv by default, you are likely paying a hidden tax:\n:::{.callout-note callout-appearance: simple}\nCSV is universal. But universal does not mean optimal.\n:::\nThis R-Hack explains why Parquet should often be your default for analytical workflows."
   },
   {
     "objectID": "content/rhacks/posts/08-02222026/index.html#what-is-parquet",
@@ -452,14 +508,14 @@
     "href": "content/rhacks/posts/08-02222026/index.html#step-2-save-and-read-as-csv",
     "title": "CSV vs Parquet: A Better Default for Analytics",
     "section": "Step 2 — Save and Read as CSV",
-    "text": "Step 2 — Save and Read as CSV\n\nwrite.csv(df, \"data.csv\", row.names = FALSE)\n\nsystem.time({\n  df_csv &lt;- read.csv(\"data.csv\")\n})\n\n   user  system elapsed \n  0.255   0.011   0.268 \n\n\nNow check file size:\n\nfile.info(\"data.csv\")$size\n\n[1] 6819327\n\n\nCSV:\n\nstores everything as text\nrequires parsing every time\nguesses types on read"
+    "text": "Step 2 — Save and Read as CSV\n\nwrite.csv(df, \"data.csv\", row.names = FALSE)\n\nsystem.time({\n  df_csv &lt;- read.csv(\"data.csv\")\n})\n\n   user  system elapsed \n  0.264   0.012   0.286 \n\n\nNow check file size:\n\nfile.info(\"data.csv\")$size\n\n[1] 6819327\n\n\nCSV:\n\nstores everything as text\nrequires parsing every time\nguesses types on read"
   },
   {
     "objectID": "content/rhacks/posts/08-02222026/index.html#step-3-save-and-read-as-parquet",
     "href": "content/rhacks/posts/08-02222026/index.html#step-3-save-and-read-as-parquet",
     "title": "CSV vs Parquet: A Better Default for Analytics",
     "section": "Step 3 — Save and Read as Parquet",
-    "text": "Step 3 — Save and Read as Parquet\n\nwrite_parquet(df, \"data.parquet\")\n\nsystem.time({\n  df_parquet &lt;- read_parquet(\"data.parquet\")\n})\n\n   user  system elapsed \n  0.008   0.001   0.007 \n\n\nCheck file size:\n\nfile.info(\"data.parquet\")$size\n\n[1] 3231687\n\n\nYou will typically observe:\n\nfaster read time\nsmaller file size\npreserved data types\n\n\nWhy This Matters in Practice?\n\n1️⃣ Speed\nParquet reads are faster because:\n\nit stores columns independently\nit avoids text parsing\nit uses compression effectively\n\nThis becomes significant as datasets grow.\n2️⃣ File Size\nParquet compresses automatically. In many real-world cases parquet files are 30–70% smaller than CSV equivalents:\n\nLess storage\nFaster transfer\nCleaner repositories\n3️⃣ Type Safety\nCSV does not store types.\nEvery read operation reinterprets:\n\nlogical values\nfactors\ndates\nnumeric columns\n\nParquet preserves them.\nThis reduces silent coercion bugs."
+    "text": "Step 3 — Save and Read as Parquet\n\nwrite_parquet(df, \"data.parquet\")\n\nsystem.time({\n  df_parquet &lt;- read_parquet(\"data.parquet\")\n})\n\n   user  system elapsed \n  0.007   0.001   0.007 \n\n\nCheck file size:\n\nfile.info(\"data.parquet\")$size\n\n[1] 3231687\n\n\nYou will typically observe:\n\nfaster read time\nsmaller file size\npreserved data types\n\n\nWhy This Matters in Practice?\n\n1️⃣ Speed\nParquet reads are faster because:\n\nit stores columns independently\nit avoids text parsing\nit uses compression effectively\n\nThis becomes significant as datasets grow.\n2️⃣ File Size\nParquet compresses automatically. In many real-world cases parquet files are 30–70% smaller than CSV equivalents:\n\nLess storage\nFaster transfer\nCleaner repositories\n3️⃣ Type Safety\nCSV does not store types.\nEvery read operation reinterprets:\n\nlogical values\nfactors\ndates\nnumeric columns\n\nParquet preserves them.\nThis reduces silent coercion bugs."
   },
   {
     "objectID": "content/rhacks/posts/08-02222026/index.html#bonus-select-columns-without-loading-everything",
@@ -473,7 +529,7 @@
     "href": "content/rhacks/posts/08-02222026/index.html#workflow-recommendation",
     "title": "CSV vs Parquet: A Better Default for Analytics",
     "section": "Workflow Recommendation",
-    "text": "Workflow Recommendation\nFor reproducible projects:\n\nRaw data → store as Parquet\nIntermediate processed data → store as Parquet\nFinal exports → optionally CSV\n\nThink of Parquet as your working format, and CSV as your exchange format.\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n\nCSV is universal but inefficient\nParquet is faster, smaller, and type-safe\nSwitching requires only {arrow}\nMake Parquet your default for analysis projects\n\n\n\nModern workflows deserve modern storage.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
+    "text": "Workflow Recommendation\nFor reproducible projects:\n\nRaw data → store as Parquet\nIntermediate processed data → store as Parquet\nFinal exports → optionally CSV\n\nThink of Parquet as your working format, and CSV as your exchange format.\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n\nCSV is universal but inefficient\nParquet is faster, smaller, and type-safe\nSwitching requires only {arrow}\nMake Parquet your default for analysis projects\n\n\n\nModern workflows deserve modern storage.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 &lt;https://www.meetup.com/rome-r-users-group/"
   },
   {
     "objectID": "content/rhacks/posts/01-11282025/index.html",

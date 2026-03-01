@@ -4,7 +4,10 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>index – Rome R-Users Group</title>
+<meta name="author" content="Federica Gazzelloni">
+<meta name="dcterms.date" content="2026-03-01">
+<meta name="description" content="R-Hacks N.9">
+<title>What R Is Best For (And Why It Still Matters) – Rome R-Users Group</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,29 +20,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../images/logos/RUsers_transparent.png" rel="icon" type="image/png">
-<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
-<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-8001c2e1f85531b6432cdb718d58219b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/logos/RUsers_transparent.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-8001c2e1f85531b6432cdb718d58219b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -87,24 +125,32 @@ cookieconsent.run({
   });
 });
 </script><style>html{ scroll-behavior: smooth; }</style>
-<link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Rome R-Users Group">
-<meta property="og:description" content="Online Learning Resources for Rome R Users Group">
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="What R Is Best For (And Why It Still Matters) – Rome R-Users Group">
+<meta property="og:description" content="R-Hacks N.9">
+<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/09-03012029/images/image-1.png">
 <meta property="og:site_name" content="Rome R-Users Group">
 <meta property="og:locale" content="en_US">
-<meta name="twitter:title" content="Rome R-Users Group">
-<meta name="twitter:description" content="Online Learning Resources for Rome R Users Group">
+<meta property="og:image:alt" content="ChatGPT generated image">
+<meta property="og:image:height" content="597">
+<meta property="og:image:width" content="900">
+<meta name="twitter:title" content="What R Is Best For (And Why It Still Matters) – Rome R-Users Group">
+<meta name="twitter:description" content="R-Hacks N.9">
+<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/09-03012029/images/image-1.png">
 <meta name="twitter:creator" content="@rladiesrome">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image:alt" content="ChatGPT generated image">
+<meta name="twitter:image-height" content="597">
+<meta name="twitter:image-width" content="900">
+<meta name="twitter:card" content="summary_large_image">
 </head>
-<body class="nav-fixed fullcontent quarto-light">
+<body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content"><img src="../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content"></a>
-    <a class="navbar-brand" href="../../index.html">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content"><img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content"></a>
+    <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Rome R-Users Group</span>
     </a>
   </div>
@@ -115,23 +161,23 @@ cookieconsent.run({
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../content/events/index.html"> 
+    <a class="nav-link" href="../../../../content/events/index.html"> 
 <span class="menu-text">Events</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../content/rhacks/index.html"> 
+    <a class="nav-link" href="../../../../content/rhacks/index.html"> 
 <span class="menu-text">R-Hacks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../content/resources/index.html"> 
+    <a class="nav-link" href="../../../../content/resources/index.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../content/news/index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../../content/news/index.html"> 
 <span class="menu-text">News</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -140,11 +186,11 @@ cookieconsent.run({
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-about">
 <li>
-    <a class="dropdown-item" href="../../about/organizers.html">
+    <a class="dropdown-item" href="../../../../about/organizers.html">
  <span class="dropdown-text">Organizers</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../about/sponsors.html">
+    <a class="dropdown-item" href="../../../../about/sponsors.html">
  <span class="dropdown-text">Sponsor</span></a>
   </li>  
     </ul>
@@ -158,7 +204,7 @@ cookieconsent.run({
 <ul class="navbar-nav navbar-nav-scroll ms-auto">
 <li class="nav-item">
     <a class="nav-link" href="https://rladiesrome.org"> 
-<span class="menu-text"><img src="../../images/logos/RLadiesRome_logo_transparent.png" class="img-fluid" width="70" alt="R-Ladies Rome"><strong>R-Ladies Rome</strong></span></a>
+<span class="menu-text"><img src="../../../../images/logos/RLadiesRome_logo_transparent.png" class="img-fluid" width="70" alt="R-Ladies Rome"><strong>R-Ladies Rome</strong></span></a>
   </li>  
 </ul>
 </div> <!-- /navcollapse -->
@@ -174,553 +220,212 @@ cookieconsent.run({
 </div>
 </header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#vectorised-data-manipulation" id="toc-vectorised-data-manipulation" class="nav-link active" data-scroll-target="#vectorised-data-manipulation">1️⃣ Vectorised Data Manipulation</a></li>
+  <li>
+<a href="#statistical-modeling-out-of-the-box" id="toc-statistical-modeling-out-of-the-box" class="nav-link" data-scroll-target="#statistical-modeling-out-of-the-box">2️⃣ Statistical Modeling (Out of the Box)</a>
+  <ul class="collapse">
+<li><a href="#modeling-syntax-is-natural" id="toc-modeling-syntax-is-natural" class="nav-link" data-scroll-target="#modeling-syntax-is-natural">Modeling syntax is natural:</a></li>
+  </ul>
+</li>
+  <li><a href="#reproducible-reporting" id="toc-reproducible-reporting" class="nav-link" data-scroll-target="#reproducible-reporting">3️⃣ Reproducible Reporting</a></li>
+  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">4️⃣ Exploratory Data Analysis</a></li>
+  <li><a href="#publication-ready-visualisation" id="toc-publication-ready-visualisation" class="nav-link" data-scroll-target="#publication-ready-visualisation">5️⃣ Publication-Ready Visualisation</a></li>
+  <li><a href="#where-r-is-not-always-best" id="toc-where-r-is-not-always-best" class="nav-link" data-scroll-target="#where-r-is-not-always-best">6️⃣ Where R Is Not Always Best</a></li>
+  <li><a href="#the-practical-conclusion" id="toc-the-practical-conclusion" class="nav-link" data-scroll-target="#the-practical-conclusion">The Practical Conclusion</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/09-03012029/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7">R Consortium Events &amp; Workshops</h1></header><section id="news" class="level2"><h2 class="anchored" data-anchor-id="news">News</h2>
-<p>Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:</p>
-</section><div id="about" class="cards-section">
-<section id="r-consortium-events-workshops" class="level1">
-</section><div class="cards-grid">
-<div class="feature-card bg-primary">
-<section id="r-consortium-events-workshops-1" class="level1 card-header"><h1>R Consortium Events &amp; Workshops</h1>
-</section><div class="card-content">
-<p>List of events and workshops organized by the R Consortium.</p>
-<p><a href="https://r-consortium.org/news/events" class="card-link">Events</a></p>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">What R Is Best For (And Why It Still Matters)</h1>
+<p class="subtitle lead">Understanding where R truly shines</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">workflows</div>
+    <div class="quarto-category">analytics</div>
+    <div class="quarto-category">positioning</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    R-Hacks N.9
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Federica Gazzelloni </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 1, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header><p><br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/image-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="ChatGPT generated image"></p>
+</figure>
+</div>
+<p>The question is not:</p>
+<blockquote class="blockquote">
+<p>“Is R better than Python?”</p>
+</blockquote>
+<p>The better question is:</p>
+<blockquote class="blockquote">
+<p>“What is R best for?”</p>
+</blockquote>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
 </div>
 </div>
-<div class="feature-card bg-primary">
-<section id="r-bloggers" class="level1 card-header"><h1>r-bloggers</h1>
-</section><div class="card-content">
-<p>Some R Conferences for 2025</p>
-<p><a href="https://www.r-bloggers.com/2024/11/some-r-conferences-for-2025" class="card-link">R-Conferences</a></p>
+<div class="callout-body-container callout-body">
+<p>Every tool has strengths.</p>
 </div>
 </div>
-</div>
-</div>
-<section id="check-recent-posts-from-selected-r-and-data-science-sources" class="level2"><h2 class="anchored" data-anchor-id="check-recent-posts-from-selected-r-and-data-science-sources">Check recent posts from selected R and data science sources:</h2>
+<section id="the-value-of-r-appears-clearly-when-you-focus-on-its-design-philosophy." class="level4"><h4 class="anchored" data-anchor-id="the-value-of-r-appears-clearly-when-you-focus-on-its-design-philosophy.">The value of R appears clearly when you focus on its design philosophy.</h4>
+</section><section id="vectorised-data-manipulation" class="level2"><h2 class="anchored" data-anchor-id="vectorised-data-manipulation">1️⃣ Vectorised Data Manipulation</h2>
+<p>In R, most operations are naturally vectorised.</p>
 <div class="cell">
-<div class="cell-output-display">
-<div id="immkxauicb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#immkxauicb table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#immkxauicb thead, #immkxauicb tbody, #immkxauicb tfoot, #immkxauicb tr, #immkxauicb td, #immkxauicb th {
-  border-style: none;
-}
-
-#immkxauicb p {
-  margin: 0;
-  padding: 0;
-}
-
-#immkxauicb .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#immkxauicb .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#immkxauicb .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#immkxauicb .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#immkxauicb .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#immkxauicb .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#immkxauicb .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#immkxauicb .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#immkxauicb .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#immkxauicb .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#immkxauicb .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#immkxauicb .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#immkxauicb .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#immkxauicb .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#immkxauicb .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#immkxauicb .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#immkxauicb .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#immkxauicb .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#immkxauicb .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#immkxauicb .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#immkxauicb .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#immkxauicb .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#immkxauicb .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#immkxauicb .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#immkxauicb .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#immkxauicb .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#immkxauicb .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#immkxauicb .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#immkxauicb .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#immkxauicb .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#immkxauicb .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#immkxauicb .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#immkxauicb .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#immkxauicb .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#immkxauicb .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#immkxauicb .gt_left {
-  text-align: left;
-}
-
-#immkxauicb .gt_center {
-  text-align: center;
-}
-
-#immkxauicb .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#immkxauicb .gt_font_normal {
-  font-weight: normal;
-}
-
-#immkxauicb .gt_font_bold {
-  font-weight: bold;
-}
-
-#immkxauicb .gt_font_italic {
-  font-style: italic;
-}
-
-#immkxauicb .gt_super {
-  font-size: 65%;
-}
-
-#immkxauicb .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#immkxauicb .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#immkxauicb .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#immkxauicb .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#immkxauicb .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#immkxauicb .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#immkxauicb .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#immkxauicb .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#immkxauicb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
-<thead><tr class="gt_col_headings header">
-<th id="date" class="gt_col_heading gt_columns_bottom_border gt_right" style="text-align: center;" data-quarto-table-cell-role="th" scope="col">Date</th>
-<th id="source" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: center;" data-quarto-table-cell-role="th" scope="col">Source</th>
-<th id="title" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: center;" data-quarto-table-cell-role="th" scope="col">Title</th>
-<th id="image_url" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: center;" data-quarto-table-cell-role="th" scope="col"></th>
-</tr></thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_right" headers="date">2026-02-23</td>
-<td class="gt_row gt_left" headers="source">RWeekly.org - Blogs to Learn R from the Community</td>
-<td class="gt_row gt_left" headers="title"><a href="https://rweekly.org/2026-W09.html">R Weekly 2026-W09 Git commits, Pick a License, and How to choose the best LLM using R and vitals</a></td>
-<td class="gt_row gt_left" headers="image_url"><img src="https://rweekly.org/public/facebook.png" class="img-fluid" style="height:100px; width:400px; object-fit:cover; border-radius:6px;" loading="lazy"></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="date">2026-02-16</td>
-<td class="gt_row gt_left" headers="source">R-Ladies Rome</td>
-<td class="gt_row gt_left" headers="title"><a href="https://rladiesrome.org/blog/posts/02172026/">A Year of Learning, Growth, and Community at R-Ladies Rome 🌟</a></td>
-<td class="gt_row gt_left" headers="image_url"><img src="https://rladiesrome.org/blog/posts/02172026/images/recap26-1.jpg" class="img-fluid" style="height:100px; width:400px; object-fit:cover; border-radius:6px;" loading="lazy"></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="date">2026-02-16</td>
-<td class="gt_row gt_left" headers="source">RWeekly.org - Blogs to Learn R from the Community</td>
-<td class="gt_row gt_left" headers="title"><a href="https://rweekly.org/2026-W08.html">R Weekly 2026-W08 submissions working group, nested Lists with xfun::tabset</a></td>
-<td class="gt_row gt_left" headers="image_url"><img src="https://rweekly.org/public/facebook.png" class="img-fluid" style="height:100px; width:400px; object-fit:cover; border-radius:6px;" loading="lazy"></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="date">2026-02-15</td>
-<td class="gt_row gt_left" headers="source">R-Ladies Rome</td>
-<td class="gt_row gt_left" headers="title"><a href="https://rladiesrome.org/talks/2026/meetup/02162026_priyankaschnell.html">From Data to Decisions: Digital Twins for Smarter Maintenance</a></td>
-<td class="gt_row gt_left" headers="image_url"><img src="https://secure.meetupstatic.com/photos/event/7/a/2/highres_532501954.webp?w=1080" class="img-fluid" style="height:100px; width:400px; object-fit:cover; border-radius:6px;" loading="lazy"></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="date">2026-02-09</td>
-<td class="gt_row gt_left" headers="source">RWeekly.org - Blogs to Learn R from the Community</td>
-<td class="gt_row gt_left" headers="title"><a href="https://rweekly.org/2026-W07.html">R Weekly 2026-W07 sitrep, webRios, Jarl linter</a></td>
-<td class="gt_row gt_left" headers="image_url"><img src="https://rweekly.org/public/facebook.png" class="img-fluid" style="height:100px; width:400px; object-fit:cover; border-radius:6px;" loading="lazy"></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="date">2026-02-02</td>
-<td class="gt_row gt_left" headers="source">RWeekly.org - Blogs to Learn R from the Community</td>
-<td class="gt_row gt_left" headers="title"><a href="https://rweekly.org/2026-W06.html">R Weekly 2026-W06 Interview, Practical git, duckdb</a></td>
-<td class="gt_row gt_left" headers="image_url"><img src="https://rweekly.org/public/facebook.png" class="img-fluid" style="height:100px; width:400px; object-fit:cover; border-radius:6px;" loading="lazy"></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="date">2026-01-28</td>
-<td class="gt_row gt_left" headers="source">R-Ladies Rome</td>
-<td class="gt_row gt_left" headers="title"><a href="https://rladiesrome.org/talks/2026/meetup/01292026_federicagazzelloni.html">Git &amp; GitHub: Practical Version Control for Data Work</a></td>
-<td class="gt_row gt_left" headers="image_url"><img src="https://secure.meetupstatic.com/photos/event/6/e/d/4/highres_532408372.webp?w=1080" class="img-fluid" style="height:100px; width:400px; object-fit:cover; border-radius:6px;" loading="lazy"></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="date">2026-01-26</td>
-<td class="gt_row gt_left" headers="source">RWeekly.org - Blogs to Learn R from the Community</td>
-<td class="gt_row gt_left" headers="title"><a href="https://rweekly.org/2026-W05.html">R Weekly 2026-W05 LLMs &amp; plots, soil flux, futurize</a></td>
-<td class="gt_row gt_left" headers="image_url"><img src="https://rweekly.org/public/facebook.png" class="img-fluid" style="height:100px; width:400px; object-fit:cover; border-radius:6px;" loading="lazy"></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_right" headers="date">2026-01-20</td>
-<td class="gt_row gt_left" headers="source">RWeekly.org - Blogs to Learn R from the Community</td>
-<td class="gt_row gt_left" headers="title"><a href="https://rweekly.org/2026-W04.html">R Weekly 2026-W04 Automate PR’s with Claude, Accessible line charts</a></td>
-<td class="gt_row gt_left" headers="image_url"><img src="https://rweekly.org/public/facebook.png" class="img-fluid" style="height:100px; width:400px; object-fit:cover; border-radius:6px;" loading="lazy"></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_right" headers="date">2026-01-12</td>
-<td class="gt_row gt_left" headers="source">RWeekly.org - Blogs to Learn R from the Community</td>
-<td class="gt_row gt_left" headers="title"><a href="https://rweekly.org/2026-W03.html">R Weekly 2026-W03 R &amp; Python Pluralism, RAG Setup, tinyshinyserver</a></td>
-<td class="gt_row gt_left" headers="image_url"><img src="https://rweekly.org/public/facebook.png" class="img-fluid" style="height:100px; width:400px; object-fit:cover; border-radius:6px;" loading="lazy"></td>
-</tr>
-</tbody>
-</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">col</span><span class="op">)</span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">col</span> <span class="op">&gt;</span> <span class="fl">100</span></span>
+<span><span class="va">df</span><span class="op">$</span><span class="va">new_col</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">$</span><span class="va">col</span> <span class="op">*</span> <span class="fl">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>No explicit loops required.</p>
+<p>This makes analytical code:</p>
+<ul>
+<li>concise</li>
+<li>expressive</li>
+<li>readable</li>
+</ul>
+<p>R was built for data first — not as a general-purpose programming language.</p>
+</section><section id="statistical-modeling-out-of-the-box" class="level2"><h2 class="anchored" data-anchor-id="statistical-modeling-out-of-the-box">2️⃣ Statistical Modeling (Out of the Box)</h2>
+<p>R was designed for statistics.</p>
+<section id="modeling-syntax-is-natural" class="level3"><h3 class="anchored" data-anchor-id="modeling-syntax-is-natural">Modeling syntax is natural:</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span>, data <span class="op">=</span> <span class="va">df</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Compare this to lower-level implementations elsewhere.</p>
+<p>R’s formula interface is still one of the most elegant modeling abstractions available.</p>
+</section></section><section id="reproducible-reporting" class="level2"><h2 class="anchored" data-anchor-id="reproducible-reporting">3️⃣ Reproducible Reporting</h2>
+<p>R integrates seamlessly with:</p>
+<ul>
+<li>Quarto</li>
+<li>R Markdown</li>
+<li>parameterised reports</li>
+<li>dynamic documents</li>
+</ul>
+<p>You can move from:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>data → model → visual → report</p>
+</div>
+</div>
+<p>in one environment.</p>
+<p>Few ecosystems make this as smooth.</p>
+</section><section id="exploratory-data-analysis" class="level2"><h2 class="anchored" data-anchor-id="exploratory-data-analysis">4️⃣ Exploratory Data Analysis</h2>
+<p>R encourages rapid iteration:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">group</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">summarise</span><span class="op">(</span>mean_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The tidyverse philosophy makes analytical transformations readable and composable.</p>
+<p>For exploratory statistics, this is powerful.</p>
+</section><section id="publication-ready-visualisation" class="level2"><h2 class="anchored" data-anchor-id="publication-ready-visualisation">5️⃣ Publication-Ready Visualisation</h2>
+<p><a href="https://ggplot2.tidyverse.org">ggplot2</a> remains one of the most coherent grammar-based plotting systems.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Layered, declarative, expressive.</p>
+</section><section id="where-r-is-not-always-best" class="level2"><h2 class="anchored" data-anchor-id="where-r-is-not-always-best">6️⃣ Where R Is Not Always Best</h2>
+<p>R may not be the best choice for:</p>
+<ul>
+<li>large-scale production APIs</li>
+<li>full-stack applications</li>
+<li>system-level programming</li>
+</ul>
+<p>And that’s fine.</p>
+<p>Tools should be chosen by purpose, not ideology.</p>
+</section><section id="the-practical-conclusion" class="level2"><h2 class="anchored" data-anchor-id="the-practical-conclusion">The Practical Conclusion</h2>
+<p>If your work is:</p>
+<ul>
+<li>statistical</li>
+<li>analytical</li>
+<li>exploratory</li>
+<li>report-driven</li>
+<li>reproducible</li>
+</ul>
+<p>R is still one of the most efficient tools available.</p>
+<p>Not because it replaces everything.</p>
+<p>But because it was designed for analysis.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In Short</p>
+<ul>
+<li>R excels at statistics and modeling</li>
+<li>R is expressive for analytical workflows</li>
+<li>R integrates naturally with reporting</li>
+<li>R remains extremely strong for EDA and visualisation</li>
+<li>Choose tools based on task, not trend</li>
+</ul>
+</div>
+</div>
+<p>R does not need to compete with everything.</p>
+<p>It just needs to do what it does best.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you want to stay up to date with the latest events and posts from the Rome R Users Group:</p>
+<p>👉 <a href="https://www.meetup.com/rome-r-users-group/" class="uri">https://www.meetup.com/rome-r-users-group/</a></p>
 </div>
 </div>
 
@@ -1133,11 +838,11 @@ cookieconsent.run({
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright © 2025 Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://github.com/Fgazzelloni">Federica Gazzelloni</a><br>Powered by: <a href="https://github.com/Fgazzelloni/datametricus">DataMetricus</a> | <a href="../../LICENSE.html">MIT License</a>.</p>
+<p>Copyright © 2025 Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://github.com/Fgazzelloni">Federica Gazzelloni</a><br>Powered by: <a href="https://github.com/Fgazzelloni/datametricus">DataMetricus</a> | <a href="../../../../LICENSE.html">MIT License</a>.</p>
 </div>   
     <div class="nav-footer-center">
 
-<div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/news/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/09-03012029/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
 <li class="nav-item compact">
@@ -1159,7 +864,7 @@ cookieconsent.run({
     </a>
   </li>  
     <li class="nav-item compact">
-    <a class="nav-link" href="../../index.xml">
+    <a class="nav-link" href="../../../../index.xml">
       <i class="bi bi-rss" role="img">
 </i> 
     </a>
@@ -1170,5 +875,5 @@ cookieconsent.run({
 </footer>
 
 
-<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
