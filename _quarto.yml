@@ -3,7 +3,7 @@ project:
   resources:
     - google7af2f480fcbc996e.html
     - google586a458f35a0b15b.html
-  output-dir: _docs
+  output-dir: _site
 
 metadata-files:
   - _website.yml
