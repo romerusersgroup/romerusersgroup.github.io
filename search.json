@@ -25,14 +25,14 @@
     "href": "about/former-organizers.html",
     "title": "former-organizers",
     "section": "",
-    "text": "Lucy Michaels Organizer - from Rome. With 25 years in mathematics education and financial leadership, I’m completing a Master’s in Analysis & Modelling of Data & Processes as well as IBM’s Data Science Certificate, ready to pivot into Data Science. This has led me to work on hands-on projects using R, Python, SQL, and Excel. I bring a unique mix of analytical depth, cross-functional collaboration, and a love for problem-solving. After managing multi-million euro budgets and teaching complex maths, I am looking forward to transitioning into data science to turn messy, real-world data into clear, actionable insights. I’m also active in nonprofit leadership and public speaking, committed to using data—and storytelling—to make a difference. (June 2025 to Present)\n\n\n\n\n\n\nLucy Michaels"
+    "text": "Lucy Michaels Organizer - from Rome. With 25 years in mathematics education and financial leadership, I’m completing a Master’s in Analysis & Modelling of Data & Processes as well as IBM’s Data Science Certificate, ready to pivot into Data Science. This has led me to work on hands-on projects using R, Python, SQL, and Excel. I bring a unique mix of analytical depth, cross-functional collaboration, and a love for problem-solving. After managing multi-million euro budgets and teaching complex maths, I am looking forward to transitioning into data science to turn messy, real-world data into clear, actionable insights. I’m also active in nonprofit leadership and public speaking, committed to using data—and storytelling—to make a difference. (June 2025 to Present)\n\n\n\n\n\n\nLucy Michaels\n\n\n\n\n\n\nLucio Colonna Organizer - from Rome. Data-Driven Professional. With over 10 years of experience in IT consulting and procurement, I combine business expertise with advanced data analysis skills. Proficient in R, Python, SQL, Power BI (including M and DAX), and Excel, I transform complex datasets into clear, actionable insights that drive strategic decisions. My background includes leading cost optimization initiatives and delivering ERP implementations, always with a data-driven approach. Passionate about problem-solving and storytelling with data, I bring both analytical depth and cross-functional collaboration to deliver lasting business impact. (September 2025 to Present)\n\n\n\n\n\n\nLucio Colonna"
   },
   {
     "objectID": "about/former-organizers.html#section",
     "href": "about/former-organizers.html#section",
     "title": "former-organizers",
     "section": "",
-    "text": "Lucy Michaels Organizer - from Rome. With 25 years in mathematics education and financial leadership, I’m completing a Master’s in Analysis & Modelling of Data & Processes as well as IBM’s Data Science Certificate, ready to pivot into Data Science. This has led me to work on hands-on projects using R, Python, SQL, and Excel. I bring a unique mix of analytical depth, cross-functional collaboration, and a love for problem-solving. After managing multi-million euro budgets and teaching complex maths, I am looking forward to transitioning into data science to turn messy, real-world data into clear, actionable insights. I’m also active in nonprofit leadership and public speaking, committed to using data—and storytelling—to make a difference. (June 2025 to Present)\n\n\n\n\n\n\nLucy Michaels"
+    "text": "Lucy Michaels Organizer - from Rome. With 25 years in mathematics education and financial leadership, I’m completing a Master’s in Analysis & Modelling of Data & Processes as well as IBM’s Data Science Certificate, ready to pivot into Data Science. This has led me to work on hands-on projects using R, Python, SQL, and Excel. I bring a unique mix of analytical depth, cross-functional collaboration, and a love for problem-solving. After managing multi-million euro budgets and teaching complex maths, I am looking forward to transitioning into data science to turn messy, real-world data into clear, actionable insights. I’m also active in nonprofit leadership and public speaking, committed to using data—and storytelling—to make a difference. (June 2025 to Present)\n\n\n\n\n\n\nLucy Michaels\n\n\n\n\n\n\nLucio Colonna Organizer - from Rome. Data-Driven Professional. With over 10 years of experience in IT consulting and procurement, I combine business expertise with advanced data analysis skills. Proficient in R, Python, SQL, Power BI (including M and DAX), and Excel, I transform complex datasets into clear, actionable insights that drive strategic decisions. My background includes leading cost optimization initiatives and delivering ERP implementations, always with a data-driven approach. Passionate about problem-solving and storytelling with data, I bring both analytical depth and cross-functional collaboration to deliver lasting business impact. (September 2025 to Present)\n\n\n\n\n\n\nLucio Colonna"
   },
   {
     "objectID": "about/organizers.html",
@@ -47,13 +47,6 @@
     "title": "Organizers",
     "section": "",
     "text": "Federica Gazzelloni Lead Organizer - from Rome. I am an independent researcher passionate about data science, with a background in actuarial statistics and expertise in collaborative environments. My journey extends from traditional actuarial work to advanced data science with R. As the lead organizer of R-Ladies Rome and Rome R Users Group, I advocate for inclusivity and knowledge-sharing, hosting various events promoting the R language but not limited to. I am also a book club facilitator with the DSLC (former R4DS) online community, fostering collaborative learning. Additionally, I have contributed as a reviewer to global health initiatives, emphasizing accessible learning and effective communication. (May 2025 to Present)\n\n\n\n\n\n\nFederica Gazzelloni"
-  },
-  {
-    "objectID": "about/organizers.html#section-1",
-    "href": "about/organizers.html#section-1",
-    "title": "Organizers",
-    "section": "",
-    "text": "Lucio Colonna Organizer - from Rome. Data-Driven Professional. With over 10 years of experience in IT consulting and procurement, I combine business expertise with advanced data analysis skills. Proficient in R, Python, SQL, Power BI (including M and DAX), and Excel, I transform complex datasets into clear, actionable insights that drive strategic decisions. My background includes leading cost optimization initiatives and delivering ERP implementations, always with a data-driven approach. Passionate about problem-solving and storytelling with data, I bring both analytical depth and cross-functional collaboration to deliver lasting business impact. (September 2025 to Present)\n\n\n\n\n\n\nLucio Colonna"
   },
   {
     "objectID": "about/organizers.html#contact-us",
@@ -487,7 +480,7 @@
     "href": "content/rhacks/posts/08-02222026/index.html",
     "title": "CSV vs Parquet: A Better Default for Analytics",
     "section": "",
-    "text": "If you are still saving analytical datasets as .csv by default, you are likely paying a hidden tax:\n:::{.callout-note callout-appearance: simple}\nCSV is universal. But universal does not mean optimal.\n:::\nThis R-Hack explains why Parquet should often be your default for analytical workflows."
+    "text": "If you are still saving analytical datasets as .csv by default, you are likely paying a hidden tax:\nThis R-Hack explains why Parquet should often be your default for analytical workflows."
   },
   {
     "objectID": "content/rhacks/posts/08-02222026/index.html#what-is-parquet",
@@ -508,14 +501,14 @@
     "href": "content/rhacks/posts/08-02222026/index.html#step-2-save-and-read-as-csv",
     "title": "CSV vs Parquet: A Better Default for Analytics",
     "section": "Step 2 — Save and Read as CSV",
-    "text": "Step 2 — Save and Read as CSV\n\nwrite.csv(df, \"data.csv\", row.names = FALSE)\n\nsystem.time({\n  df_csv &lt;- read.csv(\"data.csv\")\n})\n\n   user  system elapsed \n  0.264   0.012   0.286 \n\n\nNow check file size:\n\nfile.info(\"data.csv\")$size\n\n[1] 6819327\n\n\nCSV:\n\nstores everything as text\nrequires parsing every time\nguesses types on read"
+    "text": "Step 2 — Save and Read as CSV\n\nwrite.csv(df, \"data.csv\", row.names = FALSE)\n\nsystem.time({\n  df_csv &lt;- read.csv(\"data.csv\")\n})\n\n   user  system elapsed \n  0.262   0.013   0.275 \n\n\nNow check file size:\n\nfile.info(\"data.csv\")$size\n\n[1] 6819327\n\n\nCSV:\n\nstores everything as text\nrequires parsing every time\nguesses types on read"
   },
   {
     "objectID": "content/rhacks/posts/08-02222026/index.html#step-3-save-and-read-as-parquet",
     "href": "content/rhacks/posts/08-02222026/index.html#step-3-save-and-read-as-parquet",
     "title": "CSV vs Parquet: A Better Default for Analytics",
     "section": "Step 3 — Save and Read as Parquet",
-    "text": "Step 3 — Save and Read as Parquet\n\nwrite_parquet(df, \"data.parquet\")\n\nsystem.time({\n  df_parquet &lt;- read_parquet(\"data.parquet\")\n})\n\n   user  system elapsed \n  0.007   0.001   0.007 \n\n\nCheck file size:\n\nfile.info(\"data.parquet\")$size\n\n[1] 3231687\n\n\nYou will typically observe:\n\nfaster read time\nsmaller file size\npreserved data types\n\n\nWhy This Matters in Practice?\n\n1️⃣ Speed\nParquet reads are faster because:\n\nit stores columns independently\nit avoids text parsing\nit uses compression effectively\n\nThis becomes significant as datasets grow.\n2️⃣ File Size\nParquet compresses automatically. In many real-world cases parquet files are 30–70% smaller than CSV equivalents:\n\nLess storage\nFaster transfer\nCleaner repositories\n3️⃣ Type Safety\nCSV does not store types.\nEvery read operation reinterprets:\n\nlogical values\nfactors\ndates\nnumeric columns\n\nParquet preserves them.\nThis reduces silent coercion bugs."
+    "text": "Step 3 — Save and Read as Parquet\n\nwrite_parquet(df, \"data.parquet\")\n\nsystem.time({\n  df_parquet &lt;- read_parquet(\"data.parquet\")\n})\n\n   user  system elapsed \n  0.008   0.001   0.006 \n\n\nCheck file size:\n\nfile.info(\"data.parquet\")$size\n\n[1] 3231687\n\n\nYou will typically observe:\n\nfaster read time\nsmaller file size\npreserved data types\n\n\nWhy This Matters in Practice?\n\n1️⃣ Speed\nParquet reads are faster because:\n\nit stores columns independently\nit avoids text parsing\nit uses compression effectively\n\nThis becomes significant as datasets grow.\n2️⃣ File Size\nParquet compresses automatically. In many real-world cases parquet files are 30–70% smaller than CSV equivalents:\n\nLess storage\nFaster transfer\nCleaner repositories\n3️⃣ Type Safety\nCSV does not store types.\nEvery read operation reinterprets:\n\nlogical values\nfactors\ndates\nnumeric columns\n\nParquet preserves them.\nThis reduces silent coercion bugs."
   },
   {
     "objectID": "content/rhacks/posts/08-02222026/index.html#bonus-select-columns-without-loading-everything",
@@ -529,7 +522,7 @@
     "href": "content/rhacks/posts/08-02222026/index.html#workflow-recommendation",
     "title": "CSV vs Parquet: A Better Default for Analytics",
     "section": "Workflow Recommendation",
-    "text": "Workflow Recommendation\nFor reproducible projects:\n\nRaw data → store as Parquet\nIntermediate processed data → store as Parquet\nFinal exports → optionally CSV\n\nThink of Parquet as your working format, and CSV as your exchange format.\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n\nCSV is universal but inefficient\nParquet is faster, smaller, and type-safe\nSwitching requires only {arrow}\nMake Parquet your default for analysis projects\n\n\n\nModern workflows deserve modern storage.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 &lt;https://www.meetup.com/rome-r-users-group/"
+    "text": "Workflow Recommendation\nFor reproducible projects:\n\nRaw data → store as Parquet\nIntermediate processed data → store as Parquet\nFinal exports → optionally CSV\n\nThink of Parquet as your working format, and CSV as your exchange format.\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n\nCSV is universal but inefficient\nParquet is faster, smaller, and type-safe\nSwitching requires only {arrow}\nMake Parquet your default for analysis projects\n\n\n\nModern workflows deserve modern storage.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   },
   {
     "objectID": "content/rhacks/posts/01-11282025/index.html",
