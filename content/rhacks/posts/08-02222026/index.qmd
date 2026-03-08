@@ -32,8 +32,13 @@ If you are still saving analytical datasets as .csv by default, you are likely p
 - fragile type handling
 - unnecessary reprocessing
 
+
+::: {.callout-note appearance="simple"}
+
 CSV is universal.
 But universal does not mean optimal.
+
+:::
 
 This R-Hack explains why Parquet should often be your default for analytical workflows.
 
@@ -215,18 +220,23 @@ and CSV as your exchange format.
 
 
 :::{.callout-note appearance=“simple”}
+
 In Short
 
 - CSV is universal but inefficient
 - Parquet is faster, smaller, and type-safe
 - Switching requires only {arrow}
 - Make Parquet your default for analysis projects
+
 :::
 
 Modern workflows deserve modern storage.
 
-::: callout-tip
+::: {.callout-tip}
+
 If you want to stay up to date with the latest events and posts from the Rome R Users Group:
 
-👉 https://www.meetup.com/rome-r-users-group/
+👉 <https://www.meetup.com/rome-r-users-group/>
+
 :::
+

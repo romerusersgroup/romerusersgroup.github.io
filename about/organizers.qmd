@@ -27,19 +27,7 @@ The [Rome R Users Group](https://www.meetup.com/rome-r-users-group) was founded 
 
 ##
 
-:::: columns
-::: {.column width="58%"}
-[Lucio Colonna](https://www.linkedin.com/in/vlcolonna/) Organizer - from Rome. Data-Driven Professional. With over 10 years of experience in IT consulting and procurement, I combine business expertise with advanced data analysis skills. Proficient in R, Python, SQL, Power BI (including M and DAX), and Excel, I transform complex datasets into clear, actionable insights that drive strategic decisions. My background includes leading cost optimization initiatives and delivering ERP implementations, always with a data-driven approach. Passionate about problem-solving and storytelling with data, I bring both analytical depth and cross-functional collaboration to deliver lasting business impact. (September 2025 to Present)
-:::
 
-::: {.column width="4%"}
-:::
-
-::: {.column width="38%"}
-![Lucio Colonna](organizers_picts/lucio-colonna.png)
-:::
-
-::::
 
 ## Contact Us
 

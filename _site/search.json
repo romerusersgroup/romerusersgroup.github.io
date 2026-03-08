@@ -25,14 +25,14 @@
     "href": "about/former-organizers.html",
     "title": "former-organizers",
     "section": "",
-    "text": "Lucy Michaels Organizer - from Rome. With 25 years in mathematics education and financial leadership, I’m completing a Master’s in Analysis & Modelling of Data & Processes as well as IBM’s Data Science Certificate, ready to pivot into Data Science. This has led me to work on hands-on projects using R, Python, SQL, and Excel. I bring a unique mix of analytical depth, cross-functional collaboration, and a love for problem-solving. After managing multi-million euro budgets and teaching complex maths, I am looking forward to transitioning into data science to turn messy, real-world data into clear, actionable insights. I’m also active in nonprofit leadership and public speaking, committed to using data—and storytelling—to make a difference. (June 2025 to Present)\n\n\n\n\n\n\nLucy Michaels"
+    "text": "Lucy Michaels Organizer - from Rome. With 25 years in mathematics education and financial leadership, I’m completing a Master’s in Analysis & Modelling of Data & Processes as well as IBM’s Data Science Certificate, ready to pivot into Data Science. This has led me to work on hands-on projects using R, Python, SQL, and Excel. I bring a unique mix of analytical depth, cross-functional collaboration, and a love for problem-solving. After managing multi-million euro budgets and teaching complex maths, I am looking forward to transitioning into data science to turn messy, real-world data into clear, actionable insights. I’m also active in nonprofit leadership and public speaking, committed to using data—and storytelling—to make a difference. (June 2025 to Present)\n\n\n\n\n\n\nLucy Michaels\n\n\n\n\n\n\nLucio Colonna Organizer - from Rome. Data-Driven Professional. With over 10 years of experience in IT consulting and procurement, I combine business expertise with advanced data analysis skills. Proficient in R, Python, SQL, Power BI (including M and DAX), and Excel, I transform complex datasets into clear, actionable insights that drive strategic decisions. My background includes leading cost optimization initiatives and delivering ERP implementations, always with a data-driven approach. Passionate about problem-solving and storytelling with data, I bring both analytical depth and cross-functional collaboration to deliver lasting business impact. (September 2025 to Present)\n\n\n\n\n\n\nLucio Colonna"
   },
   {
     "objectID": "about/former-organizers.html#section",
     "href": "about/former-organizers.html#section",
     "title": "former-organizers",
     "section": "",
-    "text": "Lucy Michaels Organizer - from Rome. With 25 years in mathematics education and financial leadership, I’m completing a Master’s in Analysis & Modelling of Data & Processes as well as IBM’s Data Science Certificate, ready to pivot into Data Science. This has led me to work on hands-on projects using R, Python, SQL, and Excel. I bring a unique mix of analytical depth, cross-functional collaboration, and a love for problem-solving. After managing multi-million euro budgets and teaching complex maths, I am looking forward to transitioning into data science to turn messy, real-world data into clear, actionable insights. I’m also active in nonprofit leadership and public speaking, committed to using data—and storytelling—to make a difference. (June 2025 to Present)\n\n\n\n\n\n\nLucy Michaels"
+    "text": "Lucy Michaels Organizer - from Rome. With 25 years in mathematics education and financial leadership, I’m completing a Master’s in Analysis & Modelling of Data & Processes as well as IBM’s Data Science Certificate, ready to pivot into Data Science. This has led me to work on hands-on projects using R, Python, SQL, and Excel. I bring a unique mix of analytical depth, cross-functional collaboration, and a love for problem-solving. After managing multi-million euro budgets and teaching complex maths, I am looking forward to transitioning into data science to turn messy, real-world data into clear, actionable insights. I’m also active in nonprofit leadership and public speaking, committed to using data—and storytelling—to make a difference. (June 2025 to Present)\n\n\n\n\n\n\nLucy Michaels\n\n\n\n\n\n\nLucio Colonna Organizer - from Rome. Data-Driven Professional. With over 10 years of experience in IT consulting and procurement, I combine business expertise with advanced data analysis skills. Proficient in R, Python, SQL, Power BI (including M and DAX), and Excel, I transform complex datasets into clear, actionable insights that drive strategic decisions. My background includes leading cost optimization initiatives and delivering ERP implementations, always with a data-driven approach. Passionate about problem-solving and storytelling with data, I bring both analytical depth and cross-functional collaboration to deliver lasting business impact. (September 2025 to Present)\n\n\n\n\n\n\nLucio Colonna"
   },
   {
     "objectID": "about/organizers.html",
@@ -47,13 +47,6 @@
     "title": "Organizers",
     "section": "",
     "text": "Federica Gazzelloni Lead Organizer - from Rome. I am an independent researcher passionate about data science, with a background in actuarial statistics and expertise in collaborative environments. My journey extends from traditional actuarial work to advanced data science with R. As the lead organizer of R-Ladies Rome and Rome R Users Group, I advocate for inclusivity and knowledge-sharing, hosting various events promoting the R language but not limited to. I am also a book club facilitator with the DSLC (former R4DS) online community, fostering collaborative learning. Additionally, I have contributed as a reviewer to global health initiatives, emphasizing accessible learning and effective communication. (May 2025 to Present)\n\n\n\n\n\n\nFederica Gazzelloni"
-  },
-  {
-    "objectID": "about/organizers.html#section-1",
-    "href": "about/organizers.html#section-1",
-    "title": "Organizers",
-    "section": "",
-    "text": "Lucio Colonna Organizer - from Rome. Data-Driven Professional. With over 10 years of experience in IT consulting and procurement, I combine business expertise with advanced data analysis skills. Proficient in R, Python, SQL, Power BI (including M and DAX), and Excel, I transform complex datasets into clear, actionable insights that drive strategic decisions. My background includes leading cost optimization initiatives and delivering ERP implementations, always with a data-driven approach. Passionate about problem-solving and storytelling with data, I bring both analytical depth and cross-functional collaboration to deliver lasting business impact. (September 2025 to Present)\n\n\n\n\n\n\nLucio Colonna"
   },
   {
     "objectID": "about/organizers.html#contact-us",
@@ -273,25 +266,109 @@
     "text": "Industry update (short note)\nPosit has opened a private beta of an AI assistant embedded directly in RStudio. If you’re curious to try it, you can join the waiting list here:\n👉 https://posit.co/products/enterprise/ai/\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group, follow us here:\n👉 https://www.meetup.com/rome-r-users-group/"
   },
   {
-    "objectID": "content/rhacks/posts/05-02022026/index.html",
-    "href": "content/rhacks/posts/05-02022026/index.html",
-    "title": "One-Line Sanity Checks After Every Transformation",
+    "objectID": "content/rhacks/posts/10-03082026/index.html",
+    "href": "content/rhacks/posts/10-03082026/index.html",
+    "title": "Small R Tricks That Make AI-Generated Code Better",
     "section": "",
-    "text": "This hack is based on RLadiesRome Tutorial analysis on From Basics to Advanced Health Analytics: Exploring Diabetes Data:\n🔗 https://rladiesrome.github.io/Principles-of-data-Analysis-in-R/\nWhen working with data, most bugs don’t come from complex models.\nThis R-Hack shows how to build a habit of running one-line sanity checks after every major transformation, using a concrete example from our Exploring Diabetes Data tutorial.\nThey are quick, cheap, and often enough to catch problems before plots or models hide them."
+    "text": "Describe a task and a full script appears. For many analysts, this is quickly becoming part of the normal workflow.\nJust small improvements can turn that code into something clearer, shorter, and easier to maintain.\nThis issue of R-Hacks highlights a few compact patterns that experienced R users apply almost automatically. They are not advanced tricks, just small habits that help refine AI-generated scripts quickly."
   },
   {
-    "objectID": "content/rhacks/posts/05-02022026/index.html#why-one-line-checks-matter",
-    "href": "content/rhacks/posts/05-02022026/index.html#why-one-line-checks-matter",
-    "title": "One-Line Sanity Checks After Every Transformation",
-    "section": "Why One-Line Checks Matter",
-    "text": "Why One-Line Checks Matter\nTransformations are the most fragile part of a data workflow. They change structure, size, and meaning — often without throwing an error.\nThe goal here is not defensive programming or heavy validation. It’s about building small, automatic pauses that let you ask:\n\n“Does the data still look the way I expect?”\n\nData Example: Diabetes Dataset (Before Clustering)\nIn the tutorial, the diabetes dataset is cleaned and prepared before moving to k-prototypes clustering.\nAt that point, the data typically goes through steps like:\n\nselecting relevant variables\nrecoding categorical fields\nfiltering incomplete observations\n\nThat makes it an ideal place to pause and check assumptions. Let’s simulate a sample dataset similar to the one used in the tutorial:\n\nlibrary(dplyr)\n\nset.seed(123)\n\ndf_before &lt;- data.frame(\n  id       = 1:300,\n  age      = round(rnorm(300, mean = 55, sd = 10)),\n  bmi      = round(rnorm(300, mean = 28, sd = 5), 1),\n  glucose  = round(rnorm(300, mean = 120, sd = 30)),\n  sex      = sample(c(\"Female\", \"Male\"), 300, replace = TRUE),\n  diabetes = sample(c(\"No\", \"Yes\"), 300, replace = TRUE, prob = c(0.7, 0.3))\n)\n\n# Introduce realistic missingness (so filtering has an effect)\nset.seed(456)\ndf_before$bmi[sample(seq_len(nrow(df_before)), size = 20)] &lt;- NA\ndf_before$glucose[sample(seq_len(nrow(df_before)), size = 15)] &lt;- NA\n\n\ndim(df_before)\n\n[1] 300   6\n\n\n\nhead(df_before)\n\n  id age  bmi glucose    sex diabetes\n1  1  49 24.4     152   Male       No\n2  2  53 24.2     119   Male       No\n3  3  71 23.3     119   Male       No\n4  4  56 22.7      75 Female      Yes\n5  5  56 25.8     144   Male       No\n6  6  72 29.7     114 Female      Yes\n\n\nAfter the transformations, we get a new dataframe df_after:\n\ndf_after &lt;- df_before |&gt;\n  dplyr::filter(!is.na(glucose), !is.na(bmi)) |&gt;\n  dplyr::mutate(\n    diabetes = factor(diabetes, levels = c(\"No\", \"Yes\"))\n  )\n\ndim(df_after)\n\n[1] 266   6\n\n\n\nhead(df_after)\n\n  id age  bmi glucose    sex diabetes\n1  1  49 24.4     152   Male       No\n2  2  53 24.2     119   Male       No\n3  3  71 23.3     119   Male       No\n4  4  56 22.7      75 Female      Yes\n5  5  56 25.8     144   Male       No\n6  6  72 29.7     114 Female      Yes\n\n\nCheck 1 – Did the Row Count Change as Expected?\nAfter any operation that could affect the number of rows, check it explicitly.\n\n# One-line sanity check: did we drop rows as expected?\nnrow(df_before)\n\n[1] 300\n\nnrow(df_after)\n\n[1] 266\n\n\n\n\n\n\n\n\nNotes (why this works)\n\nWe create missing values in bmi and glucose, which is common in real health datasets.\nThe filter step now drops incomplete rows, so df_after has fewer rows than df_before.\nThis makes your “row count changed” check meaningful and aligned with Issue N.5’s message.\n\n\n\n\nIn this context, a reduction is expected, but it should be understood and intentional.\nUse this after:\n\nfilter()\njoin()\nsubsetting\nremoving duplicates\n\nWhat this catches:\n\naccidental row loss\nmany-to-many joins\naccidental over-filtering\nunintended row drops\nsilent data duplication\n\nIf the number changes unexpectedly, stop and investigate. This single check prevents a large class of downstream errors.\nCheck 2 – Do Key Variables Still Look Reasonable?\nWhenever you create or transform a variable, inspect its range.\n\nsummary(df_after$age)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   32.0    49.0    55.0    55.4    61.0    87.0 \n\n\n\nrange(df_after$bmi, na.rm = TRUE)\n\n[1] 14.0 40.9\n\n\nLook for:\n\nnegative values where they shouldn’t exist\nimpossible values (e.g. BMI of 5)\nsuspicious defaults (e.g. all zeros)\ntransformations that didn’t behave as expected\n\nThese problems are much easier to fix immediately than after modelling.\nCheck 3 – Did Missingness Increase?\nJoins and reshaping often introduce NAs. Count them explicitly.\n\ncolSums(is.na(df_after))\n\n      id      age      bmi  glucose      sex diabetes \n       0        0        0        0        0        0 \n\n\nThis gives a fast overview of:\n\ncolumns that need cleaning\nvariables that may bias analysis\nfields that should be dropped or imputed\n\nNever assume “there aren’t many NAs”. Check!\nCheck 4 – Do Group Sizes Still Make Sense?\nBefore summarising or modelling grouped data, look at the group counts. In particular, before using categorical variables in clustering or summaries, check their distribution.\n\ndf_after |&gt; dplyr::count(diabetes)\n\n  diabetes   n\n1       No 188\n2      Yes  78\n\n\n\n\nThis is especially important before:\n\nrates or percentages\naverages by group\ncomparisons across categories\n\n\nThis prevents:\n\nunstable clusters\ncategories with too few observations\nmisleading interpretations\n\n\n\nWhat this catches:\n\ntiny or empty groups\nunstable estimates\nsummaries that look precise but aren’t meaningful"
+    "objectID": "content/rhacks/posts/10-03082026/index.html#replace-loops-with-vectorised-operations",
+    "href": "content/rhacks/posts/10-03082026/index.html#replace-loops-with-vectorised-operations",
+    "title": "Small R Tricks That Make AI-Generated Code Better",
+    "section": "1️⃣ Replace Loops with Vectorised Operations",
+    "text": "1️⃣ Replace Loops with Vectorised Operations\nAI tools sometimes produce loops for simple transformations.\n\nfor(i in 1:nrow(df)) { \n  df$new_value[i] &lt;- df$value\\[i\\] \\* 2 \n  }\n\nIn R, this can usually be written in a vectorised way:\n\ndf$new_value &lt;- df$value \\* 2\n\nVectorised operations are:\n\nfaster\neasier to read\nless error-prone\n\nThey also reflect how R was designed to work with data."
   },
   {
-    "objectID": "content/rhacks/posts/05-02022026/index.html#making-this-a-habit",
-    "href": "content/rhacks/posts/05-02022026/index.html#making-this-a-habit",
-    "title": "One-Line Sanity Checks After Every Transformation",
-    "section": "Making This a Habit",
-    "text": "Making This a Habit\nThese checks are not meant to clutter your script. They are meant to become automatic.\nA good rule of thumb:\n\nAfter anything that changes rows → check nrow()\n\nAfter anything that changes values → check summary() or range()\n\nAfter anything that combines data → check NAs\n\nBefore summarising → check group sizes\n\nOne line is often enough.\n\n\n\n\n\n\nIn Short\n\nMost data bugs enter during transformations\nOne-line checks catch problems early\nThey cost seconds and save hours\nMake them a habit, not an afterthought\n\n\n\n\nThis is not about perfection. It’s about seeing problems while they’re still small.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group, follow us here:\n👉 https://www.meetup.com/rome-r-users-group/"
+    "objectID": "content/rhacks/posts/10-03082026/index.html#replace-repetitive-summaries-with-across",
+    "href": "content/rhacks/posts/10-03082026/index.html#replace-repetitive-summaries-with-across",
+    "title": "Small R Tricks That Make AI-Generated Code Better",
+    "section": "2️⃣ Replace Repetitive Summaries with across()",
+    "text": "2️⃣ Replace Repetitive Summaries with across()\nAI code often repeats the same operation across multiple variables.\n\nmean(df$var1, na.rm = TRUE)\nmean(df$var2, na.rm = TRUE) \nmean(df$var3, na.rm = TRUE)\n\nA more compact approach:\n\ndf |&gt; summarise(\n  across(starts_with(\"var\"), \n  mean, na.rm = TRUE)\n  )\n\nThis pattern:\n\nreduces repetition\nkeeps scripts shorter\nscales easily to many variables"
+  },
+  {
+    "objectID": "content/rhacks/posts/10-03082026/index.html#check-missing-values-instantly",
+    "href": "content/rhacks/posts/10-03082026/index.html#check-missing-values-instantly",
+    "title": "Small R Tricks That Make AI-Generated Code Better",
+    "section": "3️⃣ Check Missing Values Instantly",
+    "text": "3️⃣ Check Missing Values Instantly\nAI rarely checks data quality unless explicitly asked.\nA quick diagnostic:\n\ncolSums(is.na(df))\n\nThis immediately reveals:\n\nwhich columns contain missing values\nhow many observations are affected\nwhere cleaning may be needed\n\nIt is a simple check that prevents many downstream issues."
+  },
+  {
+    "objectID": "content/rhacks/posts/10-03082026/index.html#verify-transformations-with-quick-size-checks",
+    "href": "content/rhacks/posts/10-03082026/index.html#verify-transformations-with-quick-size-checks",
+    "title": "Small R Tricks That Make AI-Generated Code Better",
+    "section": "4️⃣ Verify Transformations with Quick Size Checks",
+    "text": "4️⃣ Verify Transformations with Quick Size Checks\nAfter filtering or joins, it is good practice to confirm how the dataset changed.\n\ndim(df)\n\nor\n\nnrow(df)\n\n\n\n\n\n\n\nTip\n\n\n\nSmall checks like these help detect unexpected row losses or accidental duplications.\n\n\nAdding them after major transformations can prevent silent mistakes."
+  },
+  {
+    "objectID": "content/rhacks/posts/10-03082026/index.html#use-sampling-for-faster-testing",
+    "href": "content/rhacks/posts/10-03082026/index.html#use-sampling-for-faster-testing",
+    "title": "Small R Tricks That Make AI-Generated Code Better",
+    "section": "5️⃣ Use Sampling for Faster Testing",
+    "text": "5️⃣ Use Sampling for Faster Testing\nWhen experimenting with code, running everything on a large dataset can slow iteration.\nInstead, work on a small sample first:\n\ndf_small &lt;- df |&gt; slice_sample(n = 1000)\n\nThis allows you to:\n\ntest transformations quickly\ndebug pipelines faster\niterate more efficiently\n\nOnce the logic works, apply it to the full dataset."
+  },
+  {
+    "objectID": "content/rhacks/posts/10-03082026/index.html#why-these-tricks-matter",
+    "href": "content/rhacks/posts/10-03082026/index.html#why-these-tricks-matter",
+    "title": "Small R Tricks That Make AI-Generated Code Better",
+    "section": "Why These Tricks Matter",
+    "text": "Why These Tricks Matter\nAI tools are very good at producing working code.\nBut experienced users recognise patterns that make scripts cleaner and more idiomatic.\nThese small improvements help you:\n\nsimplify generated code\nreduce repetition\nkeep workflows easier to maintain\n\nThey also reinforce a useful principle:\n\n\n\n\n\n\nNote\n\n\n\nAI can generate code quickly.\nUnderstanding your tools helps you improve that code immediately.\n\n\nIn Short\n\nAI-generated code often works but can be verbose\nVectorised operations simplify many tasks\n\nacross() reduces repetitive summaries\nQuick checks reveal missing data or unexpected changes\nSampling helps test transformations faster\n\nSmall habits like these can dramatically improve everyday R workflows.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
+  },
+  {
+    "objectID": "content/rhacks/posts/09-03012029/index.html",
+    "href": "content/rhacks/posts/09-03012029/index.html",
+    "title": "What R Is Best For (And Why It Still Matters)",
+    "section": "",
+    "text": "The question is not:\nThe better question is:"
+  },
+  {
+    "objectID": "content/rhacks/posts/09-03012029/index.html#vectorised-data-manipulation",
+    "href": "content/rhacks/posts/09-03012029/index.html#vectorised-data-manipulation",
+    "title": "What R Is Best For (And Why It Still Matters)",
+    "section": "1️⃣ Vectorised Data Manipulation",
+    "text": "1️⃣ Vectorised Data Manipulation\nIn R, most operations are naturally vectorised.\n\nmean(df$col)\ndf$col &gt; 100\ndf$new_col &lt;- df$col * 2\n\nNo explicit loops required.\nThis makes analytical code:\n\nconcise\nexpressive\nreadable\n\nR was built for data first — not as a general-purpose programming language."
+  },
+  {
+    "objectID": "content/rhacks/posts/09-03012029/index.html#statistical-modeling-out-of-the-box",
+    "href": "content/rhacks/posts/09-03012029/index.html#statistical-modeling-out-of-the-box",
+    "title": "What R Is Best For (And Why It Still Matters)",
+    "section": "2️⃣ Statistical Modeling (Out of the Box)",
+    "text": "2️⃣ Statistical Modeling (Out of the Box)\nR was designed for statistics.\nModeling syntax is natural:\n\nmodel &lt;- lm(y ~ x1 + x2, data = df)\nsummary(model)\n\nCompare this to lower-level implementations elsewhere.\nR’s formula interface is still one of the most elegant modeling abstractions available."
+  },
+  {
+    "objectID": "content/rhacks/posts/09-03012029/index.html#reproducible-reporting",
+    "href": "content/rhacks/posts/09-03012029/index.html#reproducible-reporting",
+    "title": "What R Is Best For (And Why It Still Matters)",
+    "section": "3️⃣ Reproducible Reporting",
+    "text": "3️⃣ Reproducible Reporting\nR integrates seamlessly with:\n\nQuarto\nR Markdown\nparameterised reports\ndynamic documents\n\nYou can move from:\n\n\n\n\n\n\nTip\n\n\n\ndata → model → visual → report\n\n\nin one environment.\nFew ecosystems make this as smooth."
+  },
+  {
+    "objectID": "content/rhacks/posts/09-03012029/index.html#exploratory-data-analysis",
+    "href": "content/rhacks/posts/09-03012029/index.html#exploratory-data-analysis",
+    "title": "What R Is Best For (And Why It Still Matters)",
+    "section": "4️⃣ Exploratory Data Analysis",
+    "text": "4️⃣ Exploratory Data Analysis\nR encourages rapid iteration:\n\ndf |&gt;\n  group_by(group) |&gt;\n  summarise(mean_value = mean(value))\n\nThe tidyverse philosophy makes analytical transformations readable and composable.\nFor exploratory statistics, this is powerful."
+  },
+  {
+    "objectID": "content/rhacks/posts/09-03012029/index.html#publication-ready-visualisation",
+    "href": "content/rhacks/posts/09-03012029/index.html#publication-ready-visualisation",
+    "title": "What R Is Best For (And Why It Still Matters)",
+    "section": "5️⃣ Publication-Ready Visualisation",
+    "text": "5️⃣ Publication-Ready Visualisation\nggplot2 remains one of the most coherent grammar-based plotting systems.\n\nggplot(df, aes(x, y)) +\n  geom_point() +\n  theme_minimal()\n\nLayered, declarative, expressive."
+  },
+  {
+    "objectID": "content/rhacks/posts/09-03012029/index.html#where-r-is-not-always-best",
+    "href": "content/rhacks/posts/09-03012029/index.html#where-r-is-not-always-best",
+    "title": "What R Is Best For (And Why It Still Matters)",
+    "section": "6️⃣ Where R Is Not Always Best",
+    "text": "6️⃣ Where R Is Not Always Best\nR may not be the best choice for:\n\nlarge-scale production APIs\nfull-stack applications\nsystem-level programming\n\nAnd that’s fine.\nTools should be chosen by purpose, not ideology."
+  },
+  {
+    "objectID": "content/rhacks/posts/09-03012029/index.html#the-practical-conclusion",
+    "href": "content/rhacks/posts/09-03012029/index.html#the-practical-conclusion",
+    "title": "What R Is Best For (And Why It Still Matters)",
+    "section": "The Practical Conclusion",
+    "text": "The Practical Conclusion\nIf your work is:\n\nstatistical\nanalytical\nexploratory\nreport-driven\nreproducible\n\nR is still one of the most efficient tools available.\nNot because it replaces everything.\nBut because it was designed for analysis.\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n\nR excels at statistics and modeling\nR is expressive for analytical workflows\nR integrates naturally with reporting\nR remains extremely strong for EDA and visualisation\nChoose tools based on task, not trend\n\n\n\nR does not need to compete with everything.\nIt just needs to do what it does best.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   },
   {
     "objectID": "content/resources/index.html",
@@ -334,6 +411,27 @@
     "title": "R Consortium Events & Workshops",
     "section": "Check recent posts from selected R and data science sources:",
     "text": "Check recent posts from selected R and data science sources:\n\n\n\n\n\n\nDate\nSource\nTitle\n\n\n\n\n2026-02-23\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W09 Git commits, Pick a License, and How to choose the best LLM using R and vitals\n\n\n\n2026-02-16\nR-Ladies Rome\nA Year of Learning, Growth, and Community at R-Ladies Rome 🌟\n\n\n\n2026-02-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W08 submissions working group, nested Lists with xfun::tabset\n\n\n\n2026-02-15\nR-Ladies Rome\nFrom Data to Decisions: Digital Twins for Smarter Maintenance\n\n\n\n2026-02-09\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W07 sitrep, webRios, Jarl linter\n\n\n\n2026-02-02\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W06 Interview, Practical git, duckdb\n\n\n\n2026-01-28\nR-Ladies Rome\nGit & GitHub: Practical Version Control for Data Work\n\n\n\n2026-01-26\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W05 LLMs & plots, soil flux, futurize\n\n\n\n2026-01-20\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W04 Automate PR’s with Claude, Accessible line charts\n\n\n\n2026-01-12\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W03 R & Python Pluralism, RAG Setup, tinyshinyserver"
+  },
+  {
+    "objectID": "content/rhacks/posts/05-02022026/index.html",
+    "href": "content/rhacks/posts/05-02022026/index.html",
+    "title": "One-Line Sanity Checks After Every Transformation",
+    "section": "",
+    "text": "This hack is based on RLadiesRome Tutorial analysis on From Basics to Advanced Health Analytics: Exploring Diabetes Data:\n🔗 https://rladiesrome.github.io/Principles-of-data-Analysis-in-R/\nWhen working with data, most bugs don’t come from complex models.\nThis R-Hack shows how to build a habit of running one-line sanity checks after every major transformation, using a concrete example from our Exploring Diabetes Data tutorial.\nThey are quick, cheap, and often enough to catch problems before plots or models hide them."
+  },
+  {
+    "objectID": "content/rhacks/posts/05-02022026/index.html#why-one-line-checks-matter",
+    "href": "content/rhacks/posts/05-02022026/index.html#why-one-line-checks-matter",
+    "title": "One-Line Sanity Checks After Every Transformation",
+    "section": "Why One-Line Checks Matter",
+    "text": "Why One-Line Checks Matter\nTransformations are the most fragile part of a data workflow. They change structure, size, and meaning — often without throwing an error.\nThe goal here is not defensive programming or heavy validation. It’s about building small, automatic pauses that let you ask:\n\n“Does the data still look the way I expect?”\n\nData Example: Diabetes Dataset (Before Clustering)\nIn the tutorial, the diabetes dataset is cleaned and prepared before moving to k-prototypes clustering.\nAt that point, the data typically goes through steps like:\n\nselecting relevant variables\nrecoding categorical fields\nfiltering incomplete observations\n\nThat makes it an ideal place to pause and check assumptions. Let’s simulate a sample dataset similar to the one used in the tutorial:\n\nlibrary(dplyr)\n\nset.seed(123)\n\ndf_before &lt;- data.frame(\n  id       = 1:300,\n  age      = round(rnorm(300, mean = 55, sd = 10)),\n  bmi      = round(rnorm(300, mean = 28, sd = 5), 1),\n  glucose  = round(rnorm(300, mean = 120, sd = 30)),\n  sex      = sample(c(\"Female\", \"Male\"), 300, replace = TRUE),\n  diabetes = sample(c(\"No\", \"Yes\"), 300, replace = TRUE, prob = c(0.7, 0.3))\n)\n\n# Introduce realistic missingness (so filtering has an effect)\nset.seed(456)\ndf_before$bmi[sample(seq_len(nrow(df_before)), size = 20)] &lt;- NA\ndf_before$glucose[sample(seq_len(nrow(df_before)), size = 15)] &lt;- NA\n\n\ndim(df_before)\n\n[1] 300   6\n\n\n\nhead(df_before)\n\n  id age  bmi glucose    sex diabetes\n1  1  49 24.4     152   Male       No\n2  2  53 24.2     119   Male       No\n3  3  71 23.3     119   Male       No\n4  4  56 22.7      75 Female      Yes\n5  5  56 25.8     144   Male       No\n6  6  72 29.7     114 Female      Yes\n\n\nAfter the transformations, we get a new dataframe df_after:\n\ndf_after &lt;- df_before |&gt;\n  dplyr::filter(!is.na(glucose), !is.na(bmi)) |&gt;\n  dplyr::mutate(\n    diabetes = factor(diabetes, levels = c(\"No\", \"Yes\"))\n  )\n\ndim(df_after)\n\n[1] 266   6\n\n\n\nhead(df_after)\n\n  id age  bmi glucose    sex diabetes\n1  1  49 24.4     152   Male       No\n2  2  53 24.2     119   Male       No\n3  3  71 23.3     119   Male       No\n4  4  56 22.7      75 Female      Yes\n5  5  56 25.8     144   Male       No\n6  6  72 29.7     114 Female      Yes\n\n\nCheck 1 – Did the Row Count Change as Expected?\nAfter any operation that could affect the number of rows, check it explicitly.\n\n# One-line sanity check: did we drop rows as expected?\nnrow(df_before)\n\n[1] 300\n\nnrow(df_after)\n\n[1] 266\n\n\n\n\n\n\n\n\nNotes (why this works)\n\nWe create missing values in bmi and glucose, which is common in real health datasets.\nThe filter step now drops incomplete rows, so df_after has fewer rows than df_before.\nThis makes your “row count changed” check meaningful and aligned with Issue N.5’s message.\n\n\n\n\nIn this context, a reduction is expected, but it should be understood and intentional.\nUse this after:\n\nfilter()\njoin()\nsubsetting\nremoving duplicates\n\nWhat this catches:\n\naccidental row loss\nmany-to-many joins\naccidental over-filtering\nunintended row drops\nsilent data duplication\n\nIf the number changes unexpectedly, stop and investigate. This single check prevents a large class of downstream errors.\nCheck 2 – Do Key Variables Still Look Reasonable?\nWhenever you create or transform a variable, inspect its range.\n\nsummary(df_after$age)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   32.0    49.0    55.0    55.4    61.0    87.0 \n\n\n\nrange(df_after$bmi, na.rm = TRUE)\n\n[1] 14.0 40.9\n\n\nLook for:\n\nnegative values where they shouldn’t exist\nimpossible values (e.g. BMI of 5)\nsuspicious defaults (e.g. all zeros)\ntransformations that didn’t behave as expected\n\nThese problems are much easier to fix immediately than after modelling.\nCheck 3 – Did Missingness Increase?\nJoins and reshaping often introduce NAs. Count them explicitly.\n\ncolSums(is.na(df_after))\n\n      id      age      bmi  glucose      sex diabetes \n       0        0        0        0        0        0 \n\n\nThis gives a fast overview of:\n\ncolumns that need cleaning\nvariables that may bias analysis\nfields that should be dropped or imputed\n\nNever assume “there aren’t many NAs”. Check!\nCheck 4 – Do Group Sizes Still Make Sense?\nBefore summarising or modelling grouped data, look at the group counts. In particular, before using categorical variables in clustering or summaries, check their distribution.\n\ndf_after |&gt; dplyr::count(diabetes)\n\n  diabetes   n\n1       No 188\n2      Yes  78\n\n\n\n\nThis is especially important before:\n\nrates or percentages\naverages by group\ncomparisons across categories\n\n\nThis prevents:\n\nunstable clusters\ncategories with too few observations\nmisleading interpretations\n\n\n\nWhat this catches:\n\ntiny or empty groups\nunstable estimates\nsummaries that look precise but aren’t meaningful"
+  },
+  {
+    "objectID": "content/rhacks/posts/05-02022026/index.html#making-this-a-habit",
+    "href": "content/rhacks/posts/05-02022026/index.html#making-this-a-habit",
+    "title": "One-Line Sanity Checks After Every Transformation",
+    "section": "Making This a Habit",
+    "text": "Making This a Habit\nThese checks are not meant to clutter your script. They are meant to become automatic.\nA good rule of thumb:\n\nAfter anything that changes rows → check nrow()\n\nAfter anything that changes values → check summary() or range()\n\nAfter anything that combines data → check NAs\n\nBefore summarising → check group sizes\n\nOne line is often enough.\n\n\n\n\n\n\nIn Short\n\nMost data bugs enter during transformations\nOne-line checks catch problems early\nThey cost seconds and save hours\nMake them a habit, not an afterthought\n\n\n\n\nThis is not about perfection. It’s about seeing problems while they’re still small.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group, follow us here:\n👉 https://www.meetup.com/rome-r-users-group/"
   },
   {
     "objectID": "content/rhacks/posts/03-01132026/index.html",
@@ -431,7 +529,7 @@
     "href": "content/rhacks/posts/08-02222026/index.html",
     "title": "CSV vs Parquet: A Better Default for Analytics",
     "section": "",
-    "text": "If you are still saving analytical datasets as .csv by default, you are likely paying a hidden tax:\nCSV is universal. But universal does not mean optimal.\nThis R-Hack explains why Parquet should often be your default for analytical workflows."
+    "text": "If you are still saving analytical datasets as .csv by default, you are likely paying a hidden tax:\nThis R-Hack explains why Parquet should often be your default for analytical workflows."
   },
   {
     "objectID": "content/rhacks/posts/08-02222026/index.html#what-is-parquet",
@@ -452,14 +550,14 @@
     "href": "content/rhacks/posts/08-02222026/index.html#step-2-save-and-read-as-csv",
     "title": "CSV vs Parquet: A Better Default for Analytics",
     "section": "Step 2 — Save and Read as CSV",
-    "text": "Step 2 — Save and Read as CSV\n\nwrite.csv(df, \"data.csv\", row.names = FALSE)\n\nsystem.time({\n  df_csv &lt;- read.csv(\"data.csv\")\n})\n\n   user  system elapsed \n  0.255   0.011   0.268 \n\n\nNow check file size:\n\nfile.info(\"data.csv\")$size\n\n[1] 6819327\n\n\nCSV:\n\nstores everything as text\nrequires parsing every time\nguesses types on read"
+    "text": "Step 2 — Save and Read as CSV\n\nwrite.csv(df, \"data.csv\", row.names = FALSE)\n\nsystem.time({\n  df_csv &lt;- read.csv(\"data.csv\")\n})\n\n   user  system elapsed \n  0.262   0.013   0.275 \n\n\nNow check file size:\n\nfile.info(\"data.csv\")$size\n\n[1] 6819327\n\n\nCSV:\n\nstores everything as text\nrequires parsing every time\nguesses types on read"
   },
   {
     "objectID": "content/rhacks/posts/08-02222026/index.html#step-3-save-and-read-as-parquet",
     "href": "content/rhacks/posts/08-02222026/index.html#step-3-save-and-read-as-parquet",
     "title": "CSV vs Parquet: A Better Default for Analytics",
     "section": "Step 3 — Save and Read as Parquet",
-    "text": "Step 3 — Save and Read as Parquet\n\nwrite_parquet(df, \"data.parquet\")\n\nsystem.time({\n  df_parquet &lt;- read_parquet(\"data.parquet\")\n})\n\n   user  system elapsed \n  0.008   0.001   0.007 \n\n\nCheck file size:\n\nfile.info(\"data.parquet\")$size\n\n[1] 3231687\n\n\nYou will typically observe:\n\nfaster read time\nsmaller file size\npreserved data types\n\n\nWhy This Matters in Practice?\n\n1️⃣ Speed\nParquet reads are faster because:\n\nit stores columns independently\nit avoids text parsing\nit uses compression effectively\n\nThis becomes significant as datasets grow.\n2️⃣ File Size\nParquet compresses automatically. In many real-world cases parquet files are 30–70% smaller than CSV equivalents:\n\nLess storage\nFaster transfer\nCleaner repositories\n3️⃣ Type Safety\nCSV does not store types.\nEvery read operation reinterprets:\n\nlogical values\nfactors\ndates\nnumeric columns\n\nParquet preserves them.\nThis reduces silent coercion bugs."
+    "text": "Step 3 — Save and Read as Parquet\n\nwrite_parquet(df, \"data.parquet\")\n\nsystem.time({\n  df_parquet &lt;- read_parquet(\"data.parquet\")\n})\n\n   user  system elapsed \n  0.008   0.001   0.006 \n\n\nCheck file size:\n\nfile.info(\"data.parquet\")$size\n\n[1] 3231687\n\n\nYou will typically observe:\n\nfaster read time\nsmaller file size\npreserved data types\n\n\nWhy This Matters in Practice?\n\n1️⃣ Speed\nParquet reads are faster because:\n\nit stores columns independently\nit avoids text parsing\nit uses compression effectively\n\nThis becomes significant as datasets grow.\n2️⃣ File Size\nParquet compresses automatically. In many real-world cases parquet files are 30–70% smaller than CSV equivalents:\n\nLess storage\nFaster transfer\nCleaner repositories\n3️⃣ Type Safety\nCSV does not store types.\nEvery read operation reinterprets:\n\nlogical values\nfactors\ndates\nnumeric columns\n\nParquet preserves them.\nThis reduces silent coercion bugs."
   },
   {
     "objectID": "content/rhacks/posts/08-02222026/index.html#bonus-select-columns-without-loading-everything",
