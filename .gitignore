@@ -4,7 +4,6 @@
 .Ruserdata
 .DS_Store
 #styles.css
-docs/
 project-tree.R
 /.quarto/
 former-organizers.qmd
