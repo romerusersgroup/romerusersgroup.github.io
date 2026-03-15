@@ -669,14 +669,14 @@
     "href": "content/rhacks/posts/08-02222026/index.html#step-2-save-and-read-as-csv",
     "title": "CSV vs Parquet: A Better Default for Analytics",
     "section": "Step 2 — Save and Read as CSV",
-    "text": "Step 2 — Save and Read as CSV\n\nwrite.csv(df, \"data.csv\", row.names = FALSE)\n\nsystem.time({\n  df_csv &lt;- read.csv(\"data.csv\")\n})\n\n   user  system elapsed \n  0.253   0.011   0.265 \n\n\nNow check file size:\n\nfile.info(\"data.csv\")$size\n\n[1] 6819327\n\n\nCSV:\n\nstores everything as text\nrequires parsing every time\nguesses types on read"
+    "text": "Step 2 — Save and Read as CSV\n\nwrite.csv(df, \"data.csv\", row.names = FALSE)\n\nsystem.time({\n  df_csv &lt;- read.csv(\"data.csv\")\n})\n\n   user  system elapsed \n  0.256   0.010   0.267 \n\n\nNow check file size:\n\nfile.info(\"data.csv\")$size\n\n[1] 6819327\n\n\nCSV:\n\nstores everything as text\nrequires parsing every time\nguesses types on read"
   },
   {
     "objectID": "content/rhacks/posts/08-02222026/index.html#step-3-save-and-read-as-parquet",
     "href": "content/rhacks/posts/08-02222026/index.html#step-3-save-and-read-as-parquet",
     "title": "CSV vs Parquet: A Better Default for Analytics",
     "section": "Step 3 — Save and Read as Parquet",
-    "text": "Step 3 — Save and Read as Parquet\n\nwrite_parquet(df, \"data.parquet\")\n\nsystem.time({\n  df_parquet &lt;- read_parquet(\"data.parquet\")\n})\n\n   user  system elapsed \n  0.008   0.000   0.006 \n\n\nCheck file size:\n\nfile.info(\"data.parquet\")$size\n\n[1] 3231687\n\n\nYou will typically observe:\n\nfaster read time\nsmaller file size\npreserved data types\n\n\nWhy This Matters in Practice?\n\n1️⃣ Speed\nParquet reads are faster because:\n\nit stores columns independently\nit avoids text parsing\nit uses compression effectively\n\nThis becomes significant as datasets grow.\n2️⃣ File Size\nParquet compresses automatically. In many real-world cases parquet files are 30–70% smaller than CSV equivalents:\n\nLess storage\nFaster transfer\nCleaner repositories\n3️⃣ Type Safety\nCSV does not store types.\nEvery read operation reinterprets:\n\nlogical values\nfactors\ndates\nnumeric columns\n\nParquet preserves them.\nThis reduces silent coercion bugs."
+    "text": "Step 3 — Save and Read as Parquet\n\nwrite_parquet(df, \"data.parquet\")\n\nsystem.time({\n  df_parquet &lt;- read_parquet(\"data.parquet\")\n})\n\n   user  system elapsed \n  0.007   0.000   0.006 \n\n\nCheck file size:\n\nfile.info(\"data.parquet\")$size\n\n[1] 3231687\n\n\nYou will typically observe:\n\nfaster read time\nsmaller file size\npreserved data types\n\n\nWhy This Matters in Practice?\n\n1️⃣ Speed\nParquet reads are faster because:\n\nit stores columns independently\nit avoids text parsing\nit uses compression effectively\n\nThis becomes significant as datasets grow.\n2️⃣ File Size\nParquet compresses automatically. In many real-world cases parquet files are 30–70% smaller than CSV equivalents:\n\nLess storage\nFaster transfer\nCleaner repositories\n3️⃣ Type Safety\nCSV does not store types.\nEvery read operation reinterprets:\n\nlogical values\nfactors\ndates\nnumeric columns\n\nParquet preserves them.\nThis reduces silent coercion bugs."
   },
   {
     "objectID": "content/rhacks/posts/08-02222026/index.html#bonus-select-columns-without-loading-everything",
