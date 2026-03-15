@@ -3,7 +3,7 @@ title: "AI Can Write Code. You Still Need to Think."
 subtitle: "Why understanding data matters more than ever"
 description: "R-Hacks N.11"
 author: "Federica Gazzelloni"
-date: "March 2026"
+date: "15 March 2026"
 images: "images/image-1.png"
 series: R-Hacks
 categories:
