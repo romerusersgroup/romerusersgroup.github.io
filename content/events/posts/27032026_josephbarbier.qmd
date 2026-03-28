@@ -1,0 +1,119 @@
+---
+title: "Less iteration, better charts"
+subtitle: "rethinking how we create visualizations"
+date: 2026-03-27
+author: Federica Gazzelloni
+description: "Speaker: Joseph Barbier | A talk on why starting from design intent improves data visualization, reduces iteration cycles, and makes AI-assisted coding more effective."
+image: "https://secure.meetupstatic.com/photos/event/e/1/f/1/highres_533217841.webp?w=1080"
+image-alt: "Less iteration, better charts talk by Joseph Barbier"
+categories: [data visualiztion, AI, ggplot2]
+---
+
+`Registered Attendees (45)`
+
+![Joseph Barbier](https://secure.meetupstatic.com/photos/event/e/1/f/1/highres_533217841.webp?w=1080)
+
+## Overview
+
+The **Rome R Users Group** welcomed [Joseph Barbier](https://www.ysunflower.com/) for a thought-provoking talk on how we approach data visualization and why many of us may be starting from the wrong place. Rather than beginning with code, Joseph encouraged participants to rethink their workflow and start from the purpose of the chart itself.
+
+**For those who couldn’t attend live, or who would like to revisit the session, this page includes the recording and key information to follow the discussion at your own pace.**
+
+### Less Iteration, Better Charts
+
+Creating a chart is rarely a linear process. We often begin with a rough version, adjust colours, change chart types, rewrite code, and repeat the cycle until the result feels right. Joseph’s central argument was simple but powerful:
+
+> *"much of this iteration happens because we start with implementation rather than intent."*
+
+Instead, he proposed a **design-first, code-second approach**, where the first step is clarifying the *why* behind the visualization.
+
+-   What question are we answering?
+-   Who is the audience?
+-   What decision should this chart support?
+
+By defining these elements early, developers can reduce unnecessary experimentation, improve the clarity of their visualizations, and write more intentional code.
+
+The talk also highlighted how this approach becomes even more relevant in the era of AI coding tools. When intent is clearly defined, prompts become more precise, generated code aligns more closely with expectations, and the number of iterations decreases significantly.
+
+## About the Speaker
+
+[Joseph Barbier](https://www.ysunflower.com/) is a data visualization specialist focused on improving how analysts and developers design charts and communicate insights. His work explores the intersection of visualization design, programming workflows, and the effective use of AI tools in the analytical process.
+
+Through his talks and educational work, Joseph promotes a mindset where visualization is treated first as a communication challenge and only afterwards as a technical task.
+
+## Watch the Recording
+
+If you missed the live talk, you can watch the recording here:
+
+🎬 **Watch the Video Now**\
+Simply click on the video below to follow the full session:
+
+{{< video https://youtu.be/wjQcUf6xuHA >}}
+
+The recording includes the full presentation and discussion with participants.
+
+## Materials and Resources
+
+You can access the talk materials, including slides and code examples, on Joseph Barbier Github:
+
+-   [RUGS Introduction](https://tinyurl.com/rugs-march2026)
+-   [Joseph's Presentation](https://josephbarbierdarnal.github.io/talk/src/rome-r-users-group/)
+
+::: callout-tip
+**Note:** The materials include all R examples used during the presentation, allowing you to follow along and practice the techniques demonstrated.
+
+-   Use the left/right arrow keys on your keyboard to navigate the presentation.
+-   More talks from Joseph: <https://josephbarbierdarnal.github.io/talk/>
+:::
+
+## Learning Objectives
+
+By the end of this talk, participants will be able to:
+
+-   Understand why visualization should begin with design intent
+-   Define the purpose of a chart before writing code
+-   Reduce unnecessary iteration cycles
+-   Improve the use of AI coding assistants through clearer prompts
+
+## Topics Covered
+
+-   Design thinking in data visualization
+-   Visual storytelling principles
+-   AI-assisted coding workflows
+-   Reducing iteration cycles
+-   Improving clarity and intent in chart design
+
+## What Participants Learned
+
+Rather than focusing on specific tools or libraries, Joseph emphasized a change in mindset. Participants were encouraged to see visualization not as a sequence of technical steps, but as a process of communication and decision support.
+
+A key takeaway was that [many common visualization problems originate from unclear objectives rather than technical limitations]{.underline}. By clarifying the goal of a chart before writing any code, practitioners can avoid unnecessary complexity and focus on delivering clearer insights.
+
+The session also reinforced the idea that strong visualization practice improves programming discipline. When the message is well defined, code becomes more structured, easier to maintain, and more aligned with the analytical objective.
+
+## Who Is This Talk For?
+
+This talk is particularly relevant for:
+
+-   R users working with data visualization
+-   Data scientists using AI coding tools
+-   Analysts interested in improving how they communicate results
+-   Developers interested in more efficient visualization workflows
+
+No advanced visualization background is required, but familiarity with R or data analysis workflows is helpful.
+
+## What Do You Need to Follow Along?
+
+Participants interested in applying the ideas discussed during the session should ideally have:
+
+-   Basic familiarity with R or another analytical programming language
+-   Experience creating charts or reports
+-   Interest in improving visualization workflows
+
+## Contact
+
+For more information about this talk or upcoming Rome R Users Group events, please contact:
+
+**romerusersgroup\@gmail.com**
+
+> [**“We look forward to seeing you at our next event!”**]{.underline}

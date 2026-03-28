@@ -1,7 +1,7 @@
 ---
 title: "When the Gospel of Data Fails: Risk, AI, and the Limits of Trust"
 author: "Federica Gazzelloni"
-date: 12/03/2026
+date: 2026-02-26
 image: "https://secure.meetupstatic.com/photos/event/8/8/4/e/highres_532594894.webp?w=1080"
 image-alt: "RomeRUsersGroup book thriller talk"
 description: "Reflections from a Rome R Users Group talk with Mark Griffin on risk management, AI, model governance, and how professional judgment remains essential in a data-driven world."
