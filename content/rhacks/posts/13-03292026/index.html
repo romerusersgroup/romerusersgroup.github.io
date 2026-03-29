@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Federica Gazzelloni">
-<meta name="dcterms.date" content="2025-11-27">
-<meta name="description" content="Speaker: Jakub Nowosad | An in-depth workshop on using R for geospatial predictive mapping, covering data preparation, model building, and visualization techniques.">
-
-<title>R for geospatial predictive mapping – Rome R-Users Group</title>
+<meta name="dcterms.date" content="2026-03-29">
+<meta name="description" content="R-Hacks N.13">
+<title>Calling a Chatbot from R with ellmer – Rome R-Users Group</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,31 +20,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
-
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../images/logos/RUsers_transparent.png" rel="icon" type="image/png">
-<script src="../../../site_libs/cookie-consent/cookie-consent.js"></script>
-<link href="../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-8001c2e1f85531b6432cdb718d58219b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/logos/RUsers_transparent.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-8001c2e1f85531b6432cdb718d58219b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -73,18 +103,13 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id="></script>
-
-<script type="text/plain" cookie-consent="tracking">
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id="></script><script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '', { 'anonymize_ip': true});
-</script>
-
-<script type="text/javascript" charset="UTF-8">
+</script><script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({
   "notice_banner_type":"headline",
@@ -99,38 +124,33 @@ cookieconsent.run({
 "language":"en"
   });
 });
-</script> 
-  
-<style>html{ scroll-behavior: smooth; }</style>
-
-
-<link rel="stylesheet" href="../../../styles.css">
-<meta property="og:title" content="R for geospatial predictive mapping – Rome R-Users Group">
-<meta property="og:description" content="Speaker: Jakub Nowosad | An in-depth workshop on using R for geospatial predictive mapping, covering data preparation, model building, and visualization techniques.">
-<meta property="og:image" content="https://secure.meetupstatic.com/photos/event/9/4/7/2/highres_531278002.webp?w=1080">
+</script><style>html{ scroll-behavior: smooth; }</style>
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="Calling a Chatbot from R with ellmer – Rome R-Users Group">
+<meta property="og:description" content="R-Hacks N.13">
+<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/13-03292026/images/image-1.png">
 <meta property="og:site_name" content="Rome R-Users Group">
 <meta property="og:locale" content="en_US">
-<meta property="og:image:alt" content="R for geospatial predictive mapping workshop with Jakub Nowosad">
-<meta name="twitter:title" content="R for geospatial predictive mapping – Rome R-Users Group">
-<meta name="twitter:description" content="Speaker: Jakub Nowosad | An in-depth workshop on using R for geospatial predictive mapping, covering data preparation, model building, and visualization techniques.">
-<meta name="twitter:image" content="https://secure.meetupstatic.com/photos/event/9/4/7/2/highres_531278002.webp?w=1080">
+<meta property="og:image:alt" content="ChatGPT generated image">
+<meta property="og:image:height" content="1001">
+<meta property="og:image:width" content="1507">
+<meta name="twitter:title" content="Calling a Chatbot from R with ellmer – Rome R-Users Group">
+<meta name="twitter:description" content="R-Hacks N.13">
+<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/13-03292026/images/image-1.png">
 <meta name="twitter:creator" content="@rladiesrome">
-<meta name="twitter:image:alt" content="R for geospatial predictive mapping workshop with Jakub Nowosad">
+<meta name="twitter:image:alt" content="ChatGPT generated image">
+<meta name="twitter:image-height" content="1001">
+<meta name="twitter:image-width" content="1507">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-
-<body class="nav-fixed fullcontent quarto-light">
+<body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content">
-    <img src="../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content">
-    </a>
-    <a class="navbar-brand" href="../../../index.html">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content"><img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content"></a>
+    <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Rome R-Users Group</span>
     </a>
   </div>
@@ -140,85 +160,95 @@ cookieconsent.run({
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../../index.html"> 
+<li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/events/index.html"> 
+    <a class="nav-link" href="../../../../content/events/index.html"> 
 <span class="menu-text">Events</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/rhacks/index.html"> 
+    <a class="nav-link" href="../../../../content/rhacks/index.html"> 
 <span class="menu-text">R-Hacks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/resources/index.html"> 
+    <a class="nav-link" href="../../../../content/resources/index.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/news/index.html"> 
+    <a class="nav-link" href="../../../../content/news/index.html"> 
 <span class="menu-text">News</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">About</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
-        <li>
-    <a class="dropdown-item" href="../../../about/organizers.html">
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">
+<li>
+    <a class="dropdown-item" href="../../../../about/organizers.html">
  <span class="dropdown-text">Organizers</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../about/sponsors.html">
+    <a class="dropdown-item" href="../../../../about/sponsors.html">
  <span class="dropdown-text">Sponsor</span></a>
   </li>  
     </ul>
-  </li>
+</li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.meetup.com/pro/r-user-groups/"> <i class="bi bi-globe" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
     <a class="nav-link" href="https://rladiesrome.org"> 
-<span class="menu-text"><img src="../../../images/logos/RLadiesRome_logo_transparent.png" class="img-fluid" width="70" alt="R-Ladies Rome"><strong>R-Ladies Rome</strong></span></a>
+<span class="menu-text"><img src="../../../../images/logos/RLadiesRome_logo_transparent.png" class="img-fluid" width="70" alt="R-Ladies Rome"><strong>R-Ladies Rome</strong></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="mailto:romerusersgroup@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-  <div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden"><i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
+    </nav><div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden">
+<i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
 <p>Alert! Free tutorials available!</p>
-</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+</div>
+<i class="bi bi-x-lg quarto-announcement-action"></i>
+</div>
+</header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#copy-code-paste-into-chatgpt-copy-result-paste-back-into-r." id="toc-copy-code-paste-into-chatgpt-copy-result-paste-back-into-r." class="nav-link active" data-scroll-target="#copy-code-paste-into-chatgpt-copy-result-paste-back-into-r.">Copy code → paste into ChatGPT → copy result → paste back into R.</a></li>
+  <li><a href="#a-minimal-ellmer-example" id="toc-a-minimal-ellmer-example" class="nav-link" data-scroll-target="#a-minimal-ellmer-example">1️⃣ A Minimal ellmer Example</a></li>
+  <li><a href="#a-quick-comparison-with-python" id="toc-a-quick-comparison-with-python" class="nav-link" data-scroll-target="#a-quick-comparison-with-python">2️⃣ A Quick Comparison with Python</a></li>
+  <li><a href="#a-practical-analyst-example" id="toc-a-practical-analyst-example" class="nav-link" data-scroll-target="#a-practical-analyst-example">3️⃣ A Practical Analyst Example</a></li>
+  <li><a href="#a-reusable-prompt-pattern" id="toc-a-reusable-prompt-pattern" class="nav-link" data-scroll-target="#a-reusable-prompt-pattern">4️⃣ A Reusable Prompt Pattern</a></li>
+  <li><a href="#when-this-is-most-useful" id="toc-when-this-is-most-useful" class="nav-link" data-scroll-target="#when-this-is-most-useful">5️⃣ When This Is Most Useful</a></li>
+  <li><a href="#a-small-safety-rule" id="toc-a-small-safety-rule" class="nav-link" data-scroll-target="#a-small-safety-rule">6️⃣ A Small Safety Rule</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/13-03292026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">R for geospatial predictive mapping</h1>
-<p class="subtitle lead">practical workflows for reliable spatial predictions</p>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Calling a Chatbot from R with ellmer</h1>
+<p class="subtitle lead">Integrating AI directly into your R workflow</p>
   <div class="quarto-categories">
-    <div class="quarto-category">workshop</div>
-    <div class="quarto-category">geospatial</div>
-    <div class="quarto-category">predictive mapping</div>
+    <div class="quarto-category">ai</div>
+    <div class="quarto-category">workflows</div>
+    <div class="quarto-category">automation</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Speaker: Jakub Nowosad | An in-depth workshop on using R for geospatial predictive mapping, covering data preparation, model building, and visualization techniques.
+    R-Hacks N.13
   </div>
 </div>
 
@@ -235,7 +265,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 27, 2025</p>
+      <p class="date">March 29, 2026</p>
     </div>
   </div>
   
@@ -244,43 +274,141 @@ cookieconsent.run({
   
 
 
-</header>
-
-
-<p><code>Registered Attendees (203)</code></p>
+</header><p><br></p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://secure.meetupstatic.com/photos/event/9/4/7/2/highres_531278002.webp?w=1080" class="img-fluid figure-img"></p>
-<figcaption>Jakub Nowosad</figcaption>
+<figure class="figure"><p><img src="images/image-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="ChatGPT generated image"></p>
 </figure>
 </div>
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>On November 27, the Rome R Users Group hosted a special workshop led by <a href="https://jakubnowosad.com/">Jakub Nowosad</a>, one of the most recognized voices in the R spatial community. More than 200 participants registered for the event, marking one of our largest and most engaging sessions to date. <strong>For those who couldn’t attend live, or who wish to revisit the material—this page includes the recording and all essential information so you can follow the workshop at your own pace.</strong></p>
-<section id="a-deep-dive-into-geospatial-predictive-mapping" class="level3">
-<h3 class="anchored" data-anchor-id="a-deep-dive-into-geospatial-predictive-mapping">A Deep Dive into Geospatial Predictive Mapping</h3>
-<p>The workshop focused on practical workflows for building reliable spatial predictions in R. Much of the discussion revolved around the challenges of predicting spatial patterns in real-world contexts, where data often contain gaps, biases, or irregular sampling.</p>
-<p>Jakub demonstrated how R can be used not only to model such data but also to valuate model performance spatially and visualize results in ways that highlight both strengths and limitations. Concepts like spatial cross-validation, the <strong>Area of Applicability (AoA)</strong>, and <strong>prediction-domain adaptive diagnostics</strong> were explained clearly, illustrating why traditional modeling approaches often fall short when applied to geographic problems.</p>
-<p>Throughout the session, participants followed concrete examples showing how various R packages, such as <code>{sf}</code>, <code>{terra}</code>, <code>{CAST}</code> and several visualization tools, including <code>{tmap}</code>, work together within a workflow. The emphasis is on <strong>reproducibility</strong> and <strong>transparent code</strong>. The workshop is particularly valuable for practitioners working in environmental analysis, ecology, remote sensing, and related fields.</p>
-</section>
-</section>
-<section id="about-the-speaker" class="level2">
-<h2 class="anchored" data-anchor-id="about-the-speaker">About the Speaker</h2>
-<p><a href="https://jakubnowosad.com/">Jakub Nowosad</a> is an Associate Professor at the Adam Mickiewicz University in Poznan and a Visiting Scientist at University of Münster, specializing in geospatial data analysis and R programming. He is the author of <a href="https://r.geocompx.org/">Geocomputation with R</a>, a comprehensive resource for spatial data science in R. A Python version of the book has also been released recently and can be found at <a href="https://py.geocompx.org/" class="uri">https://py.geocompx.org/</a>. Jakub has developed many R packages for spatial data manipulation and visualization, and has contributed extensively to the R community through workshops, tutorials, and publications.</p>
-</section>
-<section id="watch-the-recording" class="level2">
-<h2 class="anchored" data-anchor-id="watch-the-recording">Watch the Recording</h2>
-<p>If you missed the live workshop, you can watch the recording here:</p>
-<p>🎬 <strong>Watch the Video Now</strong><br>
-Simply click on the video below to catch up on the discussion:</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/uZe7thh80MI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<p>The recording includes the full demonstration, slides, and the audience Q&amp;A session.</p>
-</section>
-<section id="materials-and-resources" class="level2">
-<h2 class="anchored" data-anchor-id="materials-and-resources">Materials and Resources</h2>
-<p>You can access the workshop materials, including slides and code examples, on Jakub Nowosad’s website:</p>
+<p>Many analysts now use AI tools while working in R.</p>
+<p>But the workflow often looks like this:</p>
+<section id="copy-code-paste-into-chatgpt-copy-result-paste-back-into-r." class="level3"><h3 class="anchored" data-anchor-id="copy-code-paste-into-chatgpt-copy-result-paste-back-into-r.">Copy code → paste into ChatGPT → copy result → paste back into R.</h3>
+<p>This breaks reproducibility and interrupts analytical flow.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A better approach is simple: <strong>Call the model directly from R.</strong></p>
+</div>
+</div>
+<section id="packages-like-ellmer-make-this-possible-with-just-a-few-lines-of-code." class="level4"><h4 class="anchored" data-anchor-id="packages-like-ellmer-make-this-possible-with-just-a-few-lines-of-code.">Packages like <code>{ellmer}</code> make this possible with just a few lines of code.</h4>
+<p>This R-Hack shows how to make AI part of your workflow instead of a separate tool.</p>
+</section></section><section id="a-minimal-ellmer-example" class="level2"><h2 class="anchored" data-anchor-id="a-minimal-ellmer-example">1️⃣ A Minimal ellmer Example</h2>
+<p>The simplest way to call a chat model from R looks like this:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ellmer.tidyverse.org">ellmer</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu">chat_openai</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span><span class="st">"Explain what a linear model is in simple terms"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You now have a chatbot inside your R session.</p>
+<p>This is useful because it keeps:</p>
 <ul>
-<li><a href="https://jakubnowosad.com/rome2025">Workshop Materials</a></li>
+<li>analysis<br>
+</li>
+<li>prompts<br>
+</li>
+<li>results</li>
+</ul>
+<p>in the same environment.</p>
+</section><section id="a-quick-comparison-with-python" class="level2"><h2 class="anchored" data-anchor-id="a-quick-comparison-with-python">2️⃣ A Quick Comparison with Python</h2>
+<p>Many AI examples appear first in Python:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.responses.create(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gpt-4.1-mini"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">input</span><span class="op">=</span><span class="st">"Explain what a linear model is"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.output_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>R can now do something very similar:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ellmer.tidyverse.org">ellmer</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu">chat_openai</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span><span class="st">"Explain what a linear model is"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The point is not R vs Python.</p>
+<p>The real advantage is workflow:</p>
+<p>If your data, models, and reports already live in R, calling AI from R keeps everything in one place.</p>
+</section><section id="a-practical-analyst-example" class="level2"><h2 class="anchored" data-anchor-id="a-practical-analyst-example">3️⃣ A Practical Analyst Example</h2>
+<p>One useful habit is asking AI to explain model output.</p>
+<p>For example:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span><span class="st">"</span></span>
+<span><span class="st">Explain this model output in plain English:</span></span>
+<span><span class="st"></span></span>
+<span><span class="st">Residual standard error: 2.31 on 98 degrees of freedom  </span></span>
+<span><span class="st">Multiple R-squared: 0.74  </span></span>
+<span><span class="st"></span></span>
+<span><span class="st">Focus on interpretation, not formulas.</span></span>
+<span><span class="st">"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This can help when:</p>
+<ul>
+<li>preparing reports<br>
+</li>
+<li>translating technical results<br>
+</li>
+<li>checking interpretations<br>
+</li>
+<li>drafting explanations</li>
+</ul>
+<p>Treat this as a drafting assistant, not a final authority.</p>
+</section><section id="a-reusable-prompt-pattern" class="level2"><h2 class="anchored" data-anchor-id="a-reusable-prompt-pattern">4️⃣ A Reusable Prompt Pattern</h2>
+<p>Instead of typing prompts interactively, store them:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">prompt</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
+<span><span class="st">You are a senior data analyst.</span></span>
+<span><span class="st"></span></span>
+<span><span class="st">Explain this regression output for a business audience.</span></span>
+<span><span class="st"></span></span>
+<span><span class="st">Rules:</span></span>
+<span><span class="st">- Keep explanation under 120 words</span></span>
+<span><span class="st">- Avoid statistical jargon</span></span>
+<span><span class="st">- Focus on practical meaning</span></span>
+<span><span class="st">"</span></span>
+<span></span>
+<span><span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span><span class="va">prompt</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This improves:</p>
+<ul>
+<li>reproducibility<br>
+</li>
+<li>consistency<br>
+</li>
+<li>documentation of reasoning</li>
+</ul>
+<p>Prompts become part of your analysis pipeline.</p>
+</section><section id="when-this-is-most-useful" class="level2"><h2 class="anchored" data-anchor-id="when-this-is-most-useful">5️⃣ When This Is Most Useful</h2>
+<p>Calling AI from R works especially well when you:</p>
+<ul>
+<li>document analysis steps<br>
+</li>
+<li>generate explanations<br>
+</li>
+<li>explore interpretations<br>
+</li>
+<li>prepare communication text<br>
+</li>
+<li>validate reasoning paths</li>
+</ul>
+<p>It is less useful for:</p>
+<ul>
+<li>final decisions<br>
+</li>
+<li>statistical validation<br>
+</li>
+<li>replacing domain expertise</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -292,69 +420,57 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Note:</strong> The materials include all R scripts and datasets used during the workshop, allowing you to follow along and practice the techniques demonstrated.</p>
+<p>Think of AI as a workflow accelerator, not an analytical authority.</p>
+</div>
+</div>
+</section><section id="a-small-safety-rule" class="level2"><h2 class="anchored" data-anchor-id="a-small-safety-rule">6️⃣ A Small Safety Rule</h2>
+<p>Always:</p>
 <ul>
-<li>Use the left/right arrow keys on your keyboard to navigate the presentation.<br>
+<li>review outputs critically<br>
 </li>
-<li>To explore the code used in the workshop, click the arrow button on the side of the slides.</li>
+<li>verify claims<br>
+</li>
+<li>check numbers manually<br>
+</li>
+<li>keep prompts precise</li>
+</ul>
+<p>AI performs best with clear constraints.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>In Short</p>
+<ul>
+<li>Calling AI from R avoids copy-paste workflows</li>
+<li>
+<a href="https://ellmer.tidyverse.org">ellmer</a> makes LLM integration simple</li>
+<li>AI helps explain models and draft text</li>
+<li>Store prompts for reproducibility</li>
+<li>Treat AI as assistant, not authority</li>
 </ul>
 </div>
 </div>
-</section>
-<section id="learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
-<p>By the end of this workshop, participants will be able to:</p>
-<ul>
-<li>Build predictive models using spatial data</li>
-<li>Validate the results in a robust way</li>
-<li>Visualize geospatial data and model outputs effectively</li>
-</ul>
-</section>
-<section id="topics-covered" class="level2">
-<h2 class="anchored" data-anchor-id="topics-covered">Topics Covered</h2>
-<ul>
-<li>Introduction to geocomputational methods</li>
-<li>Building predictive models using spatial data</li>
-<li>Validating the models results</li>
-<li>Visualization techniques for geospatial data</li>
-</ul>
-</section>
-<section id="what-participants-learned" class="level2">
-<h2 class="anchored" data-anchor-id="what-participants-learned">What Participants Learned</h2>
-<p>Rather than treating geospatial modeling as a sequence of isolated steps, Jakub encouraged a holistic perspective. Participants saw how the process begins with understanding the structure and quality of spatial data, continues through careful model training and selection, and culminates in interpreting predictions within their geographical context.</p>
-<p>Particular attention was given to the pitfalls that arise when spatial structure is ignored—for example, overly optimistic accuracy metrics or unrealistic prediction maps. Jakub explained how spatially aware resampling strategies lead to more reliable evaluations and how tools like the AoA metric help determine where a model should or should not be trusted.</p>
-<p>Visualisation was another central theme. The workshop demonstrated how thoughtful map design can communicate both predictions and associated uncertainties, promoting transparent and responsible modeling.</p>
-</section>
-<section id="who-is-this-workshop-for" class="level2">
-<h2 class="anchored" data-anchor-id="who-is-this-workshop-for">Who Is This Workshop For?</h2>
-<p>This workshop is ideal for data scientists, GIS professionals, and R users interested in advancing their skills in geospatial predictive mapping. A basic understanding of R programming and spatial data concepts is recommended.</p>
-</section>
-<section id="what-do-you-need-to-follow-along" class="level2">
-<h2 class="anchored" data-anchor-id="what-do-you-need-to-follow-along">What Do You Need to Follow Along?</h2>
-<p>Participants interested in reproducing the code demonstrated during the workshop should ensure that, in addition to having R and RStudio installed, the following R packages are available:</p>
-<ul>
-<li>sf<br>
-</li>
-<li>terra<br>
-</li>
-<li>caret<br>
-</li>
-<li>CAST</li>
-<li>tmap</li>
-</ul>
-</section>
-<section id="contact" class="level2">
-<h2 class="anchored" data-anchor-id="contact">Contact</h2>
-<p>For more information about the workshop, please contact us at <strong>romerusersgroup@gmail.com</strong>.</p>
-<blockquote class="blockquote">
-<p>“We look forward to seeing you there!”</p>
-</blockquote>
+</div>
+<p>Small integrations like this often create the biggest workflow improvements.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you want to stay up to date with the latest events and posts from the Rome R Users Group:</p>
+<p>👉 <a href="https://www.meetup.com/rome-r-users-group/" class="uri">https://www.meetup.com/rome-r-users-group/</a></p>
+</div>
+</div>
 
 
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -760,17 +876,16 @@ Tip
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright © 2023-26, Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://federicagazzelloni.com">Federica Gazzelloni</a><br>Powered by: Quarto &amp; <a href="https://datametricus.github.io">DataMetricus</a> | <a href="../../../LICENSE.html">MIT License</a>.</p>
+<p>Copyright © 2023-26, Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://federicagazzelloni.com">Federica Gazzelloni</a><br>Powered by: Quarto &amp; <a href="https://datametricus.github.io">DataMetricus</a> | <a href="../../../../LICENSE.html">MIT License</a>.</p>
 </div>   
     <div class="nav-footer-center">
 
-<div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/events/posts/27112025_jakubnowosad.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/13-03292026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/RomeRUsersGroup">
       <i class="bi bi-github" role="img">
 </i> 
@@ -789,18 +904,16 @@ Tip
     </a>
   </li>  
     <li class="nav-item compact">
-    <a class="nav-link" href="../../../index.xml">
+    <a class="nav-link" href="../../../../index.xml">
       <i class="bi bi-rss" role="img">
 </i> 
     </a>
   </li>  
 </ul>
-    </div>
+</div>
   </div>
 </footer>
 
 
-
-
-<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
