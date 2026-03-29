@@ -915,5 +915,54 @@
     "title": "Sponsor",
     "section": "What This Means for You",
     "text": "What This Means for You\nThis partnership brings numerous benefits to our community. We’ll have access to valuable resources, expertise, and opportunities that will further enrich our events and activities. Together, we’ll continue to grow, learn, and share knowledge within the R programming ecosystem.\nWe’re grateful for the support of R Consortium and look forward to the exciting opportunities this collaboration will bring. Stay tuned for upcoming events and initiatives that will showcase the incredible possibilities unlocked by this partnership.\nLet’s embark on this journey together, embracing the power of R programming and data science with R Consortium by our side. Here’s to a bright future of learning, innovation, and community-building!\n#RConsortium #RProgramming #DataScience #CommunityBuilding"
+  },
+  {
+    "objectID": "content/rhacks/posts/13-03292026/index.html",
+    "href": "content/rhacks/posts/13-03292026/index.html",
+    "title": "Calling a Chatbot from R with ellmer",
+    "section": "",
+    "text": "Many analysts now use AI tools while working in R.\nBut the workflow often looks like this:"
+  },
+  {
+    "objectID": "content/rhacks/posts/13-03292026/index.html#a-minimal-ellmer-example",
+    "href": "content/rhacks/posts/13-03292026/index.html#a-minimal-ellmer-example",
+    "title": "Calling a Chatbot from R with ellmer",
+    "section": "1️⃣ A Minimal ellmer Example",
+    "text": "1️⃣ A Minimal ellmer Example\nThe simplest way to call a chat model from R looks like this:\n\nlibrary(ellmer)\n\nchat &lt;- chat_openai()\n\nchat$chat(\"Explain what a linear model is in simple terms\")\n\nYou now have a chatbot inside your R session.\nThis is useful because it keeps:\n\nanalysis\n\nprompts\n\nresults\n\nin the same environment."
+  },
+  {
+    "objectID": "content/rhacks/posts/13-03292026/index.html#a-quick-comparison-with-python",
+    "href": "content/rhacks/posts/13-03292026/index.html#a-quick-comparison-with-python",
+    "title": "Calling a Chatbot from R with ellmer",
+    "section": "2️⃣ A Quick Comparison with Python",
+    "text": "2️⃣ A Quick Comparison with Python\nMany AI examples appear first in Python:\nfrom openai import OpenAI\n\nclient = OpenAI()\n\nresponse = client.responses.create(\n    model=\"gpt-4.1-mini\",\n    input=\"Explain what a linear model is\"\n)\n\nprint(response.output_text)\nR can now do something very similar:\n\nlibrary(ellmer)\n\nchat &lt;- chat_openai()\n\nchat$chat(\"Explain what a linear model is\")\n\nThe point is not R vs Python.\nThe real advantage is workflow:\nIf your data, models, and reports already live in R, calling AI from R keeps everything in one place."
+  },
+  {
+    "objectID": "content/rhacks/posts/13-03292026/index.html#a-practical-analyst-example",
+    "href": "content/rhacks/posts/13-03292026/index.html#a-practical-analyst-example",
+    "title": "Calling a Chatbot from R with ellmer",
+    "section": "3️⃣ A Practical Analyst Example",
+    "text": "3️⃣ A Practical Analyst Example\nOne useful habit is asking AI to explain model output.\nFor example:\n\nchat$chat(\"\nExplain this model output in plain English:\n\nResidual standard error: 2.31 on 98 degrees of freedom  \nMultiple R-squared: 0.74  \n\nFocus on interpretation, not formulas.\n\")\n\nThis can help when:\n\npreparing reports\n\ntranslating technical results\n\nchecking interpretations\n\ndrafting explanations\n\nTreat this as a drafting assistant, not a final authority."
+  },
+  {
+    "objectID": "content/rhacks/posts/13-03292026/index.html#a-reusable-prompt-pattern",
+    "href": "content/rhacks/posts/13-03292026/index.html#a-reusable-prompt-pattern",
+    "title": "Calling a Chatbot from R with ellmer",
+    "section": "4️⃣ A Reusable Prompt Pattern",
+    "text": "4️⃣ A Reusable Prompt Pattern\nInstead of typing prompts interactively, store them:\n\nprompt &lt;- \"\nYou are a senior data analyst.\n\nExplain this regression output for a business audience.\n\nRules:\n- Keep explanation under 120 words\n- Avoid statistical jargon\n- Focus on practical meaning\n\"\n\nchat$chat(prompt)\n\nThis improves:\n\nreproducibility\n\nconsistency\n\ndocumentation of reasoning\n\nPrompts become part of your analysis pipeline."
+  },
+  {
+    "objectID": "content/rhacks/posts/13-03292026/index.html#when-this-is-most-useful",
+    "href": "content/rhacks/posts/13-03292026/index.html#when-this-is-most-useful",
+    "title": "Calling a Chatbot from R with ellmer",
+    "section": "5️⃣ When This Is Most Useful",
+    "text": "5️⃣ When This Is Most Useful\nCalling AI from R works especially well when you:\n\ndocument analysis steps\n\ngenerate explanations\n\nexplore interpretations\n\nprepare communication text\n\nvalidate reasoning paths\n\nIt is less useful for:\n\nfinal decisions\n\nstatistical validation\n\nreplacing domain expertise\n\n\n\n\n\n\n\nTip\n\n\n\nThink of AI as a workflow accelerator, not an analytical authority."
+  },
+  {
+    "objectID": "content/rhacks/posts/13-03292026/index.html#a-small-safety-rule",
+    "href": "content/rhacks/posts/13-03292026/index.html#a-small-safety-rule",
+    "title": "Calling a Chatbot from R with ellmer",
+    "section": "6️⃣ A Small Safety Rule",
+    "text": "6️⃣ A Small Safety Rule\nAlways:\n\nreview outputs critically\n\nverify claims\n\ncheck numbers manually\n\nkeep prompts precise\n\nAI performs best with clear constraints.\n\n\n\n\n\n\nIn Short\n\nCalling AI from R avoids copy-paste workflows\n\nellmer makes LLM integration simple\nAI helps explain models and draft text\nStore prompts for reproducibility\nTreat AI as assistant, not authority\n\n\n\n\nSmall integrations like this often create the biggest workflow improvements.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   }
 ]
