@@ -1006,5 +1006,19 @@
     "title": "Sponsor",
     "section": "What This Means for You",
     "text": "What This Means for You\nThis partnership brings numerous benefits to our community. We’ll have access to valuable resources, expertise, and opportunities that will further enrich our events and activities. Together, we’ll continue to grow, learn, and share knowledge within the R programming ecosystem.\nWe’re grateful for the support of R Consortium and look forward to the exciting opportunities this collaboration will bring. Stay tuned for upcoming events and initiatives that will showcase the incredible possibilities unlocked by this partnership.\nLet’s embark on this journey together, embracing the power of R programming and data science with R Consortium by our side. Here’s to a bright future of learning, innovation, and community-building!\n#RConsortium #RProgramming #DataScience #CommunityBuilding"
+  },
+  {
+    "objectID": "content/rhacks/posts/15-04122026/index.html",
+    "href": "content/rhacks/posts/15-04122026/index.html",
+    "title": "Validate AI-Generated Data Before Using It",
+    "section": "",
+    "text": "AI tools can now generate data, simulate datasets, and write transformation code in seconds.\nThis is useful. But it introduces a new risk."
+  },
+  {
+    "objectID": "content/rhacks/posts/15-04122026/index.html#a-typical-situation",
+    "href": "content/rhacks/posts/15-04122026/index.html#a-typical-situation",
+    "title": "Validate AI-Generated Data Before Using It",
+    "section": "1️⃣ A Typical Situation",
+    "text": "1️⃣ A Typical Situation\nYou ask AI to generate a dataset:\n\ndf &lt;- data.frame(\n  age = c(25, 30, 45, 52),\n  income = c(20000, 35000, 50000, 62000),\n  group = c(\"A\", \"A\", \"B\", \"B\")\n)\n\nEverything looks fine.\nBut in real workflows, problems are often subtle:\nwrong ranges unrealistic distributions inconsistent categories hidden missing values\nThese do not always produce errors. They produce misleading results.\n2️⃣ A Simple Validation Pattern\nStart with basic structure checks:\nstr(df)\nsummary(df)\n3️⃣ Check for Missing and Duplicated Values\ncolSums(is.na(df))\nany(duplicated(df))\n4️⃣ Check Logical Consistency\ndf |&gt; dplyr::filter(age &lt; 0)\ndf |&gt; dplyr::filter(income &lt; 0)\n5️⃣ A Small Reusable Habit\nstructure → str()\nsummary → summary()\nmissing → colSums(is.na())\nduplicates → duplicated()\nlogic → simple filters\n\n\n\n\n\n\nTip\n\n\n\nAI accelerates workflows. Validation protects them.\n\n\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n•   AI-generated data may contain subtle issues\n•   structure checks reveal hidden problems\n•   missing values and duplicates must be verified\n•   logical consistency matters as much as format\n•   validation should be a standard habit\n\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   }
 ]
