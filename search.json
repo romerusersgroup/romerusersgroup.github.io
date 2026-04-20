@@ -578,7 +578,7 @@
     "href": "content/rhacks/posts/16-04192026/16-04192026.html#a-typical-situation",
     "title": "Stop Guessing Why Your Code Breaks",
     "section": "1️⃣ A Typical Situation",
-    "text": "1️⃣ A Typical Situation\nYou run a pipeline:\n\ndf |&gt;\n  dplyr::filter(value &gt; 10) |&gt;\n  dplyr::mutate(rate = value / total) |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nAnd something fails.\nYou get: - an error\n- a warning\n- or a result that does not make sense\nThe usual reaction is to change the code.\nBut that is guessing."
+    "text": "1️⃣ A Typical Situation\nYou run a pipeline:\n\ndf |&gt;\n  dplyr::filter(value &gt; 10) |&gt;\n  dplyr::mutate(rate = value / total) |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nAnd something fails.\nYou get:\n\nan error\n\na warning\n\nor a result that does not make sense\n\nThe usual reaction is to change the code.\nBut that is guessing."
   },
   {
     "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#the-structural-view",
