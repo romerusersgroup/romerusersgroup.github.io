@@ -58,6 +58,7 @@ df |>
 And something fails.
 
 You get:
+
 - an error  
 - a warning  
 - or a result that does not make sense  

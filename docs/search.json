@@ -469,48 +469,6 @@
     "text": "Making This a Habit\nThese checks are not meant to clutter your script. They are meant to become automatic.\nA good rule of thumb:\n\nAfter anything that changes rows → check nrow()\n\nAfter anything that changes values → check summary() or range()\n\nAfter anything that combines data → check NAs\n\nBefore summarising → check group sizes\n\nOne line is often enough.\n\n\n\n\n\n\nIn Short\n\nMost data bugs enter during transformations\nOne-line checks catch problems early\nThey cost seconds and save hours\nMake them a habit, not an afterthought\n\n\n\n\nThis is not about perfection. It’s about seeing problems while they’re still small.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group, follow us here:\n👉 https://www.meetup.com/rome-r-users-group/"
   },
   {
-    "objectID": "content/news/index.html",
-    "href": "content/news/index.html",
-    "title": "R Consortium Events & Workshops",
-    "section": "",
-    "text": "Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:"
-  },
-  {
-    "objectID": "content/news/index.html#news",
-    "href": "content/news/index.html#news",
-    "title": "R Consortium Events & Workshops",
-    "section": "",
-    "text": "Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:"
-  },
-  {
-    "objectID": "content/news/index.html#check-recent-posts-from-selected-r-and-data-science-sources",
-    "href": "content/news/index.html#check-recent-posts-from-selected-r-and-data-science-sources",
-    "title": "R Consortium Events & Workshops",
-    "section": "Check recent posts from selected R and data science sources:",
-    "text": "Check recent posts from selected R and data science sources:\n\n\n\n\n\n\nDate\nSource\nTitle\n\n\n\n\n2026-03-30\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W14 ggauto, alt text, scientific coffee\n\n\n\n2026-03-23\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W13 What’s new in dplyr, Atmospheric simulation\n\n\n\n2026-03-17\nR-Ladies Rome\nWhat’s New in {dplyr} 1.2.0: A Tour with Isabella Velásquez\n\n\n\n2026-03-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W12 Sharing across shiny modules, F1 data\n\n\n\n2026-03-09\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W11 claude beeswarm rstudio\n\n\n\n2026-03-02\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2025-W10 tidymodels, tidyplots, ggvariant package\n\n\n\n2026-02-23\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W09 Git commits, Pick a License, and How to choose the best LLM using R and vitals\n\n\n\n2026-02-16\nR-Ladies Rome\nA Year of Learning, Growth, and Community at R-Ladies Rome 🌟\n\n\n\n2026-02-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W08 submissions working group, nested Lists with xfun::tabset\n\n\n\n2026-02-15\nR-Ladies Rome\nFrom Data to Decisions: Digital Twins for Smarter Maintenance"
-  },
-  {
-    "objectID": "LICENSE.html",
-    "href": "LICENSE.html",
-    "title": "MIT License",
-    "section": "",
-    "text": "MIT License\nCopyright (c) 2025 Rome-R-Users-Group authors\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "content/resources/index.html",
-    "href": "content/resources/index.html",
-    "title": "Rome R-Users Group",
-    "section": "",
-    "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
-  },
-  {
-    "objectID": "content/resources/index.html#resources",
-    "href": "content/resources/index.html#resources",
-    "title": "Rome R-Users Group",
-    "section": "",
-    "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
-  },
-  {
     "objectID": "content/rhacks/posts/09-03012026/index.html",
     "href": "content/rhacks/posts/09-03012026/index.html",
     "title": "What R Is Best For (And Why It Still Matters)",
@@ -565,6 +523,97 @@
     "title": "What R Is Best For (And Why It Still Matters)",
     "section": "The Practical Conclusion",
     "text": "The Practical Conclusion\nIf your work is:\n\nstatistical\nanalytical\nexploratory\nreport-driven\nreproducible\n\nR is still one of the most efficient tools available.\nNot because it replaces everything.\nBut because it was designed for analysis.\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n\nR excels at statistics and modeling\nR is expressive for analytical workflows\nR integrates naturally with reporting\nR remains extremely strong for EDA and visualisation\nChoose tools based on task, not trend\n\n\n\nR does not need to compete with everything.\nIt just needs to do what it does best.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
+  },
+  {
+    "objectID": "content/resources/index.html",
+    "href": "content/resources/index.html",
+    "title": "Rome R-Users Group",
+    "section": "",
+    "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
+  },
+  {
+    "objectID": "content/resources/index.html#resources",
+    "href": "content/resources/index.html#resources",
+    "title": "Rome R-Users Group",
+    "section": "",
+    "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
+  },
+  {
+    "objectID": "LICENSE.html",
+    "href": "LICENSE.html",
+    "title": "MIT License",
+    "section": "",
+    "text": "MIT License\nCopyright (c) 2025 Rome-R-Users-Group authors\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "content/news/index.html",
+    "href": "content/news/index.html",
+    "title": "R Consortium Events & Workshops",
+    "section": "",
+    "text": "Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:"
+  },
+  {
+    "objectID": "content/news/index.html#news",
+    "href": "content/news/index.html#news",
+    "title": "R Consortium Events & Workshops",
+    "section": "",
+    "text": "Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:"
+  },
+  {
+    "objectID": "content/news/index.html#check-recent-posts-from-selected-r-and-data-science-sources",
+    "href": "content/news/index.html#check-recent-posts-from-selected-r-and-data-science-sources",
+    "title": "R Consortium Events & Workshops",
+    "section": "Check recent posts from selected R and data science sources:",
+    "text": "Check recent posts from selected R and data science sources:\n\n\n\n\n\n\nDate\nSource\nTitle\n\n\n\n\n2026-03-30\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W14 ggauto, alt text, scientific coffee\n\n\n\n2026-03-23\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W13 What’s new in dplyr, Atmospheric simulation\n\n\n\n2026-03-17\nR-Ladies Rome\nWhat’s New in {dplyr} 1.2.0: A Tour with Isabella Velásquez\n\n\n\n2026-03-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W12 Sharing across shiny modules, F1 data\n\n\n\n2026-03-09\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W11 claude beeswarm rstudio\n\n\n\n2026-03-02\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2025-W10 tidymodels, tidyplots, ggvariant package\n\n\n\n2026-02-23\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W09 Git commits, Pick a License, and How to choose the best LLM using R and vitals\n\n\n\n2026-02-16\nR-Ladies Rome\nA Year of Learning, Growth, and Community at R-Ladies Rome 🌟\n\n\n\n2026-02-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W08 submissions working group, nested Lists with xfun::tabset\n\n\n\n2026-02-15\nR-Ladies Rome\nFrom Data to Decisions: Digital Twins for Smarter Maintenance"
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "",
+    "text": "AI can now generate R code in seconds.\nBut when that code breaks, something interesting happens.\nMost people do not debug it.\nThey regenerate it."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#a-typical-situation",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#a-typical-situation",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "1️⃣ A Typical Situation",
+    "text": "1️⃣ A Typical Situation\nYou run a pipeline:\n\ndf |&gt;\n  dplyr::filter(value &gt; 10) |&gt;\n  dplyr::mutate(rate = value / total) |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nAnd something fails.\nYou get: - an error\n- a warning\n- or a result that does not make sense\nThe usual reaction is to change the code.\nBut that is guessing."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#the-structural-view",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#the-structural-view",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "2️⃣ The Structural View",
+    "text": "2️⃣ The Structural View\nEvery pipeline has three parts:\n\ninput\n\ntransformation\n\noutput\n\nThe goal is not to fix everything at once.\nThe goal is to isolate where the problem appears.\n\n\n\n\n\n\nTip\n\n\n\nInstead of asking “what is wrong?”, ask:\n“where does it start going wrong?”"
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#break-the-pipeline",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#break-the-pipeline",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "3️⃣ Break the Pipeline",
+    "text": "3️⃣ Break the Pipeline\nRun the code step by step.\n\nstep1 &lt;- df |&gt;\n  dplyr::filter(value &gt; 10)\n\nstep2 &lt;- step1 |&gt;\n  dplyr::mutate(rate = value / total)\n\nstep3 &lt;- step2 |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nNow you can inspect each stage."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#check-assumptions",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#check-assumptions",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "4️⃣ Check Assumptions",
+    "text": "4️⃣ Check Assumptions\nAt each step, verify what you expect:\n\nsummary(step1)\nsummary(step2)\nsummary(step3)\n\nYou are checking:\n\ndoes the data look reasonable?\n\nare there unexpected values?\n\ndid a transformation introduce problems?\n\nThis is often enough to identify the issue."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#a-simple-debugging-habit",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#a-simple-debugging-habit",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "5️⃣ A Simple Debugging Habit",
+    "text": "5️⃣ A Simple Debugging Habit\nInstead of rewriting code, apply a pattern:\n\nrun pipelines step-by-step\n\nstore intermediate results\n\ninspect outputs at each stage\n\nverify assumptions before continuing\n\nThis takes a few seconds.\nBut it removes guesswork."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#why-this-matters",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#why-this-matters",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "Why This Matters",
+    "text": "Why This Matters\nAI-generated code often looks correct.\nBut small issues can appear:\n\nmissing values\n\ndivisions by zero\n\nincorrect assumptions about columns\n\nunexpected data types\n\nIf you only rerun or regenerate code, you never see where the problem started.\nDebugging is not trial and error.\nIt is observation.\n\n\n\n\n\n\nIn Short\n\nerrors are located, not random\n\npipelines should be broken into steps\n\nintermediate outputs reveal problems\n\nassumptions must be verified\n\ndebugging is a method, not a guess\n\n\n\n\nAI can write code.\nYou still need to understand where it breaks.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   },
   {
     "objectID": "content/rhacks/posts/10-03082026/index.html",
@@ -1020,103 +1069,5 @@
     "title": "Sponsor",
     "section": "What This Means for You",
     "text": "What This Means for You\nThis partnership brings numerous benefits to our community. We’ll have access to valuable resources, expertise, and opportunities that will further enrich our events and activities. Together, we’ll continue to grow, learn, and share knowledge within the R programming ecosystem.\nWe’re grateful for the support of R Consortium and look forward to the exciting opportunities this collaboration will bring. Stay tuned for upcoming events and initiatives that will showcase the incredible possibilities unlocked by this partnership.\nLet’s embark on this journey together, embracing the power of R programming and data science with R Consortium by our side. Here’s to a bright future of learning, innovation, and community-building!\n#RConsortium #RProgramming #DataScience #CommunityBuilding"
-  },
-  {
-    "objectID": "content/rhacks/posts/16-04192026.html",
-    "href": "content/rhacks/posts/16-04192026.html",
-    "title": "Stop Guessing Why Your Code Breaks",
-    "section": "",
-    "text": "AI can now generate R code in seconds.\nBut when that code breaks, something interesting happens.\nMost people do not debug it.\nThey regenerate it."
-  },
-  {
-    "objectID": "content/rhacks/posts/16-04192026.html#a-typical-situation",
-    "href": "content/rhacks/posts/16-04192026.html#a-typical-situation",
-    "title": "Stop Guessing Why Your Code Breaks",
-    "section": "1️⃣ A Typical Situation",
-    "text": "1️⃣ A Typical Situation\nYou run a pipeline:\n\ndf |&gt;\n  dplyr::filter(value &gt; 10) |&gt;\n  dplyr::mutate(rate = value / total) |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nAnd something fails.\nYou get: - an error\n- a warning\n- or a result that does not make sense\nThe usual reaction is to change the code.\nBut that is guessing."
-  },
-  {
-    "objectID": "content/rhacks/posts/16-04192026.html#the-structural-view",
-    "href": "content/rhacks/posts/16-04192026.html#the-structural-view",
-    "title": "Stop Guessing Why Your Code Breaks",
-    "section": "2️⃣ The Structural View",
-    "text": "2️⃣ The Structural View\nEvery pipeline has three parts:\n\ninput\n\ntransformation\n\noutput\n\nThe goal is not to fix everything at once.\nThe goal is to isolate where the problem appears.\n\n\n\n\n\n\nTip\n\n\n\nInstead of asking “what is wrong?”, ask:\n“where does it start going wrong?”"
-  },
-  {
-    "objectID": "content/rhacks/posts/16-04192026.html#break-the-pipeline",
-    "href": "content/rhacks/posts/16-04192026.html#break-the-pipeline",
-    "title": "Stop Guessing Why Your Code Breaks",
-    "section": "3️⃣ Break the Pipeline",
-    "text": "3️⃣ Break the Pipeline\nRun the code step by step.\n\nstep1 &lt;- df |&gt;\n  dplyr::filter(value &gt; 10)\n\nstep2 &lt;- step1 |&gt;\n  dplyr::mutate(rate = value / total)\n\nstep3 &lt;- step2 |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nNow you can inspect each stage."
-  },
-  {
-    "objectID": "content/rhacks/posts/16-04192026.html#check-assumptions",
-    "href": "content/rhacks/posts/16-04192026.html#check-assumptions",
-    "title": "Stop Guessing Why Your Code Breaks",
-    "section": "4️⃣ Check Assumptions",
-    "text": "4️⃣ Check Assumptions\nAt each step, verify what you expect:\n\nsummary(step1)\nsummary(step2)\nsummary(step3)\n\nYou are checking:\n\ndoes the data look reasonable?\n\nare there unexpected values?\n\ndid a transformation introduce problems?\n\nThis is often enough to identify the issue."
-  },
-  {
-    "objectID": "content/rhacks/posts/16-04192026.html#a-simple-debugging-habit",
-    "href": "content/rhacks/posts/16-04192026.html#a-simple-debugging-habit",
-    "title": "Stop Guessing Why Your Code Breaks",
-    "section": "5️⃣ A Simple Debugging Habit",
-    "text": "5️⃣ A Simple Debugging Habit\nInstead of rewriting code, apply a pattern:\n\nrun pipelines step-by-step\n\nstore intermediate results\n\ninspect outputs at each stage\n\nverify assumptions before continuing\n\nThis takes a few seconds.\nBut it removes guesswork."
-  },
-  {
-    "objectID": "content/rhacks/posts/16-04192026.html#why-this-matters",
-    "href": "content/rhacks/posts/16-04192026.html#why-this-matters",
-    "title": "Stop Guessing Why Your Code Breaks",
-    "section": "Why This Matters",
-    "text": "Why This Matters\nAI-generated code often looks correct.\nBut small issues can appear:\n\nmissing values\n\ndivisions by zero\n\nincorrect assumptions about columns\n\nunexpected data types\n\nIf you only rerun or regenerate code, you never see where the problem started.\nDebugging is not trial and error.\nIt is observation.\n\n\n\n\n\n\nIn Short\n\nerrors are located, not random\n\npipelines should be broken into steps\n\nintermediate outputs reveal problems\n\nassumptions must be verified\n\ndebugging is a method, not a guess\n\n\n\n\nAI can write code.\nYou still need to understand where it breaks.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
-  },
-  {
-    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html",
-    "href": "content/rhacks/posts/16-04192026/16-04192026.html",
-    "title": "Stop Guessing Why Your Code Breaks",
-    "section": "",
-    "text": "AI can now generate R code in seconds.\nBut when that code breaks, something interesting happens.\nMost people do not debug it.\nThey regenerate it."
-  },
-  {
-    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#a-typical-situation",
-    "href": "content/rhacks/posts/16-04192026/16-04192026.html#a-typical-situation",
-    "title": "Stop Guessing Why Your Code Breaks",
-    "section": "1️⃣ A Typical Situation",
-    "text": "1️⃣ A Typical Situation\nYou run a pipeline:\n\ndf |&gt;\n  dplyr::filter(value &gt; 10) |&gt;\n  dplyr::mutate(rate = value / total) |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nAnd something fails.\nYou get: - an error\n- a warning\n- or a result that does not make sense\nThe usual reaction is to change the code.\nBut that is guessing."
-  },
-  {
-    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#the-structural-view",
-    "href": "content/rhacks/posts/16-04192026/16-04192026.html#the-structural-view",
-    "title": "Stop Guessing Why Your Code Breaks",
-    "section": "2️⃣ The Structural View",
-    "text": "2️⃣ The Structural View\nEvery pipeline has three parts:\n\ninput\n\ntransformation\n\noutput\n\nThe goal is not to fix everything at once.\nThe goal is to isolate where the problem appears.\n\n\n\n\n\n\nTip\n\n\n\nInstead of asking “what is wrong?”, ask:\n“where does it start going wrong?”"
-  },
-  {
-    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#break-the-pipeline",
-    "href": "content/rhacks/posts/16-04192026/16-04192026.html#break-the-pipeline",
-    "title": "Stop Guessing Why Your Code Breaks",
-    "section": "3️⃣ Break the Pipeline",
-    "text": "3️⃣ Break the Pipeline\nRun the code step by step.\n\nstep1 &lt;- df |&gt;\n  dplyr::filter(value &gt; 10)\n\nstep2 &lt;- step1 |&gt;\n  dplyr::mutate(rate = value / total)\n\nstep3 &lt;- step2 |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nNow you can inspect each stage."
-  },
-  {
-    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#check-assumptions",
-    "href": "content/rhacks/posts/16-04192026/16-04192026.html#check-assumptions",
-    "title": "Stop Guessing Why Your Code Breaks",
-    "section": "4️⃣ Check Assumptions",
-    "text": "4️⃣ Check Assumptions\nAt each step, verify what you expect:\n\nsummary(step1)\nsummary(step2)\nsummary(step3)\n\nYou are checking:\n\ndoes the data look reasonable?\n\nare there unexpected values?\n\ndid a transformation introduce problems?\n\nThis is often enough to identify the issue."
-  },
-  {
-    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#a-simple-debugging-habit",
-    "href": "content/rhacks/posts/16-04192026/16-04192026.html#a-simple-debugging-habit",
-    "title": "Stop Guessing Why Your Code Breaks",
-    "section": "5️⃣ A Simple Debugging Habit",
-    "text": "5️⃣ A Simple Debugging Habit\nInstead of rewriting code, apply a pattern:\n\nrun pipelines step-by-step\n\nstore intermediate results\n\ninspect outputs at each stage\n\nverify assumptions before continuing\n\nThis takes a few seconds.\nBut it removes guesswork."
-  },
-  {
-    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#why-this-matters",
-    "href": "content/rhacks/posts/16-04192026/16-04192026.html#why-this-matters",
-    "title": "Stop Guessing Why Your Code Breaks",
-    "section": "Why This Matters",
-    "text": "Why This Matters\nAI-generated code often looks correct.\nBut small issues can appear:\n\nmissing values\n\ndivisions by zero\n\nincorrect assumptions about columns\n\nunexpected data types\n\nIf you only rerun or regenerate code, you never see where the problem started.\nDebugging is not trial and error.\nIt is observation.\n\n\n\n\n\n\nIn Short\n\nerrors are located, not random\n\npipelines should be broken into steps\n\nintermediate outputs reveal problems\n\nassumptions must be verified\n\ndebugging is a method, not a guess\n\n\n\n\nAI can write code.\nYou still need to understand where it breaks.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   }
 ]
