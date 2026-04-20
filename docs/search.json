@@ -1020,5 +1020,103 @@
     "title": "Sponsor",
     "section": "What This Means for You",
     "text": "What This Means for You\nThis partnership brings numerous benefits to our community. We’ll have access to valuable resources, expertise, and opportunities that will further enrich our events and activities. Together, we’ll continue to grow, learn, and share knowledge within the R programming ecosystem.\nWe’re grateful for the support of R Consortium and look forward to the exciting opportunities this collaboration will bring. Stay tuned for upcoming events and initiatives that will showcase the incredible possibilities unlocked by this partnership.\nLet’s embark on this journey together, embracing the power of R programming and data science with R Consortium by our side. Here’s to a bright future of learning, innovation, and community-building!\n#RConsortium #RProgramming #DataScience #CommunityBuilding"
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026.html",
+    "href": "content/rhacks/posts/16-04192026.html",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "",
+    "text": "AI can now generate R code in seconds.\nBut when that code breaks, something interesting happens.\nMost people do not debug it.\nThey regenerate it."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026.html#a-typical-situation",
+    "href": "content/rhacks/posts/16-04192026.html#a-typical-situation",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "1️⃣ A Typical Situation",
+    "text": "1️⃣ A Typical Situation\nYou run a pipeline:\n\ndf |&gt;\n  dplyr::filter(value &gt; 10) |&gt;\n  dplyr::mutate(rate = value / total) |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nAnd something fails.\nYou get: - an error\n- a warning\n- or a result that does not make sense\nThe usual reaction is to change the code.\nBut that is guessing."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026.html#the-structural-view",
+    "href": "content/rhacks/posts/16-04192026.html#the-structural-view",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "2️⃣ The Structural View",
+    "text": "2️⃣ The Structural View\nEvery pipeline has three parts:\n\ninput\n\ntransformation\n\noutput\n\nThe goal is not to fix everything at once.\nThe goal is to isolate where the problem appears.\n\n\n\n\n\n\nTip\n\n\n\nInstead of asking “what is wrong?”, ask:\n“where does it start going wrong?”"
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026.html#break-the-pipeline",
+    "href": "content/rhacks/posts/16-04192026.html#break-the-pipeline",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "3️⃣ Break the Pipeline",
+    "text": "3️⃣ Break the Pipeline\nRun the code step by step.\n\nstep1 &lt;- df |&gt;\n  dplyr::filter(value &gt; 10)\n\nstep2 &lt;- step1 |&gt;\n  dplyr::mutate(rate = value / total)\n\nstep3 &lt;- step2 |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nNow you can inspect each stage."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026.html#check-assumptions",
+    "href": "content/rhacks/posts/16-04192026.html#check-assumptions",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "4️⃣ Check Assumptions",
+    "text": "4️⃣ Check Assumptions\nAt each step, verify what you expect:\n\nsummary(step1)\nsummary(step2)\nsummary(step3)\n\nYou are checking:\n\ndoes the data look reasonable?\n\nare there unexpected values?\n\ndid a transformation introduce problems?\n\nThis is often enough to identify the issue."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026.html#a-simple-debugging-habit",
+    "href": "content/rhacks/posts/16-04192026.html#a-simple-debugging-habit",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "5️⃣ A Simple Debugging Habit",
+    "text": "5️⃣ A Simple Debugging Habit\nInstead of rewriting code, apply a pattern:\n\nrun pipelines step-by-step\n\nstore intermediate results\n\ninspect outputs at each stage\n\nverify assumptions before continuing\n\nThis takes a few seconds.\nBut it removes guesswork."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026.html#why-this-matters",
+    "href": "content/rhacks/posts/16-04192026.html#why-this-matters",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "Why This Matters",
+    "text": "Why This Matters\nAI-generated code often looks correct.\nBut small issues can appear:\n\nmissing values\n\ndivisions by zero\n\nincorrect assumptions about columns\n\nunexpected data types\n\nIf you only rerun or regenerate code, you never see where the problem started.\nDebugging is not trial and error.\nIt is observation.\n\n\n\n\n\n\nIn Short\n\nerrors are located, not random\n\npipelines should be broken into steps\n\nintermediate outputs reveal problems\n\nassumptions must be verified\n\ndebugging is a method, not a guess\n\n\n\n\nAI can write code.\nYou still need to understand where it breaks.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "",
+    "text": "AI can now generate R code in seconds.\nBut when that code breaks, something interesting happens.\nMost people do not debug it.\nThey regenerate it."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#a-typical-situation",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#a-typical-situation",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "1️⃣ A Typical Situation",
+    "text": "1️⃣ A Typical Situation\nYou run a pipeline:\n\ndf |&gt;\n  dplyr::filter(value &gt; 10) |&gt;\n  dplyr::mutate(rate = value / total) |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nAnd something fails.\nYou get: - an error\n- a warning\n- or a result that does not make sense\nThe usual reaction is to change the code.\nBut that is guessing."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#the-structural-view",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#the-structural-view",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "2️⃣ The Structural View",
+    "text": "2️⃣ The Structural View\nEvery pipeline has three parts:\n\ninput\n\ntransformation\n\noutput\n\nThe goal is not to fix everything at once.\nThe goal is to isolate where the problem appears.\n\n\n\n\n\n\nTip\n\n\n\nInstead of asking “what is wrong?”, ask:\n“where does it start going wrong?”"
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#break-the-pipeline",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#break-the-pipeline",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "3️⃣ Break the Pipeline",
+    "text": "3️⃣ Break the Pipeline\nRun the code step by step.\n\nstep1 &lt;- df |&gt;\n  dplyr::filter(value &gt; 10)\n\nstep2 &lt;- step1 |&gt;\n  dplyr::mutate(rate = value / total)\n\nstep3 &lt;- step2 |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nNow you can inspect each stage."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#check-assumptions",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#check-assumptions",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "4️⃣ Check Assumptions",
+    "text": "4️⃣ Check Assumptions\nAt each step, verify what you expect:\n\nsummary(step1)\nsummary(step2)\nsummary(step3)\n\nYou are checking:\n\ndoes the data look reasonable?\n\nare there unexpected values?\n\ndid a transformation introduce problems?\n\nThis is often enough to identify the issue."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#a-simple-debugging-habit",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#a-simple-debugging-habit",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "5️⃣ A Simple Debugging Habit",
+    "text": "5️⃣ A Simple Debugging Habit\nInstead of rewriting code, apply a pattern:\n\nrun pipelines step-by-step\n\nstore intermediate results\n\ninspect outputs at each stage\n\nverify assumptions before continuing\n\nThis takes a few seconds.\nBut it removes guesswork."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#why-this-matters",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#why-this-matters",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "Why This Matters",
+    "text": "Why This Matters\nAI-generated code often looks correct.\nBut small issues can appear:\n\nmissing values\n\ndivisions by zero\n\nincorrect assumptions about columns\n\nunexpected data types\n\nIf you only rerun or regenerate code, you never see where the problem started.\nDebugging is not trial and error.\nIt is observation.\n\n\n\n\n\n\nIn Short\n\nerrors are located, not random\n\npipelines should be broken into steps\n\nintermediate outputs reveal problems\n\nassumptions must be verified\n\ndebugging is a method, not a guess\n\n\n\n\nAI can write code.\nYou still need to understand where it breaks.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   }
 ]
