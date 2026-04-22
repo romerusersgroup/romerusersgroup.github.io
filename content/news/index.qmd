@@ -1,3 +1,7 @@
+---
+freeze: false
+---
+
 ## News {#news}
 
 Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:

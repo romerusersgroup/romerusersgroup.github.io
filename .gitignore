@@ -6,6 +6,7 @@
 #styles.css
 project-tree.R
 /.quarto/
+/_site/
 former-organizers.qmd
 **/*.quarto_ipynb
 .positai
