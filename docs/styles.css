@@ -1,0 +1,259 @@
+/* Cleaned CSS: Hero, Cards, Footer */
+
+/* Root Colors and Variables */
+:root {
+  --primary-color: #0099d8; /* R Consortium */
+  --secondary-color: #004f9f; /* Linux Foundation */
+  --accent-color: #0072c6; /* Hybrid */
+  --text-dark: #1e293b;
+  --text-light: #64748b;
+  --background-light: #f8fafc;
+}
+
+body {
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  color: var(--text-dark);
+  background: var(--background-light);
+  margin: 0;
+  padding: 0;
+}
+
+.bg-primary {
+  color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/*-- navbar --*/
+.navbar {
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 1.1em;
+  /*font-family: "Monaco", monospace;*/
+  letter-spacing: normal;
+}
+
+.navbar-brand {
+  font-size: 1.1em;
+  font-weight: bold;
+  /*color: #4c51bf; /* Indigo-700 */
+}
+
+.navbar-logo {
+  max-height: 60px;
+  width: auto;
+  align-items: baseline;
+}
+
+/* Inline code color */
+code {
+  color: #ee8336;       /* text color */
+  background-color: #f9f2f4;  /* light background optional */
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+}
+
+/* Hero Section */
+
+.hero-section {
+  position: relative; /* Needed for absolute positioning inside */
+  padding-top: 4rem;  /* Make sure there's enough top padding */
+  min-height: 90vh;
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+}
+
+/*logo on the homepage*/
+.hero-logo-fixed {
+  position: absolute;
+  top: 5rem;           /* Push down more if needed */
+  left: 15rem;
+  max-height: 150px;
+  width: auto;
+  z-index: 10;
+  opacity: 0.95;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+
+/* Call to Action Button - become a member button*/
+.cta-button {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Cards Section */
+.cards-section {
+  padding: 4rem 2rem;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card-link {
+  /* Make the entire card clickable */
+  display: block;
+  /* bold text */
+  font-weight: bold;
+  color: var(--text-dark);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+
+/* Footer */
+.footer {
+  background: #d4e5f8;
+  padding: 2rem;
+  text-align: center;
+}
+
+.footer a {
+  color: var(--text-dark);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  /* Logo tweaks */
+.hero-logo-fixed {
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  max-height: 150px;
+}
+
+  /* Push hero content down so it doesn't overlap logo */
+.hero-content {
+    margin-top: 7rem;
+  }
+
+  /* Navbar layout fixes rusers website */
+.navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+  }
+
+.navbar .quarto-title {
+    font-size: 1.5rem;
+    text-align: center;
+    width: 100%;
+  }
+
+.navbar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    width: 100%;
+  }
+
+.navbar-nav .nav-item {
+    width: 100%;
+    text-align: left;
+    /* change the size and bold text*/
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+.navbar-nav .nav-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    width: 100%;
+  }
+}
+
+/* running logos */
+.logo-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  background: white;
+  padding: 2rem 0;
+  margin: 3rem 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.logo-marquee-content {
+  display: inline-flex;
+  animation: marquee 60s linear infinite;
+  width: max-content;
+}
+
+.logo-marquee .logo-item {
+  flex-shrink: 0;
+  margin: 0 2rem;
+  filter: grayscale(30%);
+  transition: filter 0.3s ease;
+}
+
+.logo-marquee .logo-item:hover {
+  filter: grayscale(0%);
+}
+
+.logo-marquee .logo-item img {
+  max-height: 50px;
+  opacity: 0.8;
+}
+
+.logo-marquee .logo-item:hover img {
+  opacity: 1;
+}
+
+/* Keyframes for scroll effect */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
