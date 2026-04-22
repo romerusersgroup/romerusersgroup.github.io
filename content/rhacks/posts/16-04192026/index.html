@@ -2,13 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Federica Gazzelloni">
+<meta name="dcterms.date" content="2026-04-19">
+<meta name="description" content="R-Hacks N.16">
 
-<title>former-organizers – Rome R-Users Group</title>
+<title>Stop Guessing Why Your Code Breaks – Rome R-Users Group</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -20,30 +26,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../images/logos/RUsers_transparent.png" rel="icon" type="image/png">
-<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
-<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8001c2e1f85531b6432cdb718d58219b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/logos/RUsers_transparent.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-5e5002d361fcd684ebd8e1137bdd294c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -101,29 +141,37 @@ cookieconsent.run({
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="former-organizers – Rome R-Users Group">
-<meta property="og:image" content="https://romerusersgroup.github.io/about/organizers_picts/lucy-michaels.jpg">
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="Stop Guessing Why Your Code Breaks – Rome R-Users Group">
+<meta property="og:description" content="R-Hacks N.16">
+<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/16-04192026/images/image-1.png">
 <meta property="og:site_name" content="Rome R-Users Group">
 <meta property="og:locale" content="en_US">
-<meta name="twitter:title" content="former-organizers – Rome R-Users Group">
-<meta name="twitter:image" content="https://romerusersgroup.github.io/about/organizers_picts/lucy-michaels.jpg">
+<meta property="og:image:alt" content="ChatGPT generated image">
+<meta property="og:image:height" content="994">
+<meta property="og:image:width" content="1505">
+<meta name="twitter:title" content="Stop Guessing Why Your Code Breaks – Rome R-Users Group">
+<meta name="twitter:description" content="R-Hacks N.16">
+<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/16-04192026/images/image-1.png">
 <meta name="twitter:creator" content="@rladiesrome">
+<meta name="twitter:image:alt" content="ChatGPT generated image">
+<meta name="twitter:image-height" content="994">
+<meta name="twitter:image-width" content="1505">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content">
-    <img src="../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content">
+    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Rome R-Users Group</span>
     </a>
   </div>
@@ -134,23 +182,23 @@ cookieconsent.run({
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/events/index.html"> 
+    <a class="nav-link" href="../../../../content/events/index.html"> 
 <span class="menu-text">Events</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/rhacks/index.html"> 
+    <a class="nav-link" href="../../../../content/rhacks/index.html"> 
 <span class="menu-text">R-Hacks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/resources/index.html"> 
+    <a class="nav-link" href="../../../../content/resources/index.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../content/news/index.html"> 
+    <a class="nav-link" href="../../../../content/news/index.html"> 
 <span class="menu-text">News</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -159,11 +207,11 @@ cookieconsent.run({
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
         <li>
-    <a class="dropdown-item" href="../about/organizers.html">
+    <a class="dropdown-item" href="../../../../about/organizers.html">
  <span class="dropdown-text">Organizers</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../about/sponsors.html">
+    <a class="dropdown-item" href="../../../../about/sponsors.html">
  <span class="dropdown-text">Sponsor</span></a>
   </li>  
     </ul>
@@ -177,7 +225,7 @@ cookieconsent.run({
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="https://rladiesrome.org"> 
-<span class="menu-text"><img src="../images/logos/RLadiesRome_logo_transparent.png" class="img-fluid" width="70" alt="R-Ladies Rome"><strong>R-Ladies Rome</strong></span></a>
+<span class="menu-text"><img src="../../../../images/logos/RLadiesRome_logo_transparent.png" class="img-fluid" width="70" alt="R-Ladies Rome"><strong>R-Ladies Rome</strong></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -193,21 +241,60 @@ cookieconsent.run({
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#a-typical-situation" id="toc-a-typical-situation" class="nav-link active" data-scroll-target="#a-typical-situation">1️⃣ A Typical Situation</a></li>
+  <li><a href="#the-structural-view" id="toc-the-structural-view" class="nav-link" data-scroll-target="#the-structural-view">2️⃣ The Structural View</a></li>
+  <li><a href="#break-the-pipeline" id="toc-break-the-pipeline" class="nav-link" data-scroll-target="#break-the-pipeline">3️⃣ Break the Pipeline</a></li>
+  <li><a href="#check-assumptions" id="toc-check-assumptions" class="nav-link" data-scroll-target="#check-assumptions">4️⃣ Check Assumptions</a></li>
+  <li><a href="#a-simple-debugging-habit" id="toc-a-simple-debugging-habit" class="nav-link" data-scroll-target="#a-simple-debugging-habit">5️⃣ A Simple Debugging Habit</a></li>
+  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters">Why This Matters</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/16-04192026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">former-organizers</h1>
-</div>
+<h1 class="title">Stop Guessing Why Your Code Breaks</h1>
+<p class="subtitle lead">A simple way to debug R pipelines</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">debugging</div>
+    <div class="quarto-category">workflows</div>
+    <div class="quarto-category">ai</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    R-Hacks N.16
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Federica Gazzelloni </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 19, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -217,34 +304,187 @@ cookieconsent.run({
 </header>
 
 
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
-<div class="columns">
-<div class="column" style="width:58%;">
-<p><a href="https://www.linkedin.com/in/lucymichaels/">Lucy Michaels</a> Organizer - from Rome. With 25 years in mathematics education and financial leadership, I’m completing a Master’s in Analysis &amp; Modelling of Data &amp; Processes as well as IBM’s Data Science Certificate, ready to pivot into Data Science. This has led me to work on hands-on projects using R, Python, SQL, and Excel. I bring a unique mix of analytical depth, cross-functional collaboration, and a love for problem-solving. After managing multi-million euro budgets and teaching complex maths, I am looking forward to transitioning into data science to turn messy, real-world data into clear, actionable insights. I’m also active in nonprofit leadership and public speaking, committed to using data—and storytelling—to make a difference. (June 2025 to Present)</p>
-</div><div class="column" style="width:4%;">
-
-</div><div class="column" style="width:38%;">
+<p><br></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="organizers_picts/lucy-michaels.jpg" class="img-fluid figure-img"></p>
-<figcaption>Lucy Michaels</figcaption>
+<p><img src="images/image-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="ChatGPT generated image"></p>
 </figure>
 </div>
+<p>AI can now generate R code in seconds.</p>
+<p>But when that code breaks, something interesting happens.</p>
+<p>Most people do not debug it.<br>
+They regenerate it.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
 </div>
 </div>
-<div class="columns">
-<div class="column" style="width:58%;">
-<p><a href="https://www.linkedin.com/in/vlcolonna/">Lucio Colonna</a> Organizer - from Rome. Data-Driven Professional. With over 10 years of experience in IT consulting and procurement, I combine business expertise with advanced data analysis skills. Proficient in R, Python, SQL, Power BI (including M and DAX), and Excel, I transform complex datasets into clear, actionable insights that drive strategic decisions. My background includes leading cost optimization initiatives and delivering ERP implementations, always with a data-driven approach. Passionate about problem-solving and storytelling with data, I bring both analytical depth and cross-functional collaboration to deliver lasting business impact. (September 2025 to Present)</p>
-</div><div class="column" style="width:4%;">
-
-</div><div class="column" style="width:38%;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="organizers_picts/lucio-colonna.png" class="img-fluid figure-img"></p>
-<figcaption>Lucio Colonna</figcaption>
-</figure>
+<div class="callout-body-container callout-body">
+<p>The problem is not the error.<br>
+The problem is not knowing where it comes from.</p>
 </div>
+</div>
+<section id="debugging-is-not-about-fixing-code.-it-is-about-locating-the-failure." class="level4">
+<h4 class="anchored" data-anchor-id="debugging-is-not-about-fixing-code.-it-is-about-locating-the-failure.">Debugging is not about fixing code. It is about locating the failure.</h4>
+<p>This R-Hack introduces a simple way to understand where things go wrong.</p>
+<hr>
+</section>
+<section id="a-typical-situation" class="level2">
+<h2 class="anchored" data-anchor-id="a-typical-situation">1️⃣ A Typical Situation</h2>
+<p>You run a pipeline:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(value <span class="sc">&gt;</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">rate =</span> value <span class="sc">/</span> total) <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">avg =</span> <span class="fu">mean</span>(rate))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>And something fails.</p>
+<p>You get:</p>
+<ul>
+<li>an error<br>
+</li>
+<li>a warning<br>
+</li>
+<li>or a result that does not make sense</li>
+</ul>
+<p>The usual reaction is to change the code.</p>
+<p>But that is guessing.</p>
+<hr>
+</section>
+<section id="the-structural-view" class="level2">
+<h2 class="anchored" data-anchor-id="the-structural-view">2️⃣ The Structural View</h2>
+<p>Every pipeline has three parts:</p>
+<ul>
+<li>input<br>
+</li>
+<li>transformation<br>
+</li>
+<li>output</li>
+</ul>
+<p>The goal is not to fix everything at once.</p>
+<p>The goal is to isolate where the problem appears.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Instead of asking “what is wrong?”, ask:</p>
+<p>“where does it start going wrong?”</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="break-the-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="break-the-pipeline">3️⃣ Break the Pipeline</h2>
+<p>Run the code step by step.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>step1 <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(value <span class="sc">&gt;</span> <span class="dv">10</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>step2 <span class="ot">&lt;-</span> step1 <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">rate =</span> value <span class="sc">/</span> total)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>step3 <span class="ot">&lt;-</span> step2 <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">avg =</span> <span class="fu">mean</span>(rate))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now you can inspect each stage.</p>
+<hr>
+</section>
+<section id="check-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="check-assumptions">4️⃣ Check Assumptions</h2>
+<p>At each step, verify what you expect:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(step1)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(step2)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(step3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You are checking:</p>
+<ul>
+<li>does the data look reasonable?<br>
+</li>
+<li>are there unexpected values?<br>
+</li>
+<li>did a transformation introduce problems?</li>
+</ul>
+<p>This is often enough to identify the issue.</p>
+<hr>
+</section>
+<section id="a-simple-debugging-habit" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-debugging-habit">5️⃣ A Simple Debugging Habit</h2>
+<p>Instead of rewriting code, apply a pattern:</p>
+<ul>
+<li>run pipelines step-by-step<br>
+</li>
+<li>store intermediate results<br>
+</li>
+<li>inspect outputs at each stage<br>
+</li>
+<li>verify assumptions before continuing</li>
+</ul>
+<p>This takes a few seconds.</p>
+<p>But it removes guesswork.</p>
+<hr>
+</section>
+<section id="why-this-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-matters">Why This Matters</h2>
+<p>AI-generated code often looks correct.</p>
+<p>But small issues can appear:</p>
+<ul>
+<li>missing values<br>
+</li>
+<li>divisions by zero<br>
+</li>
+<li>incorrect assumptions about columns<br>
+</li>
+<li>unexpected data types</li>
+</ul>
+<p>If you only rerun or regenerate code, you never see where the problem started.</p>
+<p>Debugging is not trial and error.</p>
+<p>It is observation.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>In Short</p>
+<ul>
+<li>errors are located, not random<br>
+</li>
+<li>pipelines should be broken into steps<br>
+</li>
+<li>intermediate outputs reveal problems<br>
+</li>
+<li>assumptions must be verified<br>
+</li>
+<li>debugging is a method, not a guess</li>
+</ul>
+</div>
+</div>
+</div>
+<p>AI can write code.</p>
+<p>You still need to understand where it breaks.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you want to stay up to date with the latest events and posts from the Rome R Users Group:</p>
+<p>👉 https://www.meetup.com/rome-r-users-group/</p>
 </div>
 </div>
 
@@ -661,11 +901,11 @@ cookieconsent.run({
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright © 2023-26, Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://federicagazzelloni.com">Federica Gazzelloni</a><br>Powered by: Quarto &amp; <a href="https://datametricus.github.io">DataMetricus</a> | <a href="../LICENSE.html">MIT License</a>.</p>
+<p>Copyright © 2023-26, Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://federicagazzelloni.com">Federica Gazzelloni</a><br>Powered by: Quarto &amp; <a href="https://datametricus.github.io">DataMetricus</a> | <a href="../../../../LICENSE.html">MIT License</a>.</p>
 </div>   
     <div class="nav-footer-center">
 
-<div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/about/former-organizers.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/16-04192026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
@@ -687,7 +927,7 @@ cookieconsent.run({
     </a>
   </li>  
     <li class="nav-item compact">
-    <a class="nav-link" href="../index.xml">
+    <a class="nav-link" href="../../../../index.xml">
       <i class="bi bi-rss" role="img">
 </i> 
     </a>
@@ -700,5 +940,5 @@ cookieconsent.run({
 
 
 
-<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
