@@ -21,10 +21,6 @@
     ]
   },
   {
-    "listing": "/index.html",
-    "items": []
-  },
-  {
     "listing": "/content/events/index.html",
     "items": [
       "/content/events/posts/27032026_josephbarbier.html",
@@ -34,5 +30,9 @@
       "/content/events/posts/01062025_inperson.html",
       "/content/events/posts/01052025.html"
     ]
+  },
+  {
+    "listing": "/index.html",
+    "items": []
   }
 ]

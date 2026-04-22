@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
-
+<meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Federica Gazzelloni">
 <meta name="dcterms.date" content="2026-02-22">
 <meta name="description" content="R-Hacks N.8">
-
 <title>CSV vs Parquet: A Better Default for Analytics – Rome R-Users Group</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -63,7 +57,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
@@ -76,15 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-5e5002d361fcd684ebd8e1137bdd294c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../../../site_libs/bootstrap/bootstrap-8001c2e1f85531b6432cdb718d58219b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -110,18 +103,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id="></script>
-
-<script type="text/plain" cookie-consent="tracking">
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id="></script><script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '', { 'anonymize_ip': true});
-</script>
-
-<script type="text/javascript" charset="UTF-8">
+</script><script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({
   "notice_banner_type":"headline",
@@ -136,11 +124,7 @@ cookieconsent.run({
 "language":"en"
   });
 });
-</script> 
-  
-<style>html{ scroll-behavior: smooth; }</style>
-
-
+</script><style>html{ scroll-behavior: smooth; }</style>
 <link rel="stylesheet" href="../../../../styles.css">
 <meta property="og:title" content="CSV vs Parquet: A Better Default for Analytics – Rome R-Users Group">
 <meta property="og:description" content="R-Hacks N.8">
@@ -159,18 +143,13 @@ cookieconsent.run({
 <meta name="twitter:image-width" content="1407">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-
 <body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content">
-    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content">
-    </a>
+    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content"><img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content"></a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Rome R-Users Group</span>
     </a>
@@ -181,7 +160,7 @@ cookieconsent.run({
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
@@ -205,8 +184,8 @@ cookieconsent.run({
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">About</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
-        <li>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">
+<li>
     <a class="dropdown-item" href="../../../../about/organizers.html">
  <span class="dropdown-text">Organizers</span></a>
   </li>  
@@ -215,63 +194,60 @@ cookieconsent.run({
  <span class="dropdown-text">Sponsor</span></a>
   </li>  
     </ul>
-  </li>
+</li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.meetup.com/pro/r-user-groups/"> <i class="bi bi-globe" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
     <a class="nav-link" href="https://rladiesrome.org"> 
 <span class="menu-text"><img src="../../../../images/logos/RLadiesRome_logo_transparent.png" class="img-fluid" width="70" alt="R-Ladies Rome"><strong>R-Ladies Rome</strong></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="mailto:romerusersgroup@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-  <div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden"><i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
+    </nav><div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden">
+<i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
 <p>Alert! Free tutorials available!</p>
-</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+</div>
+<i class="bi bi-x-lg quarto-announcement-action"></i>
+</div>
+</header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-is-parquet" id="toc-what-is-parquet" class="nav-link active" data-scroll-target="#what-is-parquet">What Is Parquet?</a></li>
+<li><a href="#what-is-parquet" id="toc-what-is-parquet" class="nav-link active" data-scroll-target="#what-is-parquet">What Is Parquet?</a></li>
   <li><a href="#step-1-simulate-a-realistic-dataset" id="toc-step-1-simulate-a-realistic-dataset" class="nav-link" data-scroll-target="#step-1-simulate-a-realistic-dataset">Step 1 — Simulate a Realistic Dataset</a></li>
   <li><a href="#step-2-save-and-read-as-csv" id="toc-step-2-save-and-read-as-csv" class="nav-link" data-scroll-target="#step-2-save-and-read-as-csv">Step 2 — Save and Read as CSV</a></li>
-  <li><a href="#step-3-save-and-read-as-parquet" id="toc-step-3-save-and-read-as-parquet" class="nav-link" data-scroll-target="#step-3-save-and-read-as-parquet">Step 3 — Save and Read as Parquet</a>
+  <li>
+<a href="#step-3-save-and-read-as-parquet" id="toc-step-3-save-and-read-as-parquet" class="nav-link" data-scroll-target="#step-3-save-and-read-as-parquet">Step 3 — Save and Read as Parquet</a>
   <ul class="collapse">
-  <li><a href="#speed" id="toc-speed" class="nav-link" data-scroll-target="#speed">1️⃣ Speed</a></li>
+<li><a href="#speed" id="toc-speed" class="nav-link" data-scroll-target="#speed">1️⃣ Speed</a></li>
   <li><a href="#file-size" id="toc-file-size" class="nav-link" data-scroll-target="#file-size">2️⃣ File Size</a></li>
   <li><a href="#type-safety" id="toc-type-safety" class="nav-link" data-scroll-target="#type-safety">3️⃣ Type Safety</a></li>
-  </ul></li>
-  <li><a href="#bonus-select-columns-without-loading-everything" id="toc-bonus-select-columns-without-loading-everything" class="nav-link" data-scroll-target="#bonus-select-columns-without-loading-everything">Bonus — Select Columns Without Loading Everything</a>
-  <ul class="collapse">
-  <li><a href="#when-csv-is-still-appropriate" id="toc-when-csv-is-still-appropriate" class="nav-link" data-scroll-target="#when-csv-is-still-appropriate">When CSV Is Still Appropriate</a></li>
-  </ul></li>
-  <li><a href="#workflow-recommendation" id="toc-workflow-recommendation" class="nav-link" data-scroll-target="#workflow-recommendation">Workflow Recommendation</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/08-02222026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</li>
+  <li>
+<a href="#bonus-select-columns-without-loading-everything" id="toc-bonus-select-columns-without-loading-everything" class="nav-link" data-scroll-target="#bonus-select-columns-without-loading-everything">Bonus — Select Columns Without Loading Everything</a>
+  <ul class="collapse">
+<li><a href="#when-csv-is-still-appropriate" id="toc-when-csv-is-still-appropriate" class="nav-link" data-scroll-target="#when-csv-is-still-appropriate">When CSV Is Still Appropriate</a></li>
+  </ul>
+</li>
+  <li><a href="#workflow-recommendation" id="toc-workflow-recommendation" class="nav-link" data-scroll-target="#workflow-recommendation">Workflow Recommendation</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/08-02222026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">CSV vs Parquet: A Better Default for Analytics</h1>
 <p class="subtitle lead">Faster reads, smaller files, cleaner workflows</p>
   <div class="quarto-categories">
@@ -310,15 +286,10 @@ cookieconsent.run({
   
 
 
-</header>
-
-
-<p><br></p>
+</header><p><br></p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/image-1.png" class="img-fluid figure-img" style="width:80.0%" alt="ChatGPT generated image"></p>
-<figcaption>CSV vs Parquet: A Better Default for Analytics (ChatGPT generated image)</figcaption>
-</figure>
+<figure class="figure"><p><img src="images/image-1.png" class="img-fluid figure-img" style="width:80.0%" alt="ChatGPT generated image"></p>
+<figcaption>CSV vs Parquet: A Better Default for Analytics (ChatGPT generated image)</figcaption></figure>
 </div>
 <p>If you are still saving analytical datasets as .csv by default, you are likely paying a hidden tax:</p>
 <ul>
@@ -338,8 +309,7 @@ cookieconsent.run({
 </div>
 </div>
 <p>This R-Hack explains why Parquet should often be your default for analytical workflows.</p>
-<section id="what-is-parquet" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-parquet">What Is Parquet?</h2>
+<section id="what-is-parquet" class="level2"><h2 class="anchored" data-anchor-id="what-is-parquet">What Is Parquet?</h2>
 <p>Parquet is a columnar, binary storage format designed for analytics.</p>
 <p>Unlike CSV:</p>
 <ul>
@@ -349,25 +319,25 @@ cookieconsent.run({
 </ul>
 <p>In R, Parquet support is provided by the arrow package.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example R code chunk</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a sample data frame</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="fl">10.5</span>, <span class="fl">20.3</span>, <span class="fl">30.8</span>, <span class="fl">40.2</span>, <span class="fl">50.1</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the data frame to a Parquet file</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">write_parquet</span>(data, <span class="st">"sample_data.parquet"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the Parquet file back into R</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>data_read <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(<span class="st">"sample_data.parquet"</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the data</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_read)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Example R code chunk</span></span>
+<span><span class="co"># Load necessary libraries</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/apache/arrow/">arrow</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create a sample data frame</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10.5</span>, <span class="fl">20.3</span>, <span class="fl">30.8</span>, <span class="fl">40.2</span>, <span class="fl">50.1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Write the data frame to a Parquet file</span></span>
+<span><span class="fu"><a href="https://arrow.apache.org/docs/r/reference/write_parquet.html">write_parquet</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"sample_data.parquet"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Read the Parquet file back into R</span></span>
+<span><span class="va">data_read</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://arrow.apache.org/docs/r/reference/read_parquet.html">read_parquet</a></span><span class="op">(</span><span class="st">"sample_data.parquet"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Print the data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">data_read</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
      id value
@@ -379,37 +349,33 @@ cookieconsent.run({
 5     5  50.1</code></pre>
 </div>
 </div>
-</section>
-<section id="step-1-simulate-a-realistic-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-simulate-a-realistic-dataset">Step 1 — Simulate a Realistic Dataset</h2>
+</section><section id="step-1-simulate-a-realistic-dataset" class="level2"><h2 class="anchored" data-anchor-id="step-1-simulate-a-realistic-dataset">Step 1 — Simulate a Realistic Dataset</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">200000</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">sample</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], <span class="dv">200000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">rnorm</span>(<span class="dv">200000</span>),</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">flag =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="dv">200000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">200000</span>,</span>
+<span>  category <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, <span class="fl">200000</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">200000</span><span class="op">)</span>,</span>
+<span>  flag <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>, <span class="fl">200000</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This mimics a moderately sized analytical dataset.</p>
-</section>
-<section id="step-2-save-and-read-as-csv" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-save-and-read-as-csv">Step 2 — Save and Read as CSV</h2>
+</section><section id="step-2-save-and-read-as-csv" class="level2"><h2 class="anchored" data-anchor-id="step-2-save-and-read-as-csv">Step 2 — Save and Read as CSV</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(df, <span class="st">"data.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  df_csv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data.csv"</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.csv</a></span><span class="op">(</span><span class="va">df</span>, <span class="st">"data.csv"</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="va">df_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data.csv"</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-  0.256   0.010   0.267 </code></pre>
+  0.254   0.010   0.265 </code></pre>
 </div>
 </div>
 <p>Now check file size:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.info</span>(<span class="st">"data.csv"</span>)<span class="sc">$</span>size</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/file.info.html">file.info</a></span><span class="op">(</span><span class="st">"data.csv"</span><span class="op">)</span><span class="op">$</span><span class="va">size</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6819327</code></pre>
 </div>
@@ -419,24 +385,21 @@ cookieconsent.run({
 <li>stores everything as text</li>
 <li>requires parsing every time</li>
 <li>guesses types on read</li>
-</ul>
-</section>
-<section id="step-3-save-and-read-as-parquet" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-save-and-read-as-parquet">Step 3 — Save and Read as Parquet</h2>
+</ul></section><section id="step-3-save-and-read-as-parquet" class="level2"><h2 class="anchored" data-anchor-id="step-3-save-and-read-as-parquet">Step 3 — Save and Read as Parquet</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_parquet</span>(df, <span class="st">"data.parquet"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  df_parquet <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(<span class="st">"data.parquet"</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://arrow.apache.org/docs/r/reference/write_parquet.html">write_parquet</a></span><span class="op">(</span><span class="va">df</span>, <span class="st">"data.parquet"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="va">df_parquet</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://arrow.apache.org/docs/r/reference/read_parquet.html">read_parquet</a></span><span class="op">(</span><span class="st">"data.parquet"</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-  0.007   0.000   0.006 </code></pre>
+  0.008   0.001   0.007 </code></pre>
 </div>
 </div>
 <p>Check file size:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.info</span>(<span class="st">"data.parquet"</span>)<span class="sc">$</span>size</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/file.info.html">file.info</a></span><span class="op">(</span><span class="st">"data.parquet"</span><span class="op">)</span><span class="op">$</span><span class="va">size</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3231687</code></pre>
 </div>
@@ -450,8 +413,7 @@ cookieconsent.run({
 <blockquote class="blockquote">
 <p><strong>Why This Matters in Practice?</strong></p>
 </blockquote>
-<section id="speed" class="level3">
-<h3 class="anchored" data-anchor-id="speed">1️⃣ Speed</h3>
+<section id="speed" class="level3"><h3 class="anchored" data-anchor-id="speed">1️⃣ Speed</h3>
 <p>Parquet reads are faster because:</p>
 <ul>
 <li>it stores columns independently</li>
@@ -459,18 +421,13 @@ cookieconsent.run({
 <li>it uses compression effectively</li>
 </ul>
 <p>This becomes significant as datasets grow.</p>
-</section>
-<section id="file-size" class="level3">
-<h3 class="anchored" data-anchor-id="file-size">2️⃣ File Size</h3>
+</section><section id="file-size" class="level3"><h3 class="anchored" data-anchor-id="file-size">2️⃣ File Size</h3>
 <p>Parquet compresses automatically. In many real-world cases parquet files are 30–70% smaller than CSV equivalents:</p>
 <ul>
 <li>Less storage</li>
 <li>Faster transfer</li>
 <li>Cleaner repositories</li>
-</ul>
-</section>
-<section id="type-safety" class="level3">
-<h3 class="anchored" data-anchor-id="type-safety">3️⃣ Type Safety</h3>
+</ul></section><section id="type-safety" class="level3"><h3 class="anchored" data-anchor-id="type-safety">3️⃣ Type Safety</h3>
 <p>CSV does not store types.</p>
 <p>Every read operation reinterprets:</p>
 <ul>
@@ -481,13 +438,10 @@ cookieconsent.run({
 </ul>
 <p>Parquet preserves them.</p>
 <p>This reduces silent coercion bugs.</p>
-</section>
-</section>
-<section id="bonus-select-columns-without-loading-everything" class="level2">
-<h2 class="anchored" data-anchor-id="bonus-select-columns-without-loading-everything">Bonus — Select Columns Without Loading Everything</h2>
+</section></section><section id="bonus-select-columns-without-loading-everything" class="level2"><h2 class="anchored" data-anchor-id="bonus-select-columns-without-loading-everything">Bonus — Select Columns Without Loading Everything</h2>
 <p>With arrow, you can load only what you need:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_parquet</span>(<span class="st">"data.parquet"</span>, <span class="at">col_select =</span> <span class="fu">c</span>(<span class="st">"id"</span>, <span class="st">"value"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://arrow.apache.org/docs/r/reference/read_parquet.html">read_parquet</a></span><span class="op">(</span><span class="st">"data.parquet"</span>, col_select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"value"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 200,000 × 2
       id   value
@@ -511,8 +465,7 @@ cookieconsent.run({
 <li>remote storage</li>
 <li>modular pipelines</li>
 </ul>
-<section id="when-csv-is-still-appropriate" class="level3">
-<h3 class="anchored" data-anchor-id="when-csv-is-still-appropriate">When CSV Is Still Appropriate</h3>
+<section id="when-csv-is-still-appropriate" class="level3"><h3 class="anchored" data-anchor-id="when-csv-is-still-appropriate">When CSV Is Still Appropriate</h3>
 <p>CSV is fine when:</p>
 <ul>
 <li>exporting for non-technical users</li>
@@ -523,10 +476,7 @@ cookieconsent.run({
 <p><strong>But for analytical workflows?</strong></p>
 </blockquote>
 <p>Parquet is usually superior.</p>
-</section>
-</section>
-<section id="workflow-recommendation" class="level2">
-<h2 class="anchored" data-anchor-id="workflow-recommendation">Workflow Recommendation</h2>
+</section></section><section id="workflow-recommendation" class="level2"><h2 class="anchored" data-anchor-id="workflow-recommendation">Workflow Recommendation</h2>
 <p>For reproducible projects:</p>
 <ul>
 <li>Raw data → store as Parquet</li>
@@ -570,10 +520,7 @@ Tip
 </div>
 
 
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -979,8 +926,7 @@ Tip
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>Copyright © 2023-26, Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://federicagazzelloni.com">Federica Gazzelloni</a><br>Powered by: Quarto &amp; <a href="https://datametricus.github.io">DataMetricus</a> | <a href="../../../../LICENSE.html">MIT License</a>.</p>
 </div>   
@@ -989,7 +935,7 @@ Tip
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/08-02222026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/RomeRUsersGroup">
       <i class="bi bi-github" role="img">
 </i> 
@@ -1014,11 +960,9 @@ Tip
     </a>
   </li>  
 </ul>
-    </div>
+</div>
   </div>
 </footer>
-
-
 
 
 <script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>
