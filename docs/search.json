@@ -336,6 +336,20 @@
     "text": "Editorial Stance\nLoops are not bad. Copy–paste is worse.\nThe goal is not to write clever code. The goal is to write less duplicated code.\nIteration becomes powerful when:\n\nstructure is clean\nshape is correct\nlogic is stable\n\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n\nDuplication is a signal\nReplace repetition with controlled iteration\nPreallocate when storing results\nRemember print() inside ggplot loops\nIf you are looping across columns, reconsider the data shape\n\n\n\nIteration is not about complexity. It is about discipline.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   },
   {
+    "objectID": "content/rhacks/posts/15-04122026/index.html",
+    "href": "content/rhacks/posts/15-04122026/index.html",
+    "title": "Validate AI-Generated Data Before Using It",
+    "section": "",
+    "text": "AI tools can now generate data, simulate datasets, and write transformation code in seconds.\nThis is useful. But it introduces a new risk."
+  },
+  {
+    "objectID": "content/rhacks/posts/15-04122026/index.html#a-typical-situation",
+    "href": "content/rhacks/posts/15-04122026/index.html#a-typical-situation",
+    "title": "Validate AI-Generated Data Before Using It",
+    "section": "1️⃣ A Typical Situation",
+    "text": "1️⃣ A Typical Situation\nYou ask AI to generate a dataset:\n\ndf &lt;- data.frame(\n  age = c(25, 30, 45, 52),\n  income = c(20000, 35000, 50000, 62000),\n  group = c(\"A\", \"A\", \"B\", \"B\")\n)\n\nEverything looks fine.\nBut in real workflows, problems are often subtle:\nwrong ranges unrealistic distributions inconsistent categories hidden missing values\nThese do not always produce errors. They produce misleading results.\n2️⃣ A Simple Validation Pattern\nStart with basic structure checks:\nstr(df)\nsummary(df)\n3️⃣ Check for Missing and Duplicated Values\ncolSums(is.na(df))\nany(duplicated(df))\n4️⃣ Check Logical Consistency\ndf |&gt; dplyr::filter(age &lt; 0)\ndf |&gt; dplyr::filter(income &lt; 0)\n5️⃣ A Small Reusable Habit\nstructure → str()\nsummary → summary()\nmissing → colSums(is.na())\nduplicates → duplicated()\nlogic → simple filters\n\n\n\n\n\n\nTip\n\n\n\nAI accelerates workflows. Validation protects them.\n\n\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n•   AI-generated data may contain subtle issues\n•   structure checks reveal hidden problems\n•   missing values and duplicates must be verified\n•   logical consistency matters as much as format\n•   validation should be a standard habit\n\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
+  },
+  {
     "objectID": "content/rhacks/posts/13-03292026/index.html",
     "href": "content/rhacks/posts/13-03292026/index.html",
     "title": "Calling a Chatbot from R with ellmer",
@@ -455,48 +469,6 @@
     "text": "Making This a Habit\nThese checks are not meant to clutter your script. They are meant to become automatic.\nA good rule of thumb:\n\nAfter anything that changes rows → check nrow()\n\nAfter anything that changes values → check summary() or range()\n\nAfter anything that combines data → check NAs\n\nBefore summarising → check group sizes\n\nOne line is often enough.\n\n\n\n\n\n\nIn Short\n\nMost data bugs enter during transformations\nOne-line checks catch problems early\nThey cost seconds and save hours\nMake them a habit, not an afterthought\n\n\n\n\nThis is not about perfection. It’s about seeing problems while they’re still small.\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group, follow us here:\n👉 https://www.meetup.com/rome-r-users-group/"
   },
   {
-    "objectID": "content/news/index.html",
-    "href": "content/news/index.html",
-    "title": "R Consortium Events & Workshops",
-    "section": "",
-    "text": "Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:"
-  },
-  {
-    "objectID": "content/news/index.html#news",
-    "href": "content/news/index.html#news",
-    "title": "R Consortium Events & Workshops",
-    "section": "",
-    "text": "Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:"
-  },
-  {
-    "objectID": "content/news/index.html#check-recent-posts-from-selected-r-and-data-science-sources",
-    "href": "content/news/index.html#check-recent-posts-from-selected-r-and-data-science-sources",
-    "title": "R Consortium Events & Workshops",
-    "section": "Check recent posts from selected R and data science sources:",
-    "text": "Check recent posts from selected R and data science sources:\n\n\n\n\n\n\nDate\nSource\nTitle\n\n\n\n\n2026-03-30\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W14 ggauto, alt text, scientific coffee\n\n\n\n2026-03-23\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W13 What’s new in dplyr, Atmospheric simulation\n\n\n\n2026-03-17\nR-Ladies Rome\nWhat’s New in {dplyr} 1.2.0: A Tour with Isabella Velásquez\n\n\n\n2026-03-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W12 Sharing across shiny modules, F1 data\n\n\n\n2026-03-09\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W11 claude beeswarm rstudio\n\n\n\n2026-03-02\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2025-W10 tidymodels, tidyplots, ggvariant package\n\n\n\n2026-02-23\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W09 Git commits, Pick a License, and How to choose the best LLM using R and vitals\n\n\n\n2026-02-16\nR-Ladies Rome\nA Year of Learning, Growth, and Community at R-Ladies Rome 🌟\n\n\n\n2026-02-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W08 submissions working group, nested Lists with xfun::tabset\n\n\n\n2026-02-15\nR-Ladies Rome\nFrom Data to Decisions: Digital Twins for Smarter Maintenance"
-  },
-  {
-    "objectID": "LICENSE.html",
-    "href": "LICENSE.html",
-    "title": "MIT License",
-    "section": "",
-    "text": "MIT License\nCopyright (c) 2025 Rome-R-Users-Group authors\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "content/resources/index.html",
-    "href": "content/resources/index.html",
-    "title": "Rome R-Users Group",
-    "section": "",
-    "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
-  },
-  {
-    "objectID": "content/resources/index.html#resources",
-    "href": "content/resources/index.html#resources",
-    "title": "Rome R-Users Group",
-    "section": "",
-    "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
-  },
-  {
     "objectID": "content/rhacks/posts/09-03012026/index.html",
     "href": "content/rhacks/posts/09-03012026/index.html",
     "title": "What R Is Best For (And Why It Still Matters)",
@@ -551,6 +523,97 @@
     "title": "What R Is Best For (And Why It Still Matters)",
     "section": "The Practical Conclusion",
     "text": "The Practical Conclusion\nIf your work is:\n\nstatistical\nanalytical\nexploratory\nreport-driven\nreproducible\n\nR is still one of the most efficient tools available.\nNot because it replaces everything.\nBut because it was designed for analysis.\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n\nR excels at statistics and modeling\nR is expressive for analytical workflows\nR integrates naturally with reporting\nR remains extremely strong for EDA and visualisation\nChoose tools based on task, not trend\n\n\n\nR does not need to compete with everything.\nIt just needs to do what it does best.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
+  },
+  {
+    "objectID": "content/resources/index.html",
+    "href": "content/resources/index.html",
+    "title": "Rome R-Users Group",
+    "section": "",
+    "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
+  },
+  {
+    "objectID": "content/resources/index.html#resources",
+    "href": "content/resources/index.html#resources",
+    "title": "Rome R-Users Group",
+    "section": "",
+    "text": "Some recommended R books…\n\nR for Data Science by Hadley Wickham & Garrett Grolemund - A comprehensive guide to data science using R and the tidyverse.\n\nAdvanced R by Hadley Wickham - A deep dive into the R programming language and its advanced features.\nThe Art of R Programming by Norman Matloff - A thorough introduction to R programming for beginners and experienced programmers alike.\nR in Action by Robert Kabacoff - A practical guide to R with numerous examples and case studies.\nData Science with R by Garrett Grolemund & Hadley Wickham - A hands-on guide to data science using R.\nPractical Statistics for Data Scientists by Peter Bruce & Andrew Bruce - A practical guide to statistical methods for data science using R.\n\n\n\n\nList of R packages containers…\n\nCRAN - The Comprehensive R Archive Network, the primary repository for R packages.\nBioconductor - A repository for bioinformatics and computational biology packages in R.\nRopensci - A collection of R packages for open science and reproducible research.\n\n\n\n\nLinks to tutorials…\n\nRStudio Education - A variety of tutorials and resources for learning R and RStudio.\nSwirl - An interactive learning platform that teaches R programming and data science directly in the R console.\nDataCamp - Online courses and tutorials for learning R and data science.\nCoursera R Courses - A variety of R programming courses available on Coursera.\nYouTube Channels - Numerous channels and videos dedicated to R programming and data science.\n\n\n\n\nUseful references…\n\nRStudio Cheatsheets - Handy reference sheets for various R packages and functions.\nCRAN Task Views - Curated lists of R packages for specific topics.\nTidyverse - A collection of R packages designed for data science."
+  },
+  {
+    "objectID": "LICENSE.html",
+    "href": "LICENSE.html",
+    "title": "MIT License",
+    "section": "",
+    "text": "MIT License\nCopyright (c) 2025 Rome-R-Users-Group authors\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "content/news/index.html",
+    "href": "content/news/index.html",
+    "title": "R Consortium Events & Workshops",
+    "section": "",
+    "text": "Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:"
+  },
+  {
+    "objectID": "content/news/index.html#news",
+    "href": "content/news/index.html#news",
+    "title": "R Consortium Events & Workshops",
+    "section": "",
+    "text": "Stay updated with the latest news and resources from the R community. Here are some valuable links to keep you informed and connected:"
+  },
+  {
+    "objectID": "content/news/index.html#check-recent-posts-from-selected-r-and-data-science-sources",
+    "href": "content/news/index.html#check-recent-posts-from-selected-r-and-data-science-sources",
+    "title": "R Consortium Events & Workshops",
+    "section": "Check recent posts from selected R and data science sources:",
+    "text": "Check recent posts from selected R and data science sources:\n\n\n\n\n\n\nDate\nSource\nTitle\n\n\n\n\n2026-03-30\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W14 ggauto, alt text, scientific coffee\n\n\n\n2026-03-23\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W13 What’s new in dplyr, Atmospheric simulation\n\n\n\n2026-03-17\nR-Ladies Rome\nWhat’s New in {dplyr} 1.2.0: A Tour with Isabella Velásquez\n\n\n\n2026-03-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W12 Sharing across shiny modules, F1 data\n\n\n\n2026-03-09\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W11 claude beeswarm rstudio\n\n\n\n2026-03-02\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2025-W10 tidymodels, tidyplots, ggvariant package\n\n\n\n2026-02-23\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W09 Git commits, Pick a License, and How to choose the best LLM using R and vitals\n\n\n\n2026-02-16\nR-Ladies Rome\nA Year of Learning, Growth, and Community at R-Ladies Rome 🌟\n\n\n\n2026-02-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W08 submissions working group, nested Lists with xfun::tabset\n\n\n\n2026-02-15\nR-Ladies Rome\nFrom Data to Decisions: Digital Twins for Smarter Maintenance"
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "",
+    "text": "AI can now generate R code in seconds.\nBut when that code breaks, something interesting happens.\nMost people do not debug it.\nThey regenerate it."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#a-typical-situation",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#a-typical-situation",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "1️⃣ A Typical Situation",
+    "text": "1️⃣ A Typical Situation\nYou run a pipeline:\n\ndf |&gt;\n  dplyr::filter(value &gt; 10) |&gt;\n  dplyr::mutate(rate = value / total) |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nAnd something fails.\nYou get: - an error\n- a warning\n- or a result that does not make sense\nThe usual reaction is to change the code.\nBut that is guessing."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#the-structural-view",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#the-structural-view",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "2️⃣ The Structural View",
+    "text": "2️⃣ The Structural View\nEvery pipeline has three parts:\n\ninput\n\ntransformation\n\noutput\n\nThe goal is not to fix everything at once.\nThe goal is to isolate where the problem appears.\n\n\n\n\n\n\nTip\n\n\n\nInstead of asking “what is wrong?”, ask:\n“where does it start going wrong?”"
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#break-the-pipeline",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#break-the-pipeline",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "3️⃣ Break the Pipeline",
+    "text": "3️⃣ Break the Pipeline\nRun the code step by step.\n\nstep1 &lt;- df |&gt;\n  dplyr::filter(value &gt; 10)\n\nstep2 &lt;- step1 |&gt;\n  dplyr::mutate(rate = value / total)\n\nstep3 &lt;- step2 |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nNow you can inspect each stage."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#check-assumptions",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#check-assumptions",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "4️⃣ Check Assumptions",
+    "text": "4️⃣ Check Assumptions\nAt each step, verify what you expect:\n\nsummary(step1)\nsummary(step2)\nsummary(step3)\n\nYou are checking:\n\ndoes the data look reasonable?\n\nare there unexpected values?\n\ndid a transformation introduce problems?\n\nThis is often enough to identify the issue."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#a-simple-debugging-habit",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#a-simple-debugging-habit",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "5️⃣ A Simple Debugging Habit",
+    "text": "5️⃣ A Simple Debugging Habit\nInstead of rewriting code, apply a pattern:\n\nrun pipelines step-by-step\n\nstore intermediate results\n\ninspect outputs at each stage\n\nverify assumptions before continuing\n\nThis takes a few seconds.\nBut it removes guesswork."
+  },
+  {
+    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#why-this-matters",
+    "href": "content/rhacks/posts/16-04192026/16-04192026.html#why-this-matters",
+    "title": "Stop Guessing Why Your Code Breaks",
+    "section": "Why This Matters",
+    "text": "Why This Matters\nAI-generated code often looks correct.\nBut small issues can appear:\n\nmissing values\n\ndivisions by zero\n\nincorrect assumptions about columns\n\nunexpected data types\n\nIf you only rerun or regenerate code, you never see where the problem started.\nDebugging is not trial and error.\nIt is observation.\n\n\n\n\n\n\nIn Short\n\nerrors are located, not random\n\npipelines should be broken into steps\n\nintermediate outputs reveal problems\n\nassumptions must be verified\n\ndebugging is a method, not a guess\n\n\n\n\nAI can write code.\nYou still need to understand where it breaks.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   },
   {
     "objectID": "content/rhacks/posts/10-03082026/index.html",
@@ -635,6 +698,48 @@
     "title": "When to Pivot: Spotting Data Shape Problems Early",
     "section": "Industry update (short note)",
     "text": "Industry update (short note)\nPosit has opened a private beta of an AI assistant embedded directly in RStudio. If you’re curious to try it, you can join the waiting list here:\n👉 https://posit.co/products/enterprise/ai/\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group, follow us here:\n👉 https://www.meetup.com/rome-r-users-group/"
+  },
+  {
+    "objectID": "content/rhacks/posts/14-04052026/index.html",
+    "href": "content/rhacks/posts/14-04052026/index.html",
+    "title": "Understanding n-grams in R",
+    "section": "",
+    "text": "Many modern AI systems can generate text, answer questions, and even write code. This often makes them feel complex or mysterious. But if we step back, the basic question behind language models is surprisingly simple: given a sequence of words,\nOne of the earliest and simplest ways to approach this problem was through n-grams. An n-gram is simply a sequence of n consecutive words extracted from text. By turning sentences into these sequences, language stops being just text and becomes something we can count, compare, and analyse.\nThis is why n-grams matter.\nBefore neural networks and transformers, there were patterns of words and frequencies of occurrence. Understanding this small idea makes the logic of language models much less mysterious."
+  },
+  {
+    "objectID": "content/rhacks/posts/14-04052026/index.html#a-simple-n-gram-example-in-r",
+    "href": "content/rhacks/posts/14-04052026/index.html#a-simple-n-gram-example-in-r",
+    "title": "Understanding n-grams in R",
+    "section": "1️⃣ A simple n-gram example in R",
+    "text": "1️⃣ A simple n-gram example in R\nWe can start from a very small sentence and extract single words, pairs of words, or groups of three words. This is enough to see how text becomes structured data.\n\nlibrary(tidytext)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(tibble)\n\ntext &lt;- tibble(\n  text = \"R makes data science reproducible\"\n)\n\ntext |&gt;\n  unnest_tokens(word, text)\n\nIf we move from unigrams to bigrams, we start looking at pairs of consecutive words:\n\ntext |&gt;\n  unnest_tokens(bigram, text, \n                token = \"ngrams\", n = 2)\n\nThis small change is already important. We are no longer looking at words in isolation, but at local word patterns."
+  },
+  {
+    "objectID": "content/rhacks/posts/14-04052026/index.html#from-frequency-to-probability",
+    "href": "content/rhacks/posts/14-04052026/index.html#from-frequency-to-probability",
+    "title": "Understanding n-grams in R",
+    "section": "2️⃣ From frequency to probability",
+    "text": "2️⃣ From frequency to probability\nOnce we extract these word pairs, we can count how often they appear. That is the first step toward a language model.\n\ntext2 &lt;- tibble(\n  text = c(\n    \"R makes data science reproducible\",\n    \"R makes analysis transparent\",\n    \"R makes data workflows easier\"\n  )\n)\n\nbigram_model &lt;- text2 |&gt;\n  unnest_tokens(bigram, text, token = \"ngrams\", n = 2) |&gt;\n  separate(bigram, into = c(\"word1\", \"word2\"), \n           sep = \" \") |&gt;\n  count(word1, word2) |&gt;\n  group_by(word1) |&gt;\n  mutate(prob = n / sum(n))\n\nbigram_model\n\nAt this point, we are doing something more interesting than simple counting. We are estimating the probability of seeing a second word given a first word.\nThat is the core transition: frequency becomes probability, and probability makes prediction possible."
+  },
+  {
+    "objectID": "content/rhacks/posts/14-04052026/index.html#a-tiny-next-word-predictor",
+    "href": "content/rhacks/posts/14-04052026/index.html#a-tiny-next-word-predictor",
+    "title": "Understanding n-grams in R",
+    "section": "3️⃣ A tiny next-word predictor",
+    "text": "3️⃣ A tiny next-word predictor\nNow we can wrap this logic into a very small function. Given a word, it will return the most likely next word based on what it has seen in the text.\n\npredict_next &lt;- function(word) {\n  bigram_model |&gt;\n    filter(word1 == word) |&gt;\n    slice_max(prob, n = 1)\n}\n\npredict_next(\"makes\")\n\nThis is obviously a tiny model, but conceptually it is already doing something very important: it is using observed patterns to guess what might come next.\nModern large language models do this in much more sophisticated ways, but the underlying intuition is still related to prediction from context."
+  },
+  {
+    "objectID": "content/rhacks/posts/14-04052026/index.html#what-to-focus-on",
+    "href": "content/rhacks/posts/14-04052026/index.html#what-to-focus-on",
+    "title": "Understanding n-grams in R",
+    "section": "4️⃣ What to focus on",
+    "text": "4️⃣ What to focus on\nIf you only keep a few ideas from this issue, these are the ones worth remembering:\n\n\nText becomes data once we split it into word sequences that can be counted and analysed.\n\nFrequency is the starting point because repeated sequences reveal structure in language.\n\nProbability makes prediction possible by turning counts into likelihoods of what comes next.\n\nModern LLMs extend the same intuition with more advanced mathematics and much larger amounts of text."
+  },
+  {
+    "objectID": "content/rhacks/posts/14-04052026/index.html#final-consideration",
+    "href": "content/rhacks/posts/14-04052026/index.html#final-consideration",
+    "title": "Understanding n-grams in R",
+    "section": "Final consideration",
+    "text": "Final consideration\nN-grams are not a complete explanation of modern AI, but they are one of the simplest ways to understand how language can be modelled. Starting from these small building blocks makes it easier to see that language models are not magic systems. They are systems that learn patterns and use those patterns to make predictions.\nIn our upcoming R-Ladies Rome session, we will take this idea further and show in practice how a simple next-word prediction approach can be built step by step in R, and how this connects to the broader logic behind language models.\nIf you would like to see this built live and understand how these ideas work in practice, you can sign up for the event here:\n👉 https://www.meetup.com/rladies-rome/events/313880594\n\n\n\n\n\n\nIn Short\n\nn-grams are sequences of words\nthey help turn text into structured data\nfrequencies can be converted into probabilities\na simple function can already guess the next word\nthis is one of the conceptual roots of language models\n\n\n\n\nA small idea like this often makes a much bigger system easier to understand.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   },
   {
     "objectID": "content/rhacks/posts/02-12052025/index.html",
