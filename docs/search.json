@@ -567,50 +567,50 @@
     "text": "Check recent posts from selected R and data science sources:\n\n\n\n\n\n\nDate\nSource\nTitle\n\n\n\n\n2026-03-30\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W14 ggauto, alt text, scientific coffee\n\n\n\n2026-03-23\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W13 What’s new in dplyr, Atmospheric simulation\n\n\n\n2026-03-17\nR-Ladies Rome\nWhat’s New in {dplyr} 1.2.0: A Tour with Isabella Velásquez\n\n\n\n2026-03-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W12 Sharing across shiny modules, F1 data\n\n\n\n2026-03-09\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W11 claude beeswarm rstudio\n\n\n\n2026-03-02\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2025-W10 tidymodels, tidyplots, ggvariant package\n\n\n\n2026-02-23\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W09 Git commits, Pick a License, and How to choose the best LLM using R and vitals\n\n\n\n2026-02-16\nR-Ladies Rome\nA Year of Learning, Growth, and Community at R-Ladies Rome 🌟\n\n\n\n2026-02-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W08 submissions working group, nested Lists with xfun::tabset\n\n\n\n2026-02-15\nR-Ladies Rome\nFrom Data to Decisions: Digital Twins for Smarter Maintenance"
   },
   {
-    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html",
-    "href": "content/rhacks/posts/16-04192026/16-04192026.html",
+    "objectID": "content/rhacks/posts/16-04192026/index.html",
+    "href": "content/rhacks/posts/16-04192026/index.html",
     "title": "Stop Guessing Why Your Code Breaks",
     "section": "",
     "text": "AI can now generate R code in seconds.\nBut when that code breaks, something interesting happens.\nMost people do not debug it.\nThey regenerate it."
   },
   {
-    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#a-typical-situation",
-    "href": "content/rhacks/posts/16-04192026/16-04192026.html#a-typical-situation",
+    "objectID": "content/rhacks/posts/16-04192026/index.html#a-typical-situation",
+    "href": "content/rhacks/posts/16-04192026/index.html#a-typical-situation",
     "title": "Stop Guessing Why Your Code Breaks",
     "section": "1️⃣ A Typical Situation",
-    "text": "1️⃣ A Typical Situation\nYou run a pipeline:\n\ndf |&gt;\n  dplyr::filter(value &gt; 10) |&gt;\n  dplyr::mutate(rate = value / total) |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nAnd something fails.\nYou get: - an error\n- a warning\n- or a result that does not make sense\nThe usual reaction is to change the code.\nBut that is guessing."
+    "text": "1️⃣ A Typical Situation\nYou run a pipeline:\n\ndf |&gt;\n  dplyr::filter(value &gt; 10) |&gt;\n  dplyr::mutate(rate = value / total) |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nAnd something fails.\nYou get:\n\nan error\n\na warning\n\nor a result that does not make sense\n\nThe usual reaction is to change the code.\nBut that is guessing."
   },
   {
-    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#the-structural-view",
-    "href": "content/rhacks/posts/16-04192026/16-04192026.html#the-structural-view",
+    "objectID": "content/rhacks/posts/16-04192026/index.html#the-structural-view",
+    "href": "content/rhacks/posts/16-04192026/index.html#the-structural-view",
     "title": "Stop Guessing Why Your Code Breaks",
     "section": "2️⃣ The Structural View",
     "text": "2️⃣ The Structural View\nEvery pipeline has three parts:\n\ninput\n\ntransformation\n\noutput\n\nThe goal is not to fix everything at once.\nThe goal is to isolate where the problem appears.\n\n\n\n\n\n\nTip\n\n\n\nInstead of asking “what is wrong?”, ask:\n“where does it start going wrong?”"
   },
   {
-    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#break-the-pipeline",
-    "href": "content/rhacks/posts/16-04192026/16-04192026.html#break-the-pipeline",
+    "objectID": "content/rhacks/posts/16-04192026/index.html#break-the-pipeline",
+    "href": "content/rhacks/posts/16-04192026/index.html#break-the-pipeline",
     "title": "Stop Guessing Why Your Code Breaks",
     "section": "3️⃣ Break the Pipeline",
     "text": "3️⃣ Break the Pipeline\nRun the code step by step.\n\nstep1 &lt;- df |&gt;\n  dplyr::filter(value &gt; 10)\n\nstep2 &lt;- step1 |&gt;\n  dplyr::mutate(rate = value / total)\n\nstep3 &lt;- step2 |&gt;\n  dplyr::summarise(avg = mean(rate))\n\nNow you can inspect each stage."
   },
   {
-    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#check-assumptions",
-    "href": "content/rhacks/posts/16-04192026/16-04192026.html#check-assumptions",
+    "objectID": "content/rhacks/posts/16-04192026/index.html#check-assumptions",
+    "href": "content/rhacks/posts/16-04192026/index.html#check-assumptions",
     "title": "Stop Guessing Why Your Code Breaks",
     "section": "4️⃣ Check Assumptions",
     "text": "4️⃣ Check Assumptions\nAt each step, verify what you expect:\n\nsummary(step1)\nsummary(step2)\nsummary(step3)\n\nYou are checking:\n\ndoes the data look reasonable?\n\nare there unexpected values?\n\ndid a transformation introduce problems?\n\nThis is often enough to identify the issue."
   },
   {
-    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#a-simple-debugging-habit",
-    "href": "content/rhacks/posts/16-04192026/16-04192026.html#a-simple-debugging-habit",
+    "objectID": "content/rhacks/posts/16-04192026/index.html#a-simple-debugging-habit",
+    "href": "content/rhacks/posts/16-04192026/index.html#a-simple-debugging-habit",
     "title": "Stop Guessing Why Your Code Breaks",
     "section": "5️⃣ A Simple Debugging Habit",
     "text": "5️⃣ A Simple Debugging Habit\nInstead of rewriting code, apply a pattern:\n\nrun pipelines step-by-step\n\nstore intermediate results\n\ninspect outputs at each stage\n\nverify assumptions before continuing\n\nThis takes a few seconds.\nBut it removes guesswork."
   },
   {
-    "objectID": "content/rhacks/posts/16-04192026/16-04192026.html#why-this-matters",
-    "href": "content/rhacks/posts/16-04192026/16-04192026.html#why-this-matters",
+    "objectID": "content/rhacks/posts/16-04192026/index.html#why-this-matters",
+    "href": "content/rhacks/posts/16-04192026/index.html#why-this-matters",
     "title": "Stop Guessing Why Your Code Breaks",
     "section": "Why This Matters",
     "text": "Why This Matters\nAI-generated code often looks correct.\nBut small issues can appear:\n\nmissing values\n\ndivisions by zero\n\nincorrect assumptions about columns\n\nunexpected data types\n\nIf you only rerun or regenerate code, you never see where the problem started.\nDebugging is not trial and error.\nIt is observation.\n\n\n\n\n\n\nIn Short\n\nerrors are located, not random\n\npipelines should be broken into steps\n\nintermediate outputs reveal problems\n\nassumptions must be verified\n\ndebugging is a method, not a guess\n\n\n\n\nAI can write code.\nYou still need to understand where it breaks.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
