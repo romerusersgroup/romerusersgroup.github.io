@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.37">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Federica Gazzelloni">
 <meta name="dcterms.date" content="2026-03-29">
 <meta name="description" content="R-Hacks N.13">
+
 <title>Calling a Chatbot from R with ellmer – Rome R-Users Group</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -57,6 +63,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
@@ -69,15 +76,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-8b4baf804e461d9b72633f0de59a0cac.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-8001c2e1f85531b6432cdb718d58219b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../../../../site_libs/bootstrap/bootstrap-5e5002d361fcd684ebd8e1137bdd294c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -103,13 +110,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id="></script><script type="text/plain" cookie-consent="tracking">
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id="></script>
+
+<script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '', { 'anonymize_ip': true});
-</script><script type="text/javascript" charset="UTF-8">
+</script>
+
+<script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({
   "notice_banner_type":"headline",
@@ -124,7 +136,11 @@ cookieconsent.run({
 "language":"en"
   });
 });
-</script><style>html{ scroll-behavior: smooth; }</style>
+</script> 
+  
+<style>html{ scroll-behavior: smooth; }</style>
+
+
 <link rel="stylesheet" href="../../../../styles.css">
 <meta property="og:title" content="Calling a Chatbot from R with ellmer – Rome R-Users Group">
 <meta property="og:description" content="R-Hacks N.13">
@@ -143,13 +159,18 @@ cookieconsent.run({
 <meta name="twitter:image-width" content="1507">
 <meta name="twitter:card" content="summary_large_image">
 </head>
+
 <body class="floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content"><img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content"></a>
+    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo light-content">
+    <img src="../../../../images/logos/r-logo.png" alt="RUsers Logo" class="navbar-logo dark-content">
+    </a>
     <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Rome R-Users Group</span>
     </a>
@@ -160,7 +181,7 @@ cookieconsent.run({
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
@@ -184,8 +205,8 @@ cookieconsent.run({
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">About</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">
-<li>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-about">    
+        <li>
     <a class="dropdown-item" href="../../../../about/organizers.html">
  <span class="dropdown-text">Organizers</span></a>
   </li>  
@@ -194,49 +215,56 @@ cookieconsent.run({
  <span class="dropdown-text">Sponsor</span></a>
   </li>  
     </ul>
-</li>
+  </li>
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.meetup.com/pro/r-user-groups/"> <i class="bi bi-globe" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
     <a class="nav-link" href="https://rladiesrome.org"> 
 <span class="menu-text"><img src="../../../../images/logos/RLadiesRome_logo_transparent.png" class="img-fluid" width="70" alt="R-Ladies Rome"><strong>R-Ladies Rome</strong></span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="mailto:romerusersgroup@gmail.com" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav><div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden">
-<i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
+    </nav>
+  <div id="quarto-announcement" data-announcement-id="fbd1db5ff9ac6f66ff04db837c69d174" class="alert alert-primary hidden"><i class="bi bi-balloon-heart quarto-announcement-icon"></i><div class="quarto-announcement-content">
 <p>Alert! Free tutorials available!</p>
-</div>
-<i class="bi bi-x-lg quarto-announcement-action"></i>
-</div>
-</header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#copy-code-paste-into-chatgpt-copy-result-paste-back-into-r." id="toc-copy-code-paste-into-chatgpt-copy-result-paste-back-into-r." class="nav-link active" data-scroll-target="#copy-code-paste-into-chatgpt-copy-result-paste-back-into-r.">Copy code → paste into ChatGPT → copy result → paste back into R.</a></li>
+  <li><a href="#copy-code-paste-into-chatgpt-copy-result-paste-back-into-r." id="toc-copy-code-paste-into-chatgpt-copy-result-paste-back-into-r." class="nav-link active" data-scroll-target="#copy-code-paste-into-chatgpt-copy-result-paste-back-into-r.">Copy code → paste into ChatGPT → copy result → paste back into R.</a></li>
   <li><a href="#a-minimal-ellmer-example" id="toc-a-minimal-ellmer-example" class="nav-link" data-scroll-target="#a-minimal-ellmer-example">1️⃣ A Minimal ellmer Example</a></li>
   <li><a href="#a-quick-comparison-with-python" id="toc-a-quick-comparison-with-python" class="nav-link" data-scroll-target="#a-quick-comparison-with-python">2️⃣ A Quick Comparison with Python</a></li>
   <li><a href="#a-practical-analyst-example" id="toc-a-practical-analyst-example" class="nav-link" data-scroll-target="#a-practical-analyst-example">3️⃣ A Practical Analyst Example</a></li>
   <li><a href="#a-reusable-prompt-pattern" id="toc-a-reusable-prompt-pattern" class="nav-link" data-scroll-target="#a-reusable-prompt-pattern">4️⃣ A Reusable Prompt Pattern</a></li>
   <li><a href="#when-this-is-most-useful" id="toc-when-this-is-most-useful" class="nav-link" data-scroll-target="#when-this-is-most-useful">5️⃣ When This Is Most Useful</a></li>
   <li><a href="#a-small-safety-rule" id="toc-a-small-safety-rule" class="nav-link" data-scroll-target="#a-small-safety-rule">6️⃣ A Small Safety Rule</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/13-03292026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/13-03292026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title">Calling a Chatbot from R with ellmer</h1>
 <p class="subtitle lead">Integrating AI directly into your R workflow</p>
   <div class="quarto-categories">
@@ -274,14 +302,19 @@ cookieconsent.run({
   
 
 
-</header><p><br></p>
+</header>
+
+
+<p><br></p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="images/image-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="ChatGPT generated image"></p>
+<figure class="figure">
+<p><img src="images/image-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="ChatGPT generated image"></p>
 </figure>
 </div>
 <p>Many analysts now use AI tools while working in R.</p>
 <p>But the workflow often looks like this:</p>
-<section id="copy-code-paste-into-chatgpt-copy-result-paste-back-into-r." class="level3"><h3 class="anchored" data-anchor-id="copy-code-paste-into-chatgpt-copy-result-paste-back-into-r.">Copy code → paste into ChatGPT → copy result → paste back into R.</h3>
+<section id="copy-code-paste-into-chatgpt-copy-result-paste-back-into-r." class="level3">
+<h3 class="anchored" data-anchor-id="copy-code-paste-into-chatgpt-copy-result-paste-back-into-r.">Copy code → paste into ChatGPT → copy result → paste back into R.</h3>
 <p>This breaks reproducibility and interrupts analytical flow.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -296,16 +329,20 @@ Note
 <p>A better approach is simple: <strong>Call the model directly from R.</strong></p>
 </div>
 </div>
-<section id="packages-like-ellmer-make-this-possible-with-just-a-few-lines-of-code." class="level4"><h4 class="anchored" data-anchor-id="packages-like-ellmer-make-this-possible-with-just-a-few-lines-of-code.">Packages like <code>{ellmer}</code> make this possible with just a few lines of code.</h4>
+<section id="packages-like-ellmer-make-this-possible-with-just-a-few-lines-of-code." class="level4">
+<h4 class="anchored" data-anchor-id="packages-like-ellmer-make-this-possible-with-just-a-few-lines-of-code.">Packages like <code>{ellmer}</code> make this possible with just a few lines of code.</h4>
 <p>This R-Hack shows how to make AI part of your workflow instead of a separate tool.</p>
-</section></section><section id="a-minimal-ellmer-example" class="level2"><h2 class="anchored" data-anchor-id="a-minimal-ellmer-example">1️⃣ A Minimal ellmer Example</h2>
+</section>
+</section>
+<section id="a-minimal-ellmer-example" class="level2">
+<h2 class="anchored" data-anchor-id="a-minimal-ellmer-example">1️⃣ A Minimal ellmer Example</h2>
 <p>The simplest way to call a chat model from R looks like this:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ellmer.tidyverse.org">ellmer</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu">chat_openai</span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span><span class="st">"Explain what a linear model is in simple terms"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellmer)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_openai</span>()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Explain what a linear model is in simple terms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You now have a chatbot inside your R session.</p>
 <p>This is useful because it keeps:</p>
@@ -317,7 +354,9 @@ Note
 <li>results</li>
 </ul>
 <p>in the same environment.</p>
-</section><section id="a-quick-comparison-with-python" class="level2"><h2 class="anchored" data-anchor-id="a-quick-comparison-with-python">2️⃣ A Quick Comparison with Python</h2>
+</section>
+<section id="a-quick-comparison-with-python" class="level2">
+<h2 class="anchored" data-anchor-id="a-quick-comparison-with-python">2️⃣ A Quick Comparison with Python</h2>
 <p>Many AI examples appear first in Python:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -331,27 +370,29 @@ Note
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.output_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>R can now do something very similar:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ellmer.tidyverse.org">ellmer</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu">chat_openai</span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span><span class="st">"Explain what a linear model is"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellmer)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_openai</span>()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"Explain what a linear model is"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The point is not R vs Python.</p>
 <p>The real advantage is workflow:</p>
 <p>If your data, models, and reports already live in R, calling AI from R keeps everything in one place.</p>
-</section><section id="a-practical-analyst-example" class="level2"><h2 class="anchored" data-anchor-id="a-practical-analyst-example">3️⃣ A Practical Analyst Example</h2>
+</section>
+<section id="a-practical-analyst-example" class="level2">
+<h2 class="anchored" data-anchor-id="a-practical-analyst-example">3️⃣ A Practical Analyst Example</h2>
 <p>One useful habit is asking AI to explain model output.</p>
 <p>For example:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span><span class="st">"</span></span>
-<span><span class="st">Explain this model output in plain English:</span></span>
-<span><span class="st"></span></span>
-<span><span class="st">Residual standard error: 2.31 on 98 degrees of freedom  </span></span>
-<span><span class="st">Multiple R-squared: 0.74  </span></span>
-<span><span class="st"></span></span>
-<span><span class="st">Focus on interpretation, not formulas.</span></span>
-<span><span class="st">"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(<span class="st">"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">Explain this model output in plain English:</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">Residual standard error: 2.31 on 98 degrees of freedom  </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">Multiple R-squared: 0.74  </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">Focus on interpretation, not formulas.</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This can help when:</p>
 <ul>
@@ -364,21 +405,23 @@ Note
 <li>drafting explanations</li>
 </ul>
 <p>Treat this as a drafting assistant, not a final authority.</p>
-</section><section id="a-reusable-prompt-pattern" class="level2"><h2 class="anchored" data-anchor-id="a-reusable-prompt-pattern">4️⃣ A Reusable Prompt Pattern</h2>
+</section>
+<section id="a-reusable-prompt-pattern" class="level2">
+<h2 class="anchored" data-anchor-id="a-reusable-prompt-pattern">4️⃣ A Reusable Prompt Pattern</h2>
 <p>Instead of typing prompts interactively, store them:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">prompt</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
-<span><span class="st">You are a senior data analyst.</span></span>
-<span><span class="st"></span></span>
-<span><span class="st">Explain this regression output for a business audience.</span></span>
-<span><span class="st"></span></span>
-<span><span class="st">Rules:</span></span>
-<span><span class="st">- Keep explanation under 120 words</span></span>
-<span><span class="st">- Avoid statistical jargon</span></span>
-<span><span class="st">- Focus on practical meaning</span></span>
-<span><span class="st">"</span></span>
-<span></span>
-<span><span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span><span class="va">prompt</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>prompt <span class="ot">&lt;-</span> <span class="st">"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">You are a senior data analyst.</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">Explain this regression output for a business audience.</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">Rules:</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">- Keep explanation under 120 words</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">- Avoid statistical jargon</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">- Focus on practical meaning</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>chat<span class="sc">$</span><span class="fu">chat</span>(prompt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This improves:</p>
 <ul>
@@ -389,7 +432,9 @@ Note
 <li>documentation of reasoning</li>
 </ul>
 <p>Prompts become part of your analysis pipeline.</p>
-</section><section id="when-this-is-most-useful" class="level2"><h2 class="anchored" data-anchor-id="when-this-is-most-useful">5️⃣ When This Is Most Useful</h2>
+</section>
+<section id="when-this-is-most-useful" class="level2">
+<h2 class="anchored" data-anchor-id="when-this-is-most-useful">5️⃣ When This Is Most Useful</h2>
 <p>Calling AI from R works especially well when you:</p>
 <ul>
 <li>document analysis steps<br>
@@ -423,7 +468,9 @@ Tip
 <p>Think of AI as a workflow accelerator, not an analytical authority.</p>
 </div>
 </div>
-</section><section id="a-small-safety-rule" class="level2"><h2 class="anchored" data-anchor-id="a-small-safety-rule">6️⃣ A Small Safety Rule</h2>
+</section>
+<section id="a-small-safety-rule" class="level2">
+<h2 class="anchored" data-anchor-id="a-small-safety-rule">6️⃣ A Small Safety Rule</h2>
 <p>Always:</p>
 <ul>
 <li>review outputs critically<br>
@@ -444,8 +491,7 @@ Tip
 <p>In Short</p>
 <ul>
 <li>Calling AI from R avoids copy-paste workflows</li>
-<li>
-<a href="https://ellmer.tidyverse.org">ellmer</a> makes LLM integration simple</li>
+<li><code>{ellmer}</code> makes LLM integration simple</li>
 <li>AI helps explain models and draft text</li>
 <li>Store prompts for reproducibility</li>
 <li>Treat AI as assistant, not authority</li>
@@ -470,7 +516,10 @@ Tip
 </div>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -876,7 +925,8 @@ Tip
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p>Copyright © 2023-26, Rome R Users Group<br>Designer &amp; Maintainer: <a href="https://federicagazzelloni.com">Federica Gazzelloni</a><br>Powered by: Quarto &amp; <a href="https://datametricus.github.io">DataMetricus</a> | <a href="../../../../LICENSE.html">MIT License</a>.</p>
 </div>   
@@ -885,7 +935,7 @@ Tip
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/13-03292026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-<li class="nav-item compact">
+    <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/RomeRUsersGroup">
       <i class="bi bi-github" role="img">
 </i> 
@@ -910,9 +960,11 @@ Tip
     </a>
   </li>  
 </ul>
-</div>
+    </div>
   </div>
 </footer>
+
+
 
 
 <script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>
