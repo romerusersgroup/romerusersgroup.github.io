@@ -5,9 +5,9 @@
 <meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Federica Gazzelloni">
-<meta name="dcterms.date" content="2026-04-19">
-<meta name="description" content="R-Hacks N.16">
-<title>Stop Guessing Why Your Code Breaks – Rome R-Users Group</title>
+<meta name="dcterms.date" content="2026-04-26">
+<meta name="description" content="R-Hacks N.17">
+<title>Start Learning R Faster (Skip What Doesn’t Matter) – Rome R-Users Group</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -126,21 +126,21 @@ cookieconsent.run({
 });
 </script><style>html{ scroll-behavior: smooth; }</style>
 <link rel="stylesheet" href="../../../../styles.css">
-<meta property="og:title" content="Stop Guessing Why Your Code Breaks – Rome R-Users Group">
-<meta property="og:description" content="R-Hacks N.16">
-<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/16-04192026/images/image-1.png">
+<meta property="og:title" content="Start Learning R Faster (Skip What Doesn’t Matter) – Rome R-Users Group">
+<meta property="og:description" content="R-Hacks N.17">
+<meta property="og:image" content="https://romerusersgroup.github.io/content/rhacks/posts/17-04262026/images/image-1.png">
 <meta property="og:site_name" content="Rome R-Users Group">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:alt" content="ChatGPT generated image">
-<meta property="og:image:height" content="994">
-<meta property="og:image:width" content="1505">
-<meta name="twitter:title" content="Stop Guessing Why Your Code Breaks – Rome R-Users Group">
-<meta name="twitter:description" content="R-Hacks N.16">
-<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/16-04192026/images/image-1.png">
+<meta property="og:image:height" content="1001">
+<meta property="og:image:width" content="1510">
+<meta name="twitter:title" content="Start Learning R Faster (Skip What Doesn’t Matter) – Rome R-Users Group">
+<meta name="twitter:description" content="R-Hacks N.17">
+<meta name="twitter:image" content="https://romerusersgroup.github.io/content/rhacks/posts/17-04262026/images/image-1.png">
 <meta name="twitter:creator" content="@rladiesrome">
 <meta name="twitter:image:alt" content="ChatGPT generated image">
-<meta name="twitter:image-height" content="994">
-<meta name="twitter:image-width" content="1505">
+<meta name="twitter:image-height" content="1001">
+<meta name="twitter:image-width" content="1510">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body class="floating nav-fixed quarto-light">
@@ -223,31 +223,32 @@ cookieconsent.run({
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#a-typical-situation" id="toc-a-typical-situation" class="nav-link active" data-scroll-target="#a-typical-situation">1️⃣ A Typical Situation</a></li>
-  <li><a href="#the-structural-view" id="toc-the-structural-view" class="nav-link" data-scroll-target="#the-structural-view">2️⃣ The Structural View</a></li>
-  <li><a href="#break-the-pipeline" id="toc-break-the-pipeline" class="nav-link" data-scroll-target="#break-the-pipeline">3️⃣ Break the Pipeline</a></li>
-  <li><a href="#check-assumptions" id="toc-check-assumptions" class="nav-link" data-scroll-target="#check-assumptions">4️⃣ Check Assumptions</a></li>
-  <li><a href="#a-simple-debugging-habit" id="toc-a-simple-debugging-habit" class="nav-link" data-scroll-target="#a-simple-debugging-habit">5️⃣ A Simple Debugging Habit</a></li>
+<li><a href="#start-with-one-small-workflow-repeat-it-and-expand-from-there." id="toc-start-with-one-small-workflow-repeat-it-and-expand-from-there." class="nav-link active" data-scroll-target="#start-with-one-small-workflow-repeat-it-and-expand-from-there.">Start with one small workflow, repeat it, and expand from there.</a></li>
+  <li><a href="#start-with-a-workflow-not-a-language" id="toc-start-with-a-workflow-not-a-language" class="nav-link" data-scroll-target="#start-with-a-workflow-not-a-language">1️⃣ Start with a Workflow, Not a Language</a></li>
+  <li><a href="#use-one-small-dataset" id="toc-use-one-small-dataset" class="nav-link" data-scroll-target="#use-one-small-dataset">2️⃣ Use One Small Dataset</a></li>
+  <li><a href="#transform-the-data" id="toc-transform-the-data" class="nav-link" data-scroll-target="#transform-the-data">3️⃣ Transform the Data</a></li>
+  <li><a href="#visualise-the-result" id="toc-visualise-the-result" class="nav-link" data-scroll-target="#visualise-the-result">4️⃣ Visualise the Result</a></li>
+  <li><a href="#repeat-before-expanding" id="toc-repeat-before-expanding" class="nav-link" data-scroll-target="#repeat-before-expanding">5️⃣ Repeat Before Expanding</a></li>
   <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters">Why This Matters</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/16-04192026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/17-04262026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Stop Guessing Why Your Code Breaks</h1>
-<p class="subtitle lead">A simple way to debug R pipelines</p>
+<h1 class="title">Start Learning R Faster (Skip What Doesn’t Matter)</h1>
+<p class="subtitle lead">A simple workflow-first approach for beginners</p>
   <div class="quarto-categories">
-    <div class="quarto-category">debugging</div>
+    <div class="quarto-category">learning</div>
     <div class="quarto-category">workflows</div>
-    <div class="quarto-category">ai</div>
+    <div class="quarto-category">beginners</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    R-Hacks N.16
+    R-Hacks N.17
   </div>
 </div>
 
@@ -264,7 +265,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 19, 2026</p>
+      <p class="date">April 26, 2026</p>
     </div>
   </div>
   
@@ -278,10 +279,12 @@ cookieconsent.run({
 <figure class="figure"><p><img src="images/image-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="ChatGPT generated image"></p>
 </figure>
 </div>
-<p>AI can now generate R code in seconds.</p>
-<p>But when that code breaks, something interesting happens.</p>
-<p>Most people do not debug it.<br>
-They regenerate it.</p>
+<p>Many people start learning R by trying to learn everything.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/image-2.png" class="img-fluid figure-img"></p>
+<figcaption>Syntax. Packages. Objects. Functions. Plots. Statistics. Project structure.</figcaption></figure>
+</div>
+<p>That is usually where the problem begins.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -292,42 +295,71 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The problem is not the error.<br>
-The problem is not knowing where it comes from.</p>
+<p>The fastest way to start learning R is not to learn more.</p>
+<p>It is to learn in the right order.</p>
 </div>
 </div>
-<section id="debugging-is-not-about-fixing-code.-it-is-about-locating-the-failure." class="level4"><h4 class="anchored" data-anchor-id="debugging-is-not-about-fixing-code.-it-is-about-locating-the-failure.">Debugging is not about fixing code. It is about locating the failure.</h4>
-<p>This R-Hack introduces a simple way to understand where things go wrong.</p>
-<hr></section><section id="a-typical-situation" class="level2"><h2 class="anchored" data-anchor-id="a-typical-situation">1️⃣ A Typical Situation</h2>
-<p>You run a pipeline:</p>
+<section id="start-with-one-small-workflow-repeat-it-and-expand-from-there." class="level3"><h3 class="anchored" data-anchor-id="start-with-one-small-workflow-repeat-it-and-expand-from-there.">Start with one small workflow, repeat it, and expand from there.</h3>
+<p>This R-Hack is about reducing friction at the beginning. Instead of trying to understand the whole R ecosystem, focus first on the part of R you are most likely to use every day:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/image-3.png" class="img-fluid figure-img"></p>
+<figcaption>reading data, transforming it, and visualising the result</figcaption></figure>
+</div>
+</section><section id="start-with-a-workflow-not-a-language" class="level2"><h2 class="anchored" data-anchor-id="start-with-a-workflow-not-a-language">1️⃣ Start with a Workflow, Not a Language</h2>
+<p>R is a programming language, but most beginners do not need to start by learning it like a general-purpose language.</p>
+<p>A better starting point is to think in terms of one repeatable analytical workflow:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="images/image-4.png" class="img-fluid figure-img"></p>
+<figcaption>read data → transform data → visualise results</figcaption></figure>
+</div>
+<p>This is the core pattern behind many R projects.</p>
+<p>Once this pattern makes sense, the rest becomes easier to place.</p>
+</section><section id="use-one-small-dataset" class="level2"><h2 class="anchored" data-anchor-id="use-one-small-dataset">2️⃣ Use One Small Dataset</h2>
+<p>Do not begin with a large or messy dataset.</p>
+<p>Start with something small enough to understand by looking at it.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">value</span> <span class="op">&gt;</span> <span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>rate <span class="op">=</span> <span class="va">value</span> <span class="op">/</span> <span class="va">total</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>avg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">rate</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span><span class="op">)</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">25</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>And something fails.</p>
-<p>You get:</p>
-<ul>
-<li>an error<br>
-</li>
-<li>a warning<br>
-</li>
-<li>or a result that does not make sense</li>
-</ul>
-<p>The usual reaction is to change the code.</p>
-<p>But that is guessing.</p>
-<hr></section><section id="the-structural-view" class="level2"><h2 class="anchored" data-anchor-id="the-structural-view">2️⃣ The Structural View</h2>
-<p>Every pipeline has three parts:</p>
-<ul>
-<li>input<br>
-</li>
-<li>transformation<br>
-</li>
-<li>output</li>
-</ul>
-<p>The goal is not to fix everything at once.</p>
-<p>The goal is to isolate where the problem appears.</p>
+<p>This is enough to practise the basic workflow.</p>
+<p>The goal is not realism yet.</p>
+<p>The goal is confidence.</p>
+</section><section id="transform-the-data" class="level2"><h2 class="anchored" data-anchor-id="transform-the-data">3️⃣ Transform the Data</h2>
+<p>Once the data is visible, apply one simple transformation.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df_summary</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df_summary</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This teaches an important idea without too much noise: data can be grouped, summarised, and turned into something more informative.</p>
+<p>You do not need to understand every part of R before this becomes useful.</p>
+</section><section id="visualise-the-result" class="level2"><h2 class="anchored" data-anchor-id="visualise-the-result">4️⃣ Visualise the Result</h2>
+<p>Now turn the small summary into a simple plot.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df_summary</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">mean_value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This closes the loop.</p>
+<p>You started with data, changed it, and produced a result that can be read visually.</p>
+<p>That is already a real analytical workflow.</p>
+</section><section id="repeat-before-expanding" class="level2"><h2 class="anchored" data-anchor-id="repeat-before-expanding">5️⃣ Repeat Before Expanding</h2>
+<p>The real learning happens when you repeat the same structure with small changes.</p>
+<p>Change the dataset.</p>
+<p>Change the grouping variable.</p>
+<p>Change the summary.</p>
+<p>Change the plot.</p>
+<p>This is better than jumping immediately to many packages or advanced syntax.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -338,67 +370,16 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Instead of asking “what is wrong?”, ask:</p>
-<p>“where does it start going wrong?”</p>
+<p>Learn one workflow first.</p>
+<p>Then make it slightly more complex.</p>
 </div>
 </div>
-<hr></section><section id="break-the-pipeline" class="level2"><h2 class="anchored" data-anchor-id="break-the-pipeline">3️⃣ Break the Pipeline</h2>
-<p>Run the code step by step.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">step1</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">value</span> <span class="op">&gt;</span> <span class="fl">10</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">step2</span> <span class="op">&lt;-</span> <span class="va">step1</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>rate <span class="op">=</span> <span class="va">value</span> <span class="op">/</span> <span class="va">total</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">step3</span> <span class="op">&lt;-</span> <span class="va">step2</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>avg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">rate</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Now you can inspect each stage.</p>
-<hr></section><section id="check-assumptions" class="level2"><h2 class="anchored" data-anchor-id="check-assumptions">4️⃣ Check Assumptions</h2>
-<p>At each step, verify what you expect:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">step1</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">step2</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">step3</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>You are checking:</p>
-<ul>
-<li>does the data look reasonable?<br>
-</li>
-<li>are there unexpected values?<br>
-</li>
-<li>did a transformation introduce problems?</li>
-</ul>
-<p>This is often enough to identify the issue.</p>
-<hr></section><section id="a-simple-debugging-habit" class="level2"><h2 class="anchored" data-anchor-id="a-simple-debugging-habit">5️⃣ A Simple Debugging Habit</h2>
-<p>Instead of rewriting code, apply a pattern:</p>
-<ul>
-<li>run pipelines step-by-step<br>
-</li>
-<li>store intermediate results<br>
-</li>
-<li>inspect outputs at each stage<br>
-</li>
-<li>verify assumptions before continuing</li>
-</ul>
-<p>This takes a few seconds.</p>
-<p>But it removes guesswork.</p>
-<hr></section><section id="why-this-matters" class="level2"><h2 class="anchored" data-anchor-id="why-this-matters">Why This Matters</h2>
-<p>AI-generated code often looks correct.</p>
-<p>But small issues can appear:</p>
-<ul>
-<li>missing values<br>
-</li>
-<li>divisions by zero<br>
-</li>
-<li>incorrect assumptions about columns<br>
-</li>
-<li>unexpected data types</li>
-</ul>
-<p>If you only rerun or regenerate code, you never see where the problem started.</p>
-<p>Debugging is not trial and error.</p>
-<p>It is observation.</p>
+</section><section id="why-this-matters" class="level2"><h2 class="anchored" data-anchor-id="why-this-matters">Why This Matters</h2>
+<p>R becomes easier when you stop treating it as a list of things to memorise.</p>
+<p>You do not need to know every function before starting.</p>
+<p>You need to understand the shape of the work.</p>
+<p>Most practical R analysis follows a simple rhythm: get data in, make it usable, extract something meaningful, and communicate it clearly.</p>
+<p>That is the rhythm to learn first.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -407,21 +388,16 @@ Tip
 <div class="callout-body-container">
 <p>In Short</p>
 <ul>
-<li>errors are located, not random<br>
-</li>
-<li>pipelines should be broken into steps<br>
-</li>
-<li>intermediate outputs reveal problems<br>
-</li>
-<li>assumptions must be verified<br>
-</li>
-<li>debugging is a method, not a guess</li>
+<li>Do not start by learning everything</li>
+<li>Start with one repeatable workflow</li>
+<li>Use a small dataset first</li>
+<li>Practise reading, transforming, and visualising</li>
+<li>Expand only after the core pattern feels natural</li>
 </ul>
 </div>
 </div>
 </div>
-<p>AI can write code.</p>
-<p>You still need to understand where it breaks.</p>
+<p>Learning R faster is often about removing what does not matter yet.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -850,7 +826,7 @@ Tip
 </div>   
     <div class="nav-footer-center">
 
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/16-04192026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/edit/main/content/rhacks/posts/17-04262026/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/romerusersgroup/romerusersgroup.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
 <li class="nav-item compact">
