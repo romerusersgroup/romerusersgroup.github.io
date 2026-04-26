@@ -1069,5 +1069,54 @@
     "title": "Sponsor",
     "section": "What This Means for You",
     "text": "What This Means for You\nThis partnership brings numerous benefits to our community. We’ll have access to valuable resources, expertise, and opportunities that will further enrich our events and activities. Together, we’ll continue to grow, learn, and share knowledge within the R programming ecosystem.\nWe’re grateful for the support of R Consortium and look forward to the exciting opportunities this collaboration will bring. Stay tuned for upcoming events and initiatives that will showcase the incredible possibilities unlocked by this partnership.\nLet’s embark on this journey together, embracing the power of R programming and data science with R Consortium by our side. Here’s to a bright future of learning, innovation, and community-building!\n#RConsortium #RProgramming #DataScience #CommunityBuilding"
+  },
+  {
+    "objectID": "content/rhacks/posts/17-04262026/index.html",
+    "href": "content/rhacks/posts/17-04262026/index.html",
+    "title": "Start Learning R Faster (Skip What Doesn’t Matter)",
+    "section": "",
+    "text": "Many people start learning R by trying to learn everything.\nThat is usually where the problem begins."
+  },
+  {
+    "objectID": "content/rhacks/posts/17-04262026/index.html#start-with-a-workflow-not-a-language",
+    "href": "content/rhacks/posts/17-04262026/index.html#start-with-a-workflow-not-a-language",
+    "title": "Start Learning R Faster (Skip What Doesn’t Matter)",
+    "section": "1️⃣ Start with a Workflow, Not a Language",
+    "text": "1️⃣ Start with a Workflow, Not a Language\nR is a programming language, but most beginners do not need to start by learning it like a general-purpose language.\nA better starting point is to think in terms of one repeatable analytical workflow:\n\n\nread data → transform data → visualise results\n\nThis is the core pattern behind many R projects.\nOnce this pattern makes sense, the rest becomes easier to place."
+  },
+  {
+    "objectID": "content/rhacks/posts/17-04262026/index.html#use-one-small-dataset",
+    "href": "content/rhacks/posts/17-04262026/index.html#use-one-small-dataset",
+    "title": "Start Learning R Faster (Skip What Doesn’t Matter)",
+    "section": "2️⃣ Use One Small Dataset",
+    "text": "2️⃣ Use One Small Dataset\nDo not begin with a large or messy dataset.\nStart with something small enough to understand by looking at it.\n\ndf &lt;- data.frame(\n  group = c(\"A\", \"A\", \"B\", \"B\"),\n  value = c(10, 15, 20, 25)\n)\n\ndf\n\nThis is enough to practise the basic workflow.\nThe goal is not realism yet.\nThe goal is confidence."
+  },
+  {
+    "objectID": "content/rhacks/posts/17-04262026/index.html#transform-the-data",
+    "href": "content/rhacks/posts/17-04262026/index.html#transform-the-data",
+    "title": "Start Learning R Faster (Skip What Doesn’t Matter)",
+    "section": "3️⃣ Transform the Data",
+    "text": "3️⃣ Transform the Data\nOnce the data is visible, apply one simple transformation.\n\nlibrary(dplyr)\n\ndf_summary &lt;- df |&gt;\n  group_by(group) |&gt;\n  summarise(mean_value = mean(value))\n\ndf_summary\n\nThis teaches an important idea without too much noise: data can be grouped, summarised, and turned into something more informative.\nYou do not need to understand every part of R before this becomes useful."
+  },
+  {
+    "objectID": "content/rhacks/posts/17-04262026/index.html#visualise-the-result",
+    "href": "content/rhacks/posts/17-04262026/index.html#visualise-the-result",
+    "title": "Start Learning R Faster (Skip What Doesn’t Matter)",
+    "section": "4️⃣ Visualise the Result",
+    "text": "4️⃣ Visualise the Result\nNow turn the small summary into a simple plot.\n\nlibrary(ggplot2)\n\nggplot(df_summary, aes(x = group, y = mean_value)) +\n  geom_col() +\n  theme_minimal()\n\nThis closes the loop.\nYou started with data, changed it, and produced a result that can be read visually.\nThat is already a real analytical workflow."
+  },
+  {
+    "objectID": "content/rhacks/posts/17-04262026/index.html#repeat-before-expanding",
+    "href": "content/rhacks/posts/17-04262026/index.html#repeat-before-expanding",
+    "title": "Start Learning R Faster (Skip What Doesn’t Matter)",
+    "section": "5️⃣ Repeat Before Expanding",
+    "text": "5️⃣ Repeat Before Expanding\nThe real learning happens when you repeat the same structure with small changes.\nChange the dataset.\nChange the grouping variable.\nChange the summary.\nChange the plot.\nThis is better than jumping immediately to many packages or advanced syntax.\n\n\n\n\n\n\nTip\n\n\n\nLearn one workflow first.\nThen make it slightly more complex."
+  },
+  {
+    "objectID": "content/rhacks/posts/17-04262026/index.html#why-this-matters",
+    "href": "content/rhacks/posts/17-04262026/index.html#why-this-matters",
+    "title": "Start Learning R Faster (Skip What Doesn’t Matter)",
+    "section": "Why This Matters",
+    "text": "Why This Matters\nR becomes easier when you stop treating it as a list of things to memorise.\nYou do not need to know every function before starting.\nYou need to understand the shape of the work.\nMost practical R analysis follows a simple rhythm: get data in, make it usable, extract something meaningful, and communicate it clearly.\nThat is the rhythm to learn first.\n\n\n\n\n\n\nIn Short\n\nDo not start by learning everything\nStart with one repeatable workflow\nUse a small dataset first\nPractise reading, transforming, and visualising\nExpand only after the core pattern feels natural\n\n\n\n\nLearning R faster is often about removing what does not matter yet.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   }
 ]
