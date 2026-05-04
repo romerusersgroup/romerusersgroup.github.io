@@ -1118,5 +1118,54 @@
     "title": "Sponsor",
     "section": "What This Means for You",
     "text": "What This Means for You\nThis partnership brings numerous benefits to our community. We’ll have access to valuable resources, expertise, and opportunities that will further enrich our events and activities. Together, we’ll continue to grow, learn, and share knowledge within the R programming ecosystem.\nWe’re grateful for the support of R Consortium and look forward to the exciting opportunities this collaboration will bring. Stay tuned for upcoming events and initiatives that will showcase the incredible possibilities unlocked by this partnership.\nLet’s embark on this journey together, embracing the power of R programming and data science with R Consortium by our side. Here’s to a bright future of learning, innovation, and community-building!\n#RConsortium #RProgramming #DataScience #CommunityBuilding"
+  },
+  {
+    "objectID": "content/rhacks/posts/18-05032026/index.html",
+    "href": "content/rhacks/posts/18-05032026/index.html",
+    "title": "Stop Rewriting the Same Code",
+    "section": "",
+    "text": "Most R code does not fail because it is complex.\nIt fails because it is repeated.\nThe same pattern appears again and again: filter, transform, summarise, plot.\nEach time slightly modified. Each time rewritten.\nThis R-Hack is about recognising patterns and turning them into reusable pieces."
+  },
+  {
+    "objectID": "content/rhacks/posts/18-05032026/index.html#a-familiar-pattern",
+    "href": "content/rhacks/posts/18-05032026/index.html#a-familiar-pattern",
+    "title": "Stop Rewriting the Same Code",
+    "section": "1️⃣ A Familiar Pattern",
+    "text": "1️⃣ A Familiar Pattern\nYou start with something like this:\n\ndf |&gt; \n  dplyr::filter(group == \"A\") |&gt; \n  dplyr::summarise(mean_value = mean(value))\n\ndf |&gt; \n  dplyr::filter(group == \"B\") |&gt; \n  dplyr::summarise(mean_value = mean(value))\n\nIt works.\nBut the structure is duplicated."
+  },
+  {
+    "objectID": "content/rhacks/posts/18-05032026/index.html#the-hidden-pattern",
+    "href": "content/rhacks/posts/18-05032026/index.html#the-hidden-pattern",
+    "title": "Stop Rewriting the Same Code",
+    "section": "2️⃣ The Hidden Pattern",
+    "text": "2️⃣ The Hidden Pattern\nLook at what changes:\n\nthe data stays the same\nthe transformation stays the same\nonly one value changes\n\nThis is not two analyses.\nIt is one pattern applied twice."
+  },
+  {
+    "objectID": "content/rhacks/posts/18-05032026/index.html#turn-it-into-a-function",
+    "href": "content/rhacks/posts/18-05032026/index.html#turn-it-into-a-function",
+    "title": "Stop Rewriting the Same Code",
+    "section": "3️⃣ Turn It Into a Function",
+    "text": "3️⃣ Turn It Into a Function\nInstead of repeating the code, capture the pattern:\n\nmean_by_group &lt;- function(data, group_value) {\n  data |&gt; \n    dplyr::filter(group == group_value) |&gt; \n    dplyr::summarise(mean_value = mean(value))\n}\n\nNow the logic is defined once.\nUse it:\n\nmean_by_group(df, \"A\")\nmean_by_group(df, \"B\")"
+  },
+  {
+    "objectID": "content/rhacks/posts/18-05032026/index.html#why-this-matters",
+    "href": "content/rhacks/posts/18-05032026/index.html#why-this-matters",
+    "title": "Stop Rewriting the Same Code",
+    "section": "4️⃣ Why This Matters",
+    "text": "4️⃣ Why This Matters\nThis is not about saving lines of code.\nIt is about clarity.\n\nthe logic lives in one place\nchanges are easier to manage\nerrors are easier to detect\nworkflows become easier to reuse\n\nAnd importantly:\n\n\n\n\n\n\nTip\n\n\n\nReusable code is easier to reason about than duplicated code."
+  },
+  {
+    "objectID": "content/rhacks/posts/18-05032026/index.html#a-small-habit",
+    "href": "content/rhacks/posts/18-05032026/index.html#a-small-habit",
+    "title": "Stop Rewriting the Same Code",
+    "section": "5️⃣ A Small Habit",
+    "text": "5️⃣ A Small Habit\nWhen you see yourself copying code:\nPause.\nAsk:\n\nWhat is changing? What is staying the same?\n\nIf the structure is stable, turn it into a function."
+  },
+  {
+    "objectID": "content/rhacks/posts/18-05032026/index.html#why-this-matters-1",
+    "href": "content/rhacks/posts/18-05032026/index.html#why-this-matters-1",
+    "title": "Stop Rewriting the Same Code",
+    "section": "Why This Matters",
+    "text": "Why This Matters\nAI makes it easier to generate code quickly.\nBut it also makes it easier to generate slightly different versions of the same code.\nWithout structure, this leads to fragmentation.\nWith small reusable functions, it becomes a workflow.\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n\nrepeated code often hides a pattern\npatterns can be turned into functions\nfunctions reduce duplication\nreusable code improves clarity\nsmall abstractions make workflows stronger\n\n\n\nWriting less code is not the goal.\nWriting the same logic only once is.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   }
 ]
