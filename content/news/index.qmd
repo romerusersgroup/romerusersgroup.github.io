@@ -109,7 +109,7 @@ feed_data <- all_feeds %>%
 
 feed_data %>%
   select(-link) %>%
-  gt() %>%
+  gt(id = "news-feed-table") %>%
   text_transform(
     locations = cells_body(columns = image_url),
     fn = function(x) {
@@ -135,5 +135,4 @@ feed_data %>%
     locations = cells_column_labels(everything())
   )
 ```
-
 
