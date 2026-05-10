@@ -350,53 +350,102 @@
     "text": "1️⃣ A Typical Situation\nYou ask AI to generate a dataset:\n\ndf &lt;- data.frame(\n  age = c(25, 30, 45, 52),\n  income = c(20000, 35000, 50000, 62000),\n  group = c(\"A\", \"A\", \"B\", \"B\")\n)\n\nEverything looks fine.\nBut in real workflows, problems are often subtle:\nwrong ranges unrealistic distributions inconsistent categories hidden missing values\nThese do not always produce errors. They produce misleading results.\n2️⃣ A Simple Validation Pattern\nStart with basic structure checks:\nstr(df)\nsummary(df)\n3️⃣ Check for Missing and Duplicated Values\ncolSums(is.na(df))\nany(duplicated(df))\n4️⃣ Check Logical Consistency\ndf |&gt; dplyr::filter(age &lt; 0)\ndf |&gt; dplyr::filter(income &lt; 0)\n5️⃣ A Small Reusable Habit\nstructure → str()\nsummary → summary()\nmissing → colSums(is.na())\nduplicates → duplicated()\nlogic → simple filters\n\n\n\n\n\n\nTip\n\n\n\nAI accelerates workflows. Validation protects them.\n\n\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n•   AI-generated data may contain subtle issues\n•   structure checks reveal hidden problems\n•   missing values and duplicates must be verified\n•   logical consistency matters as much as format\n•   validation should be a standard habit\n\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   },
   {
-    "objectID": "content/rhacks/posts/13-03292026/index.html",
-    "href": "content/rhacks/posts/13-03292026/index.html",
-    "title": "Calling a Chatbot from R with ellmer",
+    "objectID": "content/rhacks/posts/18-05032026/index.html",
+    "href": "content/rhacks/posts/18-05032026/index.html",
+    "title": "Stop Rewriting the Same Code",
     "section": "",
-    "text": "Many analysts now use AI tools while working in R.\nBut the workflow often looks like this:"
+    "text": "Most R code does not fail because it is complex.\nIt fails because it is repeated.\nThe same pattern appears again and again: filter, transform, summarise, plot.\nEach time slightly modified. Each time rewritten.\nThis R-Hack is about recognising patterns and turning them into reusable pieces."
   },
   {
-    "objectID": "content/rhacks/posts/13-03292026/index.html#a-minimal-ellmer-example",
-    "href": "content/rhacks/posts/13-03292026/index.html#a-minimal-ellmer-example",
-    "title": "Calling a Chatbot from R with ellmer",
-    "section": "1️⃣ A Minimal ellmer Example",
-    "text": "1️⃣ A Minimal ellmer Example\nThe simplest way to call a chat model from R looks like this:\n\nlibrary(ellmer)\n\nchat &lt;- chat_openai()\n\nchat$chat(\"Explain what a linear model is in simple terms\")\n\nYou now have a chatbot inside your R session.\nThis is useful because it keeps:\n\nanalysis\n\nprompts\n\nresults\n\nin the same environment."
+    "objectID": "content/rhacks/posts/18-05032026/index.html#a-familiar-pattern",
+    "href": "content/rhacks/posts/18-05032026/index.html#a-familiar-pattern",
+    "title": "Stop Rewriting the Same Code",
+    "section": "1️⃣ A Familiar Pattern",
+    "text": "1️⃣ A Familiar Pattern\nYou start with something like this:\n\ndf |&gt; \n  dplyr::filter(group == \"A\") |&gt; \n  dplyr::summarise(mean_value = mean(value))\n\ndf |&gt; \n  dplyr::filter(group == \"B\") |&gt; \n  dplyr::summarise(mean_value = mean(value))\n\nIt works.\nBut the structure is duplicated."
   },
   {
-    "objectID": "content/rhacks/posts/13-03292026/index.html#a-quick-comparison-with-python",
-    "href": "content/rhacks/posts/13-03292026/index.html#a-quick-comparison-with-python",
-    "title": "Calling a Chatbot from R with ellmer",
-    "section": "2️⃣ A Quick Comparison with Python",
-    "text": "2️⃣ A Quick Comparison with Python\nMany AI examples appear first in Python:\nfrom openai import OpenAI\n\nclient = OpenAI()\n\nresponse = client.responses.create(\n    model=\"gpt-4.1-mini\",\n    input=\"Explain what a linear model is\"\n)\n\nprint(response.output_text)\nR can now do something very similar:\n\nlibrary(ellmer)\n\nchat &lt;- chat_openai()\n\nchat$chat(\"Explain what a linear model is\")\n\nThe point is not R vs Python.\nThe real advantage is workflow:\nIf your data, models, and reports already live in R, calling AI from R keeps everything in one place."
+    "objectID": "content/rhacks/posts/18-05032026/index.html#the-hidden-pattern",
+    "href": "content/rhacks/posts/18-05032026/index.html#the-hidden-pattern",
+    "title": "Stop Rewriting the Same Code",
+    "section": "2️⃣ The Hidden Pattern",
+    "text": "2️⃣ The Hidden Pattern\nLook at what changes:\n\nthe data stays the same\nthe transformation stays the same\nonly one value changes\n\nThis is not two analyses.\nIt is one pattern applied twice."
   },
   {
-    "objectID": "content/rhacks/posts/13-03292026/index.html#a-practical-analyst-example",
-    "href": "content/rhacks/posts/13-03292026/index.html#a-practical-analyst-example",
-    "title": "Calling a Chatbot from R with ellmer",
-    "section": "3️⃣ A Practical Analyst Example",
-    "text": "3️⃣ A Practical Analyst Example\nOne useful habit is asking AI to explain model output.\nFor example:\n\nchat$chat(\"\nExplain this model output in plain English:\n\nResidual standard error: 2.31 on 98 degrees of freedom  \nMultiple R-squared: 0.74  \n\nFocus on interpretation, not formulas.\n\")\n\nThis can help when:\n\npreparing reports\n\ntranslating technical results\n\nchecking interpretations\n\ndrafting explanations\n\nTreat this as a drafting assistant, not a final authority."
+    "objectID": "content/rhacks/posts/18-05032026/index.html#turn-it-into-a-function",
+    "href": "content/rhacks/posts/18-05032026/index.html#turn-it-into-a-function",
+    "title": "Stop Rewriting the Same Code",
+    "section": "3️⃣ Turn It Into a Function",
+    "text": "3️⃣ Turn It Into a Function\nInstead of repeating the code, capture the pattern:\n\nmean_by_group &lt;- function(data, group_value) {\n  data |&gt; \n    dplyr::filter(group == group_value) |&gt; \n    dplyr::summarise(mean_value = mean(value))\n}\n\nNow the logic is defined once.\nUse it:\n\nmean_by_group(df, \"A\")\nmean_by_group(df, \"B\")"
   },
   {
-    "objectID": "content/rhacks/posts/13-03292026/index.html#a-reusable-prompt-pattern",
-    "href": "content/rhacks/posts/13-03292026/index.html#a-reusable-prompt-pattern",
-    "title": "Calling a Chatbot from R with ellmer",
-    "section": "4️⃣ A Reusable Prompt Pattern",
-    "text": "4️⃣ A Reusable Prompt Pattern\nInstead of typing prompts interactively, store them:\n\nprompt &lt;- \"\nYou are a senior data analyst.\n\nExplain this regression output for a business audience.\n\nRules:\n- Keep explanation under 120 words\n- Avoid statistical jargon\n- Focus on practical meaning\n\"\n\nchat$chat(prompt)\n\nThis improves:\n\nreproducibility\n\nconsistency\n\ndocumentation of reasoning\n\nPrompts become part of your analysis pipeline."
+    "objectID": "content/rhacks/posts/18-05032026/index.html#why-this-matters",
+    "href": "content/rhacks/posts/18-05032026/index.html#why-this-matters",
+    "title": "Stop Rewriting the Same Code",
+    "section": "4️⃣ Why This Matters",
+    "text": "4️⃣ Why This Matters\nThis is not about saving lines of code.\nIt is about clarity.\n\nthe logic lives in one place\nchanges are easier to manage\nerrors are easier to detect\nworkflows become easier to reuse\n\nAnd importantly:\n\n\n\n\n\n\nTip\n\n\n\nReusable code is easier to reason about than duplicated code."
   },
   {
-    "objectID": "content/rhacks/posts/13-03292026/index.html#when-this-is-most-useful",
-    "href": "content/rhacks/posts/13-03292026/index.html#when-this-is-most-useful",
-    "title": "Calling a Chatbot from R with ellmer",
-    "section": "5️⃣ When This Is Most Useful",
-    "text": "5️⃣ When This Is Most Useful\nCalling AI from R works especially well when you:\n\ndocument analysis steps\n\ngenerate explanations\n\nexplore interpretations\n\nprepare communication text\n\nvalidate reasoning paths\n\nIt is less useful for:\n\nfinal decisions\n\nstatistical validation\n\nreplacing domain expertise\n\n\n\n\n\n\n\nTip\n\n\n\nThink of AI as a workflow accelerator, not an analytical authority."
+    "objectID": "content/rhacks/posts/18-05032026/index.html#a-small-habit",
+    "href": "content/rhacks/posts/18-05032026/index.html#a-small-habit",
+    "title": "Stop Rewriting the Same Code",
+    "section": "5️⃣ A Small Habit",
+    "text": "5️⃣ A Small Habit\nWhen you see yourself copying code:\nPause.\nAsk:\n\nWhat is changing? What is staying the same?\n\nIf the structure is stable, turn it into a function."
   },
   {
-    "objectID": "content/rhacks/posts/13-03292026/index.html#a-small-safety-rule",
-    "href": "content/rhacks/posts/13-03292026/index.html#a-small-safety-rule",
-    "title": "Calling a Chatbot from R with ellmer",
-    "section": "6️⃣ A Small Safety Rule",
-    "text": "6️⃣ A Small Safety Rule\nAlways:\n\nreview outputs critically\n\nverify claims\n\ncheck numbers manually\n\nkeep prompts precise\n\nAI performs best with clear constraints.\n\n\n\n\n\n\nIn Short\n\nCalling AI from R avoids copy-paste workflows\n\nellmer makes LLM integration simple\nAI helps explain models and draft text\nStore prompts for reproducibility\nTreat AI as assistant, not authority\n\n\n\n\nSmall integrations like this often create the biggest workflow improvements.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
+    "objectID": "content/rhacks/posts/18-05032026/index.html#why-this-matters-1",
+    "href": "content/rhacks/posts/18-05032026/index.html#why-this-matters-1",
+    "title": "Stop Rewriting the Same Code",
+    "section": "Why This Matters",
+    "text": "Why This Matters\nAI makes it easier to generate code quickly.\nBut it also makes it easier to generate slightly different versions of the same code.\nWithout structure, this leads to fragmentation.\nWith small reusable functions, it becomes a workflow.\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n\nrepeated code often hides a pattern\npatterns can be turned into functions\nfunctions reduce duplication\nreusable code improves clarity\nsmall abstractions make workflows stronger\n\n\n\nWriting less code is not the goal.\nWriting the same logic only once is.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
+  },
+  {
+    "objectID": "content/rhacks/posts/19-05102026/index.html",
+    "href": "content/rhacks/posts/19-05102026/index.html",
+    "title": "Your Script Is Not a Workflow",
+    "section": "",
+    "text": "Most R scripts work once.\nThe real problem appears when you try to run them again.\nMaybe the objects are still loaded in memory. Maybe one chunk was executed manually before another. Maybe a transformation depended on something created earlier in the session and quietly forgotten afterward.\nAt first, everything still looks fine.\nThen one day the script stops working, and it becomes difficult to understand why."
+  },
+  {
+    "objectID": "content/rhacks/posts/19-05102026/index.html#a-familiar-situation",
+    "href": "content/rhacks/posts/19-05102026/index.html#a-familiar-situation",
+    "title": "Your Script Is Not a Workflow",
+    "section": "1️⃣ A Familiar Situation",
+    "text": "1️⃣ A Familiar Situation\nA script often starts in a very natural way:\n\ndf2 &lt;- clean_data(df1)\n\nmodel &lt;- fit_model(df2)\n\nplot_results(model)\n\nThe code itself may be correct.\nBut there is a hidden problem:\nWhere does df1 come from?\nIf the session is restarted, or the environment is cleared, the script may fail immediately because one piece depends on something created somewhere else.\nThis is one of the most common sources of fragile analysis."
+  },
+  {
+    "objectID": "content/rhacks/posts/19-05102026/index.html#hidden-dependencies",
+    "href": "content/rhacks/posts/19-05102026/index.html#hidden-dependencies",
+    "title": "Your Script Is Not a Workflow",
+    "section": "2️⃣ Hidden Dependencies",
+    "text": "2️⃣ Hidden Dependencies\nMany scripts quietly depend on:\n\nobjects stored in memory\nchunks executed manually\nfiles placed in specific folders\nvariables created interactively\n\nThe difficulty is that these dependencies are often invisible while you are working.\nThe script feels complete, but the process is not.\nThat is why code can work perfectly one day and fail the next."
+  },
+  {
+    "objectID": "content/rhacks/posts/19-05102026/index.html#a-workflow-starts-from-inputs",
+    "href": "content/rhacks/posts/19-05102026/index.html#a-workflow-starts-from-inputs",
+    "title": "Your Script Is Not a Workflow",
+    "section": "3️⃣ A Workflow Starts from Inputs",
+    "text": "3️⃣ A Workflow Starts from Inputs\nA more reliable structure begins by making inputs explicit.\n\nraw_data &lt;- read.csv(\"data.csv\")\n\nclean_data &lt;- process_data(raw_data)\n\nmodel &lt;- fit_model(clean_data)\n\nplot_results(model)\n\nNow the sequence is easier to follow.\nThe script starts from a clear source, performs transformations in order, and produces outputs that can be reproduced later.\nThe important shift is not technical.\nIt is structural."
+  },
+  {
+    "objectID": "content/rhacks/posts/19-05102026/index.html#why-this-matters",
+    "href": "content/rhacks/posts/19-05102026/index.html#why-this-matters",
+    "title": "Your Script Is Not a Workflow",
+    "section": "4️⃣ Why This Matters",
+    "text": "4️⃣ Why This Matters\nA workflow reduces uncertainty.\nInstead of relying on memory or manual execution, the analysis becomes something that can be restarted and rerun consistently.\nThis matters even more now because AI tools can generate code quickly. It is easy to accumulate scripts that appear functional but contain hidden assumptions and invisible dependencies.\nWithout structure, workflows become fragile.\nWith structure, they become reusable.\n\n\n\n\n\n\nTip\n\n\n\nReproducibility starts before Quarto, Git, or pipelines.\nIt starts with structure."
+  },
+  {
+    "objectID": "content/rhacks/posts/19-05102026/index.html#a-small-habit",
+    "href": "content/rhacks/posts/19-05102026/index.html#a-small-habit",
+    "title": "Your Script Is Not a Workflow",
+    "section": "5️⃣ A Small Habit",
+    "text": "5️⃣ A Small Habit\nBefore considering a script “finished,” try one simple test:\nRestart the R session and run the script from the beginning.\nIf it fails, the workflow probably depends on something hidden.\nThat small check often reveals more than reading the code itself."
+  },
+  {
+    "objectID": "content/rhacks/posts/19-05102026/index.html#why-this-matters-1",
+    "href": "content/rhacks/posts/19-05102026/index.html#why-this-matters-1",
+    "title": "Your Script Is Not a Workflow",
+    "section": "Why This Matters",
+    "text": "Why This Matters\nA workflow is not defined by how much code it contains.\nIt is defined by whether another person — or even your future self — can run it again without guessing what happened before.\nThat is the difference between isolated code and a reusable analytical process.\n\n\n\n\n\n\nIn Short\n\nscripts often contain hidden dependencies\nworkflows make inputs and steps explicit\nreproducibility depends on structure\nrestarting the session is a useful test\nreliable workflows reduce uncertainty\n\n\n\n\nGood workflows are not built by accident.\nThey are built by making dependencies visible.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   },
   {
     "objectID": "content/rhacks/posts/03-01132026/index.html",
@@ -543,7 +592,7 @@
     "href": "content/news/index.html#check-recent-posts-from-selected-r-and-data-science-sources",
     "title": "R Consortium Events & Workshops",
     "section": "Check recent posts from selected R and data science sources:",
-    "text": "Check recent posts from selected R and data science sources:\n\n\n\n\n\n\nDate\nSource\nTitle\n\n\n\n\n2026-04-13\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W16 perspectiveR, puppeteeR\n\n\n\n2026-04-06\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W15 dataviewR difftastic R-universe\n\n\n\n2026-03-30\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W14 ggauto, alt text, scientific coffee\n\n\n\n2026-03-23\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W13 What’s new in dplyr, Atmospheric simulation\n\n\n\n2026-03-17\nR-Ladies Rome\nWhat’s New in {dplyr} 1.2.0: A Tour with Isabella Velásquez\n\n\n\n2026-03-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W12 Sharing across shiny modules, F1 data\n\n\n\n2026-03-09\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W11 claude beeswarm rstudio\n\n\n\n2026-03-02\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2025-W10 tidymodels, tidyplots, ggvariant package\n\n\n\n2026-02-23\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W09 Git commits, Pick a License, and How to choose the best LLM using R and vitals\n\n\n\n2026-02-16\nR-Ladies Rome\nA Year of Learning, Growth, and Community at R-Ladies Rome 🌟"
+    "text": "Check recent posts from selected R and data science sources:\n\n\n\n\n\n\nDate\nSource\nTitle\n\n\n\n\n2026-05-04\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W19 Shiny webAwesome, ggplot2 tricks, knitr\n\n\n\n2026-04-27\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W18 logrittr, Working smarter, Generating universes\n\n\n\n2026-04-13\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W16 perspectiveR, puppeteeR\n\n\n\n2026-04-06\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W15 dataviewR difftastic R-universe\n\n\n\n2026-03-30\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W14 ggauto, alt text, scientific coffee\n\n\n\n2026-03-23\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W13 What’s new in dplyr, Atmospheric simulation\n\n\n\n2026-03-17\nR-Ladies Rome\nWhat’s New in {dplyr} 1.2.0: A Tour with Isabella Velásquez\n\n\n\n2026-03-16\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W12 Sharing across shiny modules, F1 data\n\n\n\n2026-03-09\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2026-W11 claude beeswarm rstudio\n\n\n\n2026-03-02\nRWeekly.org - Blogs to Learn R from the Community\nR Weekly 2025-W10 tidymodels, tidyplots, ggvariant package"
   },
   {
     "objectID": "LICENSE.html",
@@ -747,6 +796,55 @@
     "title": "When to Pivot: Spotting Data Shape Problems Early",
     "section": "Industry update (short note)",
     "text": "Industry update (short note)\nPosit has opened a private beta of an AI assistant embedded directly in RStudio. If you’re curious to try it, you can join the waiting list here:\n👉 https://posit.co/products/enterprise/ai/\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group, follow us here:\n👉 https://www.meetup.com/rome-r-users-group/"
+  },
+  {
+    "objectID": "content/rhacks/posts/13-03292026/index.html",
+    "href": "content/rhacks/posts/13-03292026/index.html",
+    "title": "Calling a Chatbot from R with ellmer",
+    "section": "",
+    "text": "Many analysts now use AI tools while working in R.\nBut the workflow often looks like this:"
+  },
+  {
+    "objectID": "content/rhacks/posts/13-03292026/index.html#a-minimal-ellmer-example",
+    "href": "content/rhacks/posts/13-03292026/index.html#a-minimal-ellmer-example",
+    "title": "Calling a Chatbot from R with ellmer",
+    "section": "1️⃣ A Minimal ellmer Example",
+    "text": "1️⃣ A Minimal ellmer Example\nThe simplest way to call a chat model from R looks like this:\n\nlibrary(ellmer)\n\nchat &lt;- chat_openai()\n\nchat$chat(\"Explain what a linear model is in simple terms\")\n\nYou now have a chatbot inside your R session.\nThis is useful because it keeps:\n\nanalysis\n\nprompts\n\nresults\n\nin the same environment."
+  },
+  {
+    "objectID": "content/rhacks/posts/13-03292026/index.html#a-quick-comparison-with-python",
+    "href": "content/rhacks/posts/13-03292026/index.html#a-quick-comparison-with-python",
+    "title": "Calling a Chatbot from R with ellmer",
+    "section": "2️⃣ A Quick Comparison with Python",
+    "text": "2️⃣ A Quick Comparison with Python\nMany AI examples appear first in Python:\nfrom openai import OpenAI\n\nclient = OpenAI()\n\nresponse = client.responses.create(\n    model=\"gpt-4.1-mini\",\n    input=\"Explain what a linear model is\"\n)\n\nprint(response.output_text)\nR can now do something very similar:\n\nlibrary(ellmer)\n\nchat &lt;- chat_openai()\n\nchat$chat(\"Explain what a linear model is\")\n\nThe point is not R vs Python.\nThe real advantage is workflow:\nIf your data, models, and reports already live in R, calling AI from R keeps everything in one place."
+  },
+  {
+    "objectID": "content/rhacks/posts/13-03292026/index.html#a-practical-analyst-example",
+    "href": "content/rhacks/posts/13-03292026/index.html#a-practical-analyst-example",
+    "title": "Calling a Chatbot from R with ellmer",
+    "section": "3️⃣ A Practical Analyst Example",
+    "text": "3️⃣ A Practical Analyst Example\nOne useful habit is asking AI to explain model output.\nFor example:\n\nchat$chat(\"\nExplain this model output in plain English:\n\nResidual standard error: 2.31 on 98 degrees of freedom  \nMultiple R-squared: 0.74  \n\nFocus on interpretation, not formulas.\n\")\n\nThis can help when:\n\npreparing reports\n\ntranslating technical results\n\nchecking interpretations\n\ndrafting explanations\n\nTreat this as a drafting assistant, not a final authority."
+  },
+  {
+    "objectID": "content/rhacks/posts/13-03292026/index.html#a-reusable-prompt-pattern",
+    "href": "content/rhacks/posts/13-03292026/index.html#a-reusable-prompt-pattern",
+    "title": "Calling a Chatbot from R with ellmer",
+    "section": "4️⃣ A Reusable Prompt Pattern",
+    "text": "4️⃣ A Reusable Prompt Pattern\nInstead of typing prompts interactively, store them:\n\nprompt &lt;- \"\nYou are a senior data analyst.\n\nExplain this regression output for a business audience.\n\nRules:\n- Keep explanation under 120 words\n- Avoid statistical jargon\n- Focus on practical meaning\n\"\n\nchat$chat(prompt)\n\nThis improves:\n\nreproducibility\n\nconsistency\n\ndocumentation of reasoning\n\nPrompts become part of your analysis pipeline."
+  },
+  {
+    "objectID": "content/rhacks/posts/13-03292026/index.html#when-this-is-most-useful",
+    "href": "content/rhacks/posts/13-03292026/index.html#when-this-is-most-useful",
+    "title": "Calling a Chatbot from R with ellmer",
+    "section": "5️⃣ When This Is Most Useful",
+    "text": "5️⃣ When This Is Most Useful\nCalling AI from R works especially well when you:\n\ndocument analysis steps\n\ngenerate explanations\n\nexplore interpretations\n\nprepare communication text\n\nvalidate reasoning paths\n\nIt is less useful for:\n\nfinal decisions\n\nstatistical validation\n\nreplacing domain expertise\n\n\n\n\n\n\n\nTip\n\n\n\nThink of AI as a workflow accelerator, not an analytical authority."
+  },
+  {
+    "objectID": "content/rhacks/posts/13-03292026/index.html#a-small-safety-rule",
+    "href": "content/rhacks/posts/13-03292026/index.html#a-small-safety-rule",
+    "title": "Calling a Chatbot from R with ellmer",
+    "section": "6️⃣ A Small Safety Rule",
+    "text": "6️⃣ A Small Safety Rule\nAlways:\n\nreview outputs critically\n\nverify claims\n\ncheck numbers manually\n\nkeep prompts precise\n\nAI performs best with clear constraints.\n\n\n\n\n\n\nIn Short\n\nCalling AI from R avoids copy-paste workflows\n\nellmer makes LLM integration simple\nAI helps explain models and draft text\nStore prompts for reproducibility\nTreat AI as assistant, not authority\n\n\n\n\nSmall integrations like this often create the biggest workflow improvements.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   },
   {
     "objectID": "content/rhacks/posts/14-04052026/index.html",
@@ -1118,54 +1216,5 @@
     "title": "Sponsor",
     "section": "What This Means for You",
     "text": "What This Means for You\nThis partnership brings numerous benefits to our community. We’ll have access to valuable resources, expertise, and opportunities that will further enrich our events and activities. Together, we’ll continue to grow, learn, and share knowledge within the R programming ecosystem.\nWe’re grateful for the support of R Consortium and look forward to the exciting opportunities this collaboration will bring. Stay tuned for upcoming events and initiatives that will showcase the incredible possibilities unlocked by this partnership.\nLet’s embark on this journey together, embracing the power of R programming and data science with R Consortium by our side. Here’s to a bright future of learning, innovation, and community-building!\n#RConsortium #RProgramming #DataScience #CommunityBuilding"
-  },
-  {
-    "objectID": "content/rhacks/posts/18-05032026/index.html",
-    "href": "content/rhacks/posts/18-05032026/index.html",
-    "title": "Stop Rewriting the Same Code",
-    "section": "",
-    "text": "Most R code does not fail because it is complex.\nIt fails because it is repeated.\nThe same pattern appears again and again: filter, transform, summarise, plot.\nEach time slightly modified. Each time rewritten.\nThis R-Hack is about recognising patterns and turning them into reusable pieces."
-  },
-  {
-    "objectID": "content/rhacks/posts/18-05032026/index.html#a-familiar-pattern",
-    "href": "content/rhacks/posts/18-05032026/index.html#a-familiar-pattern",
-    "title": "Stop Rewriting the Same Code",
-    "section": "1️⃣ A Familiar Pattern",
-    "text": "1️⃣ A Familiar Pattern\nYou start with something like this:\n\ndf |&gt; \n  dplyr::filter(group == \"A\") |&gt; \n  dplyr::summarise(mean_value = mean(value))\n\ndf |&gt; \n  dplyr::filter(group == \"B\") |&gt; \n  dplyr::summarise(mean_value = mean(value))\n\nIt works.\nBut the structure is duplicated."
-  },
-  {
-    "objectID": "content/rhacks/posts/18-05032026/index.html#the-hidden-pattern",
-    "href": "content/rhacks/posts/18-05032026/index.html#the-hidden-pattern",
-    "title": "Stop Rewriting the Same Code",
-    "section": "2️⃣ The Hidden Pattern",
-    "text": "2️⃣ The Hidden Pattern\nLook at what changes:\n\nthe data stays the same\nthe transformation stays the same\nonly one value changes\n\nThis is not two analyses.\nIt is one pattern applied twice."
-  },
-  {
-    "objectID": "content/rhacks/posts/18-05032026/index.html#turn-it-into-a-function",
-    "href": "content/rhacks/posts/18-05032026/index.html#turn-it-into-a-function",
-    "title": "Stop Rewriting the Same Code",
-    "section": "3️⃣ Turn It Into a Function",
-    "text": "3️⃣ Turn It Into a Function\nInstead of repeating the code, capture the pattern:\n\nmean_by_group &lt;- function(data, group_value) {\n  data |&gt; \n    dplyr::filter(group == group_value) |&gt; \n    dplyr::summarise(mean_value = mean(value))\n}\n\nNow the logic is defined once.\nUse it:\n\nmean_by_group(df, \"A\")\nmean_by_group(df, \"B\")"
-  },
-  {
-    "objectID": "content/rhacks/posts/18-05032026/index.html#why-this-matters",
-    "href": "content/rhacks/posts/18-05032026/index.html#why-this-matters",
-    "title": "Stop Rewriting the Same Code",
-    "section": "4️⃣ Why This Matters",
-    "text": "4️⃣ Why This Matters\nThis is not about saving lines of code.\nIt is about clarity.\n\nthe logic lives in one place\nchanges are easier to manage\nerrors are easier to detect\nworkflows become easier to reuse\n\nAnd importantly:\n\n\n\n\n\n\nTip\n\n\n\nReusable code is easier to reason about than duplicated code."
-  },
-  {
-    "objectID": "content/rhacks/posts/18-05032026/index.html#a-small-habit",
-    "href": "content/rhacks/posts/18-05032026/index.html#a-small-habit",
-    "title": "Stop Rewriting the Same Code",
-    "section": "5️⃣ A Small Habit",
-    "text": "5️⃣ A Small Habit\nWhen you see yourself copying code:\nPause.\nAsk:\n\nWhat is changing? What is staying the same?\n\nIf the structure is stable, turn it into a function."
-  },
-  {
-    "objectID": "content/rhacks/posts/18-05032026/index.html#why-this-matters-1",
-    "href": "content/rhacks/posts/18-05032026/index.html#why-this-matters-1",
-    "title": "Stop Rewriting the Same Code",
-    "section": "Why This Matters",
-    "text": "Why This Matters\nAI makes it easier to generate code quickly.\nBut it also makes it easier to generate slightly different versions of the same code.\nWithout structure, this leads to fragmentation.\nWith small reusable functions, it becomes a workflow.\n\n\n\n\n\n\nNote\n\n\n\nIn Short\n\nrepeated code often hides a pattern\npatterns can be turned into functions\nfunctions reduce duplication\nreusable code improves clarity\nsmall abstractions make workflows stronger\n\n\n\nWriting less code is not the goal.\nWriting the same logic only once is.\n\n\n\n\n\n\nTip\n\n\n\nIf you want to stay up to date with the latest events and posts from the Rome R Users Group:\n👉 https://www.meetup.com/rome-r-users-group/"
   }
 ]
