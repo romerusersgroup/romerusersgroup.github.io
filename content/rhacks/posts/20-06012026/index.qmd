@@ -1,9 +1,9 @@
 ---
 title: "The Biggest Change in R Is Not a Package"
 subtitle: "A bi-weekly look at where the R ecosystem is moving"
-description: "R-Hacks N.21"
+description: "R-Hacks N.20"
 author: "Federica Gazzelloni"
-date: "2026-05-31"
+date: "2026-06-01"
 images: "images/image-1.png"
 series: R-Hacks
 categories:
